@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "locale": "serve dist/freshmate_front/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
