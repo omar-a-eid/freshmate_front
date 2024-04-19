@@ -72,3 +72,12 @@
 .icon-container.hovered .hover-icon {
   display: inline-block;
 }
+
+@media only screen and (max-width: 768px) {
+  .copyrights-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
