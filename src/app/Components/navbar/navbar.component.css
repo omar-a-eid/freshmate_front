@@ -1,0 +1,214 @@
+::ng-deep body {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.dotted-icon-container {
+    position: relative;
+}
+
+.dotted-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; 
+    height: 40px; 
+    border: 2px dotted rgb(133, 67, 67); 
+    border-radius: 50%;
+}
+
+.dotted-icon-container .badge {
+    position: absolute;
+    top: 2px;
+    right: -6px;
+}
+
+.dotted-icon-container .badge.bg-danger {
+    background-color: rgb(87, 41, 41) !important;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: rgb(87, 41, 41) !important;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.navbar{
+    width: 100%;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.icon-container {
+    width: 35px; 
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    margin-right: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-brown {
+    background-color: rgb(87, 41, 41)
+}
+
+.placeholder-small::placeholder {
+    font-size: 8px; 
+    font-weight: bold;
+    color: rgb(197, 191, 191);
+}
+
+.search {
+    height: 40px; 
+    width: 250px; 
+}
+
+.search input {
+    height: 40px; 
+}
+
+.icon-container:hover{
+    background-color: rgb(113, 64, 64) !important; 
+    cursor: pointer; 
+}
+
+.form-control:focus + .position-absolute .icon-container {
+    visibility: visible !important;
+}
+
+
+@media (max-width: 1200px) {
+    .navbar .container {
+      flex-wrap: wrap;
+    }
+}
+  
+/* Expand search input to full width on smaller screens */
+@media (max-width: 1200px) {
+    .navbar .search {
+      width: 100%;
+      max-width: none;
+    }
+    .navbar-nav {
+        display: none;
+    }
+}
+
+/* Hide the sidebar icon on the extra large screens */
+@media (min-width: 1201px) {
+    .sidebar-btn {
+        display: none;
+    }
+}
+
+  /* Sidebar Styling */
+.sidebar-btn {
+    border: none; 
+    background-color: transparent;
+    padding: 0;
+    width: 50px;
+}
+
+.custom-list .divider {
+    border-top: 2px solid #b1b1b1;
+}
+
+.custom-list li a{
+    color: black !important; 
+    margin-left: 20px;
+}
+
+.custom-offcanvas {
+    width: 300px;
+}
+
+.custom-offcanvas {
+    transition: transform 0.3s ease;
+}
+
+.offcanvas-start {
+    transform: translateX(-100%);
+}
+
+.offcanvas.show {
+    transform: translateX(0);
+}
+
+.contact{
+    margin-top: 280px;
+}
+
+@media (max-width: 991px) {
+    .contact-header {
+        display: none !important;
+    }
+    .contact {
+        display: block;
+    }
+}
+
+@media (min-width: 992px) {
+    .contact-header {
+        display: flex !important;
+        justify-content: space-between;
+    }
+    .contact {
+        display: none;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .favorite, .user, .navbar, .original-search{
+        display: none;
+    }        
+}
+
+/* Phone Icon Animation */
+@keyframes ringing {
+    0% {
+      transform: translateX(-5px);
+    }
+    50% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(-5px);
+    }
+  }
+  
+
+.dotted-icon-container.phone:hover .dotted-icon svg {
+    animation: ringing 0.7s;
+}
+
+.dotted-icon-container .hover-icon {
+    display: none;
+}
+
+.dotted-icon-container:hover .original-icon {
+    display: none;
+}
+
+.dotted-icon-container:hover .hover-icon {
+    display: inline-block;
+}
+  
+  
+  
+
+
+
+    
+
+
+
+
+
+
