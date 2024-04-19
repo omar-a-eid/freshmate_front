@@ -1,0 +1,27 @@
+::ng-deep body {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.subscribe-button{
+    width: 110PX;
+    right: 10px;
+    top: 6px;
+    padding: 8PX;
+    background-color: #52271f;
+    border: none;
+}
+
+.footer-input{
+width: 600px;
+height: 50px;
+}
+
+.links-container{
+    margin-top: 100px;
+}
+
+.facebook-container{
+    width: 50px;
+    height: 50px;
+}
