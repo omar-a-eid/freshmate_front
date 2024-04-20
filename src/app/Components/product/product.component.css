@@ -38,7 +38,7 @@ img{
 
     position: absolute;
     bottom: 0;
-    left: 0; /* Adjust the position of the button */
+    left: 25px; /* Adjust the position of the button */
     right: 0;
     background-color: #e7e8eb;
     color: black;
@@ -47,7 +47,7 @@ img{
     padding: 12px;
     cursor: pointer;
     font-size: 18px;
-    width: 100%; /* Ensure button takes full width */
+    width: 85%; /* Ensure button takes full width */
     z-index: 999; /* Ensure button is above other content */
     
    
