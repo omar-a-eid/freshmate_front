@@ -3,6 +3,10 @@
     color: white !important;
 }
 
+.btn2 {
+    border-radius: 2px !important;
+}
+
 .bg-color {
     background-color: #52271F !important;
 }
@@ -16,9 +20,7 @@
     width: 30px !important;
 }
 
-.btn2 {
-    border-radius: 2px !important;
-}
+
 
 .map {
     border: 0 !important;
