@@ -1,0 +1,10 @@
+
+.brd{
+    border: 2px solid black;
+    vertical-align: middle;
+    height: 1000px;
+    translate: 300 300 300;
+}
+.gray{
+    background-color: #F5F5F5;
+}
