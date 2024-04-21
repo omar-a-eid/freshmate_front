@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 import { CommonModule } from '@angular/common'; 
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -11,6 +12,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './product.component.css'
 })
 export class ProductComponent{
+
+  toaster=inject(ToastrService);
+
   currentImage: string = "../../assets/images/first.png";
   isHeartActive: boolean=false ;
 
@@ -22,6 +26,9 @@ export class ProductComponent{
 
   toggleHeartIcon() {
     this.isHeartSolid = !this.isHeartSolid;
+    if(this.isHeartSolid){
+      this.showToast();
+    }
   }
  
 
@@ -35,5 +42,35 @@ export class ProductComponent{
     //move the product details page
   }
 
+  
+   showToast() {
+    const passwordToast = document.getElementById('passwordToast');
+    if (!passwordToast) return; 
+  
+    const toastBody = passwordToast.querySelector('.toast-body');
+    if (!toastBody) return; 
+  
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+    passwordToast.style.display = "block";
+    passwordToast.classList.add('show');
+  
+    var scrollY = window.scrollY || window.scrollTo({ top: 0, behavior: 'smooth' }) || document.documentElement.scrollTop;
+    var topPosition = Math.max(20, scrollY + 20);
+  
+    passwordToast.style.top = topPosition + 'px';
+  
+    setTimeout(() => {
+        passwordToast.classList.remove('show');
+        passwordToast.style.display = "none";
+    }, 3000);
+  
+    const closeToast = document.querySelector('[data-dismiss="toast"]');
+    if (closeToast) { 
+      closeToast.addEventListener("click", () => {
+        passwordToast.style.display = "none";
+      });
+    }
+  }
   
 }
