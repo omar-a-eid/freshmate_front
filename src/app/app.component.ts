@@ -6,11 +6,13 @@ import { FooterComponent } from './Components/footer/footer.component';
 
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from './Components/product/product.component';
+import {WishlistComponent} from './Components/wishlist/wishlist.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, NavbarComponent, FooterComponent, ProductComponent,CommonModule],
+  imports: [RouterOutlet, HttpClientModule, NavbarComponent, FooterComponent, ProductComponent,WishlistComponent,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

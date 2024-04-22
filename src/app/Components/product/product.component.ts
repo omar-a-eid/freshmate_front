@@ -2,6 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 import { CommonModule } from '@angular/common'; 
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -41,7 +43,7 @@ export class ProductComponent{
   productOnclick(){
     //move the product details page
   }
-
+ 
   
    showToast() {
     const passwordToast = document.getElementById('passwordToast');
@@ -70,6 +72,15 @@ export class ProductComponent{
       closeToast.addEventListener("click", () => {
         passwordToast.style.display = "none";
       });
+    }
+  }
+
+  showAddToCartButton: boolean = true;
+
+  constructor(private router: Router) {
+    if (this.router.url === 'localhost:4200/wishlist') {
+      this.showAddToCartButton = false;
+      
     }
   }
   
