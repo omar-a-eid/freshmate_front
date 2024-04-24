@@ -1,10 +1,38 @@
-
-.brd{
+.brd {
     border: 2px solid black;
     vertical-align: middle;
-    height: 1000px;
+    height: 1200px;
     translate: 300 300 300;
 }
-.gray{
+
+.gray {
     background-color: #F5F5F5;
+}
+.clr{
+    color: #1773B0 !important;
+}
+.link {
+    text-decoration: underline;
+}
+#visa{
+    background-color: white !important;
+    color: #142688 !important;
+}
+#master{
+    background-color: white !important;
+    color: #142688 !important;
+}
+#discover{
+    background-color: white !important;
+    color: #142688 !important;
+}
+.bg{
+    background-color: #F4F4F4 !important;
+}
+.bg1{
+    background-color: #1773B0 !important;
+    height: 60px !important;
+}
+.ml{
+    margin-left: 200px !important;
 }
