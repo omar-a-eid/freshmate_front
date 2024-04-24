@@ -1,14 +1,22 @@
 <section id="NovBreadcrumbs" class="breadcrumb_inner">
     <div class="container position-relative">
       
-        <h1 class="headingBreacrumb text-uppercase f_pr font-800 mb-5 position-relative">wishlist</h1>
+        <h1 id="path-title" class="headingBreacrumb text-uppercase f_pr font-800 mb-5 position-relative">
+          <ng-container *ngIf="currentPath?.endsWith('wishlist')">Wishlist</ng-container>
+              <ng-container *ngIf="currentPath?.endsWith('aboutus')">About Us</ng-container>
+        </h1>
       <div class="list-sub-items position-relative">
       <ol class="breadcrumb ">
         <li class="list-inline-item">
           <a href="/" class="item-breacrumb item-home">Home .</a>
         </li>
-          <li class="list-inline-item"><span class="item-breacrumb"> wishlist</span></li>
-        
+          <li id="path-title" class="list-inline-item">
+            <span class="item-breacrumb">
+              <ng-container *ngIf="currentPath?.endsWith('wishlist')">Wishlist</ng-container>
+              <ng-container *ngIf="currentPath?.endsWith('aboutus')">About Us</ng-container>
+            </span>
+          </li>
+          
       </ol>
     </div>
     </div>
