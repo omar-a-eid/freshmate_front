@@ -1,39 +1,107 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="row col-12 d-flex">
+            <!-- HEADER IN DIV HERE -->
+            <!-- HEADER IN DIV HERE -->
+            <!-- HEADER IN DIV HERE -->
+            <!-- HEADER IN DIV HERE -->
+            <div class="row col-12">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3413.013300690681!2d29.90350891115706!3d31.192644563153685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5c394ebd03ec1%3A0x16cbff5d844ff34b!2sInformation%20Technology%20Institute!5e0!3m2!1sen!2seg!4v1713631566466!5m2!1sen!2seg"
-                    class="map" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    class="map map1" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="row col-12 mt-4">
                 <h5><strong>GET IN Touch</strong></h5>
                 <p>Please enter the details of your requesst. A member of our support staff will respond as soon as
                     possible.</p>
             </div>
             <div class="row col-12 d-flex justify-content-between">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 d-flex">
-                    <div class="col-12">
-                        <form>
+                    <div class="col-12 mb-5">
+                        <!-- FORM -->
+                        <!-- FORM -->
+                        <!-- FORM -->
+                        <form [formGroup]="ContactUs" class="form">
                             <div class="col-12 d-flex flex-column mt-3 mb-3 flex-md-row">
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex mb-3 px-1">
-                                    <input type="text" class="form-control" id="exampleInputText1"
-                                        placeholder="YOUR NAME">
+                                <div class="col-6 mt-3 mb-3 px-1">
+                                    <div class="col-6 w-100">
+                                        <input type="text" formControlName="name" name="name" class="form-control "
+                                            id="exampleInputText1" placeholder="YOUR NAME" style="font-weight: bold;">
+                                    </div>
+                                    <!--  username validation -->
+                                    <div class="form-text text-danger"
+                                        *ngIf="name.errors?.['required'] && (name.touched || name.dirty)">
+                                        <p><strong>Username is Required</strong></p>
+                                    </div>
+                                    <div class="form-text text-danger"
+                                        *ngIf="name.errors?.['minlength'] && (name.touched || name.dirty)">
+                                        <p><strong>Username must be at least 3 characters long</strong></p>
+                                    </div>
+                                    <div class="form-text text-danger"
+                                        *ngIf="name.errors?.['maxlength'] && (name.touched || name.dirty)">
+                                        <p><strong>Username cannot exceed 50 characters</strong></p>
+                                    </div>
+                                    <!-- end username valiadtion -->
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                    <input type="email" class="form-control fs" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" placeholder="YOUR EMAIL">
+                                <div class="col-6 w-100">
+                                    <div class="col-6 mt-3 flex-md-row">
+                                        <input type="email" formControlName="email" name="email" class="form-control fs"
+                                            id="exampleInputEmail1" aria-describedby="emailHelp"
+                                            placeholder="YOUR EMAIL" style="font-weight: bold;">
+                                    </div>
+                                    <!-- email valiadtion -->
+                                    <div class="form-text text-danger"
+                                        *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
+                                        <p><strong>Email is Required</strong></p>
+                                    </div>
+                                    <div class="form-text text-danger"
+                                        *ngIf="Email.errors?.['pattern'] && (Email.touched || Email.dirty)">
+                                        <p><strong>the pattern should be email</strong></p>
+                                    </div>
+                                    <!-- end email valiadtion -->
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="number" class="form-control" id="exampleInputPhonenumber1"
-                                    placeholder="PHONE NUMBER">
+                                <input type="text" formControlName="phonenumber" name="phonenumber" class="form-control"
+                                    id="exampleInputPhonenumber1" placeholder="PHONE NUMBER" style="font-weight: bold;">
                             </div>
-                            <div class="col-12 mb-4">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"
-                                    placeholder="YOUR MESSAGE"></textarea>
+                            <!-- phonenumber valiadtion -->
+                            <div class="form-text text-danger"
+                                *ngIf="phonenumber.errors?.['required'] && (phonenumber.touched || phonenumber.dirty)">
+                                <p><strong>phonenumber is Required</strong></p>
                             </div>
-                            <button type="submit" class="btn btn1 w-25 btn2" style="background-color: #E7E8EB;">SUBMIT
+                            <div class="form-text text-danger"
+                                *ngIf="phonenumber.errors?.['pattern'] && (phonenumber.touched || phonenumber.dirty)">
+                                <p><strong>the phonenumber should be 11 digits Numbers </strong></p>
+                            </div>
+                            <!-- end phonenumber valiadtion -->
+                            <div class="col-12 mb-3">
+                                <textarea class="form-control" formControlName="description" name="description"
+                                    id="exampleFormControlTextarea1" rows="6" placeholder="YOUR MESSAGE"
+                                    style="font-weight: bold;"></textarea>
+                            </div>
+                            <!--  description validation -->
+                            <div class="form-text text-danger"
+                                *ngIf="description.errors?.['required'] && (description.touched || description.dirty)">
+                                <p><strong>description is Required</strong></p>
+                            </div>
+                            <div class="form-text text-danger"
+                                *ngIf="description.errors?.['minlength'] && (description.touched || description.dirty)">
+                                <p><strong>description must be at least 10 characters long</strong></p>
+                            </div>
+                            <div class="form-text text-danger"
+                                *ngIf="description.errors?.['maxlength'] && (description.touched || description.dirty)">
+                                <p><strong>description cannot exceed 100 characters</strong></p>
+                            </div>
+                            <!-- end description valiadtion -->
+                            <button type="submit" (click)="getdata()" class="btn btn1 w-25 btn2"
+                                style="background-color: #E7E8EB;" [disabled]="ContactUs.invalid">SUBMIT
                                 NOW</button>
                         </form>
+                        <!-- FORM -->
+                        <!-- FORM -->
+                        <!-- FORM -->
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 ">
@@ -58,6 +126,10 @@
                     </div>
                 </div>
             </div>
+            <!-- FOOTER IN DIV HERE-->
+            <!-- FOOTER IN DIV HERE-->
+            <!-- FOOTER IN DIV HERE-->
+            <!-- FOOTER IN DIV HERE-->
         </div>
     </div>
 </div>
