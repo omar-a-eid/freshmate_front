@@ -36,3 +36,9 @@
 .ml{
     margin-left: 200px !important;
 }
+.clickable {
+    cursor: pointer;
+}
+.clickable:hover {
+    color: #9ED2FF;
+}
