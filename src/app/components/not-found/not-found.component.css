@@ -1,0 +1,8 @@
+a:hover{
+    background-color: rgb(4, 0, 53) !important;
+}
+
+a.span:hover{
+    color: white;
+
+}
