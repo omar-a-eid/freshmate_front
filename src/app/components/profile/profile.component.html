@@ -1,5 +1,9 @@
 <div class="container">
     <div class="row">
+        <!-- INSERT HEADER HERE -->
+        <!-- INSERT HEADER HERE -->
+        <!-- INSERT HEADER HERE -->
+        <!-- INSERT HEADER HERE -->
         <div class="col-12">
             <h5 class="mt-4 mb-5"><Strong>Account</Strong></h5>
             <div class="d-flex">
@@ -30,42 +34,93 @@
             </div>
             <hr class="mt-0">
             <div class="d-flex mt-4 ">
-                <button class="btn btn1" style="background-color: #E7E8EB;"><strong>Edit Profile</strong></button>
+                <button class="btn btn1" (click)="editform =! editform" style="background-color: #E7E8EB;"><strong>Edit
+                        Profile</strong></button>
                 <button class="btn btn1 mx-2" style="background-color: #E7E8EB;"><strong>LOG OUT</strong></button>
             </div>
             <div class="mt-5">
                 <h5 class="mt-4 mb-4"><Strong>Order History</Strong></h5>
                 <p>You haven't placed any orders yet.</p>
             </div>
-            <h5><strong>Edit Profile</strong></h5>
-            <form class="w-50">
+            <!-- FORM -->
+            <!-- FORM -->
+            <!-- FORM -->
+            <!-- FORM -->
+            <h5 *ngIf="editform"><strong>Edit Profile</strong></h5>
+            <form [formGroup]="EditProfile" class="form w-50" *ngIf="editform">
                 <div class="mb-3 mt-3">
                     <label for="exampleFormControlInput1" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="exampleFormControltext1" placeholder="minlength:3 and maxlength:50"
-                        required>
+                    <input formControlName="username" name="username" type="text" class="form-control"
+                        id="exampleFormControltext1" required>
                 </div>
+                <!--  username validation -->
+                <div class="form-text text-danger"
+                    *ngIf="Username.errors?.['required'] && (Username.touched || Username.dirty)">
+                    <p><strong>Username is Required</strong></p>
+                </div>
+                <div class="form-text text-danger"
+                    *ngIf="Username.errors?.['minlength'] && (Username.touched || Username.dirty)">
+                    <p><strong>Username must be at least 3 characters long</strong></p>
+                </div>
+                <div class="form-text text-danger"
+                    *ngIf="Username.errors?.['maxlength'] && (Username.touched || Username.dirty)">
+                    <p><strong>Username cannot exceed 50 characters</strong></p>
+                </div>
+                <!-- end username valiadtion -->
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com" required>
+                    <input formControlName="email" name="email" type="email" class="form-control"
+                        id="exampleFormControlInput1" required>
                 </div>
+                <!-- email valiadtion -->
+                <div class="form-text text-danger" *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
+                    <p><strong>Email is Required</strong></p>
+                </div>
+                <div class="form-text text-danger" *ngIf="Email.errors?.['pattern'] && (Email.touched || Email.dirty)">
+                    <p><strong>the pattern should be email</strong></p>
+                </div>
+                <!-- end email valiadtion -->
+
                 <div class="mb-3">
                     <label for="inputPassword5" class="form-label">Password</label>
-                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"
-                        placeholder="Your password must be more than 6 characters long" required>
+                    <input formControlName="password" name="password" type="password" id="inputPassword5"
+                        class="form-control" aria-describedby="passwordHelpBlock" required>
                 </div>
+                <!--  password valiadtion -->
+                <div class="form-text text-danger"
+                    *ngIf="Password.errors?.['required'] && (Password.touched || Password.dirty)">
+                    <p><strong>Password is Required</strong></p>
+                </div>
+                <div class="form-text text-danger"
+                    *ngIf="Password.errors?.['minlength'] && (Password.touched || Password.dirty)">
+                    <p><strong>Username must be at least 6 characters long</strong></p>
+                </div>
+                <!--  end password valiadtion -->
                 <div class="mt-3 w-25">
-                    <select class="form-select" aria-label="Default select example" required>
-                        <option value="1">male</option>
-                        <option value="2">female</option>
+                    <label for="inputgender5" class="form-label">Gender</label>
+                    <select formControlName="gender" name="gender" class="form-select"
+                        aria-label="Default select example" required>
+                        <option selected value="male">male</option>
+                        <option value="female">female</option>
                     </select>
                 </div>
+                <!--  gender valiadtion -->
+                <div class="form-text text-danger"
+                    *ngIf="gender.errors?.['required'] && (gender.touched || gender.dirty)">
+                    <p><strong>gender is Required</strong></p>
+                </div>
+                <!--  end gender valiadtion -->
                 <div class="mt-5 mb-5 text-center">
-                    <button type="submit" class="btn btn1 w-25 btn2" style="background-color: #E7E8EB;">Update
+                    <button (click)="getdata()" type="submit" class="btn btn1 w-25 btn2"
+                        style="background-color: #E7E8EB;" [disabled]="EditProfile.invalid">Update
                         Profile</button>
                     <hr class="border-4">
                 </div>
             </form>
         </div>
+        <!-- INSERT FOOTER HERE -->
+        <!-- INSERT FOOTER HERE -->
+        <!-- INSERT FOOTER HERE -->
+        <!-- INSERT FOOTER HERE -->
     </div>
 </div>
