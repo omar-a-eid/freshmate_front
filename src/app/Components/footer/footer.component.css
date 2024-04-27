@@ -1,0 +1,83 @@
+::ng-deep body {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.subscribe-button {
+  width: 115px;
+  right: 10px;
+  top: 6px;
+  padding: 9px;
+  background-color: #52271f;
+  border: none;
+}
+
+.subscribe-button:hover {
+  background-color: rgb(113, 64, 64);
+  cursor: pointer;
+}
+
+.footer-input {
+  width: 600px;
+  height: 50px;
+}
+
+.links-container {
+  margin-top: 100px;
+}
+
+.facebook-container {
+  width: 50px;
+  height: 50px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+::placeholder {
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(197, 191, 191);
+}
+
+.icon-container {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background-color: white;
+  justify-content: space-around;
+  transition: background-color 0.3s ease;
+}
+
+.icon {
+  width: 40px;
+}
+
+.hovered {
+  background-color: #52271f;
+}
+
+.hover-icon {
+  display: none;
+}
+
+.icon-container.hovered .original-icon {
+  display: none;
+}
+
+.icon-container.hovered .hover-icon {
+  display: inline-block;
+}
+
+@media only screen and (max-width: 768px) {
+  .copyrights-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="card">
+    <div class="images-buttons">
+      <div class="icons">
+        <p>
+          <i
+            [ngClass]="{
+              'fa-regular': !isHeartSolid,
+              'fa-solid': isHeartSolid
+            }"
+            (click)="toggleHeartIcon()"
+            class="fa-heart"
+          ></i>
+        </p>
+        <p>
+          <i class="fa-regular fa-images fa-2xs"></i>
+        </p>
+      </div>
+      <img
+        src="../../assets/images/first.png"
+        alt="Denim Jeans"
+        (mouseover)="changeImage('second.png')"
+        (mouseout)="changeImage('first.png')"
+        [src]="currentImage"
+        class="image-transition product-img"
+      />
+
+      <button class="cart-btn">Add to Cart</button>
+    </div>
+  </div>
+  <h4 class="title">American Beef</h4>
+  <app-rating-stars></app-rating-stars>
+  <p class="price">$19.99</p>
+</div>
+
+<div
+  aria-live="polite"
+  aria-atomic="true"
+  class="toast-container d-flex justify-content-center align-items-center"
+  id="toastContainer"
+>
+  <div
+    class="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    id="passwordToast"
+  >
+    <div class="toast-header bg-danger text-white">
+      <i class="fa-solid fa-bell fa-xl" style="color: #ffffff"></i>
+      <p class="mr-auto">THIS ITEM HAS BEEN ADDED TO YOUR WISHLIST</p>
+    </div>
+
+    <div class="d-flex flex-row toast-body">
+      <img src="../../assets/images/first.png" class="toast-img" />
+      <h6 class="title">American Beef</h6>
+      <a href="/wishlist">
+        <button class="go-to-wishlist-btn" [ngStyle]="{'display': showAddToCartButton ? 'block' : 'none'}">GO TO WISHLIST</button>
+      </a>
+    </div>
+  </div>
+</div>

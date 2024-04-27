@@ -1,0 +1,31 @@
+section{
+    background-color: #e7e8eb;
+    height: 316px;
+    margin-top: -29px;
+}
+
+.headingBreacrumb {
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: #505157;
+    font-weight: 500;
+}
+
+a:hover{
+    color: #52271f;
+}
+
+h1{
+    margin-bottom: 1rem !important;
+}
+
+.container{
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
