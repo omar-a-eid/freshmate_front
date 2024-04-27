@@ -1,0 +1,47 @@
+.quote-img{
+    width: 40% !important;
+}
+
+.quote-icon{
+    margin-left: 56px;
+    margin-top: -106px;
+}
+
+.quote{
+    position: absolute;
+    margin-left: 391px;
+}
+
+.hashTag{
+    background-color: #f1f1f1;
+    padding-bottom: 250px;
+    margin-top: 50px;
+    margin-left: 116px;
+    width: 1361px;
+    height: 347px;
+    border-radius: 15px;
+}
+
+.section-text{
+    width: 597px;
+}
+
+.hashTag p{
+    color: black;
+    font-size: 20px;
+
+}
+.screen{
+    height: 700px;
+}
+.sub-text{
+    color:#76777b
+}
+.row .row img {
+    border-radius: 60px 60px 0px 0px;
+    position: relative;
+    box-shadow: 6px 6px 1px var(--jet);
+    object-fit: cover;
+   
+  }
+  

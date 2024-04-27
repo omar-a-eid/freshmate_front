@@ -7,12 +7,16 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from './Components/product/product.component';
 import {WishlistComponent} from './Components/wishlist/wishlist.component';
+import { AboutUsComponent } from './Components/about-us/about-us.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
+import { ProductCarouselsComponent } from './Components/product-carousels/product-carousels.component';
+import { FaqComponent } from './Components/faq/faq.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, NavbarComponent, FooterComponent, ProductComponent,WishlistComponent,CommonModule],
+  imports: [RouterOutlet, HttpClientModule,FaqComponent ,NavbarComponent, FooterComponent, ProductComponent,WishlistComponent,AboutUsComponent,ProductDetailsComponent,ProductCarouselsComponent,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
