@@ -4,6 +4,8 @@
         <h1 id="path-title" class="headingBreacrumb text-uppercase f_pr font-800 mb-5 position-relative">
           <ng-container *ngIf="currentPath?.endsWith('wishlist')">Wishlist</ng-container>
               <ng-container *ngIf="currentPath?.endsWith('aboutus')">About Us</ng-container>
+              <ng-container *ngIf="currentPath?.endsWith('faq')">FAQ</ng-container>
+
         </h1>
       <div class="list-sub-items position-relative">
       <ol class="breadcrumb ">
@@ -14,6 +16,8 @@
             <span class="item-breacrumb">
               <ng-container *ngIf="currentPath?.endsWith('wishlist')">Wishlist</ng-container>
               <ng-container *ngIf="currentPath?.endsWith('aboutus')">About Us</ng-container>
+              <ng-container *ngIf="currentPath?.endsWith('faq')">FAQ</ng-container>
+
             </span>
           </li>
           
