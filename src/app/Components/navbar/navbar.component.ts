@@ -17,7 +17,15 @@ export class NavbarComponent {
   checkOutBtnIsHovered: boolean = false;
   shippingFree: number = 180;
   totalPrice: number = 20;
+  productsQuantity: number = 1;
 
+  onQuantityChanged(quantity: number): void {
+    this.productsQuantity = quantity;
+  }
+
+  updateQuantity(newQuantity: number) {
+    this.productsQuantity = newQuantity;
+  }
 
   onTotalChanged(total: number): void {
     this.totalPrice = total;

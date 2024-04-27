@@ -6,7 +6,7 @@
 
 .custom-offcanvas {
   max-width: 100%;
-  width: 20% !important; /* Adjust this as needed */
+  width: 20% !important;
 }
 
 @media (max-width: 768px) {
@@ -34,6 +34,8 @@
     position: absolute;
     top: 2px;
     right: -6px;
+    width: 15px;
+    height: 15px;
 }
 
 .dotted-icon-container .badge.bg-danger {
@@ -229,11 +231,12 @@
 }
 
 .badge-cart {
-   position: absolute;
+   position: relative;
    right: -3px;
    width: 15px;
    height: 15px;
 }
+
 
 .badge-cart.bg-danger {
     background-color: rgb(87, 41, 41) !important;

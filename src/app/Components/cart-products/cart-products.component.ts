@@ -19,7 +19,11 @@ export class CartProductsComponent {
 
   @Output() totalChanged: EventEmitter<number> = new EventEmitter<number>();
   @Output() totalShipping: EventEmitter<number> = new EventEmitter<number>();
+  @Output() quantityChanged: EventEmitter<number> = new EventEmitter<number>();
 
+  private emitQuantity() {
+    this.quantityChanged.emit(this.quantity);
+  }
 
   calculateTotal(): void {
     const total =
@@ -38,13 +42,14 @@ export class CartProductsComponent {
   incrementQuantity() {
     this.quantity++;
     this.calculateTotal();
+    this.emitQuantity();
   }
 
   decrementQuantity() {
     if (this.quantity > 1) {
       this.quantity--;
       this.calculateTotal();
+      this.emitQuantity();
     }
   }
-
 }

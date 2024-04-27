@@ -368,7 +368,7 @@
                   />
                 </g>
               </svg>
-              <span class="badge rounded-pill bg-danger">0</span>
+              <span class="badge rounded-pill bg-danger">{{ productsQuantity }}</span>
             </div>
           </a>
           <!-- Cart Sidebar -->
@@ -396,9 +396,10 @@
                       transform: translateX(-1%);
                       transform: translateY(-50%);
                       color: white;
-                      font-size: 10px;
+                      font-size: 8px;
+                      font-weight: bold;
                     "
-                    >0</span
+                    >{{ productsQuantity }}</span
                   >
                   <svg
                     width="20px"
@@ -444,6 +445,7 @@
               <app-cart-products
                 (totalChanged)="onTotalChanged($event)"
                 (totalShipping)="onShippingChanged($event)"
+                (quantityChanged)="updateQuantity($event)"
               ></app-cart-products>
               <div class="footer">
                 <div class="row container">
