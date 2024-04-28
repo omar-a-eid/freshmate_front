@@ -12,27 +12,10 @@ import { filter } from 'rxjs/operators';
 })
 export class PathbarComponent {
 
-  currentPath: string | undefined;
-
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-    // Subscribe to router events
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.getCurrentPath();
-    });
+  getCurrentUrl(): string {
+    return this.router.url;
   }
-
-  getCurrentPath(): void {
-    this.currentPath = this.router.url;
-
-    // Remove leading slash
-    if (this.currentPath.startsWith('/')) {
-      this.currentPath = this.currentPath.substr(1);
-    }
-  }
-
 
 }

@@ -1,12 +1,11 @@
 <section id="NovBreadcrumbs" class="breadcrumb_inner">
     <div class="container position-relative">
-      
         <h1 id="path-title" class="headingBreacrumb text-uppercase f_pr font-800 mb-5 position-relative">
-          <ng-container *ngIf="currentPath?.endsWith('wishlist')">Wishlist</ng-container>
-              <ng-container *ngIf="currentPath?.endsWith('aboutus')">About Us</ng-container>
-              <ng-container *ngIf="currentPath?.endsWith('faq')">FAQ</ng-container>
-
+          <ng-container *ngIf="getCurrentUrl()?.endsWith('wishlist')">Wishlist</ng-container>
+          <ng-container *ngIf="getCurrentUrl()?.endsWith('aboutus')">About Us</ng-container>
+          <ng-container *ngIf="getCurrentUrl()?.endsWith('faq')">FAQ</ng-container>
         </h1>
+        
       <div class="list-sub-items position-relative">
       <ol class="breadcrumb ">
         <li class="list-inline-item">
@@ -14,9 +13,9 @@
         </li>
           <li id="path-title" class="list-inline-item">
             <span class="item-breacrumb">
-              <ng-container *ngIf="currentPath?.endsWith('wishlist')">Wishlist</ng-container>
-              <ng-container *ngIf="currentPath?.endsWith('aboutus')">About Us</ng-container>
-              <ng-container *ngIf="currentPath?.endsWith('faq')">FAQ</ng-container>
+              <ng-container *ngIf="getCurrentUrl()?.endsWith('wishlist')">Wishlist</ng-container>
+              <ng-container *ngIf="getCurrentUrl()?.endsWith('aboutus')">About Us</ng-container>
+              <ng-container *ngIf="getCurrentUrl()?.endsWith('faq')">FAQ</ng-container>
 
             </span>
           </li>
