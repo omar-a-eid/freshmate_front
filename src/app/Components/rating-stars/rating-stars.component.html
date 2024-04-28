@@ -1,0 +1,5 @@
+<a *ngFor="let item of starList; let i=index " (click)="setStar(i)">  
+  <i *ngIf="item" class="fa-regular fa-star"></i>
+  <i *ngIf="!item" class="fa fa-star" ></i>   
+</a>  
+  

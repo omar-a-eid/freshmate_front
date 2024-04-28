@@ -1,0 +1,54 @@
+body {
+	position: absolute;
+	left: 0%;
+	text-align: center;
+}
+
+.quantity-increment {
+	justify-content: center;
+    align-items: baseline;
+	display: flex;
+	height: 100%;
+	text-align: center;
+    width: fit-content;
+    border: 1px solid #8080806e;
+    border-radius: 9px;
+}
+
+.quantity{
+    font-size: 15px;
+}
+
+button {
+	width: 40px;
+	height: 40px;
+	font-size: 22px;
+    border: none;
+    background-color: transparent;
+}
+
+button:hover {
+	color: grey;
+}
+
+h2 {
+	color: black;
+	margin: 0 50px;
+	font-size: 45px;
+}
+
+h1 {
+	font-size: 35px;
+	color: green;
+	text-align: center;
+	padding-left: 10%;
+}
+
+.purchase-options{
+    padding-top: 50px;
+}
+
+p{
+    width: 67px;
+    height: 20px;
+}

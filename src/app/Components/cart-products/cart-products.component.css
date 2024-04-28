@@ -1,0 +1,62 @@
+::ng-deep .product-container {
+    font-size: 10px;
+    font-weight: bold;
+    font-family: 'Signika';
+}
+
+.decrementQuantityBtn, .incrementQuantityBtn, .quantityInput{
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+  
+  
+.solid-icon-container .cart-sidebar {
+    position: relative;
+}
+
+.border-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; 
+    height: 20px; 
+    border: 2px;
+    background-color: rgb(228, 225, 225);
+    border-radius: 50%;
+}
+
+.solid-icon-container .hover-icon {
+    display: none;
+}
+
+.solid-icon-container:hover .original-icon {
+    display: none;
+}
+
+.solid-icon-container:hover .hover-icon {
+    display: inline-block;
+
+}
+
+.border-icon:hover {
+    background-color: rgb(87, 41, 41) !important;
+}
+
+
+.product-border {
+    display: inline-block;
+    padding: 5px; 
+    border: 1px solid rgb(232, 229, 229) !important;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.product-border img {
+    display: block;
+    width: 75px;
+    height: auto;
+}
+
+
