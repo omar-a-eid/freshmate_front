@@ -4,11 +4,9 @@
   font-family: "Signika";
 }
 
-
-
 .cart-table {
-  width: 60%;
-  height: 10%;
+  width: 100%;
+  height: 90%;
   border-collapse: collapse;
   margin-top: 20px;
   border: 1px solid #dddddd;
@@ -21,6 +19,7 @@
   border-bottom: 1px solid #dddddd;
   padding: 8px;
   text-align: left;
+  padding-left: 30px;
 }
 
 .cart-table th {
@@ -146,7 +145,7 @@
 
 .custom-textarea {
   width: 300px;
-  height: 200px;
+  height: 150px;
   background-color: #ffffff;
   color: #6a6868;
   border: 1px solid #dddddd;
@@ -157,7 +156,7 @@
 .checkout-button {
   background-color: black;
   border: none;
-  width: calc(46% - 5px); 
+  width: 50%;
   height: 35px;
   color: white;
   cursor: pointer;
@@ -166,28 +165,51 @@
 }
 
 .checkout-button:hover {
-  background-color: brown;
+  background-color: rgb(113, 64, 64);
   color: black;
 }
 
 .continue-shopping-button {
   border: none;
-  width: calc(46% - 5px);
   height: 35px;
+  width: 50%;
   color: black;
   cursor: pointer;
   border-radius: 2px;
 }
 
 .continue-shopping-button:hover {
-  background-color: brown;
+  background-color: rgb(113, 64, 64);
   color: white;
 }
 
 .cart-buttons {
-  margin-top: 25px;
-  width: 65%;
+  margin-top: 30px;
   display: flex;
-  justify-content: center;
 }
 
+.shipping {
+  color: green;
+}
+
+.products {
+  margin-top: 15%;
+}
+
+.product-image img {
+  margin: auto;
+  display: inline-block;
+  width: 150px;
+  height: auto;
+}
+
+.product-name {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.product-name:hover {
+  color: rgb(113, 64, 64);
+}

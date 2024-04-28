@@ -1,9 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
@@ -14,8 +16,32 @@ export class CartComponent {
   shippingFree: number = 0;
   shipping: number = 0;
 
-  @Input() name: string = '';
-  @Input() imageUrl: string = '../../assets/images/first.png';
+  @Input() products: any[] = [
+    {
+      name: 'Sweet Kiwi Green',
+      image:
+        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_f4498462-b4ec-4018-9b37-04619c42eab6_270x.jpg?v=1687762285',
+      price: '$16.00',
+    },
+    {
+      name: 'Sweet Corn',
+      image:
+        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_d697e61b-8f39-41e5-8b52-a7fb0e7becf5_270x.jpg?v=1687762079',
+      price: '$14.00',
+    },
+    {
+      name: 'Snapple Apple',
+      image:
+        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_0dafc4d3-f74e-4f7b-b78b-5092ecf4a173_270x.jpg?v=1687762292',
+      price: '$17.00',
+    },
+    {
+      name: 'Smoked Pork',
+      image:
+        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_b099aebb-2a68-467d-a7fa-54b384e8edf4_270x.jpg?v=1687762185',
+      price: '$38.00',
+    },
+  ];
 
   @Output() totalChanged: EventEmitter<number> = new EventEmitter<number>();
   @Output() totalShipping: EventEmitter<number> = new EventEmitter<number>();
