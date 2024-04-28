@@ -73,9 +73,6 @@
   width: 250px;
 }
 
-.products-container {
-  flex-wrap: wrap;
-}
 .tags-container {
   width: 100%;
   background-color: #f2f2f2;
@@ -133,3 +130,5 @@
 .services-icons:hover svg {
   animation: ringing 0.7s;
 }
+
+

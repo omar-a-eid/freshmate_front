@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { ProductComponent } from '../product/product.component';
 import { CommonModule } from '@angular/common';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
@@ -6,7 +6,6 @@ import { Options } from '@angular-slider/ngx-slider';
 import { FormsModule } from '@angular/forms';
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { CustomButtonComponent } from '../../custom-button/custom-button.component';
-import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 
 @Component({
   selector: 'app-products-page',
