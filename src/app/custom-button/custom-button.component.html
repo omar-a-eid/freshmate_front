@@ -1,0 +1,12 @@
+<button
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  type="button"
+  class="btn btn-primary custom-button"
+  [ngStyle]="{
+    'background-color': isHovered ? '#52271f' : '',
+    color: isHovered ? 'white' : ''
+  }"
+>
+  {{ buttonText }}
+</button>

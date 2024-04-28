@@ -1,0 +1,135 @@
+.clear-button {
+  background-color: #e7e8eb;
+}
+
+.ruler {
+  position: relative;
+}
+
+.ticks {
+  position: absolute;
+  bottom: -20px;
+  width: 100%;
+}
+
+.tick {
+  position: absolute;
+  top: -27px;
+  font-size: 12px;
+}
+.tick-marks {
+  position: absolute;
+  left: 5px;
+  width: 100%;
+}
+
+.filter-price {
+  width: 80%;
+  height: 40px;
+  border-radius: 6px;
+  border-color: #c8c8c8;
+}
+
+/* Range bar  */
+
+::ng-deep .ruler ngx-slider .ngx-slider-bar {
+  background-color: black !important;
+}
+
+/* Set the background color of the handles to black */
+::ng-deep .ruler ngx-slider .ngx-slider-pointer {
+  background-color: black !important;
+}
+
+/* set the background color of the selection range to black */
+::ng-deep .ruler ngx-slider .ngx-slider-selection {
+  background-color: black !important;
+}
+
+/* #specifyColor {
+  accent-color: #52271f;
+} */
+/* .form-check input[type="radio"] {
+  display: none;
+}
+.form-check input[type="radio"]:checked + label::before {
+  background-color: #52271f; 
+} */
+.dropdown-menu.show {
+  display: block;
+  width: 220px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.radio-btn {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+.sidebar-body {
+  width: 250px;
+}
+
+.products-container {
+  flex-wrap: wrap;
+}
+.tags-container {
+  width: 100%;
+  background-color: #f2f2f2;
+}
+.tag {
+  padding-left: 20px;
+  padding-top: 100px;
+}
+
+.fade-text {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+/* See more button */
+.see-more {
+  margin-bottom: 100px;
+}
+.see-more:hover {
+  color: #52271f;
+}
+
+@media only screen and (max-width: 768px) {
+  .services-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+}
+.services-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background-color: #eaeaea;
+}
+
+/* Phone Icon Animation */
+@keyframes ringing {
+  0% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(-5px);
+  }
+}
+
+.services-icons:hover svg {
+  animation: ringing 0.7s;
+}
