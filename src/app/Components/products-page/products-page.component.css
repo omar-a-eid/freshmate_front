@@ -131,4 +131,6 @@
   animation: ringing 0.7s;
 }
 
-
+.products-container {
+  width: 135%;
+}
