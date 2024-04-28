@@ -1,67 +1,22 @@
-<app-navbar></app-navbar>
 <app-pathbar></app-pathbar>
-<div class="d-flex align-items-center">
-  <section
-    class="hashTag py-5"
-    [style.paddingBottom.px]="250"
-    [style.marginTop.px]="50"
-  >
-    <div class="container">
-      <div class="row align-items-center justify-content-between">
-        <div class="col-md-6 d-flex">
-          <div class="hashTag_img">
-            <img
-              src="../../../assets/images/quote_380x.avif"
-              alt="hashTag_img"
-              class="w-100 quote-img"
-              [style.borderRadius.px]="80"
-              [style.borderTopRightRadius.px]="50"
-              [style.borderBottomLeftRadius.px]="50"
-            />
-            <img
-              src="../../../assets/images/icon_quote_40x32.webp"
-              class="quote-icon"
-            />
-          </div>
-        </div>
-        <div class="col-md-5 quote">
-          <div class="section-text py-sm-5">
-            <p>
-              Best purchase I’ve made this winter! The color and knitting are
-              exquisite and it's so comfy! Went from NYC to Miami without ever
-              taking it off. Super cute!!
-            </p>
-            <h6>Kwang Shang. - CEO Vinovathemes</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
+<div class="first-section-container d-flex justify-content-around">
+<div class="whole-section d-flex gap-3"> 
+  <div class="images-icons d-flex gap-3">
+      <img class="girl-img" src="../../../assets/images/quote_380x.avif">
+      <img class="quote-icon" src="../../../assets/images/icon_quote_40x32.webp">
+  </div>
+  <div class="quotes d-flex flex-column gap-2">
+      <p>
+          Best purchase I’ve made this winter! The color and knitting are
+          exquisite and it's so comfy! Went from NYC to Miami without ever
+          taking it off. Super cute!!
+        </p>
+        <h6>Kwang Shang. - CEO Vinovathemes</h6>
+  </div>
+
 </div>
-<!-- <section>
-  <div class="container d-flex">
-    <img
-    src="../../../assets/images/quote_380x.avif"
-    alt="hashTag_img"
-    class="w-100 quote-img"
-    [style.borderRadius.px]="80"
-    [style.borderTopRightRadius.px]="50"
-    [style.borderBottomLeftRadius.px]="50"
-  />
-  <img
-    src="../../../assets/images/icon_quote_40x32.webp"
-    class="quote-icon"
-  />
-  <div class="d-flex flex-column">
-    <p>
-      Best purchase I’ve made this winter! The color and knitting are
-      exquisite and it's so comfy! Went from NYC to Miami without ever
-      taking it off. Super cute!!
-    </p>
-    <h6>Kwang Shang. - CEO Vinovathemes</h6>
-  </div>
-  </div>
-</section> -->
+</div>
 
 <section
   class="screen py-5"
@@ -198,4 +153,3 @@
   </div>
 </div>
 
-<app-footer></app-footer>
