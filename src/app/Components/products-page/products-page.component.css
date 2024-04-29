@@ -1,0 +1,171 @@
+.clear-button {
+  background-color: #e7e8eb;
+}
+
+.ruler {
+  position: relative;
+}
+
+.ticks {
+  position: absolute;
+  bottom: -20px;
+  width: 100%;
+}
+
+.tick {
+  position: absolute;
+  top: -27px;
+  font-size: 12px;
+}
+.tick-marks {
+  position: absolute;
+  left: 5px;
+  width: 100%;
+}
+
+.filter-price {
+  width: 80%;
+  height: 40px;
+  border-radius: 6px;
+  border-color: #c8c8c8;
+}
+
+/* Range bar  */
+
+::ng-deep .ruler ngx-slider .ngx-slider-bar {
+  background-color: black !important;
+}
+
+/* Set the background color of the handles to black */
+::ng-deep .ruler ngx-slider .ngx-slider-pointer {
+  background-color: black !important;
+}
+
+/* set the background color of the selection range to black */
+::ng-deep .ruler ngx-slider .ngx-slider-selection {
+  background-color: black !important;
+}
+
+.dropdown-menu.show {
+  display: block;
+  width: 220px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.radio-btn {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+.sidebar-body {
+  width: 250px;
+}
+
+.tags-container {
+  width: 100%;
+  background-color: #f2f2f2;
+}
+.tag {
+  padding-left: 20px;
+  padding-top: 100px;
+}
+
+.fade-text {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+/* See more button */
+.see-more {
+  margin-bottom: 100px;
+}
+.see-more:hover {
+  color: #52271f;
+}
+
+@media only screen and (max-width: 768px) {
+  .services-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+}
+.services-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background-color: #eaeaea;
+}
+
+/* Phone Icon Animation */
+@keyframes ringing {
+  0% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(-5px);
+  }
+}
+
+.services-icons:hover svg {
+  animation: ringing 0.7s;
+}
+
+.product-image img {
+  margin: auto;
+  display: inline-block;
+  width: 150px;
+  height: auto;
+}
+
+.product-name {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.product-name:hover {
+  color: rgb(113, 64, 64);
+}
+
+.previousBtn,
+.nextBtn {
+  padding: 8px 16px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  background-color: #c8c8c8;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.previousBtn:hover,
+.nextBtn:hover {
+  background-color: rgb(113, 64, 64);
+}
+
+.previousBtn[disabled],
+.nextBtn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.paginationLabel {
+  display: flex;
+  width: 30px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}

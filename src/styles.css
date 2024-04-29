@@ -2,6 +2,8 @@
 body {
   line-height: 1.7;
   font-size: 1.4rem;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 .header_title {
   text-transform: uppercase;
