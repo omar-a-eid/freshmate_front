@@ -7,7 +7,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
 
