@@ -25,13 +25,14 @@ import { ProductComponent } from "../product/product.component";
  *
  */
 export class WishlistComponent implements OnInit{
-    Title ="here in wishlist";
+    wishlist:any;
     constructor(private WishlistService: WishlistService) {}
     
     ngOnInit(): void {
-        this.WishlistService.GetWishlist("662ed90d28fd4fb2b27e92c5", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9tZXJ4NDQ0NEBnbWFpbC5jb20iLCJ1c2VySWQiOiI2NjJlZDkwZDI4ZmQ0ZmIyYjI3ZTkyYzUiLCJpYXQiOjE3MTQzNDYzMjQsImV4cCI6MTcxNDM4MjMyNH0.VgNk6C5aEj9RAoJVVCQb2KNb0oXNWUK-7ShJBX8C7fs").subscribe({
-            next: (data)=> {
-                console.log(data);
+        this.WishlistService.GetWishlist("662ed90d28fd4fb2b27e92c5", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9tZXJ4NDQ0NEBnbWFpbC5jb20iLCJ1c2VySWQiOiI2NjJlZDkwZDI4ZmQ0ZmIyYjI3ZTkyYzUiLCJpYXQiOjE3MTQzOTA4MjUsImV4cCI6MTcxNDQyNjgyNX0.Brk3XcOavNRvYvNsruqqiKPG98s_PGtZSzfANCkjOiY").subscribe({
+            next: (data:any)=> {
+                console.log(data.products);
+                this.wishlist = data.products;
             },
             error: error => console.log(error)
         })
