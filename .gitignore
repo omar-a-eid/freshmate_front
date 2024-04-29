@@ -42,3 +42,6 @@ testem.log
 Thumbs.db
 
 package-lock.json
+
+src/app/app.component.html
+src/app/app.component.ts
