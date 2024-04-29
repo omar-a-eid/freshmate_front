@@ -1,12 +1,11 @@
-import { Component, HostListener, Input } from '@angular/core';
-import { ProductComponent } from '../product/product.component';
+import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
 import { CommonModule } from '@angular/common';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
-import { Options } from '@angular-slider/ngx-slider';
+import { Component, HostListener, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CustomButtonComponent } from '../custom-button/custom-button.component';
 import { PathbarComponent } from '../pathbar/pathbar.component';
-import { CustomButtonComponent } from '../../custom-button/custom-button.component';
-import { NgxPaginationModule, PaginationInstance } from 'ngx-pagination';
+import { ProductComponent } from '../product/product.component';
 @Component({
   selector: 'app-products-page',
   standalone: true,

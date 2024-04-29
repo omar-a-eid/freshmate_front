@@ -1,101 +1,112 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../../service/products.service';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../services/product/product.service';
+import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
+
+
 
 @Component({
   selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css'],
   standalone: true,
-  imports: [HttpClientModule, FormsModule, CommonModule],
-  providers: [ProductService]
+  imports: [RatingStarsComponent,CommonModule, RouterModule],
+  providers: [ProductService],
+  templateUrl: './product.component.html',
+  styleUrl: './product.component.css'
 })
 export class ProductComponent implements OnInit {
-  constructor(
-    private productService: ProductService,
-    private route: ActivatedRoute
-  ) {}
+@Input() product:any;
+  toaster=inject(ToastrService);
 
-  product = {
-    title: {
-      en: '',
-      ar: ''  
-    },
-    desc: {
-      en: '', 
-      ar: ''  
-    },
-    price: 0,
-    images: null,
-    quantity : 0
-  };
-  isEditMode = false;
-  productId: any;
-  message: string = '';
+  currentImage: string = "../../assets/images/first.png";
+  isHeartActive: boolean=false ;
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.productId = params['id'];
-      if (this.productId) {
-        this.isEditMode = true;
-        // Fetch product details by ID and populate form fields for editing
-        this.productService.getProductById(this.productId).subscribe({
-          next:(data) => {
-            this.product = data;
+  changeImage(imageName: string) {
+    this.currentImage = "../../assets/images/" + imageName;
+  }
+  isHeartSolid: boolean = false;
+  backgroundColor: string = 'white';
+
+  toggleHeartIcon() {
+    this.isHeartSolid = !this.isHeartSolid;
+    if(this.isHeartSolid){
+      this.showToast();
+    }
+  }
+ 
+
+  imagesOnClick(){
+    //appear a model that contains the product details
+  }
+  addToCartButton(){
+    //move the product to the cart
+  }
+  productOnclick(){
+    //move the product details page
+  }
+ 
+  
+   showToast() {
+    const passwordToast = document.getElementById('passwordToast');
+    if (!passwordToast) return; 
+  
+    const toastBody = passwordToast.querySelector('.toast-body');
+    if (!toastBody) return; 
+  
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+    passwordToast.style.display = "block";
+    passwordToast.classList.add('show');
+  
+    var scrollY = window.scrollY || window.scrollTo({ top: 0, behavior: 'smooth' }) || document.documentElement.scrollTop;
+    var topPosition = Math.max(20, scrollY + 20);
+  
+    passwordToast.style.top = topPosition + 'px';
+  
+    setTimeout(() => {
+        passwordToast.classList.remove('show');
+        passwordToast.style.display = "none";
+    }, 3000);
+  
+    const closeToast = document.querySelector('[data-dismiss="toast"]');
+    if (closeToast) { 
+      closeToast.addEventListener("click", () => {
+        passwordToast.style.display = "none";
+      });
+    }
+  }
+
+  showAddToCartButton: boolean = true;
+
+  // constructor(private router: Router) {
+  //   if (this.router.url === 'localhost:4200/wishlist') {
+  //     this.showAddToCartButton = false;
+      
+  //   }
+  // }
+  // ngOnInit(): void {
+  //   throw new Error('Method not implemented.');
+  // }
+
+  productId:any;
+
+  constructor( private productService: ProductService, private router: Router) {
+    if (this.router.url === 'localhost:4200/wishlist') {
+          this.showAddToCartButton = false;
+          
+        }
+  }
+  
+  ngOnInit(): void {
+
+      this.productService.GetProduct(this.productId).subscribe({
+          next: (data:any)=> {
+              console.log(data);
+              this.product = data;
           },
-          error:(error) => {
-            console.error('Error fetching product details', error);
-          }
-        }
-        );
-      }
-    });
+          error: (error: any) => console.log(error)
+      })
   }
-
-  onSubmit() {
-    if (this.isEditMode) {
-      // Call service method to update the existing product
-      this.productService.updateProduct(this.productId, this.product).subscribe({
-        next: (data) => {
-          this.message = 'Product updated successfully';
-          console.log(data)
-        },
-        error: (error) => {
-          this.message = 'Error updating product';
-        }
-      });
-    } else {
-      // Call service method to add a new product
-      this.productService.addProduct(this.product).subscribe({
-        next: (response) => {
-          this.message = 'Product added successfully';
-        },
-        error: (error) => {
-          this.message = 'Error adding product';
-        }
-      });
-    }
-  }
-
-  onDelete() {
-    if (confirm('Are you sure you want to delete this product?')) {
-      this.productService.deleteProduct(this.productId).subscribe({
-        next: (response) => {
-          this.message = 'Product deleted successfully';
-        },
-        error: (error) => {
-          this.message = 'Error deleting product';
-        }
-      });
-    }
-  }
-
-  onFileChange(event: any) {
-    // Handle file upload and set product image
-    const file = event.target.files[0];
-    this.product.images = file;
-  }
+  
 }
