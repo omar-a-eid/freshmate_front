@@ -9,8 +9,8 @@ export const routes: Routes = [
     // {path: "", redirectTo:"students", pathMatch:"full"},
     {path: "wishlist", component: WishlistComponent},
     {path: "aboutus", component: AboutUsComponent},
-    {path: "product", component: ProductDetailsComponent},
+    {path: "product/:id", component: ProductDetailsComponent},
     {path: "faq", component: FaqComponent},
-       { path: 'cart', component: CartComponent }
+    { path: 'cart', component: CartComponent }
 
    ];

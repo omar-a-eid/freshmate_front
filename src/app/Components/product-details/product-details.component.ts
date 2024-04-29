@@ -4,7 +4,7 @@ import { FooterComponent } from "../footer/footer.component";
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
+import { Router, NavigationEnd, RouterModule, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { HttpClientModule} from '@angular/common/http';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
@@ -13,37 +13,23 @@ import { RatingStarsComponent } from "../rating-stars/rating-stars.component";
 import { CommonModule } from '@angular/common'; 
 import { QuantityIncrementDecrementComponent } from "../quantity-increment-decrement/quantity-increment-decrement.component";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ProductService } from "../../services/product/product.service";
+import { GalleryItem } from '@daelmaak/ngx-gallery';
+import { GalleryComponent } from '@daelmaak/ngx-gallery';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [MDBBootstrapModule,NavbarComponent, ProductComponent, FooterComponent, PathbarComponent,RatingStarsComponent,QuantityIncrementDecrementComponent,ProductCarouselsComponent,NgIf,NgFor,HttpClientModule, NgxGalleryModule,CommonModule, RouterModule ],
+  imports: [MDBBootstrapModule,NavbarComponent, ProductComponent, FooterComponent, PathbarComponent,RatingStarsComponent,QuantityIncrementDecrementComponent,ProductCarouselsComponent,NgIf,NgFor,HttpClientModule, NgxGalleryModule,CommonModule, RouterModule,GalleryComponent ],
   templateUrl: './product-details.component.html',
+  providers:[ProductService],
   styleUrl: './product-details.component.css'
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit{
 
   currentPath: string | undefined;
 
-  constructor(private router: Router) { }
 
-  // ngOnInit(): void {
-  //   // Subscribe to router events
-  //   this.router.events.pipe(
-  //     filter(event => event instanceof NavigationEnd)
-  //   ).subscribe(() => {
-  //     this.getCurrentPath();
-  //   });
-  // }
-
-  // getCurrentPath(): void {
-  //   this.currentPath = this.router.url;
-
-  //   // Remove leading slash
-  //   if (this.currentPath.startsWith('/')) {
-  //     this.currentPath = this.currentPath.substr(1);
-  //   }
-  // }
   isHeartSolid: boolean = false;
   isHeartActive: boolean=false ;
 
@@ -93,5 +79,54 @@ export class ProductDetailsComponent {
     document.execCommand('copy');
     
   }
+
+
+productId:any;
+product: any;
+constructor( myRoute:ActivatedRoute, private productService: ProductService, private router: Router) {
+  this.productId = myRoute.snapshot.params["id"];
+}
+    
+ngOnInit(): void {
+
+this.productService.GetProduct(this.productId).subscribe({
+  next: (data:any)=> {
+      console.log(data);
+      this.product = data;
+  },
+  error: (error: any) => console.log(error)
+})
+}
+
+
+
+items: GalleryItem[] = [
+  {
+    src: 'https://cdn.pixabay.com/photo/2020/06/23/15/17/avocado-5332878_960_720.jpg',
+    thumbSrc:
+      'https://cdn.pixabay.com/photo/2020/06/23/15/17/avocado-5332878_960_720.jpg',
+  },
+  {
+    src: 'https://cdn.pixabay.com/photo/2017/01/12/02/34/coffee-1973549_960_720.jpg',
+    thumbSrc:
+      'https://cdn.pixabay.com/photo/2017/01/12/02/34/coffee-1973549_960_720.jpg',
+  },
+  {
+    src: 'https://cdn.pixabay.com/photo/2020/06/26/04/40/flower-5341644_960_720.jpg',
+    thumbSrc:
+      'https://cdn.pixabay.com/photo/2020/06/26/04/40/flower-5341644_960_720.jpg',
+  },
+  {
+    src: 'https://cdn.pixabay.com/photo/2020/05/11/18/49/island-5159729_960_720.jpg',
+    thumbSrc:
+      'https://cdn.pixabay.com/photo/2020/05/11/18/49/island-5159729_960_720.jpg',
+  },
+  {
+    src: 'https://cdn.pixabay.com/photo/2013/11/15/23/18/john-work-garrett-library-211375_960_720.jpg',
+    thumbSrc:
+      'https://cdn.pixabay.com/photo/2013/11/15/23/18/john-work-garrett-library-211375_960_720.jpg',
+  },
+];
+
 
 }

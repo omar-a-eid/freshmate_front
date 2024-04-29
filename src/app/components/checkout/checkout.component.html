@@ -8,10 +8,10 @@
             <div class="col-12 d-flex">
                 <div class="col-1 d-flex"></div>
                 <div class="col-10 d-flex justify-content-between ">
-                    <div>
+                    <div class="m-3">
                         <h5><strong>FreshMate Password : 1</strong></h5>
                     </div>
-                    <div>
+                    <div class="m-3">
                         <i class="fa-solid fa-bag-shopping clr"></i>
                     </div>
                 </div>
@@ -19,12 +19,20 @@
             </div>
             <hr>
         </div>
-        <div class="row">
+        <div>
             <div class="col-12 d-flex">
                 <div class="col-1"></div>
                 <div class="col-11 d-flex justify-content-evenly">
-                    <div class="col-5 mt-5">
-                        <a class="clickable" (click)="logout =! logout"> Account</a>
+                    <!-- col-11 col-sm-11 col-md-5 col-lg-5 col-xl-5 mt-5 -->
+                    <div class=" col-11 col-sm-11 col-md-5 col-lg-5 col-xl-5 mt-5">
+                        <div class="d-flex justify-content-between">
+                            <div class="mb-3">
+                                <a class="clickable" (click)="logout =! logout"> Account</a>
+                            </div>
+                            <div class="mb-3">
+                                <i class="clickable fa-solid fa-angle-down text-center" (click)="logout =! logout"></i>
+                            </div>
+                        </div>
                         <div>
                             <p>karimgmail.com</p>
                             <p class="link text-primary" *ngIf="logout"><a href="">Log out</a></p>
@@ -287,19 +295,18 @@
                                 </div>
                             </div>
                             <div class="mt-4 mb-5 text-center">
-                                <button type="submit" (click)="getdata()" [disabled]="Checkout.invalid" class="btn btn-primary col-12 bg1">Pay
+                                <button type="submit" (click)="getdata()" [disabled]="Checkout.invalid"
+                                    class="btn btn-primary col-12 bg1">Pay
                                     now</button>
                             </div>
                         </form>
                         <!-- END FORM -->
                         <!-- END FORM -->
                         <!-- END FORM -->
-                        <hr class="m-0">
-                        <p class="m-0"><small>All rights reserved FreshMate Password : 1</small></p>
                     </div>
                     <hr class="brd">
-                    <div class="col-5 gray">
-                        <div class="row">
+                    <div class="col-11 col-sm-11 col-md-5 col-lg-5 col-xl-5 gray ">
+                        <div class="row col-12">
                             <div class="col-12 d-flex m-5 ">
                                 <img class="img-thumbnail" src="../../../assets/images/carrot.webp" width="140px"
                                     height="70px">
@@ -314,7 +321,7 @@
                             </div>
                             <div class="col-12 d-flex px-5 justify-content-between">
                                 <p class="px-5">Shipping</p>
-                                <p class="px-5 fs-5">Enter shipping address</p>
+                                <p class="px-5">Enter shipping address</p>
                             </div>
                             <div class="col-12 d-flex px-5 justify-content-between">
                                 <h5 class="px-5"><strong>Total</strong></h5>
@@ -325,8 +332,12 @@
                 </div>
             </div>
         </div>
+        <hr class="m-0">
+        <p class="m-0"><small>All rights reserved FreshMate Password : 1</small></p>
         <!-- INSERT FOOTER HERE -->
         <!-- INSERT FOOTER HERE -->
+        {{StatusOfProduct}}
+        {{StatusOfProduct}}
         <!-- INSERT FOOTER HERE -->
         <!-- INSERT FOOTER HERE -->
     </div>

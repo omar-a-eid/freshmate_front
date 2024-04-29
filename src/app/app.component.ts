@@ -11,13 +11,26 @@ import { ProductDetailsComponent } from './Components/product-details/product-de
 import { ProductComponent } from './Components/product/product.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
 
-import { RegistrationComponent } from './components/registration/registration.component';
-import { HomeComponent } from './modules/home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule ,NavbarComponent, FooterComponent, ProductComponent,WishlistComponent,AboutUsComponent,ProductDetailsComponent,ProductCarouselsComponent,CommonModule, HomeComponent, RegistrationComponent],
+  imports: [
+    RouterOutlet,
+    HttpClientModule,
+    FaqComponent,
+    NavbarComponent,
+    FooterComponent,
+    ProductComponent,
+    WishlistComponent,
+    AboutUsComponent,
+    ProductDetailsComponent,
+    ProductCarouselsComponent,
+    CommonModule,
+    PathbarComponent,
+    CartComponent,
+    CheckoutComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
