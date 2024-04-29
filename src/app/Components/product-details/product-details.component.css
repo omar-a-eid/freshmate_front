@@ -4,19 +4,21 @@ a{
     font-weight: 500;
 }
 .whole{
-    height: 100vh;
+    /* height: 100vh; */
     padding-top: 36px;;
    
 }
 .first-half{
-    width: 50vw;
+    /* width: 50vw; */
     height: 100vh;
     padding-top: 20px !important;
     padding-left: 88px !important;
 }
 .second-half{
+    position: relative;
     padding-top: 20px !important;
     padding-left: 64px;
+    width: 655px;
 }
 
 ol{
@@ -24,8 +26,8 @@ ol{
 }
 .icons{
     position: absolute;
-    right: 240px;
-    top: 262px;
+    right: 63px;
+    top: 14px;
 }
 
 .icons p {
@@ -104,9 +106,7 @@ ol{
 }
 
 .add-to-bag-btn{
-    position: absolute;
-    top: 579px;
-    right: 140px;
+    margin-top: 87px;
     width: 435px;
     height: 48px;
     border: none;
@@ -115,7 +115,7 @@ ol{
 }
 
 .buy-it-now-btn{
-    width: 608px;
+    width: -webkit-fill-available;
     height: 48px;
     border: none;
     background-color: #000000;
@@ -145,8 +145,8 @@ ol{
 }
 
 .info-partition{
-    margin-left: 73px;
-    width: 1400px;
+    margin-left: 45px;
+    margin-top: 20px;
 }
 
 li{
@@ -334,5 +334,12 @@ textarea{
 }
 .related-products-list{
     margin-top: 20px;
-    margin-left:100px;
+    /* margin-left:100px; */
+}
+
+@media (min-width: 1200px) {
+    .col-xl-4 {
+        flex: 0 0 auto;
+        width: 39.333333% !important;
+    }
 }

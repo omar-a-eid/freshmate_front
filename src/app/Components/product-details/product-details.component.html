@@ -1,209 +1,289 @@
-<app-navbar></app-navbar>
-
 <div class="whole d-flex row">
-
   <div class="list-sub-items position-relative">
-    <ol class="breadcrumb ">
+    <ol class="breadcrumb">
       <li class="list-inline-item">
-        <a href="../wishlist/wishlist.component.html" class="item-breacrumb item-home">Home .</a>
+        <a
+          href="../wishlist/wishlist.component.html"
+          class="item-breacrumb item-home"
+          >Home .</a
+        >
       </li>
-        <li id="path-title" class="list-inline-item">
-          <span class="item-breacrumb">
-            <!-- <ng-container *ngIf="currentPath?.endsWith('wishlist')">Wishlist</ng-container>
-            <ng-container *ngIf="currentPath?.endsWith('aboutus')">About Us</ng-container> -->
-            <ng-container >products</ng-container>
-          </span>
-        </li>
+      <li id="path-title" class="list-inline-item">
+        <span class="item-breacrumb">
+          <ng-container>products</ng-container>
+        </span>
+      </li>
     </ol>
   </div>
-
-  <div class="first-half col-lg-6 col-sm-12">
-    <div class="carousel-container">
-      <app-product-carousels></app-product-carousels>
+  <div class="row">
+    <div class="first-half col-lg-6 col-sm-12">
+      <div class="carousel-container">
+        <app-product-carousels></app-product-carousels>
+      </div>
     </div>
-  </div>
 
-  <div class="second-half col-lg-5 col-sm-12">
+    <div class="second-half col-lg-6  col-sm-12  mb-sm-30"
+    >
+      <div class="first-row">
+        <h4>American Beef</h4>
+        <div class="d-flex gap-4">
+          <app-rating-stars></app-rating-stars>
+          <a href="">VIEW ALL REVIEWS</a>
+        </div>
 
-    <div class="first-row">
-      <h4>American Beef</h4>
-      <div class="d-flex gap-4 ">
-        <app-rating-stars></app-rating-stars>
-        <a href="">VIEW ALL REVIEWS</a>
+        <div class="icons">
+          <p>
+            <i
+              [ngClass]="{
+                'fa-regular': !isHeartSolid,
+                'fa-solid': isHeartSolid
+              }"
+              (click)="toggleHeartIcon()"
+              class="fa-heart"
+            >
+            </i>
+          </p>
+        </div>
       </div>
 
-      <div class="icons">
-        <p>
-          <i
-            [ngClass]="{
-              'fa-regular': !isHeartSolid,
-              'fa-solid': isHeartSolid
-            }"
-            (click)="toggleHeartIcon()"
-            class="fa-heart">
-          </i>
+      <div class="product-details">
+        <p class="price">$19.99</p>
+        <p class="description">
+          Donec dapibus tellus sem, quis aliquam libero pharetra non. Nam vitae
+          fermentum leo. Pellentesque bibendum dui eu mi tempor sodales. Integer
+          gravida odio in sem laoreet tempus. Nunc vehicula nibh mauris, id
+          bibendum metus facilisis...
         </p>
+        <div
+          class="deal-flash__sale-progress position-relative"
+          style="background-color: #e0e0e0"
+        >
+          <div
+            class="progress__bar position-absolute"
+            style="
+              width: 88%;
+              background: linear-gradient(
+                90deg,
+                rgba(249, 200, 88, 1),
+                rgba(255, 130, 70, 1) 100%
+              );
+            "
+          ></div>
+          <img
+            src="//nov-freshmate.myshopify.com/cdn/shop/files/icon_fire_66x.png?v=1691744504"
+            class="position-absolute i_flash"
+          />
+          <p class="offer">88% Sold - Only 50 item(s) left in stock!</p>
+        </div>
       </div>
 
-    </div>
+      <div class="buttons-product d-flex flex-column gap-2">
+        <div class="d-flex gap-4">
+          <app-quantity-increment-decrement></app-quantity-increment-decrement>
+          <button class="add-to-bag-btn">ADD TO BAG</button>
+        </div>
 
-    <div class="product-details">
-      <p class="price">$19.99</p>
-      <p class="description">Donec dapibus tellus sem, quis aliquam libero pharetra non. Nam vitae fermentum leo. Pellentesque bibendum dui eu mi tempor sodales. Integer gravida odio in sem laoreet tempus. Nunc vehicula nibh mauris, id bibendum metus facilisis...</p>
-      <div class="deal-flash__sale-progress position-relative" style="background-color: #e0e0e0">
-        <div class="progress__bar position-absolute" style="width: 88%;background: linear-gradient(90deg, rgba(249, 200, 88, 1), rgba(255, 130, 70, 1) 100%);"></div>
-        <img src="//nov-freshmate.myshopify.com/cdn/shop/files/icon_fire_66x.png?v=1691744504" class="position-absolute i_flash">
-        <p class="offer">88% Sold - Only 50 item(s) left in stock!</p>
-      </div>
-    </div>
-
-    <div class="buttons-product">
-      <app-quantity-increment-decrement></app-quantity-increment-decrement>
-      <button class="add-to-bag-btn"> ADD TO BAG</button>
-      <button class="buy-it-now-btn">BUY IT NOW</button>
-    </div>
-
-    <div class="product-share-info-faq d-flex flex-row gap-4">
-
-      <div class="share-option d-flex flex-row gap-2" data-bs-toggle="modal" data-bs-target="#ModalShare">
-        <i class="fa-solid fa-share-nodes fa-sm"></i>
-        <p class="share-option-text">share</p>
+        <button class="buy-it-now-btn">BUY IT NOW</button>
       </div>
 
-      <div class="share-option d-flex flex-row gap-2" data-bs-toggle="modal" data-bs-target="#ModalQuestion">
-        <i class="fa-regular fa-circle-question fa-sm"></i>
-        <p class="share-option-text">ASK A QUESTION</p>
+      <div class="product-share-info-faq d-flex flex-row gap-4">
+        <div
+          class="share-option d-flex flex-row gap-2"
+          data-bs-toggle="modal"
+          data-bs-target="#ModalShare"
+        >
+          <i class="fa-solid fa-share-nodes fa-sm"></i>
+          <p class="share-option-text">share</p>
+        </div>
+
+        <div
+          class="share-option d-flex flex-row gap-2"
+          data-bs-toggle="modal"
+          data-bs-target="#ModalQuestion"
+        >
+          <i class="fa-regular fa-circle-question fa-sm"></i>
+          <p class="share-option-text">ASK A QUESTION</p>
+        </div>
+
+        <div
+          class="share-option d-flex flex-row gap-2"
+          data-bs-toggle="modal"
+          data-bs-target="#ModalFAQ"
+        >
+          <i class="fa-solid fa-message fa-sm"></i>
+          <a href="/faq"> <p class="share-option-text">FAQ</p> </a>
+        </div>
       </div>
 
-      <div class="share-option d-flex flex-row gap-2" data-bs-toggle="modal" data-bs-target="#ModalFAQ">
-        <i class="fa-solid fa-message fa-sm"></i>
-        <p class="share-option-text">FAQ</p>
+      <div style="border-top: 3px solid #d9d9d9; opacity: 100%"></div>
+
+      <div class="payment-options">
+        <p class="safe-checkout">GUARANTEED SAFE CHECKOUT:</p>
+        <img
+          class="lazyloaded"
+          data-src="//nov-freshmate.myshopify.com/cdn/shop/files/payment_700x.png?v=1689231322"
+          alt="Payments"
+          src="//nov-freshmate.myshopify.com/cdn/shop/files/payment_700x.png?v=1689231322"
+        />
       </div>
-
     </div>
-
-    <div style="border-top: 3px solid #d9d9d9; opacity: 100%;"></div>
-
-    <div class="payment-options">
-      <p class="safe-checkout">GUARANTEED SAFE CHECKOUT:</p>
-      <img class=" lazyloaded" data-src="//nov-freshmate.myshopify.com/cdn/shop/files/payment_700x.png?v=1689231322" alt="Payments" src="//nov-freshmate.myshopify.com/cdn/shop/files/payment_700x.png?v=1689231322">
-    </div>
-
   </div>
 </div>
 
-<div class="info-partition">
-  <ul class="nav nav-tabs d-flex flex-row gap-4" id="myTabs">
-    <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#policy">DELIVERY POLICY</a></li>
-    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#shipping">SHIPPING AND RETURN</a></li>
-  </ul>
 
-  <div class="tab-content">
+<div class="d-flex justify-content-around">
+  <div class="info-partition">
+    <ul class="nav nav-tabs d-flex flex-row gap-4" id="myTabs">
+      <li class="nav-item active">
+        <a class="nav-link" data-toggle="tab" href="#policy">DELIVERY POLICY</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#shipping"
+          >SHIPPING AND RETURN</a
+        >
+      </li>
+    </ul>
 
-    <div id="policy" class="tab-pane fade in active">
-      <li>Our delivery team handles your orders with care to maintain the freshness and quality of your items. You will receive notifications regarding the status of your delivery, including tracking information, to keep you informed every step of the way.</li>
+    <div class="tab-content">
+      <div id="policy" class="tab-pane fade in active">
+        <li>
+          Our delivery team handles your orders with care to maintain the
+          freshness and quality of your items. You will receive notifications
+          regarding the status of your delivery, including tracking information,
+          to keep you informed every step of the way.
+        </li>
+      </div>
+
+      <div id="shipping" class="tab-pane fade">
+        <li>
+          Shipping fees, if applicable, will be clearly indicated during the
+          checkout process. We may offer free shipping promotions from time to
+          time, so be sure to check our website for any ongoing offers
+        </li>
+        <li>
+          To initiate a return or exchange, please contact our customer support
+          team with your order details and a brief explanation of the issue. We
+          may require photographic evidence in some cases to facilitate the return
+          process
+        </li>
+      </div>
     </div>
-
-    <div id="shipping" class="tab-pane fade">
-      <li>Shipping fees, if applicable, will be clearly indicated during the checkout process. We may offer free shipping promotions from time to time, so be sure to check our website for any ongoing offers</li>
-      <li>To initiate a return or exchange, please contact our customer support team with your order details and a brief explanation of the issue. We may require photographic evidence in some cases to facilitate the return process</li>
-    </div>
-
-  </div>  
+  </div>
 </div>
 
 
-<div style="border-top: 3px solid #d9d9d9; opacity: 100%; margin-top: 30px;"></div>
-
+<div
+  style="border-top: 3px solid #d9d9d9; opacity: 100%; margin-top: 30px"
+></div>
 
 <div class="ProductSignlePolicy section-policy pt-55 pb-55 overflow_hidden">
   <div class="container">
     <div class="row">
-      
-          <div class="nov-policy-item style2 style-product-detail bg-icon col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-sm-30">
-            <div class="policy__item--content d-flex d-md-block d-lg-flex gap-4">
-              
-                <div class="policy-icon d-inline-flex align-items-center justify-content-center position-relative mb-md-20 mb-sm-0">
-                  <img class="lazyload"  src="../../../assets/images/p-8_200x.webp" alt="icon_policy">
-                </div>
-              
-              <div class="heading--policy">
+      <div
+        class="nov-policy-item style2 style-product-detail bg-icon col-lg-4 col-md-4 col-sm-12 col-12 mb-sm-30"
+      >
+        <div class="policy__item--content d-flex d-md-block d-lg-flex gap-4">
+          <div
+            class="policy-icon d-inline-flex align-items-center justify-content-center position-relative mb-md-20 mb-sm-0"
+          >
+            <img
+              class="lazyload"
+              src="../../../assets/images/p-8_200x.webp"
+              alt="icon_policy"
+            />
+          </div>
 
-                  <div class="title-policy f_pr font-800" style="color: #000000">FREE SHIPPING</div>
-                  <div class="desc-policy mt-10" style="color: #505157"><p>Free shipping order above $200</p></div>                               
-                  <a href="#" class="font-600 hover:c_pr">
-                    Learn More
-                    <i class="zmdi zmdi-chevron-right"></i>
-                  </a>
-
-              </div>
-
+          <div class="heading--policy">
+            <div class="title-policy f_pr font-800" style="color: #000000">
+              FREE SHIPPING
             </div>
-          </div>  
-
-          <div class="nov-policy-item style2 style-product-detail bg-icon col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-sm-30">
-            <div class="policy__item--content d-flex d-md-block d-lg-flex gap-4">
-              
-                <div class="policy-icon d-inline-flex align-items-center justify-content-center position-relative mb-md-20 mb-sm-0">
-                  <img class="lazyload"  src="../../../assets/images/p-12_200x.webp" alt="icon_policy">
-                </div>
-              
-                <div class="heading--policy">               
-                  <div class="title-policy f_pr font-800" style="color: #000000">SUPPORT 24/7</div>
-                  <div class="desc-policy mt-10" style="color: #505157"><p>Contact us 24 hours a day, 7 days a week</p></div>
-      
-                  <a href="#" class="font-600 hover:c_pr">
-                    Learn More
-                    <i class="zmdi zmdi-chevron-right"></i>
-                  </a>
-                
-                </div>
-
+            <div class="desc-policy mt-10" style="color: #505157">
+              <p>Free shipping order above $200</p>
             </div>
+            <a href="#" class="font-600 hover:c_pr">
+              Learn More
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
 
-          </div>  
-        
-          <div class="nov-policy-item style2 style-product-detail bg-icon col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-            <div class="policy__item--content d-flex d-md-block d-lg-flex gap-4">
-              
-                <div class="policy-icon d-inline-flex align-items-center justify-content-center position-relative mb-md-20 mb-sm-0">
-                  <img class="lazyload" src="../../../assets/images/p-13_200x.webp" alt="icon_policy">
-                </div>
-              
-              <div class="heading--policy">
-                  <div class="title-policy f_pr font-800" style="color: #000000">7 DAYS RETURN</div>
-                  <div class="desc-policy mt-10" style="color: #505157"><p>Return it within 30 days for an exchange.</p></div>
+      <div
+        class="nov-policy-item style2 style-product-detail bg-icon col-lg-4 col-md-4 col-sm-12 col-12 mb-sm-30"
+      >
+        <div class="policy__item--content d-flex d-md-block d-lg-flex gap-4">
+          <div
+            class="policy-icon d-inline-flex align-items-center justify-content-center position-relative mb-md-20 mb-sm-0"
+          >
+            <img
+              class="lazyload"
+              src="../../../assets/images/p-12_200x.webp"
+              alt="icon_policy"
+            />
+          </div>
 
-                  <a href="#" class="font-600 hover:c_pr">
-                    Learn More
-                    <i class="zmdi zmdi-chevron-right"></i>
-                  </a>
-                
-              </div>
-
+          <div class="heading--policy">
+            <div class="title-policy f_pr font-800" style="color: #000000">
+              SUPPORT 24/7
+            </div>
+            <div class="desc-policy mt-10" style="color: #505157">
+              <p>Contact us 24 hours a day, 7 days a week</p>
             </div>
 
-          </div>  
-        
-      
+            <a href="#" class="font-600 hover:c_pr">
+              Learn More
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="nov-policy-item style2 style-product-detail bg-icon col-lg-4 col-md-4 col-sm-12 col-12"
+      >
+        <div class="policy__item--content d-flex d-md-block d-lg-flex gap-4">
+          <div
+            class="policy-icon d-inline-flex align-items-center justify-content-center position-relative mb-md-20 mb-sm-0"
+          >
+            <img
+              class="lazyload"
+              src="../../../assets/images/p-13_200x.webp"
+              alt="icon_policy"
+            />
+          </div>
+
+          <div class="heading--policy">
+            <div class="title-policy f_pr font-800" style="color: #000000">
+              7 DAYS RETURN
+            </div>
+            <div class="desc-policy mt-10" style="color: #505157">
+              <p>Return it within 30 days for an exchange.</p>
+            </div>
+
+            <a href="/aboutus" class="font-600 hover:c_pr">
+              Learn More
+              <i class="zmdi zmdi-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<div
+  style="border-top: 3px solid #d9d9d9; opacity: 100%; margin-top: 30px"
+></div>
 
-<div style="border-top: 3px solid #d9d9d9; opacity: 100%; margin-top: 30px;"></div>
-
-
-<div class="related-products">
+<div class="related-products d-flex flex-column gap-2">
   <p class="related-products-text">Related products</p>
-  <div class="related-products-list d-flex flex-row gap-4">
-    <app-product></app-product>
-    <app-product></app-product>
-    <app-product></app-product>
-    <app-product></app-product>
+  <div class="related-products-list row">
+    <app-product class="col-lg-3 col-md-6 col-sm-12"></app-product>
+    <app-product class="col-lg-3 col-md-6 col-sm-12"></app-product>
+    <app-product class="col-lg-3 col-md-6 col-sm-12"></app-product>
+    <app-product class="col-lg-3 col-md-6 col-sm-12"></app-product>
   </div>
 </div>
-
 
 <div
   aria-live="polite"
@@ -227,66 +307,107 @@
       <img src="../../assets/images/first.png" class="toast-img" />
       <h6 class="title">American Beef</h6>
       <a href="/wishlist">
-        <button class="go-to-wishlist-btn" [ngStyle]="{'display': showAddToCartButton ? 'block' : 'none'}">GO TO WISHLIST</button>
+        <button
+          class="go-to-wishlist-btn"
+          [ngStyle]="{ display: showAddToCartButton ? 'block' : 'none' }"
+        >
+          GO TO WISHLIST
+        </button>
       </a>
     </div>
   </div>
 </div>
 
-
-<div class="modal fade" id="ModalShare" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="ModalShare"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5> -->
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <p class="cpy-text">Copy Link</p>
         <div class="nov-copy d-flex gap-3">
-          <input class="path-cpy" type="text" value="https://freshmate.com/products/american-beef">
-          <div class="copy-btn btn" data-copy="Copy" data-copied="Copied">Copy</div>
+          <input
+            #inputElement
+            class="path-cpy"
+            type="text"
+            value="https://freshmate.com/products/american-beef"
+          />
+          <div class="copy-btn btn" (click)="copyToClipboard(inputElement)">
+            Copy
+          </div>
         </div>
         <p class="share-text">share</p>
         <div class="share-icons d-flex flex-row gap-4">
-         <p><i class="fa-brands fa-facebook-f"></i></p>
-         <p><i class="fa-brands fa-twitter"></i></p>
-         <p><i class="fa-brands fa-pinterest-p"></i></p>
+          <p><i class="fa-brands fa-facebook-f"></i></p>
+          <p><i class="fa-brands fa-twitter"></i></p>
+          <p><i class="fa-brands fa-pinterest-p"></i></p>
         </div>
-
       </div>
-     
     </div>
   </div>
 </div>
 
-
-<div class="modal fade" id="ModalQuestion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="ModalQuestion"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <!-- <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5> -->
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <p class="question-text">ASK A QUESTION</p>
-        <p class="request">Please enter the details of your request. A member of our support staff will respond as soon as possible.</p>
+        <p class="request">
+          Please enter the details of your request. A member of our support
+          staff will respond as soon as possible.
+        </p>
         <div class="modal-body d-flex flex-column gap-4">
-          <input class="form-control data" type="text" placeholder="YOUR NAME">
-          <input class="form-control data" type="text" placeholder="YOUR EMAIL">
-          <input class="form-control data" type="text" placeholder="PHONE NUMBER">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="YOUR MESSAGE"></textarea>
+          <input
+            class="form-control data"
+            type="text"
+            placeholder="YOUR NAME"
+          />
+          <input
+            class="form-control data"
+            type="text"
+            placeholder="YOUR EMAIL"
+          />
+          <input
+            class="form-control data"
+            type="text"
+            placeholder="PHONE NUMBER"
+          />
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            placeholder="YOUR MESSAGE"
+          ></textarea>
           <button class="submit-btn" data-bs-dismiss="modal">SUBMIT</button>
         </div>
-
       </div>
-     
     </div>
   </div>
 </div>
-
-
-
-
-
-<app-footer></app-footer>

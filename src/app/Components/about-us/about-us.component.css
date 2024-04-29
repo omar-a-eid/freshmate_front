@@ -1,22 +1,33 @@
-.quote-img{
-    width: 40% !important;
+.whole-section{
+    justify-content: center;
+    height: 332px;
+    background-color: #e7e8eb;
+    margin-top: 52px;
+    width: 1500px;
+    border-radius: 39px;
 }
 
 .quote-icon{
-    margin-left: 56px;
-    margin-top: -106px;
+    height: 92px;
+    width: 67px;
+    padding-top: 54px;
+}
+.quotes{
+    height: fit-content;
+    padding-top: 74px;
 }
 
-.quote{
-    position: absolute;
-    margin-left: 391px;
+.girl-img{
+    height: 273px;
+    width: 251px;
 }
+
 
 .hashTag{
     background-color: #f1f1f1;
     padding-bottom: 250px;
     margin-top: 50px;
-    margin-left: 116px;
+    /* margin-left: 116px; */
     width: 1361px;
     height: 347px;
     border-radius: 15px;
@@ -44,4 +55,17 @@
     object-fit: cover;
 }
 
+.first-section-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+.whole-section{
+    padding-top: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: black !important;
+}

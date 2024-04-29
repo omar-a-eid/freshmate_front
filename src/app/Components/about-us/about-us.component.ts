@@ -12,5 +12,5 @@ import { PathbarComponent } from '../pathbar/pathbar.component';
   styleUrl: './about-us.component.css'
 })
 export class AboutUsComponent {
-  
+
 }
