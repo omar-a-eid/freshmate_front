@@ -6,9 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  private readonly apiUrl = 'https://localhost:8000/api/products'; // Replace with your API endpoint
+  private readonly apiUrl = 'http://localhost:8000/api/products'; // Replace with your API endpoint
 
   constructor(private http: HttpClient) { }
+
+  getAllProducts(): Observable<any> {
+    const url = `${this.apiUrl}`;
+    return this.http.get<any>(url);
+  }
 
   // Fetch a product by its ID
   getProductById(productId: any): Observable<any> {

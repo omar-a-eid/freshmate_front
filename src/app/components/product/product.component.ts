@@ -20,39 +20,42 @@ export class ProductComponent implements OnInit {
   ) {}
 
   product = {
-    name: '',
-    description: '',
+    title: {
+      en: '',
+      ar: ''  
+    },
+    desc: {
+      en: '', 
+      ar: ''  
+    },
     price: 0,
-    image: null
+    images: null,
+    quantity : 0
   };
   isEditMode = false;
   productId: any;
   message: string = '';
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.productId = params['id'];
-      if (this.productId) {
-        this.isEditMode = true;
-        // Fetch product details by ID and populate form fields for editing
-        this.productService.getProductById(this.productId).subscribe({
-          next: (data) => {
-            this.product = data;
-          },
-          error: (err) => {
-            console.log('Error fetching product details', err);
-          }
-        });
-      }
-    });
+  ngOnInit(): void {
+    this.productService.getAllProducts().subscribe({
+      next:(data)=>{
+        //this.product = data;
+        // console.log(data);
+
+      },
+      error:(err)=>{"there is an eror fetching data from mongodb"} 
+      // complete:()=>{}
+    })
+    // this.checkout.GetAllOrdersForUser()
   }
 
   onSubmit() {
     if (this.isEditMode) {
       // Call service method to update the existing product
       this.productService.updateProduct(this.productId, this.product).subscribe({
-        next: (response) => {
+        next: (data) => {
           this.message = 'Product updated successfully';
+          console.log(data)
         },
         error: (error) => {
           this.message = 'Error updating product';
@@ -87,6 +90,6 @@ export class ProductComponent implements OnInit {
   onFileChange(event: any) {
     // Handle file upload and set product image
     const file = event.target.files[0];
-    this.product.image = file;
+    this.product.images = file;
   }
 }
