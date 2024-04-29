@@ -32,7 +32,8 @@ import { WishlistComponent } from './Components/wishlist/wishlist.component';
     ProductCarouselsComponent,
     CommonModule,
     PathbarComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

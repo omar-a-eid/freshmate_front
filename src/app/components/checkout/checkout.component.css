@@ -38,7 +38,9 @@
 }
 .clickable {
     cursor: pointer;
+    color: black;
+    text-decoration: none;
 }
 .clickable:hover {
-    color: #9ED2FF;
+    color: #1773B0;
 }
