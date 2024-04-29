@@ -1,10 +1,9 @@
-@for (item of wishlist; track $index) {
-<div>{{ item.title.ar }}</div>
-}
-<!-- <app-pathbar></app-pathbar>
+<app-pathbar></app-pathbar>
 <div class="d-flex flex-row products-added-to-cart flex-wrap">
-  <app-product class="col-lg-3 col-md-6 col-sm-12"></app-product>
-  <app-product class="col-lg-3 col-md-6 col-sm-12"></app-product>
-  <app-product class="col-lg-3 col-md-6 col-sm-12"></app-product>
-  <app-product class="col-lg-3 col-md-6 col-sm-12"></app-product>
-</div> -->
+  @for (item of wishlist; track $index) {
+  <app-product
+    class="col-lg-3 col-md-6 col-sm-12"
+    [product]="item"
+  ></app-product>
+  }
+</div>

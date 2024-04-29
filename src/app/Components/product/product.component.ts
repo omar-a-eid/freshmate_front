@@ -1,8 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
-import { CommonModule } from '@angular/common'; 
-import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { Component, inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 
 
 
@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
   styleUrl: './product.component.css'
 })
 export class ProductComponent{
+
+  @Input() product: any;
 
   toaster=inject(ToastrService);
 
