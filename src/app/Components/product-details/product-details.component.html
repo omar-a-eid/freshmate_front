@@ -18,14 +18,17 @@
   <div class="row">
     <div class="first-half col-lg-6 col-sm-12">
       <div class="carousel-container">
-        <app-product-carousels></app-product-carousels>
+        <!-- <app-product-carousels></app-product-carousels> -->
+        
+        <gallery [items]="items"></gallery>
+    
       </div>
     </div>
 
     <div class="second-half col-lg-6  col-sm-12  mb-sm-30"
     >
       <div class="first-row">
-        <h4>American Beef</h4>
+        <h4>{{product.title.en}}</h4>
         <div class="d-flex gap-4">
           <app-rating-stars></app-rating-stars>
           <a href="">VIEW ALL REVIEWS</a>
@@ -47,13 +50,8 @@
       </div>
 
       <div class="product-details">
-        <p class="price">$19.99</p>
-        <p class="description">
-          Donec dapibus tellus sem, quis aliquam libero pharetra non. Nam vitae
-          fermentum leo. Pellentesque bibendum dui eu mi tempor sodales. Integer
-          gravida odio in sem laoreet tempus. Nunc vehicula nibh mauris, id
-          bibendum metus facilisis...
-        </p>
+        <p class="price">{{product.price}} $</p>
+        <p class="description">{{product.desc}} </p>
         <div
           class="deal-flash__sale-progress position-relative"
           style="background-color: #e0e0e0"
@@ -309,7 +307,6 @@
       <a href="/wishlist">
         <button
           class="go-to-wishlist-btn"
-          [ngStyle]="{ display: showAddToCartButton ? 'block' : 'none' }"
         >
           GO TO WISHLIST
         </button>

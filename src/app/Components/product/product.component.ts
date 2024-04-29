@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../services/product/product.service';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 
 
@@ -9,14 +10,13 @@ import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [RatingStarsComponent,CommonModule],
+  imports: [RatingStarsComponent,CommonModule, RouterModule],
+  providers: [ProductService],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
-export class ProductComponent{
-
-  @Input() product: any;
-
+export class ProductComponent implements OnInit {
+@Input() product:any;
   toaster=inject(ToastrService);
 
   currentImage: string = "../../assets/images/first.png";
@@ -79,11 +79,34 @@ export class ProductComponent{
 
   showAddToCartButton: boolean = true;
 
-  constructor(private router: Router) {
-    if (this.router.url === 'localhost:4200/wishlist') {
-      this.showAddToCartButton = false;
+  // constructor(private router: Router) {
+  //   if (this.router.url === 'localhost:4200/wishlist') {
+  //     this.showAddToCartButton = false;
       
-    }
+  //   }
+  // }
+  // ngOnInit(): void {
+  //   throw new Error('Method not implemented.');
+  // }
+
+  productId:any;
+
+  constructor( private productService: ProductService, private router: Router) {
+    if (this.router.url === 'localhost:4200/wishlist') {
+          this.showAddToCartButton = false;
+          
+        }
+  }
+  
+  ngOnInit(): void {
+
+      this.productService.GetProduct(this.productId).subscribe({
+          next: (data:any)=> {
+              console.log(data);
+              this.product = data;
+          },
+          error: (error: any) => console.log(error)
+      })
   }
   
 }
