@@ -13,12 +13,13 @@ import { ProductComponent } from './Components/product/product.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
 
 import { ContactUSComponent } from './components/contact-us/contact-us.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,ProfileComponent,ContactUSComponent, HttpClientModule,FaqComponent ,NavbarComponent, FooterComponent, ProductComponent,WishlistComponent,AboutUsComponent,ProductDetailsComponent,ProductCarouselsComponent,CommonModule],
+  imports: [RouterOutlet,ProfileComponent,ContactUSComponent,NotFoundComponent,ProductComponent, HttpClientModule,FaqComponent ,NavbarComponent, FooterComponent, ProductComponent,WishlistComponent,AboutUsComponent,ProductDetailsComponent,ProductCarouselsComponent,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
