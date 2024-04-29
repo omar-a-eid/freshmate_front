@@ -1,220 +1,217 @@
 ::ng-deep .container {
-    font-size: 11px;
-    font-weight: bold;
-    font-family: 'Signika';
+  font-size: 11px;
+  font-weight: bold;
+  font-family: "Signika";
 }
-
-.custom-offcanvas {
-  max-width: 100%;
-  width: 20% !important;
-}
-
-@media (max-width: 768px) {
-  .custom-offcanvas {
-    width: 40% !important;
-  }
-}
-
 
 .dotted-icon-container {
-    position: relative;
+  position: relative;
 }
 
 .dotted-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px; 
-    height: 40px; 
-    border: 2px dotted rgb(133, 67, 67); 
-    border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2px dotted rgb(133, 67, 67);
+  border-radius: 50%;
 }
 
 .dotted-icon-container .badge {
-    position: absolute;
-    top: 2px;
-    right: -6px;
-    width: 15px;
-    height: 15px;
+  position: absolute;
+  top: 2px;
+  right: -6px;
+  width: 15px;
+  height: 15px;
 }
 
 .dotted-icon-container .badge.bg-danger {
-    background-color: rgb(87, 41, 41) !important;
+  background-color: rgb(87, 41, 41) !important;
 }
 
-.nav-link:hover, .nav-link.active {
-    color: rgb(87, 41, 41) !important;
+.nav-link:hover,
+.nav-link.active {
+  color: rgb(87, 41, 41) !important;
 }
 
 .contact-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.navbar{
-    width: 100%;
-    height: 60px;
-    margin: 0 auto;
+.navbar {
+  width: 100%;
+  height: 60px;
+  margin: 0 auto;
 }
 
 .icon-container {
-    width: 35px; 
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    margin-right: 4px;
-    justify-content: center;
-    align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  margin-right: 4px;
+  justify-content: center;
+  align-items: center;
 }
 
 .bg-brown {
-    background-color: rgb(87, 41, 41)
+  background-color: rgb(87, 41, 41);
 }
 
 .placeholder-small::placeholder {
-    font-size: 8px; 
-    font-weight: bold;
-    color: rgb(197, 191, 191);
+  font-size: 8px;
+  font-weight: bold;
+  color: rgb(197, 191, 191);
 }
 
 .search {
-    height: 40px; 
-    width: 250px; 
+  height: 40px;
+  width: 250px;
 }
 
 .search input {
-    height: 40px; 
+  height: 40px;
 }
 
-.icon-container:hover{
-    background-color: rgb(113, 64, 64) !important; 
-    cursor: pointer; 
+.icon-container:hover {
+  background-color: rgb(113, 64, 64) !important;
+  cursor: pointer;
 }
 
 .form-control:focus + .position-absolute .icon-container {
-    visibility: visible !important;
+  visibility: visible !important;
 }
-
 
 @media (max-width: 1200px) {
-    .navbar .container {
-      flex-wrap: wrap;
-    }
+  .navbar .container {
+    flex-wrap: wrap;
+  }
 }
-  
+
 /* Expand search input to full width on smaller screens */
 @media (max-width: 1200px) {
-    .navbar .search {
-      width: 100%;
-      max-width: none;
-    }
-    .navbar-nav {
-        display: none;
-    }
+  .navbar .search {
+    width: 100%;
+    max-width: none;
+  }
+  .navbar-nav {
+    display: none;
+  }
 }
 
 /* Hide the sidebar icon on the extra large screens */
 @media (min-width: 1201px) {
-    .sidebar-btn {
-        display: none;
-    }
+  .sidebar-btn {
+    display: none;
+  }
 }
 
-  /* Sidebar Styling */
+/* Sidebar Styling */
 .sidebar-btn {
-    border: none; 
-    background-color: transparent;
-    padding: 0;
-    width: 50px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  width: 50px;
 }
 
 .custom-list .divider {
-    border-top: 2px solid #b1b1b1;
+  border-top: 2px solid #b1b1b1;
 }
 
-.custom-list li a{
-    color: black !important; 
-    margin-left: 20px;
+.custom-list li a {
+  color: black !important;
+  margin-left: 20px;
 }
 
-.custom-offcanvas {
-    width: 300px;
+/* Sidebar */
+@media (max-width: 767.98px) {
+  .offcanvas-start.custom-offcanvas {
+    width: 250px;
+  }
 }
 
-.custom-offcanvas {
-    transition: transform 0.3s ease;
+@media (min-width: 768px) {
+  .offcanvas-start.custom-offcanvas {
+    width: 350px;
+  }
+}
+.offcanvas-body {
+  overflow-x: hidden;
 }
 
 .offcanvas-start {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .offcanvas.show {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
-.contact{
-    margin-top: 280px;
+.contact {
+  margin-top: 280px;
 }
 
 @media (max-width: 991px) {
-    .contact-header {
-        display: none !important;
-    }
-    .contact {
-        display: block;
-    }
+  .contact-header {
+    display: none !important;
+  }
+  .contact {
+    display: block;
+  }
 }
 
 @media (min-width: 992px) {
-    .contact-header {
-        display: flex !important;
-        justify-content: space-between;
-    }
-    .contact {
-        display: none;
-    }
+  .contact-header {
+    display: flex !important;
+    justify-content: space-between;
+  }
+  .contact {
+    display: none;
+  }
 }
 
-
 @media (max-width: 768px) {
-    .favorite, .user, .navbar, .original-search{
-        display: none;
-    }        
+  .favorite,
+  .user,
+  .navbar,
+  .original-search {
+    display: none;
+  }
 }
 
 /* Phone Icon Animation */
 @keyframes ringing {
-    0% {
-      transform: translateX(-5px);
-    }
-    50% {
-      transform: translateX(5px);
-    }
-    100% {
-      transform: translateX(-5px);
-    }
+  0% {
+    transform: translateX(-5px);
   }
-  
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(-5px);
+  }
+}
 
 .dotted-icon-container.phone:hover .dotted-icon svg {
-    animation: ringing 0.7s;
+  animation: ringing 0.7s;
 }
 
 .dotted-icon-container .hover-icon {
-    display: none;
+  display: none;
 }
 
 .dotted-icon-container:hover .original-icon {
-    display: none;
+  display: none;
 }
 
 .dotted-icon-container:hover .hover-icon {
-    display: inline-block;
+  display: inline-block;
 }
- 
+
 /* Close button of cart sidebar */
 .rotate-360 {
   transform: rotate(90deg);
@@ -226,20 +223,19 @@
   transition: transform 0.3s ease;
 }
 
-.btn-close-cart{
+.btn-close-cart {
   font-size: 10px;
 }
 
 .badge-cart {
-   position: relative;
-   right: -3px;
-   width: 15px;
-   height: 15px;
+  position: relative;
+  right: -3px;
+  width: 15px;
+  height: 15px;
 }
 
-
 .badge-cart.bg-danger {
-    background-color: rgb(87, 41, 41) !important;
+  background-color: rgb(87, 41, 41) !important;
 }
 
 .footer {
@@ -251,7 +247,6 @@
   padding: 10px;
 }
 
-
 .progress-wrapper {
   position: relative;
   height: auto;
@@ -259,44 +254,54 @@
   border: 1px solid green;
 }
 
-.progress{
-    height: 5px;
+.progress {
+  height: 5px;
 }
-  .progress-bar {
-    background-image: linear-gradient(90deg, rgba(40, 167, 69, 0.5), rgba(40, 167, 69, 0.5), transparent);
-    background-size: 200% 100%;
-    animation: moveBackground 2s linear infinite;
-  }
+.progress-bar {
+  background-image: linear-gradient(
+    90deg,
+    rgba(40, 167, 69, 0.5),
+    rgba(40, 167, 69, 0.5),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: moveBackground 2s linear infinite;
+}
 
-  @keyframes moveBackground {
-    0% { background-position: 100% 0; }
-    100% { background-position: -100% 0; }
+@keyframes moveBackground {
+  0% {
+    background-position: 100% 0;
   }
+  100% {
+    background-position: -100% 0;
+  }
+}
 
 .circle-wrapper {
-  width: 18px; 
-  height: 18px; 
-  border-radius: 50%; 
-  position: absolute; 
-  top: 50%; 
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
   left: 25%;
-  transform: translate(-50%, -50%); 
-  border: 1px solid green; 
+  transform: translate(-50%, -50%);
+  border: 1px solid green;
 }
 
 .circle {
-  width: 12px; 
-  height: 12px; 
-  background-color: green; 
-  border-radius: 50%; 
-  position: absolute; 
-  top: 50%; 
-  left: 50%; 
+  width: 12px;
+  height: 12px;
+  background-color: green;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1; 
+  z-index: 1;
 }
 
-.view-cart-btn, .check-out-btn{
+.view-cart-btn,
+.check-out-btn {
   display: block;
   width: 100%;
   height: 35px;
@@ -304,21 +309,10 @@
   margin-bottom: 10px;
   border: 2px #b1b1b1;
   border-radius: 3px;
-  font-weight: bold;   
+  font-weight: bold;
 }
 
-.check-out-btn{
- background-color: black;
- color: white;
+.check-out-btn {
+  background-color: black;
+  color: white;
 }
-
-
-
-
-    
-
-
-
-
-
-

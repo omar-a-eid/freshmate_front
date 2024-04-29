@@ -10,12 +10,22 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cart.component.css',
 })
 export class CartComponent {
-  quantity: number = 1;
-  itemPrice: number = 20;
-  shippingCost: number = 10;
-  shippingFree: number = 0;
-  shipping: number = 0;
-
+  @Input() allProducts: any[] = [
+    {
+      name: 'Product 1',
+      price: 7.0,
+      quantity: 1,
+      image:
+        'https://nov-freshmate.myshopify.com/cdn/shop/files/1_d00b934d-e940-49ff-a5fe-1056688cd479_90x.jpg?v=1690008374',
+    },
+    {
+      name: 'Product 2',
+      price: 20.0,
+      quantity: 1,
+      image:
+        'https://nov-freshmate.myshopify.com/cdn/shop/files/1_d00b934d-e940-49ff-a5fe-1056688cd479_90x.jpg?v=1690008374',
+    },
+  ];
   @Input() products: any[] = [
     {
       name: 'Sweet Kiwi Green',
@@ -47,35 +57,29 @@ export class CartComponent {
   @Output() totalShipping: EventEmitter<number> = new EventEmitter<number>();
   @Output() quantityChanged: EventEmitter<number> = new EventEmitter<number>();
 
-  private emitQuantity() {
-    this.quantityChanged.emit(this.quantity);
+  // to increment quantity
+  incrementQuantity(product: any) {
+    product.quantity++;
   }
 
-  calculateTotal(): void {
-    const total =
-      this.quantity * this.itemPrice +
-      (this.itemPrice * this.quantity >= 200 ? (this.shippingCost = 0) : 10);
-    this.shipping = 200 - (total - 10);
-    if (total === 200) {
-      this.shipping = 0;
-    } else if (this.shipping < 0) {
-      this.shipping = 0;
+  // to decrement quantity
+  decrementQuantity(product: any) {
+    if (product.quantity > 1) {
+      product.quantity--;
     }
-    this.totalChanged.emit(total);
-    this.totalShipping.emit(this.shipping);
   }
 
-  incrementQuantity() {
-    this.quantity++;
-    this.calculateTotal();
-    this.emitQuantity();
+  // to calculate total price for a product
+  getTotal(product: any): number {
+    return product.price * product.quantity;
   }
 
-  decrementQuantity() {
-    if (this.quantity > 1) {
-      this.quantity--;
-      this.calculateTotal();
-      this.emitQuantity();
+  // to calculate the total price of all products
+  calculateTotalPrice(): number {
+    let totalPrice = 0;
+    for (const product of this.allProducts) {
+      totalPrice += product.price * product.quantity;
     }
+    return totalPrice;
   }
 }
