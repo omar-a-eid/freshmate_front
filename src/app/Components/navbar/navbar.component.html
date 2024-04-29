@@ -92,6 +92,7 @@
           </div>
         </div>
       </div>
+
       <!-- Left-side -->
       <div
         class="col-md-4 d-flex justify-content-md-start mb-3 mb-md-0 contact-header"
@@ -368,7 +369,9 @@
                   />
                 </g>
               </svg>
-              <span class="badge rounded-pill bg-danger">{{ productsQuantity }}</span>
+              <span class="badge rounded-pill bg-danger">{{
+                productsQuantity
+              }}</span>
             </div>
           </a>
           <!-- Cart Sidebar -->
@@ -456,10 +459,10 @@
                 </div>
                 <hr class="divider" />
                 <div class="d-flex justify-content-start">
-                  <div *ngIf="totalPrice >= 200" style="color: green;">
+                  <div *ngIf="totalPrice >= 200" style="color: green">
                     CONGRATULATIONS! YOU'VE GOT FREE SHIPPING!
                   </div>
-                  <div *ngIf="totalPrice < 200" style="color: gray;">
+                  <div *ngIf="totalPrice < 200" style="color: gray">
                     SPEND {{ shippingFree | currency }} FOR FREE SHIPPING
                   </div>
                 </div>
