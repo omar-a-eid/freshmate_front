@@ -36,17 +36,23 @@ export class ProductComponent implements OnInit {
   productId: any;
   message: string = '';
 
-  ngOnInit(): void {
-    this.productService.getAllProducts().subscribe({
-      next:(data)=>{
-        //this.product = data;
-        // console.log(data);
-
-      },
-      error:(err)=>{"there is an eror fetching data from mongodb"} 
-      // complete:()=>{}
-    })
-    // this.checkout.GetAllOrdersForUser()
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.productId = params['id'];
+      if (this.productId) {
+        this.isEditMode = true;
+        // Fetch product details by ID and populate form fields for editing
+        this.productService.getProductById(this.productId).subscribe({
+          next:(data) => {
+            this.product = data;
+          },
+          error:(error) => {
+            console.error('Error fetching product details', error);
+          }
+        }
+        );
+      }
+    });
   }
 
   onSubmit() {
