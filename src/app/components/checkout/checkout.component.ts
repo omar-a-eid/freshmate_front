@@ -1,17 +1,51 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FooterComponent } from '../footer/footer.component';
+import { PathbarComponent } from '../pathbar/pathbar.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { OrderService } from '../../services/order/order.service';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, FooterComponent,PathbarComponent,NavbarComponent],
+  providers:[OrderService],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
-export class CheckoutComponent {
+export class CheckoutComponent implements OnInit{
+  // userid:Number | undefined;
+  StatusOfProduct:any
+  productimage:any
+  orders:any
+  constructor(private order:OrderService){}
+  ngOnInit(): void {
+    // this.order.GetAllOrders().subscribe({
+    //   next:(data)=>{
+    //     this.orders = data;
+    //     // const singledata = data[];
+    //     this.StatusOfProduct = this.orders[0]["status"].en;
+    //     console.log(this.StatusOfProduct);
+    //   },
+    //   error:(err)=>{"there is an eror fetching data from mongodb"} 
+    //   // complete:()=>{}
+    // })
+    // this.order.GetAllOrdersForUser(this.userid).subscribe({
+    //   next:(data)=>{
+    //     // this.orders = data;
+    //     console.log(data);
+        
+    //   },
+    //   error:(err)=>{"there is an eror fetching data from mongodb"} 
+    //   // complete:()=>{}
+    // })
+    // this.order.GetAllOrdersForUser()
+  }
 
   logout: boolean = false
+
+
 
   Checkout = new FormGroup({
     country: new FormControl("", [Validators.required]),
@@ -67,6 +101,7 @@ export class CheckoutComponent {
     // data as an object
     console.log(this.Checkout.value);
 
+    alert("Order has been Send we will contact you on your email thank you for ordering.")
 
   }
 
@@ -122,5 +157,6 @@ export class CheckoutComponent {
     return this.Checkout.get("billaddress") as FormControl;
   }
 
+  
 
 }

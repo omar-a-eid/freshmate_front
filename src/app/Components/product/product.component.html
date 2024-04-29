@@ -17,10 +17,10 @@
         </p>
       </div>
       <img
-        src="../../assets/images/first.png"
+        src=`{{product.images}}`
         alt="Denim Jeans"
-        (mouseover)="changeImage('second.png')"
-        (mouseout)="changeImage('first.png')"
+        (mouseover)="changeImage('{{product.images[0]}}' )"
+        (mouseout)="changeImage('{{product.images[1]}}' )"
         [src]="currentImage"
         class="image-transition product-img"
       />
@@ -33,7 +33,7 @@
   <p class="price">{{ product.price }}</p>
 </div>
 
-<div
+<!-- <div
   aria-live="polite"
   aria-atomic="true"
   class="toast-container d-flex justify-content-center align-items-center"
@@ -52,8 +52,8 @@
     </div>
 
     <div class="d-flex flex-row toast-body">
-      <img src="../../assets/images/first.png" class="toast-img" />
-      <h6 class="title">American Beef</h6>
+      <img src="{{product.images[0]}}" class="toast-img" />
+      <h6 class="title">{{product.title.en}}</h6>
       <a href="/wishlist">
         <button
           class="go-to-wishlist-btn"
@@ -64,4 +64,4 @@
       </a>
     </div>
   </div>
-</div>
+</div> -->
