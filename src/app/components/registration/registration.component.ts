@@ -21,6 +21,13 @@ export class RegistrationComponent {
     password: new FormControl("", [Validators.minLength(6), Validators.required]),
   })
 
+  signupData = new FormGroup({
+    username: new FormControl("", [Validators.minLength(3), Validators.required]),
+    gender: new FormControl("", [Validators.required]),
+    email: new FormControl("", [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.required]),
+    password: new FormControl("", [Validators.minLength(6), Validators.required]),
+  })
+
   login() {
     if(this.loginData.valid) {
       const user = this.loginData.value;
@@ -34,7 +41,15 @@ export class RegistrationComponent {
   }
 
   signup() {
-
+    if(this.signupData.value) {
+      const newUser = this.signupData.value;
+      this.registrationService.signup(newUser).subscribe({
+        error: error => this.errMessage = error.error,
+        next: (data:any) => {
+          console.log(data);
+        }
+      });
+    }
   }
 
   get Email(): FormControl {
@@ -42,5 +57,20 @@ export class RegistrationComponent {
   }
   get Password(): FormControl {
     return this.loginData.get("password") as FormControl;
+  }
+
+  get EmailSignup(): FormControl {
+    return this.signupData.get("email") as FormControl;
+  }
+  get PasswordSignup(): FormControl {
+    return this.signupData.get("password") as FormControl;
+  }
+
+  get Username(): FormControl {
+    return this.signupData.get("username") as FormControl;
+  }
+
+  get Gender(): FormControl {
+    return this.signupData.get("gender") as FormControl;
   }
 }

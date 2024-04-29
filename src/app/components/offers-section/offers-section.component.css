@@ -1,0 +1,22 @@
+.spacing {
+  margin: 4em auto;
+}
+.home_item_image {
+  background-color: #efefef;
+  border-radius: 50%;
+}
+.home_item_image img {
+  width: 100%;
+  transition: all 0.7s;
+
+}
+.home_item_image:hover img {
+  transform: scale(1.1);
+}
+
+.home_item_text {
+  font-size: 1rem;
+  color: #222222;
+  font-weight: 900;
+  margin-top: 40px;
+}

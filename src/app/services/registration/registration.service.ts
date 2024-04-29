@@ -13,4 +13,7 @@ export class RegistrationService {
   login(user: any) {
     return this.http.post(this.URL_DB +"/login", user);
   }
+  signup(newUser: any) {
+    return this.http.post(this.URL_DB +"/signup", newUser);
+  }
 }

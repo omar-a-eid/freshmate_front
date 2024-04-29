@@ -1,0 +1,42 @@
+<div class="container text-center">
+  <h2 class="header_title">Benefits Of Coffee</h2>
+  <p class="header_paragraph mb-5">
+    Ah, coffee. Whether you’re cradling a travel mug on your way to work or
+    dashing out after spin class to<br />refuel with a skinny latte, it’s hard
+    to imagine a day without it.
+  </p>
+
+  <div class="d-flex flex-column row_container">
+    <div class="d-flex flex-wrap column_container col-lg-3 col-md-4">
+      @for (item of leftItems; track $index) {
+      <div class="item_contaienr">
+        <div>
+          <img src="{{ item.img }}" alt="" srcset="" />
+        </div>
+        <div>
+          <p>
+            {{ item.title }}
+          </p>
+        </div>
+      </div>
+      }
+    </div>
+    <div class="mt-5 mb-5 col-lg-6 col-md-4">
+      <img class="img-fluid" src="/assets/banner-bgc.webp" alt="" srcset="" />
+    </div>
+    <div class="d-flex flex-wrap column_container col-lg-3 col-md-4">
+      @for (item of rightItems; track $index) {
+      <div class="item_contaienr">
+        <div>
+          <img src="{{ item.img }}" alt="" srcset="" />
+        </div>
+        <div>
+          <p>
+            {{ item.title }}
+          </p>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
