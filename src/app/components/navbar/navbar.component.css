@@ -3,7 +3,9 @@
   font-weight: bold;
   font-family: "Signika";
 } */
-
+.user {
+  cursor: pointer;
+}
 .dotted-icon-container {
   position: relative;
 }

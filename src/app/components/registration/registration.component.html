@@ -1,41 +1,58 @@
-<!-- Button trigger modal -->
-<button
-  type="button"
-  class="btn btn-primary"
-  data-bs-toggle="modal"
-  data-bs-target="#exampleModal"
->
-  Launch demo modal
-</button>
-
 <div
   class="modal fade"
-  id="exampleModal"
+  id="registrationModal"
   tabindex="-1"
-  aria-labelledby="exampleModalLabel"
+  aria-labelledby="registrationModal"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" id="registration">
+      <div class="btn_container">
         <button
           type="button"
-          class="btn-close"
+          class="btn-close btn-close-white"
           data-bs-dismiss="modal"
           aria-label="Close"
+          #closeButton
         ></button>
       </div>
       <div class="modal-body m-4">
         <div>
-          <div>Login</div>
-          <div>Signup</div>
+          <div class="registration_container">
+            <div class="login_switcher {{ toggle ? 'toggle' : '' }}"></div>
+            <div
+              data-bs-toggle="collapse"
+              data-bs-target="#login"
+              aria-expanded="true"
+              aria-controls="login"
+              (click)="handleToggle($event, 'loginBtn')"
+              id="loginBtn"
+            >
+              Login
+            </div>
+            <div
+              data-bs-toggle="collapse"
+              data-bs-target="#signup"
+              aria-expanded="false"
+              aria-controls="signup"
+              (click)="handleToggle($event, 'signupBtn')"
+              id="signupBtn"
+            >
+              Signup
+            </div>
+          </div>
         </div>
 
-        <div>
-          <p>Insert your account information:</p>
+        <div
+          id="login"
+          class="accordion-collapse collapse show"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#registration"
+        >
+          <p class="reg_title">Insert your account information:</p>
           <form [formGroup]="loginData">
-            <div *ngIf="errMessage" class="form-text text-danger">
-              {{ errMessage }}
+            <div *ngIf="errMessageLogin" class="form-text text-danger">
+              {{ errMessageLogin }}
             </div>
             <div class="d-flex flex-column mb-3">
               <div
@@ -55,6 +72,7 @@
                 name="email"
                 id="email"
                 required="true"
+                placeholder="ENTER YOUR EMAIL"
               />
             </div>
             <div class="d-flex flex-column mb-3">
@@ -76,23 +94,29 @@
                 type="password"
                 name="password"
                 id="password"
+                placeholder="**********"
                 required
               />
             </div>
-            <div>
+            <!-- <div>
               <a>Forget Password</a>
-            </div>
-            <button type="submit" class="btn btn-sumbit" (click)="login()">
+            </div> -->
+            <button type="submit" class="btn reg_btns" (click)="login()">
               Login
             </button>
           </form>
         </div>
 
-        <div>
-          <p>Create your account</p>
+        <div
+          id="signup"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#registration"
+        >
+          <p class="reg_title">Create your account</p>
           <form [formGroup]="signupData">
-            <div *ngIf="errMessage" class="form-text text-danger">
-              {{ errMessage }}
+            <div *ngIf="errMessageSignup" class="form-text text-danger">
+              {{ errMessageSignup }}
             </div>
             <div class="d-flex flex-column mb-3">
               <div
@@ -117,6 +141,7 @@
                 name="email"
                 id="email"
                 required="true"
+                placeholder="ENTER YOUR EMAIL"
               />
             </div>
             <div class="d-flex flex-column mb-3">
@@ -139,6 +164,7 @@
                 name="username"
                 id="username"
                 required="true"
+                placeholder="USERNAME"
               />
             </div>
             <div class="d-flex flex-column mb-3">
@@ -163,6 +189,7 @@
                 type="password"
                 name="password"
                 id="password"
+                placeholder="**********"
                 required
               />
             </div>
@@ -183,12 +210,13 @@
                 name="gender"
                 class="form-select"
                 aria-label="Default select example"
+                required
               >
-                <option value="male" selected>Male</option>
+                <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
             </div>
-            <button type="submit" class="btn btn-sumbit" (click)="signup()">
+            <button type="submit" class="btn reg_btns" (click)="signup()">
               Sign Up
             </button>
           </form>

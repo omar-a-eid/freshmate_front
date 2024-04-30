@@ -16,4 +16,7 @@ export class RegistrationService {
   signup(newUser: any) {
     return this.http.post(this.URL_DB +"/signup", newUser);
   }
+  signout() {
+    sessionStorage.removeItem("user");
+  }
 }
