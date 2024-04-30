@@ -1,13 +1,13 @@
 import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductService } from '../../services/product/product.service';
 import { CustomButtonComponent } from '../custom-button/custom-button.component';
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { ProductComponent } from '../product/product.component';
-import { ProductService } from '../../services/product/product.service';
-import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-products-page',
   standalone: true,

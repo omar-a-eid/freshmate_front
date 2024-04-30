@@ -1,21 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { RegistrationService } from '../../services/registration/registration.service';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
+  imports: [ReactiveFormsModule, HttpClientModule, CommonModule, RouterModule],
   providers: [RegistrationService],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
-  
-  constructor(private registrationService: RegistrationService) {}
-  errMessage:any;
+  @ViewChild('closeButton') closeButton!: ElementRef;
+
+  constructor(private registrationService: RegistrationService, private router: Router) {}
+  toggle:boolean= false;
+  position:string = "loginBtn";
+  errMessageLogin:any;
+  errMessageSignup:any;
+
   loginData = new FormGroup({
     email: new FormControl("", [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.required]),
     password: new FormControl("", [Validators.minLength(6), Validators.required]),
@@ -23,7 +29,7 @@ export class RegistrationComponent {
 
   signupData = new FormGroup({
     username: new FormControl("", [Validators.minLength(3), Validators.required]),
-    gender: new FormControl("", [Validators.required]),
+    gender: new FormControl("male", [Validators.required]),
     email: new FormControl("", [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.required]),
     password: new FormControl("", [Validators.minLength(6), Validators.required]),
   })
@@ -32,9 +38,13 @@ export class RegistrationComponent {
     if(this.loginData.valid) {
       const user = this.loginData.value;
       this.registrationService.login(user).subscribe({
-        error: error => this.errMessage = error.error,
+        error: error => this.errMessageLogin = error.error,
         next: (data:any) => {
           sessionStorage.setItem("user",JSON.stringify(data));
+        },
+        complete: () => {
+          this.closeButton.nativeElement.click();
+          this.router.navigate(['/products']);
         }
       })
     }
@@ -44,14 +54,24 @@ export class RegistrationComponent {
     if(this.signupData.value) {
       const newUser = this.signupData.value;
       this.registrationService.signup(newUser).subscribe({
-        error: error => this.errMessage = error.error,
+        error: error => this.errMessageSignup = error.error,
         next: (data:any) => {
-          console.log(data);
+          sessionStorage.setItem("user",JSON.stringify(data));
+        },
+        complete: () => {
+          this.closeButton.nativeElement.click();
+          this.router.navigate(['/products']);
         }
       });
     }
   }
 
+  handleToggle(e:any, state:string) {
+    if(e.target.id != this.position) {
+      this.toggle = !this.toggle;
+      this.position = state;
+    }
+  }
   get Email(): FormControl {
     return this.loginData.get("email") as FormControl;
   }
