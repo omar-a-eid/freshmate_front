@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { Router, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
-import { CartService } from '../../services/cart/cart.service';
 
 
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [RatingStarsComponent, CommonModule, RouterModule],
-  providers: [ProductService],
+  imports: [RatingStarsComponent, CommonModule, RouterModule, HttpClientModule],
+  providers: [ProductService, CartService],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
