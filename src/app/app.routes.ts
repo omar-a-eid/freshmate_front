@@ -13,7 +13,9 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'aboutus', component: AboutUsComponent },
+
   { path: 'products', component: ProductsPageComponent },
+
   { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'faq', component: FaqComponent },
   { path: 'cart', component: CartComponent },
