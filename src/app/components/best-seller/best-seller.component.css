@@ -1,0 +1,13 @@
+.best_container {
+  background: url("../../../assets/bg-collection.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 9em 0;
+  padding: 9em 0;
+}
+.header {
+  font-size: 2.2em;
+  margin-bottom: 1em;
+  font-weight: 900;
+}
