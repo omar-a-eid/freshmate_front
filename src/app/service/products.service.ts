@@ -22,19 +22,5 @@ export class ProductService {
   }
 
   // Add a new product
-  addProduct(product: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, product);
-  }
 
-  // Update an existing product
-  updateProduct(productId: any, product: any): Observable<any> {
-    const url = `${this.apiUrl}/${productId}`;
-    return this.http.put<any>(url, product);
-  }
-
-  // Delete a product by its ID
-  deleteProduct(productId: any): Observable<any> {
-    const url = `${this.apiUrl}/${productId}`;
-    return this.http.delete<any>(url);
-  }
 }

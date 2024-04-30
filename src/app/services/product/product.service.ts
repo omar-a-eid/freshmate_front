@@ -17,6 +17,21 @@ export class ProductService {
     return this.http.get(this.URL_DB + "/" + productId);
 
   }
+  addProduct(product: any){
+    return this.http.post<any>(this.URL_DB, product);
+  }
+
+  // Update an existing product
+  updateProduct(productId: string, product: any){
+    const url = `${this.URL_DB}/${productId}`;
+    return this.http.put<any>(url, product);
+  }
+
+  // Delete a product by its ID
+  deleteProduct(productId: string){
+    const url = `${this.URL_DB}/${productId}`;
+    return this.http.delete<any>(url);
+  }
 
   // addWishlist(userId: string, productsId: string[]) {
   //   return this.http.post(this.URL_DB + "/" + userId, productsId);

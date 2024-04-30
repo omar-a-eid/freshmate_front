@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../../service/products.service';
+import { ProductService } from '../../services/product/product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -19,7 +19,7 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  product = {
+  product : any = {
     title: {
       en: '',
       ar: ''  
@@ -32,6 +32,7 @@ export class ProductFormComponent implements OnInit {
     images: null,
     quantity : 0
   };
+
   isEditMode = false;
   productId: any;
   message: string = '';
@@ -42,7 +43,7 @@ export class ProductFormComponent implements OnInit {
       if (this.productId) {
         this.isEditMode = true;
         // Fetch product details by ID and populate form fields for editing
-        this.productService.getProductById(this.productId).subscribe({
+        this.productService.GetProduct(this.productId).subscribe({
           next:(data) => {
             this.product = data;
           },

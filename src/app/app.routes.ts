@@ -7,6 +7,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { RegistrationComponent } from './components/registration/registration.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 export const routes: Routes = [
     {path: "", component: HomeComponent},
@@ -16,6 +17,8 @@ export const routes: Routes = [
     {path: "faq", component: FaqComponent},
     {path: 'cart', component: CartComponent},
     {path: 'login', component: RegistrationComponent},
+    {path: 'admin/create', component: ProductFormComponent},
+    {path: 'admin/edit/:id', component: ProductFormComponent},
     {path: '**', component: NotFoundComponent},
 
    ];
