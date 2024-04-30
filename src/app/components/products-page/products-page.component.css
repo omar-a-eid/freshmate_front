@@ -122,6 +122,9 @@
   animation: ringing 0.7s;
 }
 
+.products {
+  display: flex;
+}
 .product-image img {
   margin: auto;
   display: inline-block;
