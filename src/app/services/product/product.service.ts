@@ -9,12 +9,17 @@ export class ProductService {
 
   private readonly URL_DB = 'http://localhost:8000/api/products';
 
-  GetAllProducts(token: string) {
-    return this.http.get(this.URL_DB, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  GetAllProducts(token?: string) {
+    if(token) {
+      return this.http.get(this.URL_DB, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+    } else {
+      return this.http.get(this.URL_DB);
+    }
   }
 
   GetProduct(productId: string) {
