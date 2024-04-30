@@ -453,12 +453,22 @@
 
     <!-- Products Region -->
 
-    <div class="row d-flex container products-container">
+    <div class="row products-container">
       <div class="mt-2" *ngIf="products.length > 0">
         <!-- Products -->
-        <div>YOU MAY ALSO LIKE THESE PRODUCTS</div>
-        <div class="row mt-3 mb-5">
-          <div
+
+        <div class="row mt-3 d-flex mb-5">
+          <app-product
+            *ngFor="
+              let product of products
+                | paginate
+                  : { itemsPerPage: pageSize, currentPage: currentPage }
+            "
+            class="col-12 col-md-6 col-lg-4 products"
+            [product]="product"
+          ></app-product>
+
+          <!-- <div
             *ngFor="
               let product of products
                 | paginate
@@ -473,7 +483,7 @@
               <a href="#" class="mt-3 product-name">{{ product.name }} </a>
               <div class="mt-2">{{ product.price }}</div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -530,8 +540,8 @@
 
   <div class="vegetable-container mx-4">
     <h2 class="fw-bold">Vegetables</h2>
-    <p class="my-3">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore at,
+    <p i18n class="my-3">
+      Loremmm ipsum dolor sit amet consectetur adipisicing elit. Labore at,
       aliquam esse itaque non cupiditate odio accusamus, earum doloremque, vitae
       vel pariatur! Excepturi dolores odit vel assumenda optio est non! Lorem
       ipsum, dolor sit amet consectetur adipisicing elit. Ut magni neque quas

@@ -1,0 +1,19 @@
+<div class="best_container">
+  <div class="container">
+    <div>
+      <h2 class="header">Best Sellers</h2>
+    </div>
+
+    <div>
+      <ngx-slick-carousel
+        class="carousel"
+        #slickModal="slick-carousel"
+        [config]="slideConfig"
+      >
+        @for (item of products; track $index) {
+        <app-product class="slide" ngxSlickItem [product]="item"></app-product>
+        }
+      </ngx-slick-carousel>
+    </div>
+  </div>
+</div>

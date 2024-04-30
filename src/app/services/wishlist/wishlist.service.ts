@@ -17,11 +17,11 @@ export class WishlistService {
       }});
   }
 
-  addWishlist(userId: string, productsId: string[]) {
-    return this.http.post(this.URL_DB + "/" + userId, productsId);
+  addItemToWishList(userId: string, productId: string[]) {
+    return this.http.post(this.URL_DB + "/" + productId, userId);
   }
 
-  updateWishlist(userId: string, productId: string) {
-    return this.http.put(this.URL_DB + "/" + userId, productId);
+  removeItemFromWishlist(userId: string, productId: string) {
+    return this.http.put(this.URL_DB + "/" + productId, userId);
   }
 }

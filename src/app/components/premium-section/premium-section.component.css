@@ -1,0 +1,49 @@
+.flex_container {
+  display: flex;
+  justify-content: space-between;
+  margin: 9em auto;
+  margin-top: 15em;
+}
+.flex_container > div > div:first-of-type {
+  margin-bottom: 6em;
+}
+.flex_container > div {
+  width: 45%;
+}
+.header {
+  font-size: 2.2em;
+  margin-bottom: 0.5em;
+  font-weight: 900;
+}
+
+.grid_container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 3em 0;
+}
+
+.item_container {
+  display: flex;
+  margin-bottom: 30px;
+}
+.item_container div:first-of-type {
+  width: 40px;
+  margin-right: 30px;
+}
+.item_container div:first-of-type img {
+  width: 100%;
+}
+.text1 {
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+@media only screen and (max-width: 992px) {
+  .flex_container {
+    align-items: center;
+    flex-direction: column;
+  }
+  .flex_container >div {
+    width: 100%;
+  }
+}

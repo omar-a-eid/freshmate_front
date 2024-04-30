@@ -15,15 +15,6 @@ import { ProductComponent } from "../product/product.component";
     imports: [NavbarComponent, ProductComponent, FooterComponent, PathbarComponent, HttpClientModule]
 })
 
-/***
- *When the page load 
- *Get wishlist
- *loop over the component (product)
- *add the data of the wishlist to the component
- *
- *
- *
- */
 export class WishlistComponent implements OnInit{
     wishlist:any;
     user:any;

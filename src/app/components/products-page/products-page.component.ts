@@ -1,11 +1,13 @@
 import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CustomButtonComponent } from '../custom-button/custom-button.component';
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { ProductComponent } from '../product/product.component';
+import { ProductService } from '../../services/product/product.service';
+import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-products-page',
   standalone: true,
@@ -17,17 +19,45 @@ import { ProductComponent } from '../product/product.component';
     FormsModule,
     PathbarComponent,
     NgxPaginationModule,
+    HttpClientModule,
   ],
+  providers: [ProductService],
   templateUrl: './products-page.component.html',
   styleUrl: './products-page.component.css',
 })
-export class ProductsPageComponent {
+export class ProductsPageComponent implements OnInit {
+  products: any[] = [];
+  user: any;
+  userSession: any;
+
   value: number = 0;
   highValue: number = 100;
   options: Options = {
     floor: 0,
     ceil: 100,
   };
+
+  constructor(private ProductService: ProductService) {
+    // Initialize your items array with data
+    // For example:
+    // this.items = yourDataService.getItems();
+    // Set the total number of pages
+    // this.totalPages = Math.ceil(this.items.length / this.pageSize);
+  }
+
+  ngOnInit(): void {
+    this.userSession = sessionStorage.getItem('user');
+    this.user = JSON.parse(this.userSession);
+    console.log(this.user);
+    this.ProductService.GetAllProducts(this.user.token).subscribe({
+      next: (data: any) => {
+        this.products = data;
+        console.log(data);
+        console.log(this.user.token);
+      },
+      error: (error) => console.log(error),
+    });
+  }
 
   // used with clear all button
   isHovered: boolean = false;
@@ -80,116 +110,9 @@ export class ProductsPageComponent {
 
   // test array
 
-  @Input() products: any[] = [
-    {
-      name: 'dweet Kiwi Green',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_f4498462-b4ec-4018-9b37-04619c42eab6_270x.jpg?v=1687762285',
-      price: '16.00',
-    },
-    {
-      name: 'fweet Corn',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_d697e61b-8f39-41e5-8b52-a7fb0e7becf5_270x.jpg?v=1687762079',
-      price: '14.00',
-    },
-    {
-      name: 'enapple Apple',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_0dafc4d3-f74e-4f7b-b78b-5092ecf4a173_270x.jpg?v=1687762292',
-      price: '17.00',
-    },
-    {
-      name: 'ymoked Pork',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_b099aebb-2a68-467d-a7fa-54b384e8edf4_270x.jpg?v=1687762185',
-      price: '38.00',
-    },
-    {
-      name: 'aweet Kiwi Green',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_f4498462-b4ec-4018-9b37-04619c42eab6_270x.jpg?v=1687762285',
-      price: '16.00',
-    },
-    {
-      name: 'oweet Corn',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_d697e61b-8f39-41e5-8b52-a7fb0e7becf5_270x.jpg?v=1687762079',
-      price: '14.00',
-    },
-    {
-      name: 'pnapple Apple',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_0dafc4d3-f74e-4f7b-b78b-5092ecf4a173_270x.jpg?v=1687762292',
-      price: '17.00',
-    },
-    {
-      name: 'lmoked Pork',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_b099aebb-2a68-467d-a7fa-54b384e8edf4_270x.jpg?v=1687762185',
-      price: '38.00',
-    },
-    {
-      name: 'wweet Kiwi Green',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_f4498462-b4ec-4018-9b37-04619c42eab6_270x.jpg?v=1687762285',
-      price: '16.00',
-    },
-    {
-      name: 'mweet Corn',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_d697e61b-8f39-41e5-8b52-a7fb0e7becf5_270x.jpg?v=1687762079',
-      price: '14.00',
-    },
-    {
-      name: 'qnapple Apple',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_0dafc4d3-f74e-4f7b-b78b-5092ecf4a173_270x.jpg?v=1687762292',
-      price: '17.00',
-    },
-    {
-      name: 'kmoked Pork',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_b099aebb-2a68-467d-a7fa-54b384e8edf4_270x.jpg?v=1687762185',
-      price: '38.00',
-    },
-    {
-      name: 'bweet Kiwi Green',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_f4498462-b4ec-4018-9b37-04619c42eab6_270x.jpg?v=1687762285',
-      price: '16.00',
-    },
-    {
-      name: 'cweet Corn',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_d697e61b-8f39-41e5-8b52-a7fb0e7becf5_270x.jpg?v=1687762079',
-      price: '14.00',
-    },
-    {
-      name: 'inapple Apple',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_0dafc4d3-f74e-4f7b-b78b-5092ecf4a173_270x.jpg?v=1687762292',
-      price: '17.00',
-    },
-    {
-      name: 'rmoked Pork',
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/products/1_b099aebb-2a68-467d-a7fa-54b384e8edf4_270x.jpg?v=1687762185',
-      price: '38.00',
-    },
-  ];
-
-  pageSize: number = 5; // Number of items per page
+  pageSize: number = 6; // Number of items per page
   currentPage: number = 1; // Current page
   totalPages: number = 5; // Total number of pages
-
-  constructor() {
-    // Initialize your items array with data
-    // For example:
-    // this.items = yourDataService.getItems();
-    // Set the total number of pages
-    // this.totalPages = Math.ceil(this.items.length / this.pageSize);
-  }
 
   nextPage() {
     if (this.currentPage < this.totalPages) {
