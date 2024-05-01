@@ -11,7 +11,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { userGuard } from './guards/user.guard';
 import { HomeComponent } from './pages/home/home.component';
-import { ProductFormComponent } from './components/product-form/product-form.component';
 
 export const routes: Routes = [
     {path: "", component: HomeComponent},
@@ -24,8 +23,6 @@ export const routes: Routes = [
     {path: 'cart', component: CartComponent, canActivate: [userGuard]},
     {path: 'profile', component: ProfileComponent, canActivate: [userGuard]},
     {path: 'checkout', component: CheckoutComponent, canActivate: [userGuard]},
-    {path: 'admin/create', component: ProductFormComponent},
-    {path: 'admin/edit/:id', component: ProductFormComponent},
     {path: '**', component: NotFoundComponent},
 
    ];
