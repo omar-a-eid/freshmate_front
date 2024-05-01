@@ -29,13 +29,14 @@ import { Router } from '@angular/router';
 })
 export class ProductsPageComponent implements OnInit {
   products: any[] = [];
+  filteredProducts: any[] = [];
   user: any;
   userSession: any;
 
   // For Range bar
   value: number = 0;
   highValue: number = 100;
-  filteredProducts: any[] = [];
+
   options: Options = {
     floor: 0,
     ceil: 100,
@@ -100,27 +101,48 @@ export class ProductsPageComponent implements OnInit {
     switch (sortOption) {
       case 'option1':
         // Sort alphabetically, A-Z
-        this.filteredProducts.sort((a, b) =>
-          a.title.en.localeCompare(b.title.en)
-        );
+        if (this.filteredProducts.length != 0) {
+          this.filteredProducts.sort((a, b) =>
+            a.title.en.localeCompare(b.title.en)
+          );
+        } else {
+          this.products.sort((a, b) => a.title.en.localeCompare(b.title.en));
+        }
         break;
       case 'option2':
         // Sort alphabetically, Z-A
-        this.filteredProducts.sort((a, b) =>
-          b.title.en.localeCompare(a.title.en)
-        );
+        if (this.filteredProducts.length != 0) {
+          this.filteredProducts.sort((a, b) =>
+            b.title.en.localeCompare(a.title.en)
+          );
+        } else {
+          this.products.sort((a, b) => b.title.en.localeCompare(a.title.en));
+        }
+
         break;
       case 'option3':
         // Sort by price, low to high
-        this.filteredProducts.sort(
-          (a, b) => parseFloat(a.price) - parseFloat(b.price)
-        );
+        if (this.filteredProducts.length != 0) {
+          this.filteredProducts.sort(
+            (a, b) => parseFloat(a.price) - parseFloat(b.price)
+          );
+        } else {
+          this.products.sort(
+            (a, b) => parseFloat(a.price) - parseFloat(b.price)
+          );
+        }
         break;
       case 'option4':
         // Sort by price, high to low
-        this.filteredProducts.sort(
-          (a, b) => parseFloat(b.price) - parseFloat(a.price)
-        );
+        if (this.filteredProducts.length != 0) {
+          this.filteredProducts.sort(
+            (a, b) => parseFloat(b.price) - parseFloat(a.price)
+          );
+        } else {
+          this.products.sort(
+            (a, b) => parseFloat(b.price) - parseFloat(a.price)
+          );
+        }
         break;
       default:
         break;
@@ -129,7 +151,6 @@ export class ProductsPageComponent implements OnInit {
 
   // Sidebar
   isExpanded: boolean = false;
-
   toggleExpand() {
     this.isExpanded = !this.isExpanded;
   }
