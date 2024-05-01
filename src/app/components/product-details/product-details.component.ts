@@ -15,10 +15,9 @@ import {
 import { filter } from 'rxjs/operators';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
-// import { ProductCarouselsComponent } from "../product-carousels/product-carousels.component";
-import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
-import { CommonModule } from '@angular/common';
-import { QuantityIncrementDecrementComponent } from '../quantity-increment-decrement/quantity-increment-decrement.component';
+import { RatingStarsComponent } from "../rating-stars/rating-stars.component";
+import { CommonModule } from '@angular/common'; 
+import { QuantityIncrementDecrementComponent } from "../quantity-increment-decrement/quantity-increment-decrement.component";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ProductService } from '../../services/product/product.service';
 import { GalleryItem } from '@daelmaak/ngx-gallery';
