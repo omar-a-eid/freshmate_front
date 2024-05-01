@@ -41,9 +41,6 @@ export class ProductComponent implements OnInit {
   imagesOnClick() {
     //appear a model that contains the product details
   }
-  addToCartButton() {
-    //move the product to the cart
-  }
   productOnclick() {
     //move the product details page
   }
@@ -116,20 +113,17 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  // product.component.ts
   addToCart(productId: string) {
-    if (!this.user || !this.user.token) {
-      console.error('User token is missing.');
-      return;
-    }
-
-    this.cartService.AddItemsToCart(productId, this.user.token).subscribe(
-      () => {
+    this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
+      next: () => {
         console.log('Product added to cart successfully');
       },
-      (error) => {
+      error: (error) => {
         console.error('Error adding product to cart:', error);
-      }
-    );
+      },
+      complete: () => {
+        this.router.navigate(['/cart']);
+      },
+    });
   }
 }

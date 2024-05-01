@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,19 @@ export class CartService {
         Authorization: `Bearer ${token}`,
       },
     });
+  }
+
+  UpdateCartItemQuantity(productId: string, quantity: number, token: string) {
+    const url = `${this.URL_DB}/${productId}`;
+    return this.http.put(
+      url,
+      { productId, quantity },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   }
 
   RemoveItemsFromCart(productId: string, token: string) {
