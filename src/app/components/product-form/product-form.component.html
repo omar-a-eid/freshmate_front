@@ -1,46 +1,66 @@
-<div class="container mt-4 ms-0">
-  <div class="row">
-    <div class="col-md-9">
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center"> 
+    <div class="col-md-9 col-md-offset-3"> 
       <div class="card border-0 shadow">
         <div class="card-header bg-dark text-white">
           <h2 class="mb-0">{{ isEditMode ? 'Edit Product' : 'Add New Product' }}</h2>
         </div>
         <div class="card-body">
-          <form (ngSubmit)="onSubmit()">
+          <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="productTitle">Product Title (English):</label>
-              <input type="text" class="form-control" id="productTitle" required [(ngModel)]="product.title.en"
-                name="productTitle">
+              <input type="text" class="form-control" id="productTitle" formControlName="title.en">
+              <div *ngIf="productForm.get('title.en').invalid && productForm.get('title.en').touched" class="text-danger">
+                English title is required.
+              </div>
             </div>
+          
             <div class="form-group">
               <label for="productTitleArabic">Product Title (Arabic):</label>
-              <input type="text" class="form-control" id="productTitleArabic" required [(ngModel)]="product.title.ar"
-                name="productTitleArabic">
+              <input type="text" class="form-control" id="productTitleArabic" formControlName="title.ar">
+              <div *ngIf="productForm.get('title.ar').invalid && productForm.get('title.ar').touched" class="text-danger">
+                Arabic title is required.
+              </div>
             </div>
+          
             <div class="form-group">
               <label for="productDesc">Product Description (English):</label>
-              <textarea class="form-control" id="productDesc" required [(ngModel)]="product.desc.en"
-                name="productDesc"></textarea>
+              <textarea class="form-control" id="productDesc" formControlName="desc.en"></textarea>
+              <div *ngIf="productForm.get('desc.en').invalid && productForm.get('desc.en').touched" class="text-danger">
+                English description is required.
+              </div>
             </div>
+          
             <div class="form-group">
               <label for="productDescArabic">Product Description (Arabic):</label>
-              <textarea class="form-control" id="productDescArabic" required [(ngModel)]="product.desc.ar"
-                name="productDescArabic"></textarea>
+              <textarea class="form-control" id="productDescArabic" formControlName="desc.ar"></textarea>
+              <div *ngIf="productForm.get('desc.ar').invalid && productForm.get('desc.ar').touched" class="text-danger">
+                Arabic description is required.
+              </div>
             </div>
+          
             <div class="form-group">
               <label for="productPrice">Product Price:</label>
-              <input type="number" class="form-control" id="productPrice" required [(ngModel)]="product.price"
-                name="productPrice">
+              <input type="number" class="form-control" id="productPrice" formControlName="price">
+              <div *ngIf="productForm.get('price').invalid && productForm.get('price').touched" class="text-danger">
+                Price is required and should be a positive number.
+              </div>
             </div>
+          
             <div class="form-group">
               <label for="productQuantity">Product Quantity:</label>
-              <input type="number" class="form-control" id="productQuantity" required [(ngModel)]="product.quantity"
-                name="productQuantity">
+              <input type="number" class="form-control" id="productQuantity" formControlName="quantity">
+              <div *ngIf="productForm.get('quantity').invalid && productForm.get('quantity').touched" class="text-danger">
+                Quantity is required and should be a positive number.
+              </div>
             </div>
+          
             <div class="form-group">
               <label for="productImage">Product Image:</label>
-              <input type="file" class="form-control-file" id="productImage" (change)="onFileChange($event)"
-                name="productImage" multiple>
+              <input type="file" class="form-control-file" id="productImage" (change)="onFileChange($event)" name="productImage" multiple>
+              <div *ngIf="productForm.get('images').invalid && productForm.get('images').touched" class="text-danger">
+                Image is required.
+              </div>
             </div>
             <button type="submit" class="btn btn-dark">{{ isEditMode ? 'Update Product' : 'Add Product' }}</button>
             <button type="button" class="btn btn-danger ml-2" *ngIf="isEditMode" (click)="onDelete()">Delete

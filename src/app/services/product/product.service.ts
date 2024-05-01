@@ -28,20 +28,32 @@ export class ProductService {
     return this.http.get(this.URL_DB + '/' + productId);
   }
  
-  addProduct(product: any){
-    return this.http.post<any>(this.URL_DB, product);
+  addProduct(product: any, token:string){
+    return this.http.post<any>(this.URL_DB, product, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 
   // Update an existing product
-  updateProduct(productId: string, product: any){
+  updateProduct(productId: string, product: any , token:string){
     const url = `${this.URL_DB}/${productId}`;
-    return this.http.put<any>(url, product);
+    return this.http.put<any>(url,product,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 
   // Delete a product by its ID
-  deleteProduct(productId: string){
+  deleteProduct(productId: string , token:string){
     const url = `${this.URL_DB}/${productId}`;
-    return this.http.delete<any>(url);
+    return this.http.delete<any>(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 
 

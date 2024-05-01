@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule,Validators} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product/product.service';
 
@@ -10,7 +10,7 @@ import { ProductService } from '../../services/product/product.service';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css'],
   standalone: true,
-  imports: [HttpClientModule, FormsModule, CommonModule],
+  imports: [HttpClientModule, FormsModule, CommonModule,ReactiveFormsModule],
   providers: [ProductService]
 })
 export class ProductFormComponent implements OnInit {
@@ -18,6 +18,20 @@ export class ProductFormComponent implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute
   ) {}
+  productForm = new FormGroup({
+    title: new FormControl({
+      en: ['', Validators.required],
+      ar: ['', Validators.required]
+    }),
+    desc: new FormControl({
+      en: ['', Validators.required],
+      ar: ['', Validators.required]
+    }),
+    price: new FormControl(0, [Validators.required, Validators.min(0)]),
+    quantity: new FormControl(0, [Validators.required, Validators.min(0)]),
+    images: new FormControl([[], Validators.required])
+
+  })
 
   product : any = {
     title: {
@@ -59,9 +73,12 @@ export class ProductFormComponent implements OnInit {
   }
 
   onSubmit() {
+    const user = JSON.parse(sessionStorage.getItem("user") as string)
+    console.log(this.product);
+    
     if (this.isEditMode) {
       // Call service method to update the existing product
-      this.productService.updateProduct(this.productId, this.product).subscribe({
+      this.productService.updateProduct(this.productId, this.product,user.token).subscribe({
         next: (data) => {
           this.message = 'Product updated successfully';
           console.log(data)
@@ -72,7 +89,7 @@ export class ProductFormComponent implements OnInit {
       });
     } else {
       // Call service method to add a new product
-      this.productService.addProduct(this.product).subscribe({
+      this.productService.addProduct(this.product,user.token).subscribe({
         next: (response) => {
           this.message = 'Product added successfully';
         },
@@ -84,8 +101,9 @@ export class ProductFormComponent implements OnInit {
   }
 
   onDelete() {
+    const user = JSON.parse(sessionStorage.getItem("user") as string)
     if (confirm('Are you sure you want to delete this product?')) {
-      this.productService.deleteProduct(this.productId).subscribe({
+      this.productService.deleteProduct(this.productId,user.token).subscribe({
         next: (response) => {
           this.message = 'Product deleted successfully';
         },
