@@ -22,6 +22,7 @@ import { ProductService } from '../../services/product/product.service';
 import { GalleryItem } from '@daelmaak/ngx-gallery';
 import { GalleryComponent } from '@daelmaak/ngx-gallery';
 import { WishlistService } from '../../services/wishlist/wishlist.service';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -43,7 +44,7 @@ import { WishlistService } from '../../services/wishlist/wishlist.service';
     GalleryComponent,
   ],
   templateUrl: './product-details.component.html',
-  providers: [ProductService, WishlistService],
+  providers: [ProductService, WishlistService, CartService],
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent implements OnInit {
@@ -51,7 +52,8 @@ export class ProductDetailsComponent implements OnInit {
     myRoute: ActivatedRoute,
     private productService: ProductService,
     private wishlistService: WishlistService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {
     this.productId = myRoute.snapshot.params['id'];
   }
@@ -160,5 +162,19 @@ export class ProductDetailsComponent implements OnInit {
           console.error('Error adding product to wishlist:', error);
         }
       );
+  }
+
+  addToCart(productId: string) {
+    this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
+      next: () => {
+        console.log('Product added to cart successfully');
+      },
+      error: (error) => {
+        console.error('Error adding product to cart:', error);
+      },
+      complete: () => {
+        this.router.navigate(['/cart']);
+      },
+    });
   }
 }

@@ -22,20 +22,22 @@
       </div>
     </div>
 
-    <div class="second-half col-lg-6  col-sm-12  mb-sm-30"
-    >
+    <div class="second-half col-lg-6 col-sm-12 mb-sm-30">
       <div class="first-row">
-        <h2 class="product-title-main">{{product.title.en}}</h2>
+        <h2 class="product-title-main">{{ product.title.en }}</h2>
         <div class="d-flex gap-4">
           <app-rating-stars></app-rating-stars>
           <a href="">VIEW ALL REVIEWS</a>
         </div>
 
         <div class="icons">
-          <p (click)="addToWishlist(productId)"  [ngClass]="{
-            'favorite': !isHeartSolid,
-            'unfavorite': isHeartSolid
-          }" >
+          <p
+            (click)="addToWishlist(productId)"
+            [ngClass]="{
+              favorite: !isHeartSolid,
+              unfavorite: isHeartSolid
+            }"
+          >
             <i
               [ngClass]="{
                 'fa-regular': !isHeartSolid,
@@ -49,8 +51,8 @@
       </div>
 
       <div class="product-details">
-        <p class="price">{{product.price}} $</p>
-        <p class="description">{{product.desc.en}} </p>
+        <p class="price">{{ product.price }} $</p>
+        <p class="description">{{ product.desc.en }}</p>
         <div
           class="deal-flash__sale-progress position-relative"
           style="background-color: #e0e0e0"
@@ -77,7 +79,9 @@
       <div class="buttons-product d-flex flex-column gap-2">
         <div class="d-flex gap-4">
           <app-quantity-increment-decrement></app-quantity-increment-decrement>
-          <button class="add-to-bag-btn">ADD TO BAG</button>
+          <button class="add-to-bag-btn" (click)="addToCart(product._id)">
+            ADD TO BAG
+          </button>
         </div>
 
         <button class="buy-it-now-btn">BUY IT NOW</button>
@@ -127,7 +131,6 @@
   </div>
 </div>
 
-
 <div class="d-flex justify-content-around">
   <div class="info-partition">
     <ul class="nav nav-tabs d-flex flex-row gap-4" id="myTabs">
@@ -160,14 +163,13 @@
         <li>
           To initiate a return or exchange, please contact our customer support
           team with your order details and a brief explanation of the issue. We
-          may require photographic evidence in some cases to facilitate the return
-          process
+          may require photographic evidence in some cases to facilitate the
+          return process
         </li>
       </div>
     </div>
   </div>
 </div>
-
 
 <div
   style="border-top: 3px solid #d9d9d9; opacity: 100%; margin-top: 30px"
@@ -302,13 +304,9 @@
 
     <div class="d-flex flex-row toast-body">
       <img [src]="product.images[0]" class="toast-img" />
-      <h3 class="toast-product-name">{{product.title.en}}</h3>
+      <h3 class="toast-product-name">{{ product.title.en }}</h3>
       <a href="/wishlist">
-        <button
-          class="go-to-wishlist-btn"
-        >
-          GO TO WISHLIST
-        </button>
+        <button class="go-to-wishlist-btn">GO TO WISHLIST</button>
       </a>
     </div>
   </div>
