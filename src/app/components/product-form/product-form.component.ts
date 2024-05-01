@@ -126,4 +126,9 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
+  deleteImage(img: any) {
+    this.productForm.patchValue({
+        oldImages: this.productForm.value.oldImages.filter((oldImg: any) => oldImg !== img)
+    });
+}
 }
