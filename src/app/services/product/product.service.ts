@@ -56,14 +56,4 @@ export class ProductService {
     });
   }
 
-
-  // GetRandomProducts(count: number): Observable<any[]> {
-  //   // Assuming you have an endpoint in your backend API to fetch random products
-  //   const url = `http://your-api-url/random-products?count=${count}`;
-
-  //   // Making a GET request to the backend API
-  //   return this.http.get<any[]>("http://localhost:8000/api/products");
-  // }
-
-
 }
