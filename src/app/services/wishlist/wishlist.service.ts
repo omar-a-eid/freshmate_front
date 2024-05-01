@@ -10,18 +10,32 @@ export class WishlistService {
 
   private readonly URL_DB = "http://localhost:8000/api/wishlist";
 
-  GetWishlist(userId: string, token: string) {
-    return this.http.get(this.URL_DB + "/" + userId , {
+  token:any=JSON.parse(sessionStorage.getItem("user") as string);
+
+  GetWishlist(token: string) {
+    return this.http.get(this.URL_DB, {
       headers: {
         'Authorization': `Bearer ${token}`,
-      }});
+      }
+    });
   }
-
+  
   addItemToWishList(userId: string, productId: string[]) {
-    return this.http.post(this.URL_DB + "/" + productId, userId);
+    return this.http.post(this.URL_DB + "/" + productId, userId,{
+      headers: {
+        'Authorization': `Bearer ${this.token.token}`,
+      }
+
+    });
   }
 
-  removeItemFromWishlist(userId: string, productId: string) {
-    return this.http.put(this.URL_DB + "/" + productId, userId);
+  removeItemFromWishlist(productId: string[]) {
+    return this.http.delete(this.URL_DB + "/" + productId, {
+      headers: {
+        'Authorization': `Bearer ${this.token.token}`,
+      }
+  
+    });
   }
+
 }

@@ -5,6 +5,9 @@ import { FooterComponent } from "../footer/footer.component";
 import { NavbarComponent } from "../navbar/navbar.component";
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { ProductComponent } from "../product/product.component";
+import { NgFor, NgIf } from '@angular/common';
+
+
 
 @Component({
     selector: 'app-wishlist',
@@ -12,7 +15,7 @@ import { ProductComponent } from "../product/product.component";
     templateUrl: './wishlist.component.html',
     providers: [WishlistService],
     styleUrl: './wishlist.component.css',
-    imports: [NavbarComponent, ProductComponent, FooterComponent, PathbarComponent, HttpClientModule]
+    imports: [NavbarComponent, ProductComponent, FooterComponent, PathbarComponent, HttpClientModule, NgFor,NgIf],
 })
 
 export class WishlistComponent implements OnInit{
@@ -20,18 +23,20 @@ export class WishlistComponent implements OnInit{
     user:any;
     userSession: any;
     constructor(private WishlistService: WishlistService) {}
-    
+
     ngOnInit(): void {
         this.userSession = sessionStorage.getItem("user");
         this.user = JSON.parse(this.userSession);
-
-        this.WishlistService.GetWishlist(this.user.userId, this.user.token).subscribe({
-            next: (data:any)=> {
-                this.wishlist = data.products;
-            },
-            error: error => console.log(error)
-        })
-    }
-
-
+      
+        this.WishlistService.GetWishlist(this.user.token).subscribe({
+          next: (data: any) => {
+            this.wishlist = data.products;
+          },
+          error: error => console.log(error)
+        });
+      }
+      trackByFn(index: number, item: any): any {
+        return item._id; 
+      }
+      
 }

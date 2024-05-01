@@ -10,7 +10,7 @@ import { ProductComponent } from '../product/product.component';
   imports: [HttpClientModule, ProductComponent, SlickCarouselModule],
   providers: [ProductService],
   templateUrl: './best-seller.component.html',
-  styleUrl: './best-seller.component.css'
+  styleUrl: './best-seller.component.css',
 })
 export class BestSellerComponent implements OnInit {
   products:any = [];
@@ -40,5 +40,4 @@ export class BestSellerComponent implements OnInit {
       error: (error) => console.log(error)
     })
   }
-
 }

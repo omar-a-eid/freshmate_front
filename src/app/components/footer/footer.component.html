@@ -26,7 +26,6 @@
             <button
               class="rounded-pill text-white position-absolute subscribe-button fw-bold"
               type="button"
-              
             >
               SUBSCRIBE
             </button>
@@ -39,7 +38,7 @@
   <!-- Links and info -->
   <div class="container links-container">
     <div class="row">
-      <div class=" mb-sm-4 col-sm-12 mb-md-4 col-md-12 d-md-block col-lg-4">
+      <div class="mb-sm-4 col-sm-12 mb-md-4 col-md-12 d-md-block col-lg-4">
         <h5 class="mb-4">CONTACT US</h5>
         <div class="row">
           <div class="col-sm-1 col-md-1 col-lg-2">
@@ -200,31 +199,31 @@
 
       <div class="col-sm-4 col-md-4 col-lg-2">
         <p>Currency</p>
-   
-            <div class="dropdown">
-                <button
-                    class="btn btn-secondary dropdown-toggle rounded-pill bg-black w-100"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                >
-                    {{ selectedCurrency }}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div class="dropdown-item" (click)="selectCurrency('USD')">
-                        <span class=" cursor-pointer">USD</span>
-                    </div>
-                    <div class="dropdown-item" (click)="selectCurrency('EUR')">
-                        <span class="cursor-pointer">EUR</span>
-                    </div>
-                    <div class="dropdown-item" (click)="selectCurrency('GBP')">
-                        <span class="cursor-pointer">GBP</span>
-                    </div>
-                </div>
+
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle rounded-pill bg-black w-100"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            {{ selectedCurrency }}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-item" (click)="selectCurrency('USD')">
+              <span class="cursor-pointer">USD</span>
             </div>
-            
+            <div class="dropdown-item" (click)="selectCurrency('EUR')">
+              <span class="cursor-pointer">EUR</span>
+            </div>
+            <div class="dropdown-item" (click)="selectCurrency('GBP')">
+              <span class="cursor-pointer">GBP</span>
+            </div>
+          </div>
+        </div>
+
         <p class="mt-4">Language</p>
         <div class="dropdown">
           <button
@@ -238,10 +237,16 @@
             {{ selectedLanguage }}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <span class="dropdown-item cursor-pointer" (click)="selectLanguage('English')">
+            <span
+              class="dropdown-item cursor-pointer"
+              (click)="selectLanguage('English')"
+            >
               English
             </span>
-            <span class="dropdown-item cursor-pointer" (click)="selectLanguage('Arabic')">
+            <span
+              class="dropdown-item cursor-pointer"
+              (click)="selectLanguage('Arabic')"
+            >
               Arabic
             </span>
           </div>
@@ -253,157 +258,415 @@
   <!-- Grid container -->
   <hr class="w-100 mt-5" />
 
- 
   <!-- Copyright -->
 
-  <div class="mt-5 d-flex justify-content-between container copyrights-container">
-    <div class="d-flex mb-4" >
-        <div class="icon">
-          <a href="#" (mouseenter)="facebook_hovered = true" (mouseleave)="facebook_hovered = false">
-            <div class="icon-container" [ngClass]="{ 'hovered': facebook_hovered }">
-              <svg class="original-icon" fill="#000000" width="20px" height="20px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-    
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <g id="SVGRepo_iconCarrier">
-                
-                <path d="M21.95 5.005l-3.306-.004c-3.206 0-5.277 2.124-5.277 5.415v2.495H10.05v4.515h3.317l-.004 9.575h4.641l.004-9.575h3.806l-.003-4.514h-3.803v-2.117c0-1.018.241-1.533 1.566-1.533l2.366-.001.01-4.256z"/>
-                
-                </g>
-                
-              </svg>
-              <svg class="hover-icon" fill="#ffffff" width="20px" height="20px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
-    
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <g id="SVGRepo_iconCarrier">
-                
-                <path d="M21.95 5.005l-3.306-.004c-3.206 0-5.277 2.124-5.277 5.415v2.495H10.05v4.515h3.317l-.004 9.575h4.641l.004-9.575h3.806l-.003-4.514h-3.803v-2.117c0-1.018.241-1.533 1.566-1.533l2.366-.001.01-4.256z"/>
-                
-                </g>
-                
-              </svg>
-            </div>
-          </a>
-        </div>  
-    
-    
-        <div class="icon">
-          <a href="#" (mouseenter)="pinterest_hovered = true" (mouseleave)="pinterest_hovered = false">
-            <div class="icon-container" [ngClass]="{ 'hovered': pinterest_hovered }">
-              <svg class="original-icon" fill="#000000" width="20px" height="20px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-    
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <g id="SVGRepo_iconCarrier">
-                
-                <path d="M16.292 5C10.536 5 7.48 8.866 7.48 13.077c0 1.955 1.039 4.392 2.707 5.168.253.118.387.064.443-.18.047-.185.273-1.089.373-1.511a.402.402 0 0 0-.095-.386c-.55-.667-.988-1.896-.988-3.041 0-2.942 2.228-5.787 6.021-5.787 3.28 0 5.571 2.23 5.571 5.426 0 3.61-1.82 6.108-4.191 6.108-1.309 0-2.291-1.081-1.978-2.413.378-1.584 1.106-3.298 1.106-4.438 0-1.026-.552-1.883-1.685-1.883-1.341 0-2.415 1.385-2.415 3.241 0 1.182.4 1.978.4 1.978s-1.323 5.593-1.563 6.634c-.413 1.765.051 4.625.094 4.876.021.134.172.18.252.066.129-.175 1.725-2.565 2.174-4.292l.828-3.171c.439.829 1.707 1.531 3.061 1.531 4.021 0 6.923-3.703 6.923-8.299C24.52 8.301 20.92 5 16.292 5z"/>
-                
-                </g>
-                
-              </svg>
-              <svg class="hover-icon" fill="#ffffff" width="20px" height="20px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
-    
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <g id="SVGRepo_iconCarrier">
-                
-                <path d="M16.292 5C10.536 5 7.48 8.866 7.48 13.077c0 1.955 1.039 4.392 2.707 5.168.253.118.387.064.443-.18.047-.185.273-1.089.373-1.511a.402.402 0 0 0-.095-.386c-.55-.667-.988-1.896-.988-3.041 0-2.942 2.228-5.787 6.021-5.787 3.28 0 5.571 2.23 5.571 5.426 0 3.61-1.82 6.108-4.191 6.108-1.309 0-2.291-1.081-1.978-2.413.378-1.584 1.106-3.298 1.106-4.438 0-1.026-.552-1.883-1.685-1.883-1.341 0-2.415 1.385-2.415 3.241 0 1.182.4 1.978.4 1.978s-1.323 5.593-1.563 6.634c-.413 1.765.051 4.625.094 4.876.021.134.172.18.252.066.129-.175 1.725-2.565 2.174-4.292l.828-3.171c.439.829 1.707 1.531 3.061 1.531 4.021 0 6.923-3.703 6.923-8.299C24.52 8.301 20.92 5 16.292 5z"/>
-                
-                </g>
-                
-              </svg>
-            </div>
-          </a>
-        </div>
-    
-        <div class="icon">
-          <a href="#" (mouseenter)="instagram_hovered = true" (mouseleave)="instagram_hovered = false">
-            <div class="icon-container" [ngClass]="{ 'hovered': instagram_hovered }">
-              <svg class="original-icon" width="20px" height="20px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-    
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5 5H9.5C7.29086 5 5.5 6.79086 5.5 9V15C5.5 17.2091 7.29086 19 9.5 19H15.5C17.7091 19 19.5 17.2091 19.5 15V9C19.5 6.79086 17.7091 5 15.5 5Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 15C10.8431 15 9.5 13.6569 9.5 12C9.5 10.3431 10.8431 9 12.5 9C14.1569 9 15.5 10.3431 15.5 12C15.5 12.7956 15.1839 13.5587 14.6213 14.1213C14.0587 14.6839 13.2956 15 12.5 15Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <rect x="15.5" y="9" width="2" height="2" rx="1" transform="rotate(-90 15.5 9)" fill="#000000"/> <rect x="16" y="8.5" width="1" height="1" rx="0.5" transform="rotate(-90 16 8.5)" stroke="#000000" stroke-linecap="round"/> </g>
-                
-              </svg>
-              <svg class="hover-icon" width="20px" height="20px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
-    
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5 5H9.5C7.29086 5 5.5 6.79086 5.5 9V15C5.5 17.2091 7.29086 19 9.5 19H15.5C17.7091 19 19.5 17.2091 19.5 15V9C19.5 6.79086 17.7091 5 15.5 5Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 15C10.8431 15 9.5 13.6569 9.5 12C9.5 10.3431 10.8431 9 12.5 9C14.1569 9 15.5 10.3431 15.5 12C15.5 12.7956 15.1839 13.5587 14.6213 14.1213C14.0587 14.6839 13.2956 15 12.5 15Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <rect x="15.5" y="9" width="2" height="2" rx="1" transform="rotate(-90 15.5 9)" fill="#ffffff"/> <rect x="16" y="8.5" width="1" height="1" rx="0.5" transform="rotate(-90 16 8.5)" stroke="#ffffff" stroke-linecap="round"/> </g>
-                
-              </svg>
-            </div>
-          </a>
-        </div>
-    
-    
-        <div class="icon">
-          <a href="#" (mouseenter)="twitter_hovered = true" (mouseleave)="twitter_hovered = false">
-            <div class="icon-container" [ngClass]="{ 'hovered': twitter_hovered }">
-              <svg class="original-icon" width="15px" height="15px" viewBox="0 -2 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
-    
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <g id="SVGRepo_iconCarrier"> <title>twitter [#154]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-60.000000, -7521.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M10.29,7377 C17.837,7377 21.965,7370.84365 21.965,7365.50546 C21.965,7365.33021 21.965,7365.15595 21.953,7364.98267 C22.756,7364.41163 23.449,7363.70276 24,7362.8915 C23.252,7363.21837 22.457,7363.433 21.644,7363.52751 C22.5,7363.02244 23.141,7362.2289 23.448,7361.2926 C22.642,7361.76321 21.761,7362.095 20.842,7362.27321 C19.288,7360.64674 16.689,7360.56798 15.036,7362.09796 C13.971,7363.08447 13.518,7364.55538 13.849,7365.95835 C10.55,7365.79492 7.476,7364.261 5.392,7361.73762 C4.303,7363.58363 4.86,7365.94457 6.663,7367.12996 C6.01,7367.11125 5.371,7366.93797 4.8,7366.62489 L4.8,7366.67608 C4.801,7368.5989 6.178,7370.2549 8.092,7370.63591 C7.488,7370.79836 6.854,7370.82199 6.24,7370.70483 C6.777,7372.35099 8.318,7373.47829 10.073,7373.51078 C8.62,7374.63513 6.825,7375.24554 4.977,7375.24358 C4.651,7375.24259 4.325,7375.22388 4,7375.18549 C5.877,7376.37088 8.06,7377 10.29,7376.99705" id="twitter-[#154]"> </path> </g> </g> </g> </g>
-                
-              </svg>
-              <svg class="hover-icon" width="15px" height="150px" viewBox="0 -2 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff" stroke="#ffffff">
-    
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <g id="SVGRepo_iconCarrier"> <title>twitter [#ffffff]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-60.000000, -7521.000000)" fill="#ffffff"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M10.29,7377 C17.837,7377 21.965,7370.84365 21.965,7365.50546 C21.965,7365.33021 21.965,7365.15595 21.953,7364.98267 C22.756,7364.41163 23.449,7363.70276 24,7362.8915 C23.252,7363.21837 22.457,7363.433 21.644,7363.52751 C22.5,7363.02244 23.141,7362.2289 23.448,7361.2926 C22.642,7361.76321 21.761,7362.095 20.842,7362.27321 C19.288,7360.64674 16.689,7360.56798 15.036,7362.09796 C13.971,7363.08447 13.518,7364.55538 13.849,7365.95835 C10.55,7365.79492 7.476,7364.261 5.392,7361.73762 C4.303,7363.58363 4.86,7365.94457 6.663,7367.12996 C6.01,7367.11125 5.371,7366.93797 4.8,7366.62489 L4.8,7366.67608 C4.801,7368.5989 6.178,7370.2549 8.092,7370.63591 C7.488,7370.79836 6.854,7370.82199 6.24,7370.70483 C6.777,7372.35099 8.318,7373.47829 10.073,7373.51078 C8.62,7374.63513 6.825,7375.24554 4.977,7375.24358 C4.651,7375.24259 4.325,7375.22388 4,7375.18549 C5.877,7376.37088 8.06,7377 10.29,7376.99705" id="twitter-[#ffffff]"> </path> </g> </g> </g> </g>
-                
-                </svg>
-            </div>
-          </a>
-        </div>
-    
-    
-        <div class="icon">
-          <a href="#" (mouseenter)="tiktok_hovered = true" (mouseleave)="tiktok_hovered = false">
-            <div class="icon-container" [ngClass]="{ 'hovered': tiktok_hovered }">
-              <svg class="original-icon" fill="#000000" width="15px" height="15px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <g id="SVGRepo_iconCarrier"> <title>tiktok</title> <path d="M16.656 1.029c1.637-0.025 3.262-0.012 4.886-0.025 0.054 2.031 0.878 3.859 2.189 5.213l-0.002-0.002c1.411 1.271 3.247 2.095 5.271 2.235l0.028 0.002v5.036c-1.912-0.048-3.71-0.489-5.331-1.247l0.082 0.034c-0.784-0.377-1.447-0.764-2.077-1.196l0.052 0.034c-0.012 3.649 0.012 7.298-0.025 10.934-0.103 1.853-0.719 3.543-1.707 4.954l0.020-0.031c-1.652 2.366-4.328 3.919-7.371 4.011l-0.014 0c-0.123 0.006-0.268 0.009-0.414 0.009-1.73 0-3.347-0.482-4.725-1.319l0.040 0.023c-2.508-1.509-4.238-4.091-4.558-7.094l-0.004-0.041c-0.025-0.625-0.037-1.25-0.012-1.862 0.49-4.779 4.494-8.476 9.361-8.476 0.547 0 1.083 0.047 1.604 0.136l-0.056-0.008c0.025 1.849-0.050 3.699-0.050 5.548-0.423-0.153-0.911-0.242-1.42-0.242-1.868 0-3.457 1.194-4.045 2.861l-0.009 0.030c-0.133 0.427-0.21 0.918-0.21 1.426 0 0.206 0.013 0.41 0.037 0.61l-0.002-0.024c0.332 2.046 2.086 3.59 4.201 3.59 0.061 0 0.121-0.001 0.181-0.004l-0.009 0c1.463-0.044 2.733-0.831 3.451-1.994l0.010-0.018c0.267-0.372 0.45-0.822 0.511-1.311l0.001-0.014c0.125-2.237 0.075-4.461 0.087-6.698 0.012-5.036-0.012-10.060 0.025-15.083z"/> </g>
-                
-              </svg>
-              <svg class="hover-icon" fill="#ffffff" width="15px" height="15px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
-    
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <g id="SVGRepo_iconCarrier"> <title>tiktok</title> <path d="M16.656 1.029c1.637-0.025 3.262-0.012 4.886-0.025 0.054 2.031 0.878 3.859 2.189 5.213l-0.002-0.002c1.411 1.271 3.247 2.095 5.271 2.235l0.028 0.002v5.036c-1.912-0.048-3.71-0.489-5.331-1.247l0.082 0.034c-0.784-0.377-1.447-0.764-2.077-1.196l0.052 0.034c-0.012 3.649 0.012 7.298-0.025 10.934-0.103 1.853-0.719 3.543-1.707 4.954l0.020-0.031c-1.652 2.366-4.328 3.919-7.371 4.011l-0.014 0c-0.123 0.006-0.268 0.009-0.414 0.009-1.73 0-3.347-0.482-4.725-1.319l0.040 0.023c-2.508-1.509-4.238-4.091-4.558-7.094l-0.004-0.041c-0.025-0.625-0.037-1.25-0.012-1.862 0.49-4.779 4.494-8.476 9.361-8.476 0.547 0 1.083 0.047 1.604 0.136l-0.056-0.008c0.025 1.849-0.050 3.699-0.050 5.548-0.423-0.153-0.911-0.242-1.42-0.242-1.868 0-3.457 1.194-4.045 2.861l-0.009 0.030c-0.133 0.427-0.21 0.918-0.21 1.426 0 0.206 0.013 0.41 0.037 0.61l-0.002-0.024c0.332 2.046 2.086 3.59 4.201 3.59 0.061 0 0.121-0.001 0.181-0.004l-0.009 0c1.463-0.044 2.733-0.831 3.451-1.994l0.010-0.018c0.267-0.372 0.45-0.822 0.511-1.311l0.001-0.014c0.125-2.237 0.075-4.461 0.087-6.698 0.012-5.036-0.012-10.060 0.025-15.083z"/> </g>
-                
-                </svg>
-            </div>
-          </a>
-        </div>
-    
+  <div
+    class="mt-5 d-flex justify-content-between container copyrights-container"
+  >
+    <div class="d-flex mb-4">
+      <div class="icon">
+        <a
+          href="#"
+          (mouseenter)="facebook_hovered = true"
+          (mouseleave)="facebook_hovered = false"
+        >
+          <div class="icon-container" [ngClass]="{ hovered: facebook_hovered }">
+            <svg
+              class="original-icon"
+              fill="#000000"
+              width="20px"
+              height="20px"
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M21.95 5.005l-3.306-.004c-3.206 0-5.277 2.124-5.277 5.415v2.495H10.05v4.515h3.317l-.004 9.575h4.641l.004-9.575h3.806l-.003-4.514h-3.803v-2.117c0-1.018.241-1.533 1.566-1.533l2.366-.001.01-4.256z"
+                />
+              </g>
+            </svg>
+            <svg
+              class="hover-icon"
+              fill="#ffffff"
+              width="20px"
+              height="20px"
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="#ffffff"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M21.95 5.005l-3.306-.004c-3.206 0-5.277 2.124-5.277 5.415v2.495H10.05v4.515h3.317l-.004 9.575h4.641l.004-9.575h3.806l-.003-4.514h-3.803v-2.117c0-1.018.241-1.533 1.566-1.533l2.366-.001.01-4.256z"
+                />
+              </g>
+            </svg>
+          </div>
+        </a>
       </div>
-    
+
+      <div class="icon">
+        <a
+          href="#"
+          (mouseenter)="pinterest_hovered = true"
+          (mouseleave)="pinterest_hovered = false"
+        >
+          <div
+            class="icon-container"
+            [ngClass]="{ hovered: pinterest_hovered }"
+          >
+            <svg
+              class="original-icon"
+              fill="#000000"
+              width="20px"
+              height="20px"
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M16.292 5C10.536 5 7.48 8.866 7.48 13.077c0 1.955 1.039 4.392 2.707 5.168.253.118.387.064.443-.18.047-.185.273-1.089.373-1.511a.402.402 0 0 0-.095-.386c-.55-.667-.988-1.896-.988-3.041 0-2.942 2.228-5.787 6.021-5.787 3.28 0 5.571 2.23 5.571 5.426 0 3.61-1.82 6.108-4.191 6.108-1.309 0-2.291-1.081-1.978-2.413.378-1.584 1.106-3.298 1.106-4.438 0-1.026-.552-1.883-1.685-1.883-1.341 0-2.415 1.385-2.415 3.241 0 1.182.4 1.978.4 1.978s-1.323 5.593-1.563 6.634c-.413 1.765.051 4.625.094 4.876.021.134.172.18.252.066.129-.175 1.725-2.565 2.174-4.292l.828-3.171c.439.829 1.707 1.531 3.061 1.531 4.021 0 6.923-3.703 6.923-8.299C24.52 8.301 20.92 5 16.292 5z"
+                />
+              </g>
+            </svg>
+            <svg
+              class="hover-icon"
+              fill="#ffffff"
+              width="20px"
+              height="20px"
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="#ffffff"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M16.292 5C10.536 5 7.48 8.866 7.48 13.077c0 1.955 1.039 4.392 2.707 5.168.253.118.387.064.443-.18.047-.185.273-1.089.373-1.511a.402.402 0 0 0-.095-.386c-.55-.667-.988-1.896-.988-3.041 0-2.942 2.228-5.787 6.021-5.787 3.28 0 5.571 2.23 5.571 5.426 0 3.61-1.82 6.108-4.191 6.108-1.309 0-2.291-1.081-1.978-2.413.378-1.584 1.106-3.298 1.106-4.438 0-1.026-.552-1.883-1.685-1.883-1.341 0-2.415 1.385-2.415 3.241 0 1.182.4 1.978.4 1.978s-1.323 5.593-1.563 6.634c-.413 1.765.051 4.625.094 4.876.021.134.172.18.252.066.129-.175 1.725-2.565 2.174-4.292l.828-3.171c.439.829 1.707 1.531 3.061 1.531 4.021 0 6.923-3.703 6.923-8.299C24.52 8.301 20.92 5 16.292 5z"
+                />
+              </g>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <div class="icon">
+        <a
+          href="#"
+          (mouseenter)="instagram_hovered = true"
+          (mouseleave)="instagram_hovered = false"
+        >
+          <div
+            class="icon-container"
+            [ngClass]="{ hovered: instagram_hovered }"
+          >
+            <svg
+              class="original-icon"
+              width="20px"
+              height="20px"
+              viewBox="0 -0.5 25 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5 5H9.5C7.29086 5 5.5 6.79086 5.5 9V15C5.5 17.2091 7.29086 19 9.5 19H15.5C17.7091 19 19.5 17.2091 19.5 15V9C19.5 6.79086 17.7091 5 15.5 5Z"
+                  stroke="#000000"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12.5 15C10.8431 15 9.5 13.6569 9.5 12C9.5 10.3431 10.8431 9 12.5 9C14.1569 9 15.5 10.3431 15.5 12C15.5 12.7956 15.1839 13.5587 14.6213 14.1213C14.0587 14.6839 13.2956 15 12.5 15Z"
+                  stroke="#000000"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="15.5"
+                  y="9"
+                  width="2"
+                  height="2"
+                  rx="1"
+                  transform="rotate(-90 15.5 9)"
+                  fill="#000000"
+                />
+                <rect
+                  x="16"
+                  y="8.5"
+                  width="1"
+                  height="1"
+                  rx="0.5"
+                  transform="rotate(-90 16 8.5)"
+                  stroke="#000000"
+                  stroke-linecap="round"
+                />
+              </g>
+            </svg>
+            <svg
+              class="hover-icon"
+              width="20px"
+              height="20px"
+              viewBox="0 -0.5 25 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="#ffffff"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5 5H9.5C7.29086 5 5.5 6.79086 5.5 9V15C5.5 17.2091 7.29086 19 9.5 19H15.5C17.7091 19 19.5 17.2091 19.5 15V9C19.5 6.79086 17.7091 5 15.5 5Z"
+                  stroke="#ffffff"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12.5 15C10.8431 15 9.5 13.6569 9.5 12C9.5 10.3431 10.8431 9 12.5 9C14.1569 9 15.5 10.3431 15.5 12C15.5 12.7956 15.1839 13.5587 14.6213 14.1213C14.0587 14.6839 13.2956 15 12.5 15Z"
+                  stroke="#ffffff"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="15.5"
+                  y="9"
+                  width="2"
+                  height="2"
+                  rx="1"
+                  transform="rotate(-90 15.5 9)"
+                  fill="#ffffff"
+                />
+                <rect
+                  x="16"
+                  y="8.5"
+                  width="1"
+                  height="1"
+                  rx="0.5"
+                  transform="rotate(-90 16 8.5)"
+                  stroke="#ffffff"
+                  stroke-linecap="round"
+                />
+              </g>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <div class="icon">
+        <a
+          href="#"
+          (mouseenter)="twitter_hovered = true"
+          (mouseleave)="twitter_hovered = false"
+        >
+          <div class="icon-container" [ngClass]="{ hovered: twitter_hovered }">
+            <svg
+              class="original-icon"
+              width="15px"
+              height="15px"
+              viewBox="0 -2 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              fill="#000000"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <title>twitter [#154]</title>
+                <desc>Created with Sketch.</desc>
+                <defs></defs>
+                <g
+                  id="Page-1"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <g
+                    id="Dribbble-Light-Preview"
+                    transform="translate(-60.000000, -7521.000000)"
+                    fill="#000000"
+                  >
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                      <path
+                        d="M10.29,7377 C17.837,7377 21.965,7370.84365 21.965,7365.50546 C21.965,7365.33021 21.965,7365.15595 21.953,7364.98267 C22.756,7364.41163 23.449,7363.70276 24,7362.8915 C23.252,7363.21837 22.457,7363.433 21.644,7363.52751 C22.5,7363.02244 23.141,7362.2289 23.448,7361.2926 C22.642,7361.76321 21.761,7362.095 20.842,7362.27321 C19.288,7360.64674 16.689,7360.56798 15.036,7362.09796 C13.971,7363.08447 13.518,7364.55538 13.849,7365.95835 C10.55,7365.79492 7.476,7364.261 5.392,7361.73762 C4.303,7363.58363 4.86,7365.94457 6.663,7367.12996 C6.01,7367.11125 5.371,7366.93797 4.8,7366.62489 L4.8,7366.67608 C4.801,7368.5989 6.178,7370.2549 8.092,7370.63591 C7.488,7370.79836 6.854,7370.82199 6.24,7370.70483 C6.777,7372.35099 8.318,7373.47829 10.073,7373.51078 C8.62,7374.63513 6.825,7375.24554 4.977,7375.24358 C4.651,7375.24259 4.325,7375.22388 4,7375.18549 C5.877,7376.37088 8.06,7377 10.29,7376.99705"
+                        id="twitter-[#154]"
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+            <svg
+              class="hover-icon"
+              width="15px"
+              height="150px"
+              viewBox="0 -2 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              fill="#ffffff"
+              stroke="#ffffff"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <title>twitter [#ffffff]</title>
+                <desc>Created with Sketch.</desc>
+                <defs></defs>
+                <g
+                  id="Page-1"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <g
+                    id="Dribbble-Light-Preview"
+                    transform="translate(-60.000000, -7521.000000)"
+                    fill="#ffffff"
+                  >
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                      <path
+                        d="M10.29,7377 C17.837,7377 21.965,7370.84365 21.965,7365.50546 C21.965,7365.33021 21.965,7365.15595 21.953,7364.98267 C22.756,7364.41163 23.449,7363.70276 24,7362.8915 C23.252,7363.21837 22.457,7363.433 21.644,7363.52751 C22.5,7363.02244 23.141,7362.2289 23.448,7361.2926 C22.642,7361.76321 21.761,7362.095 20.842,7362.27321 C19.288,7360.64674 16.689,7360.56798 15.036,7362.09796 C13.971,7363.08447 13.518,7364.55538 13.849,7365.95835 C10.55,7365.79492 7.476,7364.261 5.392,7361.73762 C4.303,7363.58363 4.86,7365.94457 6.663,7367.12996 C6.01,7367.11125 5.371,7366.93797 4.8,7366.62489 L4.8,7366.67608 C4.801,7368.5989 6.178,7370.2549 8.092,7370.63591 C7.488,7370.79836 6.854,7370.82199 6.24,7370.70483 C6.777,7372.35099 8.318,7373.47829 10.073,7373.51078 C8.62,7374.63513 6.825,7375.24554 4.977,7375.24358 C4.651,7375.24259 4.325,7375.22388 4,7375.18549 C5.877,7376.37088 8.06,7377 10.29,7376.99705"
+                        id="twitter-[#ffffff]"
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <div class="icon">
+        <a
+          href="#"
+          (mouseenter)="tiktok_hovered = true"
+          (mouseleave)="tiktok_hovered = false"
+        >
+          <div class="icon-container" [ngClass]="{ hovered: tiktok_hovered }">
+            <svg
+              class="original-icon"
+              fill="#000000"
+              width="15px"
+              height="15px"
+              viewBox="0 0 32 32"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <title>tiktok</title>
+                <path
+                  d="M16.656 1.029c1.637-0.025 3.262-0.012 4.886-0.025 0.054 2.031 0.878 3.859 2.189 5.213l-0.002-0.002c1.411 1.271 3.247 2.095 5.271 2.235l0.028 0.002v5.036c-1.912-0.048-3.71-0.489-5.331-1.247l0.082 0.034c-0.784-0.377-1.447-0.764-2.077-1.196l0.052 0.034c-0.012 3.649 0.012 7.298-0.025 10.934-0.103 1.853-0.719 3.543-1.707 4.954l0.020-0.031c-1.652 2.366-4.328 3.919-7.371 4.011l-0.014 0c-0.123 0.006-0.268 0.009-0.414 0.009-1.73 0-3.347-0.482-4.725-1.319l0.040 0.023c-2.508-1.509-4.238-4.091-4.558-7.094l-0.004-0.041c-0.025-0.625-0.037-1.25-0.012-1.862 0.49-4.779 4.494-8.476 9.361-8.476 0.547 0 1.083 0.047 1.604 0.136l-0.056-0.008c0.025 1.849-0.050 3.699-0.050 5.548-0.423-0.153-0.911-0.242-1.42-0.242-1.868 0-3.457 1.194-4.045 2.861l-0.009 0.030c-0.133 0.427-0.21 0.918-0.21 1.426 0 0.206 0.013 0.41 0.037 0.61l-0.002-0.024c0.332 2.046 2.086 3.59 4.201 3.59 0.061 0 0.121-0.001 0.181-0.004l-0.009 0c1.463-0.044 2.733-0.831 3.451-1.994l0.010-0.018c0.267-0.372 0.45-0.822 0.511-1.311l0.001-0.014c0.125-2.237 0.075-4.461 0.087-6.698 0.012-5.036-0.012-10.060 0.025-15.083z"
+                />
+              </g>
+            </svg>
+            <svg
+              class="hover-icon"
+              fill="#ffffff"
+              width="15px"
+              height="15px"
+              viewBox="0 0 32 32"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="#ffffff"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <title>tiktok</title>
+                <path
+                  d="M16.656 1.029c1.637-0.025 3.262-0.012 4.886-0.025 0.054 2.031 0.878 3.859 2.189 5.213l-0.002-0.002c1.411 1.271 3.247 2.095 5.271 2.235l0.028 0.002v5.036c-1.912-0.048-3.71-0.489-5.331-1.247l0.082 0.034c-0.784-0.377-1.447-0.764-2.077-1.196l0.052 0.034c-0.012 3.649 0.012 7.298-0.025 10.934-0.103 1.853-0.719 3.543-1.707 4.954l0.020-0.031c-1.652 2.366-4.328 3.919-7.371 4.011l-0.014 0c-0.123 0.006-0.268 0.009-0.414 0.009-1.73 0-3.347-0.482-4.725-1.319l0.040 0.023c-2.508-1.509-4.238-4.091-4.558-7.094l-0.004-0.041c-0.025-0.625-0.037-1.25-0.012-1.862 0.49-4.779 4.494-8.476 9.361-8.476 0.547 0 1.083 0.047 1.604 0.136l-0.056-0.008c0.025 1.849-0.050 3.699-0.050 5.548-0.423-0.153-0.911-0.242-1.42-0.242-1.868 0-3.457 1.194-4.045 2.861l-0.009 0.030c-0.133 0.427-0.21 0.918-0.21 1.426 0 0.206 0.013 0.41 0.037 0.61l-0.002-0.024c0.332 2.046 2.086 3.59 4.201 3.59 0.061 0 0.121-0.001 0.181-0.004l-0.009 0c1.463-0.044 2.733-0.831 3.451-1.994l0.010-0.018c0.267-0.372 0.45-0.822 0.511-1.311l0.001-0.014c0.125-2.237 0.075-4.461 0.087-6.698 0.012-5.036-0.012-10.060 0.025-15.083z"
+                />
+              </g>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+
     <div class="text-center fw-bold mb-4">
       <span> ©2023 NOVA-CREATIVE THEME</span>
     </div>
