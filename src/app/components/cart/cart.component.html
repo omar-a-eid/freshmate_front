@@ -52,11 +52,11 @@
                     <div class="col-3 product-border">
                       <img [src]="item.product.images[0]" class="toast-img" />
                     </div>
-                    <div
-                      class="col-3 d-flex justify-content-center flex-column w-50"
+                    <a
+                      class="col-3 d-flex justify-content-center flex-column w-50 product-title" (click)="navigateToSingleProduct(item.product._id)"
                     >
                       {{ item.product.title.en }}
-                    </div>
+                  </a>
                   </div>
                 </td>
                 <td>{{ item.product.price | currency }}</td>
@@ -98,8 +98,12 @@
 
         <div class="cart-buttons w-100">
           <!-- Buttons -->
-          <button class="checkout-button">PROCEED TO CHECKOUT</button>
-          <button class="continue-shopping-button">CONTINUE SHOPPING</button>
+          <button  (click)="navigateToCheckout()" class="checkout-button">
+            PROCEED TO CHECKOUT
+          </button>
+          <button class="continue-shopping-button" >
+            CONTINUE SHOPPING
+          </button>
         </div>
 
         <div class="col products">
@@ -139,13 +143,20 @@
                 </div>
               </div>
               <div class="d-flex justify-content-start mt-5">
-                <div style="color: green">
+                <div
+                  *ngIf="
+                    calculateTotalPrice() >= 200;
+                    else noFreeShippingMessage
+                  "
+                  style="color: green"
+                >
                   CONGRATULATIONS! YOU'VE GOT FREE SHIPPING!
                 </div>
-                <!-- <div *ngIf="totalPrice < 200" style="color: gray;">
-                                  SPEND 200$ FOR FREE SHIPPING
-                              </div> -->
+                <ng-template #noFreeShippingMessage>
+                  <div style="color: gray">SPEND 200$ FOR FREE SHIPPING</div>
+                </ng-template>
               </div>
+
               <div class="progress-wrapper mt-3">
                 <div
                   class="progress"

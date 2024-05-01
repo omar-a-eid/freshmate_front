@@ -12,14 +12,14 @@ import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
   selector: 'app-product',
   standalone: true,
   imports: [RatingStarsComponent, CommonModule, RouterModule, HttpClientModule],
-  providers: [ProductService, CartService,WishlistService],
+  providers: [ProductService, CartService, WishlistService],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
 export class ProductComponent implements OnInit {
   @Input() product: any;
   @Input() productid: any;
-  user:any;
+  user: any;
   userSession: any;
   productId: any;
   toaster = inject(ToastrService);
@@ -34,9 +34,9 @@ export class ProductComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     private cartService: CartService,
-    private wishlistService: WishlistService,
-    // private location:Location
-  ) {
+    private wishlistService: WishlistService
+  ) // private location:Location
+  {
     if (this.router.url === 'localhost:4200/wishlist') {
       this.showAddToCartButton = false;
     }
@@ -136,32 +136,40 @@ export class ProductComponent implements OnInit {
   }
 
   addToWishlist(productid: string) {
-    this.userSession = sessionStorage.getItem("user");
+    this.userSession = sessionStorage.getItem('user');
     this.user = JSON.parse(this.userSession);
-    console.log("inside", {productid:productid, user:sessionStorage.getItem("user")});
+    console.log('inside', {
+      productid: productid,
+      user: sessionStorage.getItem('user'),
+    });
 
-    this.wishlistService.addItemToWishList(this.user.userId, [productid]).subscribe(
-      () => {
-        console.log('Product added to wishlist successfully');
-      },
-      (error: any) => {
-        console.error('Error adding product to wishlist:', error);
-      }
-    );
-
-
+    this.wishlistService
+      .addItemToWishList(this.user.userId, [productid])
+      .subscribe(
+        () => {
+          console.log('Product added to wishlist successfully');
+        },
+        (error: any) => {
+          console.error('Error adding product to wishlist:', error);
+        }
+      );
   }
-  
+
   deleteProductFromWishlist(productId: string): void {
     this.wishlistService.removeItemFromWishlist([productId]).subscribe({
       next: (response: any) => {
         console.log('Product removed from wishlist:', response);
         location.reload();
-        console.log("product is deleted")
+        console.log('product is deleted');
       },
       error: (error: any) => {
         console.error('Error removing product from wishlist:', error);
-      }
+      },
     });
+  }
+
+  // to navigate to single product
+  goToSingleProduct(productId: string) {
+    this.router.navigate(['/product', productId]);
   }
 }

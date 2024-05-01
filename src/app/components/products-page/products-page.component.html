@@ -1,4 +1,5 @@
-<div class="row container-fluid col-12 my-5">
+<app-pathbar></app-pathbar>
+<div class="row container-fluid my-5">
   <!-- sidebar Displayed in medium and smaller screens -->
   <div class="d-md-block d-lg-none">
     <div class="d-flex align-items-center mt-3 gap-3 mb-4">
@@ -96,7 +97,12 @@
         <div class="mb-4">
           <div class="d-flex align-items-center justify-content-between">
             <h4>Price</h4>
-            <span class="text-secondary text-right">Reset</span>
+            <input
+              type="button"
+              class="text-secondary border-0 bg-body text-right"
+              (click)="resetSliderValues()"
+              value="Reset"
+            />
           </div>
           <div class="ruler">
             <div>
@@ -118,9 +124,19 @@
             </div>
           </div>
           <div class="d-flex align-items-center mt-5 gap-3">
-            <input type="text" class="filter-price text-center" value="0" />
+            <input
+              type="text"
+              class="filter-price text-center"
+              [(ngModel)]="value"
+              (input)="filterProductsByPrice()"
+            />
             <p class="mt-3">—</p>
-            <input type="text" class="filter-price text-center" value="100" />
+            <input
+              type="text"
+              class="filter-price text-center"
+              [(ngModel)]="highValue"
+              (input)="filterProductsByPrice()"
+            />
           </div>
         </div>
         <hr />
@@ -140,7 +156,7 @@
                 id="flexCheckDefault"
               />
               <label class="form-check-label fw-normal" for="flexCheckDefault">
-                Accessories
+                Espresso
               </label>
             </div>
             <p class="fw-normal">(10)</p>
@@ -157,7 +173,7 @@
                 id="flexCheckDefault"
               />
               <label class="form-check-label fw-normal" for="flexCheckDefault">
-                Apples
+                French press
               </label>
             </div>
             <p class="fw-normal">(2)</p>
@@ -173,7 +189,7 @@
                 id="flexCheckDefault"
               />
               <label class="form-check-label fw-normal" for="flexCheckDefault">
-                Fruits
+                Cold brew
               </label>
             </div>
             <p class="fw-normal">(5)</p>
@@ -190,7 +206,7 @@
                 id="flexCheckDefault"
               />
               <label class="form-check-label fw-normal" for="flexCheckDefault">
-                IOS
+                Coffee beans
               </label>
             </div>
             <p class="fw-normal">(5)</p>
@@ -214,7 +230,7 @@
                 id="flexCheckDefault"
               />
               <label class="form-check-label fw-normal" for="flexCheckDefault">
-                Fruists
+                Lavazza
               </label>
             </div>
             <p class="fw-normal">(10)</p>
@@ -257,6 +273,7 @@
           'background-color': isHovered ? 'black' : '',
           color: isHovered ? 'white' : ''
         }"
+        (click)="resetSliderValues()"
       >
         Clear All
       </button>
@@ -303,7 +320,12 @@
     <div class="mb-4">
       <div class="d-flex align-items-center justify-content-between">
         <h4>Price</h4>
-        <span class="text-secondary text-right">Reset</span>
+        <input
+          type="button"
+          class="text-secondary border-0 bg-body text-right mb-3"
+          (click)="resetSliderValues()"
+          value="Reset"
+        />
       </div>
       <div class="ruler">
         <div>
@@ -325,9 +347,19 @@
         </div>
       </div>
       <div class="d-flex align-items-center mt-5 gap-3">
-        <input type="text" class="filter-price text-center" value="0" />
+        <input
+          type="text"
+          class="filter-price text-center"
+          [(ngModel)]="value"
+          (input)="filterProductsByPrice()"
+        />
         <p class="mt-3">—</p>
-        <input type="text" class="filter-price text-center" value="100" />
+        <input
+          type="text"
+          class="filter-price text-center"
+          [(ngModel)]="highValue"
+          (input)="filterProductsByPrice()"
+        />
       </div>
     </div>
     <hr />
@@ -338,14 +370,8 @@
       </div>
       <div class="form-check d-flex align-items-center justify-content-between">
         <div>
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckDefault"
-          />
           <label class="form-check-label fw-normal" for="flexCheckDefault">
-            Accessories
+            Espresso
           </label>
         </div>
         <p class="fw-normal">(10)</p>
@@ -360,7 +386,7 @@
             id="flexCheckDefault"
           />
           <label class="form-check-label fw-normal" for="flexCheckDefault">
-            Apples
+            French press
           </label>
         </div>
         <p class="fw-normal">(2)</p>
@@ -374,7 +400,7 @@
             id="flexCheckDefault"
           />
           <label class="form-check-label fw-normal" for="flexCheckDefault">
-            Fruits
+            Cold brew
           </label>
         </div>
         <p class="fw-normal">(5)</p>
@@ -389,7 +415,7 @@
             id="flexCheckDefault"
           />
           <label class="form-check-label fw-normal" for="flexCheckDefault">
-            IOS
+            Coffee beans
           </label>
         </div>
         <p class="fw-normal">(5)</p>
@@ -411,7 +437,7 @@
             id="flexCheckDefault"
           />
           <label class="form-check-label fw-normal" for="flexCheckDefault">
-            Fruists
+            Lavazza
           </label>
         </div>
         <p class="fw-normal">(10)</p>
@@ -421,6 +447,7 @@
 
   <!-- Sort and Products Region -->
   <div class="container col-8">
+    <!-- Sort Region -->
     <div class="d-flex align-items-center mt-3 gap-3 mb-4">
       <div class="dropdown">
         <button
@@ -433,7 +460,7 @@
           Sort by {{ selectedSortOption ? "- " + selectedSortOption : "" }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <div class="form-check" *ngFor="let option of sortOptions">
+          <div class="form-check d-flex" *ngFor="let option of sortOptions">
             <input
               class="dropdown-item radio-btn fw-bold"
               type="radio"
@@ -448,46 +475,47 @@
         </ul>
       </div>
     </div>
-
     <!-- End Of Sort -->
 
     <!-- Products Region -->
-
     <div class="row products-container">
-      <div class="mt-2" *ngIf="products.length > 0">
+      <div class="mt-2">
         <!-- Products -->
 
         <div class="row mt-3 d-flex mb-5">
-          <app-product
-            *ngFor="
-              let product of products
-                | paginate
-                  : { itemsPerPage: pageSize, currentPage: currentPage }
-            "
-            class="col-12 col-md-6 col-lg-4 products"
-            [product]="product"
-          ></app-product>
+          <!-- Show all products if no filtering -->
+          <ng-container *ngIf="filteredProducts.length === 0">
+            <app-product
+              *ngFor="
+                let product of products
+                  | paginate
+                    : { itemsPerPage: pageSize, currentPage: currentPage }
+              "
+              class="col-12 col-md-6 col-lg-4 products"
+              [product]="product"
+            ></app-product>
+          </ng-container>
 
-          <!-- <div
-            *ngFor="
-              let product of products
-                | paginate
-                  : { itemsPerPage: pageSize, currentPage: currentPage }
-            "
-            class="product-details w-25"
-          >
-            <div class="product-image">
-              <img [src]="product.image" class="toast-img" />
-            </div>
-            <div class="d-flex flex-column align-items-center">
-              <a href="#" class="mt-3 product-name">{{ product.name }} </a>
-              <div class="mt-2">{{ product.price }}</div>
-            </div>
-          </div> -->
+          <!-- Show filtered products if filtering is applied -->
+          <ng-container *ngIf="filteredProducts.length > 0">
+            <app-product
+              *ngFor="
+                let product of filteredProducts
+                  | paginate
+                    : { itemsPerPage: pageSize, currentPage: currentPage }
+              "
+              class="col-12 col-md-6 col-lg-4 products"
+              [product]="product"
+            ></app-product>
+          </ng-container>
         </div>
       </div>
     </div>
+    <!-- End of Products -->
   </div>
+  <!-- End of Sort & Products -->
+
+  <!-- Next & Previous buttons for pagination -->
   <div class="d-flex justify-content-end">
     <button
       class="nextBtn"
@@ -530,29 +558,36 @@
   </div>
 
   <div class="d-flex gap-4 mx-5 my-5">
-    <app-custom-button buttonText="Apples"></app-custom-button>
-    <app-custom-button buttonText="Accessories"></app-custom-button>
-    <app-custom-button buttonText="IOS"></app-custom-button>
-    <app-custom-button buttonText="Upsell"></app-custom-button>
-    <app-custom-button buttonText="medium"></app-custom-button>
-    <app-custom-button buttonText="Pink"></app-custom-button>
+    <app-custom-button buttonText="Espresso"></app-custom-button>
+    <app-custom-button buttonText="Cold brew"></app-custom-button>
+    <app-custom-button buttonText="Coffee recipes"></app-custom-button>
+    <app-custom-button buttonText="Caffeine"></app-custom-button>
+    <app-custom-button buttonText="Coffee history"></app-custom-button>
+    <app-custom-button buttonText="Coffee beans"></app-custom-button>
   </div>
 
   <div class="vegetable-container mx-4">
-    <h2 class="fw-bold">Vegetables</h2>
+    <h2 class="fw-bold">Coffee</h2>
     <p i18n class="my-3">
-      Loremmm ipsum dolor sit amet consectetur adipisicing elit. Labore at,
-      aliquam esse itaque non cupiditate odio accusamus, earum doloremque, vitae
-      vel pariatur! Excepturi dolores odit vel assumenda optio est non! Lorem
-      ipsum, dolor sit amet consectetur adipisicing elit. Ut magni neque quas
-      accusamus necessitatibus.<span [ngClass]="{ 'fade-text': !isExpanded }">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-        laudantium obcaecati aperiam! Consequatur id explicabo dolorem pariatur
-        aliquid quis dignissimos corrupti amet beatae officia minima ipsam vero,
-        doloribus neque assumenda! Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Consectetur quae quas ab placeat non fuga! Dolore non
-        unde facilis, aperiam explicabo quas voluptates corrupti harum quod
-        reprehenderit blanditiis tenetur commodi.
+      Coffee, originating from the roasted seeds of the Coffea plant native to
+      tropical Africa, Madagascar, and the Comoros, stands as one of the most
+      beloved beverages globally. With its cultivation spanning over 70
+      countries along the equatorial "Coffee Belt," coffee thrives in climates
+      conducive to its growth. The two primary species, Coffea arabica and
+      Coffea robusta, yield distinct flavors—the former boasting a mild taste
+      and fragrant aroma, while the latter presents a stronger, more bitter
+      profile..<span [ngClass]="{ 'fade-text': !isExpanded }">
+        Following harvest, coffee cherries undergo meticulous processing to
+        extract the beans, which are then dried and roasted to perfection.
+        Brewed using diverse methods such as drip, espresso, French press,
+        pour-over, or cold brew, each approach offers a unique sensory
+        experience. Beyond its gustatory pleasures, coffee offers health
+        benefits attributed to its caffeine content and antioxidants, impacting
+        cognitive function and potentially reducing the risk of certain
+        diseases. Furthermore, coffee's cultural significance transcends
+        borders, serving as a cornerstone of social interaction in coffeehouses
+        worldwide, while also underpinning economies through its role as one of
+        the most traded commodities globally.
       </span>
       @if (isExpanded) {
       <span>
@@ -575,6 +610,7 @@
     </div>
   </div>
 </div>
+<!-- End of tag -->
 
 <!-- Services Region -->
 <div

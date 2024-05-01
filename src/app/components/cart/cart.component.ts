@@ -1,10 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart/cart.service';
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { ProductComponent } from '../product/product.component';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -17,14 +25,16 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   templateUrl: './cart.component.html',
-  providers: [CartService],
+  providers: [CartService, Router],
   styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
   @Input() allProducts: any;
   user: any;
   userSession: any;
-  constructor(private cartService: CartService) {}
+  isSmallScreen: boolean = false;
+  constructor(private cartService: CartService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem('user');
@@ -113,11 +123,6 @@ export class CartComponent implements OnInit {
   @Output() totalShipping: EventEmitter<number> = new EventEmitter<number>();
   @Output() quantityChanged: EventEmitter<number> = new EventEmitter<number>();
 
-  // updateQuantity(product: any, quantity: number) {
-  //   product.quantity = quantity;
-  //   this.quantityChanged.emit(quantity);
-  // }
-
   // to calculate total price for a product
   getTotal(product: any): number {
     return product.price * product.quantity;
@@ -130,5 +135,17 @@ export class CartComponent implements OnInit {
       totalPrice += item.product.price * item.quantity;
     }
     return totalPrice;
+  }
+
+  navigateToCheckout() {
+    this.router.navigate(['/checkout']);
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/']);
+  }
+
+  navigateToSingleProduct(productId:string){
+    this.router.navigate(["/product", productId])
   }
 }

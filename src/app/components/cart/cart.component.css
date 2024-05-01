@@ -221,3 +221,13 @@
     width: 100%;
   }
 }
+
+.product-title {
+  text-decoration: none;
+  cursor: pointer;
+  color: black !important;
+}
+
+.product-title:hover {
+  color: rgb(113, 64, 64) !important;
+}
