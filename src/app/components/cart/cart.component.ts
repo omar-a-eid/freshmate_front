@@ -41,6 +41,33 @@ export class CartComponent implements OnInit {
     });
   }
 
+  // Inside your CartComponent class
+  incrementQuantity(item: any) {
+    item.quantity++;
+    this.updateQuantity(item);
+  }
+
+  decrementQuantity(item: any) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.updateQuantity(item);
+    }
+  }
+
+  updateQuantity(item: any) {
+    this.cartService
+      .UpdateCartItemQuantity(item.product._id, item.quantity, this.user.token)
+      .subscribe({
+        next: () => {
+          console.log('Quantity updated successfully');
+        },
+
+        error: (error) => {
+          console.error('Error updating quantity:', error);
+        },
+      });
+  }
+
   deleteProduct(productId: string, index: number, event: Event) {
     event.preventDefault();
     // Remove the product from the local array immediately
@@ -86,17 +113,10 @@ export class CartComponent implements OnInit {
   @Output() totalShipping: EventEmitter<number> = new EventEmitter<number>();
   @Output() quantityChanged: EventEmitter<number> = new EventEmitter<number>();
 
-  // to increment quantity
-  incrementQuantity(product: any) {
-    product.quantity++;
-  }
-
-  // to decrement quantity
-  decrementQuantity(product: any) {
-    if (product.quantity > 1) {
-      product.quantity--;
-    }
-  }
+  // updateQuantity(product: any, quantity: number) {
+  //   product.quantity = quantity;
+  //   this.quantityChanged.emit(quantity);
+  // }
 
   // to calculate total price for a product
   getTotal(product: any): number {
