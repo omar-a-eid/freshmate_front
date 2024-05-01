@@ -10,26 +10,31 @@ import { ProductComponent } from '../product/product.component';
   imports: [HttpClientModule, ProductComponent, SlickCarouselModule],
   providers: [ProductService],
   templateUrl: './best-seller.component.html',
-  styleUrl: './best-seller.component.css'
+  styleUrl: './best-seller.component.css',
 })
 export class BestSellerComponent implements OnInit {
-  products:any = [];
-  slideConfig = { "infinite": true, 'slidesToShow': 4,'responsive': [
-    {
-      'breakpoint': 767,
-      'settings': {
-        'slidesToShow': 2,
-        "slidesToScroll": 2,
-      }
-    }, 
-    {
-      'breakpoint': 1200,
-      'settings': {
-        'slidesToShow': 3,
-        "slidesToScroll": 2,
-      }
-    }]};
-  constructor(private ProductService: ProductService ) {}
+  products: any = [];
+  slideConfig = {
+    infinite: true,
+    slidesToShow: 4,
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  };
+  constructor(private ProductService: ProductService) {}
   ngOnInit(): void {
     // this.ProductService.GetAllProducts().subscribe({
     //   next: (data:any) => {
@@ -40,5 +45,4 @@ export class BestSellerComponent implements OnInit {
     //   error: (error) => console.log(error)
     // })
   }
-
 }

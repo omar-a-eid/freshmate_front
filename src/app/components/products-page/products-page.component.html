@@ -243,7 +243,7 @@
           d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
         />
       </svg>
-      <h4 class="fw-bold">Filter by</h4>
+      <h4 class="fw-bold mt-3">Filter by</h4>
     </div>
     <hr />
 
@@ -426,7 +426,7 @@
         <button
           class="dropdown-toggle border-0 bg-body text-secondary"
           type="button"
-          id="dropdownMenuButton1"
+          id="dropdownMenuButton"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
@@ -435,7 +435,7 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <div class="form-check" *ngFor="let option of sortOptions">
             <input
-              class="radio-btn fw-bold"
+              class="dropdown-item radio-btn fw-bold"
               type="radio"
               id="{{ option.id }}"
               name="sortBy"

@@ -30,6 +30,7 @@ export class ProductsPageComponent implements OnInit {
   user: any;
   userSession: any;
 
+  // For Range bar
   value: number = 0;
   highValue: number = 100;
   options: Options = {
@@ -68,6 +69,7 @@ export class ProductsPageComponent implements OnInit {
   @HostListener('mouseleave') onMouseLeave() {
     this.isHovered = false;
   }
+
   // In sort drop down list
   sortOptions = [
     { id: 'option1', value: 'A-Z', label: 'Alphabetically, A-Z' },
@@ -102,6 +104,7 @@ export class ProductsPageComponent implements OnInit {
     }
   }
 
+  // Sidebar
   isExpanded: boolean = false;
 
   toggleExpand() {
