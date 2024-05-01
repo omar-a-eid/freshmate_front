@@ -173,7 +173,12 @@
       >
         <div class="d-flex">
           <!-- User Profile -->
-          <a class="text-reset me-3 dotted-icon-container user" href="#">
+          <a
+            class="text-reset me-3 dotted-icon-container user"
+            [routerLink]="isLoggedIn ? '/profile' : null"
+            [attr.data-bs-toggle]="isLoggedIn ? '' : 'modal'"
+            [attr.data-bs-target]="isLoggedIn ? '' : '#registrationModal'"
+          >
             <div class="dotted-icon">
               <svg
                 class="original-icon"
@@ -582,3 +587,5 @@
   <!-- Navbar -->
 </header>
 <!--Main Navigation-->
+
+<app-registration></app-registration>

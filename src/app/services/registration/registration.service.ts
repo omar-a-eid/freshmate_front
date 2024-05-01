@@ -16,4 +16,13 @@ export class RegistrationService {
   signup(newUser: any) {
     return this.http.post(this.URL_DB +"/signup", newUser);
   }
+  signout() {
+    sessionStorage.removeItem("user");
+  }
+  update(userId: string, token: string, editedUser:any) {//userid    token   editeduser 
+    return this.http.put(this.URL_DB +"/"+ userId, editedUser,{
+      headers: {
+            'Authorization': `Bearer ${token}`,
+          }});
+  }
 }

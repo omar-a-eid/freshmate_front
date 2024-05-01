@@ -243,7 +243,7 @@
           d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
         />
       </svg>
-      <h4 class="fw-bold">Filter by</h4>
+      <h4 class="fw-bold mt-3">Filter by</h4>
     </div>
     <hr />
 
@@ -426,7 +426,7 @@
         <button
           class="dropdown-toggle border-0 bg-body text-secondary"
           type="button"
-          id="dropdownMenuButton1"
+          id="dropdownMenuButton"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
@@ -435,7 +435,7 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <div class="form-check" *ngFor="let option of sortOptions">
             <input
-              class="radio-btn fw-bold"
+              class="dropdown-item radio-btn fw-bold"
               type="radio"
               id="{{ option.id }}"
               name="sortBy"
@@ -453,12 +453,22 @@
 
     <!-- Products Region -->
 
-    <div class="row d-flex container products-container">
+    <div class="row products-container">
       <div class="mt-2" *ngIf="products.length > 0">
         <!-- Products -->
-        <div>YOU MAY ALSO LIKE THESE PRODUCTS</div>
-        <div class="row mt-3 mb-5">
-          <div
+
+        <div class="row mt-3 d-flex mb-5">
+          <app-product
+            *ngFor="
+              let product of products
+                | paginate
+                  : { itemsPerPage: pageSize, currentPage: currentPage }
+            "
+            class="col-12 col-md-6 col-lg-4 products"
+            [product]="product"
+          ></app-product>
+
+          <!-- <div
             *ngFor="
               let product of products
                 | paginate
@@ -473,7 +483,7 @@
               <a href="#" class="mt-3 product-name">{{ product.name }} </a>
               <div class="mt-2">{{ product.price }}</div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -530,8 +540,8 @@
 
   <div class="vegetable-container mx-4">
     <h2 class="fw-bold">Vegetables</h2>
-    <p class="my-3">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore at,
+    <p i18n class="my-3">
+      Loremmm ipsum dolor sit amet consectetur adipisicing elit. Labore at,
       aliquam esse itaque non cupiditate odio accusamus, earum doloremque, vitae
       vel pariatur! Excepturi dolores odit vel assumenda optio est non! Lorem
       ipsum, dolor sit amet consectetur adipisicing elit. Ut magni neque quas

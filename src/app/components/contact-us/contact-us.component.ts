@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { PathbarComponent } from '../pathbar/pathbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,NavbarComponent,PathbarComponent,FooterComponent],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css'
 })
@@ -37,9 +40,42 @@ export class ContactUSComponent {
     // data as an object
     console.log(this.ContactUs.value);
     
-    alert("Thank you for your Coperation Email has been Send to the Support team");
+    // alert("Thank you for your Coperation Email has been Send to the Support team");
+    this.showToast();
 
   }
+  
+
+  showToast() {
+    const passwordToast = document.getElementById('passwordToast');
+    if (!passwordToast) return; 
+  
+    const toastBody = passwordToast.querySelector('.toast-body');
+    if (!toastBody) return; 
+  
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+    passwordToast.style.display = "block";
+    passwordToast.classList.add('show');
+  
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const topPosition = Math.max(20, scrollY + 20);
+  
+    passwordToast.style.top = topPosition + 'px';
+  
+    setTimeout(() => {
+        passwordToast.classList.remove('show');
+        passwordToast.style.display = "none";
+    }, 3000);
+  
+    const closeToast = document.querySelector('[data-dismiss="toast"]');
+    if (closeToast) { 
+      closeToast.addEventListener("click", () => {
+        passwordToast.style.display = "none";
+   });
+}
+}
+
 
   get name(): FormControl {
     return this.ContactUs.get("name") as FormControl;

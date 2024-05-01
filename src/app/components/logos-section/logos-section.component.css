@@ -1,0 +1,8 @@
+.img {
+  max-width: 100px;
+  margin: 0 auto;
+}
+
+.border_top {
+border-top: 1px #dedede solid;
+}

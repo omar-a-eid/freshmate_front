@@ -6,3 +6,48 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.collection {
+  padding: 250px 0;
+}
+.collection p {
+  color: white;
+  font-size: 4em;
+  font-weight: 900;
+  line-height: 1.3;
+}
+.collection p:last-of-type {
+  margin-bottom: 1em;
+}
+
+.new {
+  font-size: 1.5em !important;
+  text-transform: uppercase;
+}
+
+.btn_link {
+  cursor: pointer;
+  text-transform: capitalize;
+  text-decoration: none;
+  color: white;
+  background-color: #000000 ;
+  font-weight: 900;
+  font-size: 12px;
+  border-radius: 30px;
+  border: 2px transparent solid;
+  justify-content: center;
+  padding: 1.3em 4.2em;
+  transition: color .25s linear,background .25s linear,border-color .25s linear;
+}
+
+.btn_link:hover {
+  color: black ;
+  background-color: white;
+  border-color: white ;
+}
+
+@media only screen and (min-width: 1200px) {
+  .collection {
+    padding: 100px 0;
+  }
+}

@@ -1,34 +1,63 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart/cart.service';
+import { PathbarComponent } from '../pathbar/pathbar.component';
+import { ProductComponent } from '../product/product.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    PathbarComponent,
+    ProductComponent,
+    HttpClientModule,
+  ],
   templateUrl: './cart.component.html',
+  providers: [CartService],
   styleUrl: './cart.component.css',
 })
-export class CartComponent {
-  @Input() allProducts: any[] = [
-    {
-      name: 'Product 1',
-      price: 7.0,
-      quantity: 1,
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/files/1_d00b934d-e940-49ff-a5fe-1056688cd479_90x.jpg?v=1690008374',
-    },
-    {
-      name: 'Product 2',
-      price: 20.0,
-      quantity: 1,
-      image:
-        'https://nov-freshmate.myshopify.com/cdn/shop/files/1_d00b934d-e940-49ff-a5fe-1056688cd479_90x.jpg?v=1690008374',
-    },
-  ];
+export class CartComponent implements OnInit {
+  @Input() allProducts: any;
+  user: any;
+  userSession: any;
+  constructor(private cartService: CartService) {}
+
+  ngOnInit(): void {
+    this.userSession = sessionStorage.getItem('user');
+    this.user = JSON.parse(this.userSession);
+
+    this.cartService.GetCartItems(this.user.token).subscribe({
+      next: (data: any) => {
+        // console.log(data);
+
+        this.allProducts = data.products;
+        console.log(this.allProducts);
+      },
+      // error: (error) => console.log(error),
+    });
+  }
+
+  deleteProduct(productId: string, index: number, event: Event) {
+    event.preventDefault();
+    // Remove the product from the local array immediately
+    this.allProducts.splice(index, 1);
+    this.cartService.RemoveItemsFromCart(productId, this.user.token).subscribe({
+      next: (response: any) => {
+        console.log('Product deleted successfully');
+      },
+      error: (error: any) => {
+        console.error('Error deleting product:', error);
+      },
+    });
+  }
+
   @Input() products: any[] = [
     {
-      name: 'Sweet Kiwi Green',
+      name: 'Sweet Kiwi',
       image:
         'https://nov-freshmate.myshopify.com/cdn/shop/products/1_f4498462-b4ec-4018-9b37-04619c42eab6_270x.jpg?v=1687762285',
       price: '$16.00',
@@ -77,8 +106,8 @@ export class CartComponent {
   // to calculate the total price of all products
   calculateTotalPrice(): number {
     let totalPrice = 0;
-    for (const product of this.allProducts) {
-      totalPrice += product.price * product.quantity;
+    for (const item of this.allProducts) {
+      totalPrice += item.product.price * item.quantity;
     }
     return totalPrice;
   }

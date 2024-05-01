@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-collection-section',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './collection-section.component.html',
   styleUrl: './collection-section.component.css'
 })

@@ -46,6 +46,8 @@ export class ProductFormComponent implements OnInit {
         this.productService.GetProduct(this.productId).subscribe({
           next:(data) => {
             this.product = data;
+            console.log(data);
+            
           },
           error:(error) => {
             console.error('Error fetching product details', error);

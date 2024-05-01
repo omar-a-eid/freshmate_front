@@ -53,7 +53,7 @@
                             <div class="form-floating">
                                 <select class="form-select" formControlName="country" name="country" id="floatingSelect"
                                     aria-label="Floating label select example">
-                                    <option selected>United States</option>
+                                    <option selected>Egypt</option>
                                 </select>
                                 <label for="floatingSelect">Country/Region</label>
                             </div>
@@ -303,41 +303,58 @@
                         <!-- END FORM -->
                         <!-- END FORM -->
                         <!-- END FORM -->
+                        <!-- END FORM -->
+                        <!-- END FORM -->
                     </div>
                     <hr class="brd">
-                    <div class="col-11 col-sm-11 col-md-5 col-lg-5 col-xl-5 gray ">
+                    <div class="col-11 col-sm-11 col-md-5 col-lg-5 col-xl-5 gray">
                         <div class="row col-12">
-                            <div class="col-12 d-flex m-5 ">
-                                <img class="img-thumbnail" src="../../../assets/images/carrot.webp" width="140px"
-                                    height="70px">
-                                <div class="d-flex">
-                                    <p class="mx-4 mt-5">Orange Carrrot</p>
-                                    <p class="px-5 mt-5">$14.00</p>
+                          <div *ngIf="orders">
+                            <ng-container *ngFor="let product of orders.products; let i=index">
+                              <div class="col-12 d-flex m-5 position-relative">
+                                <img class="img-thumbnail" [src]="product.product.images[0]" width="140px" height="70px">
+                                <div class="number-badge">{{ product.quantity}}</div>
+                                <div class="d-flex justify-content-between ">
+                                  <p class="mx-4 mt-5 ">{{ product.product.title.en }}</p>
+                                  <p class="px-5 mt-5 ">$ {{ product.product.price }}</p>
                                 </div>
+                              </div>
+                            </ng-container>
+                            <div class="m-5">
+                                <div class="col-12 d-flex justify-content-between">
+                                    <p class="px-3">Shipping</p>
+                                    <p class="px-3">{{ orders.status.en }}</p>
+                                  </div>
+                                  <div class="col-12 d-flex justify-content-between">
+                                    <h5 class="px-3 fs-3"><strong>Total</strong></h5>
+                                    <div class="d-flex justify-content-end">
+                                      <small class="text-end">EGP</small>
+                                      <h5 class="px-3 fs-3"><strong>$ {{ totalPrice }}</strong></h5>
+                                    </div>
+                                  </div>
                             </div>
-                            <div class="col-12 d-flex px-5 justify-content-between">
-                                <p class="px-5">Subtotal</p>
-                                <p class="px-5 fs-5"><strong>$14.00</strong></p>
-                            </div>
-                            <div class="col-12 d-flex px-5 justify-content-between">
-                                <p class="px-5">Shipping</p>
-                                <p class="px-5">Enter shipping address</p>
-                            </div>
-                            <div class="col-12 d-flex px-5 justify-content-between">
-                                <h5 class="px-5"><strong>Total</strong></h5>
-                                <h5 class="px-5 fs-4"><small>USD</small><strong>$14.00</strong></h5>
-                            </div>
+                          </div>
                         </div>
-                    </div>
+                      </div>
                 </div>
             </div>
         </div>
         <hr class="m-0">
         <p class="m-0"><small>All rights reserved FreshMate Password : 1</small></p>
+        <div aria-live="polite" aria-atomic="true"
+                class="toast-container d-flex justify-content-center align-items-center" id="toastContainer">
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="passwordToast">
+                        <div class="toast-header bg-danger text-white">
+                            <p class="mr-auto text-center">Confirmation Message</p>
+                        </div>
+
+                    <div class="d-flex flex-row toast-body">
+                        <p>Order has been Send we will contact you on your email thank you for ordering.</p>
+                    </div>
+                </div>
+            </div>
         <!-- INSERT FOOTER HERE -->
         <!-- INSERT FOOTER HERE -->
-        {{StatusOfProduct}}
-        {{StatusOfProduct}}
         <!-- INSERT FOOTER HERE -->
         <!-- INSERT FOOTER HERE -->
     </div>

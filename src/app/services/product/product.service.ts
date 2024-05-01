@@ -2,21 +2,32 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
+  constructor(private readonly http: HttpClient) {}
 
-  constructor(private readonly http: HttpClient) { }
+  private readonly URL_DB = 'http://localhost:8000/api/products';
 
-  private readonly URL_DB = "http://localhost:8000/api/products";
+  // token:any=JSON.parse(sessionStorage.getItem("user") as string);
 
-  GetAllProducts() {
-    return this.http.get(this.URL_DB);
+  GetAllProducts(token?: string) {
+    if(token) {
+      return this.http.get(this.URL_DB, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+    } else {
+      return this.http.get(this.URL_DB);
+    }
   }
+
   GetProduct(productId: string) {
-    return this.http.get(this.URL_DB + "/" + productId);
-
+    return this.http.get(this.URL_DB + '/' + productId);
   }
+ 
   addProduct(product: any){
     return this.http.post<any>(this.URL_DB, product);
   }
@@ -33,12 +44,14 @@ export class ProductService {
     return this.http.delete<any>(url);
   }
 
-  // addWishlist(userId: string, productsId: string[]) {
-  //   return this.http.post(this.URL_DB + "/" + userId, productsId);
+
+  // GetRandomProducts(count: number): Observable<any[]> {
+  //   // Assuming you have an endpoint in your backend API to fetch random products
+  //   const url = `http://your-api-url/random-products?count=${count}`;
+
+  //   // Making a GET request to the backend API
+  //   return this.http.get<any[]>("http://localhost:8000/api/products");
   // }
 
-  // updateWishlist(userId: string, productId: string) {
-  //   return this.http.put(this.URL_DB + "/" + userId, productId);
-  // }
 
 }

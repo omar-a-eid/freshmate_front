@@ -3,7 +3,7 @@
   margin-bottom: 1em;
 }
 .item_contaienr p {
-  max-width: 200px;
+  width: 200px;
   margin: 0 auto;
   margin-top: 10px;
   font-size: 0.8rem;
@@ -13,12 +13,14 @@
 @media only screen and (min-width: 767px)  {
   .row_container {
     flex-direction: row!important;
+    align-items: center;
   }
   .column_container {
     flex-direction: column;
   }
   .item_contaienr {
-    margin: auto 10px;
+    margin: 1.5em 10px;
+    margin-bottom: 0.2em;
     display: flex;
     width: 100%;
   }
@@ -30,8 +32,10 @@
     width: 100%;
   }
   .item_contaienr p {
-    max-width: 150px;
+    width: 150px;
     text-align: left!important;
   }
-
+  .left_items {
+    justify-content: flex-end;
+  }
 }

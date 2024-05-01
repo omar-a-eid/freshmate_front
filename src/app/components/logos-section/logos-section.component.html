@@ -1,9 +1,17 @@
-<div class="container">
-  <div class="d-flex justify-content-between">
-    @for (logoImg of logos; track $index) {
-    <div>
-      <img src="{{ logoImg }}" alt="" />
-    </div>
-    }
+<div class="mt-5 mb-5 border_top">
+  <div class="container m-5">
+    <ngx-slick-carousel
+      class="carousel"
+      #slickModal="slick-carousel"
+      [config]="slideConfig"
+    >
+      @for (logoImg of logos; track $index) {
+      <div class="slide" ngxSlickItem>
+        <div class="img">
+          <img src="{{ logoImg }}" />
+        </div>
+      </div>
+      }
+    </ngx-slick-carousel>
   </div>
 </div>

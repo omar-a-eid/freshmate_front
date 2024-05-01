@@ -1,0 +1,70 @@
+.btn_container {
+  width: fit-content;
+  position: absolute;
+  top: -25px;
+  right: -30px;
+}
+.btn_container button{
+  color: white;
+}
+
+.registration_container {
+  display: flex;
+  background: #e4e7ea;
+  border-radius: 3px;
+  font-size: 12px;
+  max-width: 230px;
+  padding: 10px;
+}
+.registration_container div {
+  cursor: pointer;
+  padding: 10px 5px 8px;
+  font-weight: 700;
+  width: 50%;
+  text-align: center;
+  z-index: 10;
+}
+.login_switcher {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 5px 5px 8px #0000001a;
+  height: 39px;
+  transition: transform .3s cubic-bezier(.25,.46,.45,.94);
+  width: 105px !important;
+}
+.toggle {
+  transform: translate(100%);
+}
+#registration {
+  margin: 40px;
+}
+.reg_title {
+  margin: 3em 0;
+  font-weight: 600;
+}
+input:not([type="submit"]) {
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 400;
+  height: 50px;
+  margin-bottom: 0;
+  padding: 0 20px;
+  width: 100%;
+}
+input:not([type="submit"]):hover {
+  border: 1px solid #52271f;
+}
+
+.reg_btns {
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  letter-spacing: 2px;
+  width: 100%;
+  transition: background .35s ease;
+}
+.reg_btns:hover {
+  background-color: #52271f;
+}

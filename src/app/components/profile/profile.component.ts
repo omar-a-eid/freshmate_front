@@ -1,16 +1,33 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RegistrationService } from '../../services/registration/registration.service';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { PathbarComponent } from '../pathbar/pathbar.component';
+import { FooterComponent } from '../footer/footer.component';
+import { OrderService } from '../../services/order/order.service';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,HttpClientModule,NavbarComponent,PathbarComponent,FooterComponent],
+  providers: [RegistrationService,OrderService],
   templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+  constructor(private registrationService: RegistrationService, private orderservice: OrderService) { }
+
+
 
   editform: boolean = false;
+  userSession: any
+  user:any
+  orders:any
+  order:any
+  userId:any
+  editedUser: any;
 
   EditProfile = new FormGroup({
     username: new FormControl("", [Validators.minLength(3), Validators.maxLength(50), Validators.required]),
@@ -22,23 +39,74 @@ export class ProfileComponent {
 
   getdata() {
 
-    console.log(this.EditProfile.controls.username.valid);
-    console.log(this.EditProfile.controls.email.valid);
-    console.log(this.EditProfile.controls.password.valid);
-    console.log(this.EditProfile.controls.gender.valid);
+    // console.log(this.EditProfile.controls.username.valid);
+    // console.log(this.EditProfile.controls.email.valid);
+    // console.log(this.EditProfile.controls.password.valid);
+    // console.log(this.EditProfile.controls.gender.valid);
     let username = this.EditProfile.controls.username.value;
     let email = this.EditProfile.controls.email.value;
     let password = this.EditProfile.controls.password.value;
     let gender = this.EditProfile.controls.gender.value;
 
-    console.log(`username: ${username} , email: ${email} , password: ${password}, gender: ${gender}`);
+    // console.log(`username: ${username} , email: ${email} , password: ${password}, gender: ${gender}`);
 
 
     // data as an object
-    console.log(this.EditProfile.value);
- 
+    this.editedUser = {
+      username: username,
+      email: email,
+      password: password,
+      gender: gender
+  };
+
+    // console.log(this.editedUser);
+  }
+  
+  update() {    
+      
+      if(this.editedUser) {
+      this.registrationService.update(this.user.userId, this.user.token,this.editedUser).subscribe({//here we should add the userid
+        error: error => console.log(error),
+        next: (data:any) => {
+          // console.log(this.editedUser);
+          // console.log(data);
+          alert("profile updated Successfully")
+        }
+      });
+  }
+  }
+  
+
+  
+  ngOnInit(): void {
+    this.userSession = sessionStorage.getItem("user");
+    this.user = JSON.parse(this.userSession);
+    console.log(this.user.token);
+    
+
+    this.orderservice.GetAllOrdersForUser(this.user.userId, this.user.token).subscribe({
+      next: (data: any) => {
+        this.orders = data;
+      
+        console.log(data);
+        
+        // const singledata = data[];
+        // console.log(data.length);
+        // console.log(data[0].date); //date of the order
+        // console.log(data[0].totalPrice);// totalprice of the order
+        // console.log(data[0].products.length);//2 products
+
+        //#region handle backend
+
+        //#endregion
+
+      },
+      error: (err) => { "there is an eror fetching data from mongodb" }
+      // complete:()=>{}
+    })
 
   }
+
 
   get Username(): FormControl {
     return this.EditProfile.get("username") as FormControl;
@@ -60,7 +128,11 @@ export class ProfileComponent {
  
 
 
+  signout(){
+    this.registrationService.signout()
+    // this.redirectTo('/another-page');
 
+  }
 
 
 }
