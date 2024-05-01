@@ -1,5 +1,5 @@
 .collection_container {
-  background-image: url("/assets/collection_bg.webp");
+  background-image: url("../../../assets/collection_bg.webp");
   min-height: 500px;
   background-attachment: fixed;
   background-position: center;
@@ -46,7 +46,7 @@
   border-color: white ;
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (max-width: 1200px) {
   .collection {
     padding: 100px 0;
   }

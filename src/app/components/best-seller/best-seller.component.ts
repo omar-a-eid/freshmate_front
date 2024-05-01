@@ -14,7 +14,7 @@ import { ProductComponent } from '../product/product.component';
 })
 export class BestSellerComponent implements OnInit {
   products:any = [];
-  slideConfig = { "infinite": true, 'slidesToShow': 4,'responsive': [
+  slideConfig = { "infinite": true, "dots": true, 'slidesToShow': 4, "slidesToScroll": 2,'responsive': [
     {
       'breakpoint': 767,
       'settings': {
@@ -31,14 +31,14 @@ export class BestSellerComponent implements OnInit {
     }]};
   constructor(private ProductService: ProductService ) {}
   ngOnInit(): void {
-    // this.ProductService.GetAllProducts().subscribe({
-    //   next: (data:any) => {
-    //     for (let index = 0; index < 5; index++) {
-    //     this.products = data;
-    //     }
-    //   },
-    //   error: (error) => console.log(error)
-    // })
+    this.ProductService.GetAllProducts().subscribe({
+      next: (data:any) => {
+        for (let index = 0; index < 6; index++) {
+        this.products.push(data[index]);
+        }
+      },
+      error: (error) => console.log(error)
+    })
   }
 
 }

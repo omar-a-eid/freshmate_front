@@ -1,11 +1,12 @@
 <div class="container text-center spacing">
-  <h2 class="header_title">Our Delicious Offer</h2>
-  <p class="header_paragraph">
+  <h2 class="header_title" i18n>Our Delicious Offer</h2>
+  <p class="header_paragraph" i18n>
     Shop our best selling collections for a range of styles loved by you
   </p>
 
   <ngx-slick-carousel
     class="carousel"
+    [class.ltr]="ltr"
     #slickModal="slick-carousel"
     [config]="slideConfig"
   >
@@ -19,7 +20,7 @@
         </a>
       </div>
       <div class="home_item_text">
-        <p>{{ item.title }}</p>
+        <p i18n>{{ item.title[lang] }}</p>
       </div>
     </div>
 

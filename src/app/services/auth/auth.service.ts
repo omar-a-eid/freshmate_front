@@ -19,7 +19,9 @@ export class AuthService {
   }
 
   isAdmin() {
-    if(this.user.userId == "661f932c4c1b91f4ec7cce36") return true
+    if(this.user) {
+      if(this.user.userId == "661f932c4c1b91f4ec7cce36") return true
+    }
     return false;
   }
 }

@@ -7,8 +7,8 @@
       "projectType": "application",
       "schematics": {},
       "i18n": {
-        "sourceLocale": "en-US",
-        "locales": { "ar-EG": "src/locale/messages.ar.xlf" }
+        "sourceLocale": "en",
+        "locales": { "ar": "src/locale/messages.ar.json" }
       },
       "root": "",
       "sourceRoot": "src",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "localize": ["en-US"],
+            "localize": ["en"],
             "outputPath": "dist/freshmate_front",
             "index": "src/index.html",
             "browser": "src/main.ts",

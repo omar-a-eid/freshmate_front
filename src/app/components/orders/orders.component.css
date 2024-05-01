@@ -1,0 +1,17 @@
+.chart_container {
+  margin: 4em auto;
+}
+.spacing {
+  margin: 5em auto;
+}
+.reg_btns {
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  letter-spacing: 2px;
+  width: 100%;
+  transition: background .35s ease;
+}
+.reg_btns:hover {
+  background-color: #52271f;
+}

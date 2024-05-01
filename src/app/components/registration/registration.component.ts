@@ -44,7 +44,11 @@ export class RegistrationComponent {
         },
         complete: () => {
           this.closeButton.nativeElement.click();
-          this.router.navigate(['/products']);
+          if(this.loginData.value.email == "admin@gmail.com") {
+            this.router.navigate(['/dashboard']);
+          } else {
+            this.router.navigate(['/products']);
+          }
         }
       })
     }

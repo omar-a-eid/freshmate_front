@@ -10,12 +10,12 @@ export class OrderService {
 
   private URL_DB = "http://localhost:8000/api/orders/";
 
-  // GetAllOrders(token: string){
-  //   return this.http.get(this.URL_DB + "admin" , {
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`,
-  //     }});
-  // }
+  GetAllOrders(token: string){
+    return this.http.get(this.URL_DB + "admin" , {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }});
+  }
 
   GetAllOrdersForUser(userId:number,token: string){
     return this.http.get(this.URL_DB +"user/" + userId , {
@@ -24,7 +24,12 @@ export class OrderService {
       }});
   }
 
-
+  UpdateOrder(orderId:string, status:any, token:string) {
+    return this.http.put(this.URL_DB + orderId, status,{
+      headers: {
+            'Authorization': `Bearer ${token}`,
+          }});
+  }
   
 
 
