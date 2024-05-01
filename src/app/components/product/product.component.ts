@@ -5,10 +5,8 @@ import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
-import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
-import { WishlistComponent } from '../wishlist/wishlist.component';
 import { WishlistService } from '../../services/wishlist/wishlist.service';
-import { Location } from '@angular/common';
+import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 
 @Component({
   selector: 'app-product',
@@ -100,14 +98,16 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem('user');
     this.user = JSON.parse(this.userSession);
-    this.productService.GetProduct(this.productId).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.product = data;
-        console.log(this.product);
-      },
-      error: (error: any) => console.log(error),
-    });
+    if(this.productId){
+      this.productService.GetProduct(this.productId).subscribe({
+        next: (data: any) => {
+          console.log(data);
+          this.product = data;
+          console.log(this.product);
+        },
+        error: (error: any) => console.log(error),
+      });
+    }
 
     if (this.product && this.product.images && this.product.images.length > 0) {
       this.currentImage = this.product.images[0];
