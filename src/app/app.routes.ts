@@ -7,18 +7,21 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { RegistrationComponent } from './components/registration/registration.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ProductsPageComponent } from './components/products-page/products-page.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ContactUSComponent } from './components/contact-us/contact-us.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'wishlist', component: WishlistComponent },
-  { path: 'aboutus', component: AboutUsComponent },
+    {path: "", component: HomeComponent},
+    {path: "wishlist", component: WishlistComponent},
+    {path: "aboutus", component: AboutUsComponent},
+    {path: "product/:id", component: ProductDetailsComponent},
+    {path: "faq", component: FaqComponent},
+    {path: 'cart', component: CartComponent},
+    {path: 'login', component: RegistrationComponent},
+    {path: 'profile', component: ProfileComponent},
+    {path: 'checkout', component: CheckoutComponent},
+    {path: 'contactus', component: ContactUSComponent},
+    {path: '**', component: NotFoundComponent},
 
-  { path: 'products', component: ProductsPageComponent },
-
-  { path: 'product/:id', component: ProductDetailsComponent },
-  { path: 'faq', component: FaqComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'login', component: RegistrationComponent },
-  { path: '**', component: NotFoundComponent },
-];
+   ];

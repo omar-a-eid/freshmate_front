@@ -32,7 +32,7 @@
             <div class="d-flex mt-4 ">
                 <button class="btn btn1" (click)="editform =! editform" style="background-color: #E7E8EB;"><strong>Edit
                         Profile</strong></button>
-                <button class="btn btn1 mx-2" style="background-color: #E7E8EB;"><strong>LOG OUT</strong></button>
+                <button (click)="signout()" class="btn btn1 mx-2" style="background-color: #E7E8EB;"><strong>LOG OUT</strong></button>
             </div>
 
             <!-- FORM -->
@@ -115,7 +115,6 @@
                     <p>No history of orders found.</p>
                 </ng-container>
                 <!-- problem maybe -->
-                <!-- <p class="text-center fs-4">you have {{ orders.length }} orders in your history</p> -->
                 <ng-container *ngFor="let order of orders; let i = index">
                     <div *ngIf="order" class=" d-flex justify-content-evenly">
                         <table class="table table-bordered">

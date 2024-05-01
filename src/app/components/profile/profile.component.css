@@ -1,0 +1,12 @@
+.test {
+    background-color: slategray !important;
+}
+
+.btn1:hover {
+    background-color: black !important;
+    color: white !important;
+}
+
+.btn2 {
+    border-radius: 2px !important;
+}

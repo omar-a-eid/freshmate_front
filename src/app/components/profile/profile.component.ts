@@ -63,6 +63,7 @@ export class ProfileComponent {
   }
   
   update() {    
+      
       if(this.editedUser) {
       this.registrationService.update(this.user.userId, this.user.token,this.editedUser).subscribe({//here we should add the userid
         error: error => console.log(error),
@@ -75,10 +76,13 @@ export class ProfileComponent {
   }
   }
   
+
   
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem("user");
     this.user = JSON.parse(this.userSession);
+    console.log(this.user.token);
+    
 
     this.orderservice.GetAllOrdersForUser(this.user.userId, this.user.token).subscribe({
       next: (data: any) => {
@@ -124,7 +128,11 @@ export class ProfileComponent {
  
 
 
+  signout(){
+    this.registrationService.signout()
+    // this.redirectTo('/another-page');
 
+  }
 
 
 }

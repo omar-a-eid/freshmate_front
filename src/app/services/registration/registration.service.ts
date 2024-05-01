@@ -19,4 +19,10 @@ export class RegistrationService {
   signout() {
     sessionStorage.removeItem("user");
   }
+  update(userId: string, token: string, editedUser:any) {//userid    token   editeduser 
+    return this.http.put(this.URL_DB +"/"+ userId, editedUser,{
+      headers: {
+            'Authorization': `Bearer ${token}`,
+          }});
+  }
 }

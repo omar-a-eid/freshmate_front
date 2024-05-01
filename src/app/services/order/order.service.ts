@@ -18,11 +18,12 @@ export class OrderService {
   // }
 
   GetAllOrdersForUser(userId:number,token: string){
-    return this.http.get(this.URL_DB +"/user/" + userId , {
+    return this.http.get(this.URL_DB +"user/" + userId , {
   headers: {
         'Authorization': `Bearer ${token}`,
       }});
   }
+
 
   
 
