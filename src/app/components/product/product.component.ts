@@ -48,7 +48,7 @@ export class ProductComponent implements OnInit {
   changeImage(imageUrl: string): void {
     this.currentImage = imageUrl;
   }
-  
+
   resetImage(): void {
     if (this.product && this.product.images && this.product.images.length > 0) {
       this.currentImage = this.product.images[0];
@@ -62,8 +62,15 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  imagesOnClick() {
+    //appear a model that contains the product details
+  }
+  productOnclick() {
+    //move the product details page
+  }
+
   showToast() {
-    const passwordToast = document.getElementById('passwordToast');
+    const passwordToast = document.getElementById('toast-product');
     if (!passwordToast) return;
 
     const toastBody = passwordToast.querySelector('.toast-body');
@@ -115,19 +122,17 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(productId: string) {
-    if (!this.user || !this.user.token) {
-      console.error('User token is missing.');
-      return;
-    }
-
-    this.cartService.AddItemsToCart(productId, this.user.token).subscribe(
-      () => {
+    this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
+      next: () => {
         console.log('Product added to cart successfully');
       },
-      (error) => {
+      error: (error) => {
         console.error('Error adding product to cart:', error);
-      }
-    );
+      },
+      complete: () => {
+        this.router.navigate(['/cart']);
+      },
+    });
   }
 
   addToWishlist(productid: string) {
