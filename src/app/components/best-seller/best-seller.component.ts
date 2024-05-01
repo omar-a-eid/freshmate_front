@@ -31,14 +31,14 @@ export class BestSellerComponent implements OnInit {
     }]};
   constructor(private ProductService: ProductService ) {}
   ngOnInit(): void {
-    this.ProductService.GetAllProducts().subscribe({
-      next: (data:any) => {
-        for (let index = 0; index < 5; index++) {
-        this.products = data;
-        }
-      },
-      error: (error) => console.log(error)
-    })
+    // this.ProductService.GetAllProducts().subscribe({
+    //   next: (data:any) => {
+    //     for (let index = 0; index < 5; index++) {
+    //     this.products = data;
+    //     }
+    //   },
+    //   error: (error) => console.log(error)
+    // })
   }
 
 }

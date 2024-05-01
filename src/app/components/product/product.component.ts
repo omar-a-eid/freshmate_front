@@ -7,8 +7,6 @@ import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 
-
-
 @Component({
   selector: 'app-product',
   standalone: true,
@@ -21,21 +19,11 @@ export class ProductComponent implements OnInit {
   @Input() product: any;
   user: any;
   userSession: any;
+  productId: any;
   toaster = inject(ToastrService);
 
   currentImage: string = '../../assets/images/first.png';
   isHeartActive: boolean = false;
-
-  addToCart(productId: string) {
-    this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
-      next: (response: any) => {
-        console.log('Product added to cart successfully');
-      },
-      error: (error: any) => {
-        console.error('Error adding product to cart:', error);
-      },
-    });
-  }
 
   changeImage(imageName: string) {
     this.currentImage = '../../assets/images/' + imageName;
@@ -105,8 +93,6 @@ export class ProductComponent implements OnInit {
   //   throw new Error('Method not implemented.');
   // }
 
-  productId: any;
-
   constructor(
     private productService: ProductService,
     private router: Router,
@@ -118,12 +104,32 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userSession = sessionStorage.getItem('user');
+    this.user = JSON.parse(this.userSession);
     this.productService.GetProduct(this.productId).subscribe({
       next: (data: any) => {
         console.log(data);
         this.product = data;
+        console.log(this.product);
       },
       error: (error: any) => console.log(error),
     });
+  }
+
+  // product.component.ts
+  addToCart(productId: string) {
+    if (!this.user || !this.user.token) {
+      console.error('User token is missing.');
+      return;
+    }
+
+    this.cartService.AddItemsToCart(productId, this.user.token).subscribe(
+      () => {
+        console.log('Product added to cart successfully');
+      },
+      (error) => {
+        console.error('Error adding product to cart:', error);
+      }
+    );
   }
 }
