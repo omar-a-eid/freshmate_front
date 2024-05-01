@@ -19,7 +19,7 @@
                 type="text"
                 class="form-control"
                 id="productTitle"
-                formControlName="title.en"
+                formControlName="titleEn"
               />
               <div class="text-danger">English title is required.</div>
             </div>
@@ -30,7 +30,7 @@
                 type="text"
                 class="form-control"
                 id="productTitleArabic"
-                formControlName="title.ar"
+                formControlName="titleAr"
               />
               <div class="text-danger">Arabic title is required.</div>
             </div>
@@ -40,7 +40,7 @@
               <textarea
                 class="form-control"
                 id="productDesc"
-                formControlName="desc.en"
+                formControlName="descEn"
               ></textarea>
               <div class="text-danger">English description is required.</div>
             </div>
@@ -52,7 +52,7 @@
               <textarea
                 class="form-control"
                 id="productDescArabic"
-                formControlName="desc.ar"
+                formControlName="descAr"
               ></textarea>
               <div class="text-danger">Arabic description is required.</div>
             </div>
@@ -94,6 +94,17 @@
                 multiple
               />
               <div class="text-danger">Image is required.</div>
+
+              @for (image of productForm.value.oldImages; track $index) {
+              <div>
+                <img
+                  src="http://localhost:8000/{{ image }}"
+                  alt=""
+                  width="100px"
+                  height="100px"
+                />
+              </div>
+              }
             </div>
             <button type="submit" class="btn btn-dark">
               {{ isEditMode ? "Update Product" : "Add Product" }}
