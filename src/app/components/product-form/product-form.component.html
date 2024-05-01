@@ -82,7 +82,6 @@
                 Quantity is required and should be a positive number.
               </div>
             </div>
-
             <div class="form-group">
               <label for="productImage">Product Image:</label>
               <input
@@ -94,14 +93,23 @@
                 multiple
               />
               <div class="text-danger">Image is required.</div>
+            </div>
 
+            <div
+              class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5"
+            >
               @for (image of productForm.value.oldImages; track $index) {
-              <div>
+              <div class="col mb-3 image_container">
+                <div
+                  class="btn_container bg-danger"
+                  (click)="deleteImage(image)"
+                >
+                  X
+                </div>
                 <img
                   src="http://localhost:8000/{{ image }}"
                   alt=""
-                  width="100px"
-                  height="100px"
+                  width="100%"
                 />
               </div>
               }
