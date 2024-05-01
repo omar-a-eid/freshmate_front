@@ -46,16 +46,4 @@ export class CartService {
     });
     return this.http.delete(url, { headers });
   }
-
-  // updateProductQuantity(
-  //   productId: string,
-  //   quantity: number,
-  //   token: string
-  // ): Observable<any> {
-  //   const url = `${this.URL_DB}/${productId}`;
-  //   const headers = new HttpHeaders({
-  //     Authorization: `Bearer ${token}`,
-  //   });
-  //   return this.http.put(url, { quantity }, { headers });
-  // }
 }
