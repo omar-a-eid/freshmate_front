@@ -11,6 +11,7 @@ export class WishlistService {
   private readonly URL_DB = "http://localhost:8000/api/wishlist";
 
   token:any=JSON.parse(sessionStorage.getItem("user") as string);
+  private wishlist: any[] = [];
 
   GetWishlist(token: string) {
     return this.http.get(this.URL_DB, {
@@ -36,6 +37,13 @@ export class WishlistService {
       }
   
     });
+  }
+
+  getNumberOfProducts(): number {
+    return this.wishlist.length;
+  }
+  updateWishlist(newWishlist: any[]): void {
+    this.wishlist = newWishlist;
   }
 
 }

@@ -1,10 +1,9 @@
 <div class="container">
   <div class="card">
     <div class="images-buttons">
-      <div class="icons">
-        <ng-container
-          *ngIf="getCurrentUrl() !== '/wishlist'; else wishlistActions"
-        >
+      <div class="icons" *ngIf="!isAdmin">
+       
+        <ng-container *ngIf="getCurrentUrl() !== '/wishlist'; else wishlistActions">
           <p (click)="addToWishlist(product._id)">
             <i
               [ngClass]="{
@@ -16,16 +15,29 @@
             ></i>
           </p>
         </ng-container>
-
+        
         <ng-template #wishlistActions>
           <p (click)="deleteProductFromWishlist(product._id)">
             <i class="fa-solid fa-trash fa-sm"></i>
           </p>
         </ng-template>
+        
 
         <p>
           <i class="fa-regular fa-images fa-2xs"></i>
         </p>
+      </div>
+      <div class="icons" *ngIf="isAdmin">
+        <p>
+          <i class="fa-solid fa-pen-to-square"></i>
+        </p>
+  
+      <p>
+        <i class="fa-solid fa-trash"></i>
+
+       
+      </p>
+
       </div>
       <img
         *ngIf="product && product.images && product.images.length > 0"

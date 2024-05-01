@@ -4,6 +4,8 @@ import { FooterComponent } from '../footer/footer.component';
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+
 import {
   Router,
   NavigationEnd,
@@ -42,12 +44,30 @@ import { CartService } from '../../services/cart/cart.service';
     CommonModule,
     RouterModule,
     GalleryComponent,
+    SlickCarouselModule
   ],
   templateUrl: './product-details.component.html',
   providers: [ProductService, WishlistService, CartService],
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent implements OnInit {
+
+  products:any = [];
+  slideConfig = { "infinite": true, "dots": true, 'slidesToShow': 4, "slidesToScroll": 2,'responsive': [
+    {
+      'breakpoint': 767,
+      'settings': {
+        'slidesToShow': 2,
+        "slidesToScroll": 2,
+      }
+    }, 
+    {
+      'breakpoint': 1200,
+      'settings': {
+        'slidesToShow': 3,
+        "slidesToScroll": 2,
+      }
+    }]};
   constructor(
     myRoute: ActivatedRoute,
     private productService: ProductService,
@@ -142,6 +162,15 @@ export class ProductDetailsComponent implements OnInit {
       },
       error: (error: any) => console.log(error),
     });
+
+    this.productService.GetAllProducts().subscribe({
+      next: (data:any) => {
+        for (let index = 0; index < 6; index++) {
+        this.products.push(data[index]);
+        }
+      },
+      error: (error) => console.log(error)
+    })
   }
 
   addToWishlist(productid: string) {
