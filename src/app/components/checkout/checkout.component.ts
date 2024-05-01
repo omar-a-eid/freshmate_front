@@ -5,42 +5,72 @@ import { FooterComponent } from '../footer/footer.component';
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { OrderService } from '../../services/order/order.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FooterComponent,PathbarComponent,NavbarComponent],
-  providers:[OrderService],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, FooterComponent, PathbarComponent, NavbarComponent],
+  providers: [OrderService],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
-export class CheckoutComponent implements OnInit{
-  // userid:Number | undefined;
-  StatusOfProduct:any
-  productimage:any
-  orders:any
-  constructor(private order:OrderService){}
+export class CheckoutComponent implements OnInit {
+
+  userSession: any
+  StatusOfProduct: any
+  productPrice: any
+  orders: any
+  user: any
+  sum: any
+  collect: any
+  totalPrice: any;
+  productQuantity: any;
+  constructor(private orderservice: OrderService) { }
   ngOnInit(): void {
-    // this.order.GetAllOrders().subscribe({
-    //   next:(data)=>{
-    //     this.orders = data;
-    //     // const singledata = data[];
-    //     this.StatusOfProduct = this.orders[0]["status"].en;
-    //     console.log(this.StatusOfProduct);
-    //   },
-    //   error:(err)=>{"there is an eror fetching data from mongodb"} 
-    //   // complete:()=>{}
-    // })
-    // this.order.GetAllOrdersForUser(this.userid).subscribe({
-    //   next:(data)=>{
-    //     // this.orders = data;
-    //     console.log(data);
-        
-    //   },
-    //   error:(err)=>{"there is an eror fetching data from mongodb"} 
-    //   // complete:()=>{}
-    // })
-    // this.order.GetAllOrdersForUser()
+    this.userSession = sessionStorage.getItem("user");
+    this.user = JSON.parse(this.userSession);
+
+    this.orderservice.GetAllOrdersForUser(this.user.userId, this.user.token).subscribe({
+      next: (data: any) => {
+        if (data.length > 0) {
+          this.orders = data[0]; // Assuming the first order in the array
+        }
+        // const singledata = data[];
+        console.log(data);
+        // console.log(data);
+
+        //#region handle backend
+
+        // this.productImage = data[0].products[0].product.images[0];//image
+        // console.log(this.productPrice = data[0].products[0].product.price);
+        // this.productTitle = data[0].products[0].product.title.en;//title
+        // this.totalPrice = data[0].totalPrice;
+        // this.totalPrice = data[0].products[1].quantity;
+        // this.productStatus = data[0].status.en;
+
+        // console.log(data[0].products[1]);
+
+        // this.productPrice = data[0].products[0].product.price;
+        // this.productQuantity = data[0].products[0].quantity;
+        // this.totalPrice = (this.productPrice * this.productQuantity);
+        //#endregion
+        // to get the total price of an order
+        this.totalPrice = 0
+        for (let i = 0; i < this.orders.products.length; i++) {
+
+          this.productPrice = this.orders.products[i].product.price;
+          this.productQuantity = this.orders.products[i].quantity;
+          this.totalPrice += (this.productPrice * this.productQuantity);
+
+        }
+
+        console.log(this.totalPrice);
+      },
+      error: (err) => { "there is an eror fetching data from mongodb" }
+      // complete:()=>{}
+    })
+
   }
 
   logout: boolean = false
@@ -59,7 +89,7 @@ export class CheckoutComponent implements OnInit{
     cardnumber: new FormControl("", [Validators.pattern("[0-9 ]{16}"), Validators.required]),
     expiredate: new FormControl("", [Validators.required]),
     securitycode: new FormControl("", [Validators.required]),
-    nameoncard: new FormControl("", [Validators.pattern("[a-zA-Z][a-zA-Z ]+"),Validators.minLength(5),Validators.maxLength(15), Validators.required]),
+    nameoncard: new FormControl("", [Validators.pattern("[a-zA-Z][a-zA-Z ]+"), Validators.minLength(5), Validators.maxLength(15), Validators.required]),
     billaddress: new FormControl("", [Validators.required]),
   })
 
@@ -94,15 +124,15 @@ export class CheckoutComponent implements OnInit{
     let securitycode = this.Checkout.controls.securitycode.value;
     let nameoncard = this.Checkout.controls.nameoncard.value;
     let billaddress = this.Checkout.controls.billaddress.value;
-  
+
 
     console.log(`country: ${country} , firstname: ${firstname}, lastname: ${lastname}, address: ${address}, appartment: ${appartment}, city: ${city}, state: ${state}, zipcode: ${zipcode}, cardnumber: ${cardnumber}, expiredate: ${expiredate}, securitycode: ${securitycode}, nameoncard: ${nameoncard}, billaddress: ${billaddress},`);
 
     // data as an object
     console.log(this.Checkout.value);
 
-    alert("Order has been Send we will contact you on your email thank you for ordering.")
-
+    // alert("Order has been Send we will contact you on your email thank you for ordering.")
+    this.showToast();
   }
 
   get country(): FormControl {
@@ -153,10 +183,41 @@ export class CheckoutComponent implements OnInit{
     return this.Checkout.get("nameoncard") as FormControl;
   }
 
-  get billaddress (): FormControl {
+  get billaddress(): FormControl {
     return this.Checkout.get("billaddress") as FormControl;
   }
 
-  
+  showToast() {
+    const passwordToast = document.getElementById('passwordToast');
+    if (!passwordToast) return;
+
+    const toastBody = passwordToast.querySelector('.toast-body');
+    if (!toastBody) return;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    passwordToast.style.display = "block";
+    passwordToast.classList.add('show');
+
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const topPosition = Math.max(20, scrollY + 20);
+
+    passwordToast.style.top = topPosition + 'px';
+
+    setTimeout(() => {
+      passwordToast.classList.remove('show');
+      passwordToast.style.display = "none";
+    }, 3000);
+
+    const closeToast = document.querySelector('[data-dismiss="toast"]');
+    if (closeToast) {
+      closeToast.addEventListener("click", () => {
+        passwordToast.style.display = "none";
+      });
+    }
+  }
+
+
+
 
 }
