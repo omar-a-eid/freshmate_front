@@ -6,30 +6,56 @@ import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
+import { WishlistComponent } from '../wishlist/wishlist.component';
+import { WishlistService } from '../../services/wishlist/wishlist.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product',
   standalone: true,
   imports: [RatingStarsComponent, CommonModule, RouterModule, HttpClientModule],
-  providers: [ProductService, CartService],
+  providers: [ProductService, CartService,WishlistService],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
 export class ProductComponent implements OnInit {
   @Input() product: any;
-  user: any;
+  @Input() productid: any;
+  user:any;
   userSession: any;
   productId: any;
   toaster = inject(ToastrService);
-
-  currentImage: string = '../../assets/images/first.png';
-  isHeartActive: boolean = false;
-
-  changeImage(imageName: string) {
-    this.currentImage = '../../assets/images/' + imageName;
-  }
   isHeartSolid: boolean = false;
   backgroundColor: string = 'white';
+  currentImage: string = '';
+  isHeartActive: boolean = false;
+  showAddToCartButton: boolean = true;
+  wishlist: any;
+
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private cartService: CartService,
+    private wishlistService: WishlistService,
+    // private location:Location
+  ) {
+    if (this.router.url === 'localhost:4200/wishlist') {
+      this.showAddToCartButton = false;
+    }
+  }
+  getCurrentUrl(): string {
+    return this.router.url;
+  }
+
+  changeImage(imageUrl: string): void {
+    this.currentImage = imageUrl;
+  }
+
+  resetImage(): void {
+    if (this.product && this.product.images && this.product.images.length > 0) {
+      this.currentImage = this.product.images[0];
+    }
+  }
 
   toggleHeartIcon() {
     this.isHeartSolid = !this.isHeartSolid;
@@ -38,18 +64,8 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  imagesOnClick() {
-    //appear a model that contains the product details
-  }
-  addToCartButton() {
-    //move the product to the cart
-  }
-  productOnclick() {
-    //move the product details page
-  }
-
   showToast() {
-    const passwordToast = document.getElementById('passwordToast');
+    const passwordToast = document.getElementById('toast-product');
     if (!passwordToast) return;
 
     const toastBody = passwordToast.querySelector('.toast-body');
@@ -81,28 +97,6 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  showAddToCartButton: boolean = true;
-
-  // constructor(private router: Router) {
-  //   if (this.router.url === 'localhost:4200/wishlist') {
-  //     this.showAddToCartButton = false;
-
-  //   }
-  // }
-  // ngOnInit(): void {
-  //   throw new Error('Method not implemented.');
-  // }
-
-  constructor(
-    private productService: ProductService,
-    private router: Router,
-    private cartService: CartService
-  ) {
-    if (this.router.url === 'localhost:4200/wishlist') {
-      this.showAddToCartButton = false;
-    }
-  }
-
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem('user');
     this.user = JSON.parse(this.userSession);
@@ -114,9 +108,12 @@ export class ProductComponent implements OnInit {
       },
       error: (error: any) => console.log(error),
     });
+
+    if (this.product && this.product.images && this.product.images.length > 0) {
+      this.currentImage = this.product.images[0];
+    }
   }
 
-  // product.component.ts
   addToCart(productId: string) {
     if (!this.user || !this.user.token) {
       console.error('User token is missing.');
@@ -131,5 +128,35 @@ export class ProductComponent implements OnInit {
         console.error('Error adding product to cart:', error);
       }
     );
+  }
+
+  addToWishlist(productid: string) {
+    this.userSession = sessionStorage.getItem("user");
+    this.user = JSON.parse(this.userSession);
+    console.log("inside", {productid:productid, user:sessionStorage.getItem("user")});
+
+    this.wishlistService.addItemToWishList(this.user.userId, [productid]).subscribe(
+      () => {
+        console.log('Product added to wishlist successfully');
+      },
+      (error: any) => {
+        console.error('Error adding product to wishlist:', error);
+      }
+    );
+
+
+  }
+  
+  deleteProductFromWishlist(productId: string): void {
+    this.wishlistService.removeItemFromWishlist([productId]).subscribe({
+      next: (response: any) => {
+        console.log('Product removed from wishlist:', response);
+        location.reload();
+        console.log("product is deleted")
+      },
+      error: (error: any) => {
+        console.error('Error removing product from wishlist:', error);
+      }
+    });
   }
 }

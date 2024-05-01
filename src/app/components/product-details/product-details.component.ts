@@ -8,6 +8,7 @@ import { Router, NavigationEnd, RouterModule, ActivatedRoute } from '@angular/ro
 import { filter } from 'rxjs/operators';
 import { HttpClientModule} from '@angular/common/http';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+// import { ProductCarouselsComponent } from "../product-carousels/product-carousels.component";
 import { RatingStarsComponent } from "../rating-stars/rating-stars.component";
 import { CommonModule } from '@angular/common'; 
 import { QuantityIncrementDecrementComponent } from "../quantity-increment-decrement/quantity-increment-decrement.component";
@@ -31,10 +32,14 @@ export class ProductDetailsComponent implements OnInit{
     this.productId = myRoute.snapshot.params["id"];
   }
 
+  @Input() productid: any;
+
   currentPath: string | undefined;
   productId:any;
   product: any;
   productData: any;
+  user:any;
+  userSession: any;
    
   items: GalleryItem[] = [];
 
@@ -43,6 +48,7 @@ export class ProductDetailsComponent implements OnInit{
 
 
   toggleHeartIcon() {
+console.log('we')
     this.isHeartSolid = !this.isHeartSolid;
     if(this.isHeartSolid){
        this.showToast();
@@ -84,10 +90,8 @@ export class ProductDetailsComponent implements OnInit{
     document.execCommand('copy');
     
   }
-  user:any;
-  userSession: any;
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.userSession = sessionStorage.getItem("user");
     this.user = JSON.parse(this.userSession);
 
@@ -113,47 +117,25 @@ export class ProductDetailsComponent implements OnInit{
     });
 
 
-  
-  
 
   }
 
-
-
-
-
-  @Input() productid: any; // Assuming you have productId as input
-
-
   addToWishlist(productid: string) {
-    // Assuming you have userId and token available
-    console.log("inside");
     this.userSession = sessionStorage.getItem("user");
     this.user = JSON.parse(this.userSession);
     console.log("inside", {productid:productid, user:sessionStorage.getItem("user")});
-
-    // Call addWishlist method to add product to wishlist
+    this.toggleHeartIcon();
     this.wishlistService.addItemToWishList(this.user.userId, [productid]).subscribe(
       () => {
         console.log('Product added to wishlist successfully');
-        // Handle success response
       },
       (error: any) => {
         console.error('Error adding product to wishlist:', error);
-        // Handle error response
       }
     );
 
 
   }
   
-
-
-
-
-
-
-
-
 
 }
