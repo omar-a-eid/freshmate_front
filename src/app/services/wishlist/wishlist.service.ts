@@ -12,15 +12,15 @@ export class WishlistService {
 
   token:any=JSON.parse(sessionStorage.getItem("user") as string);
 
-  GetWishlist(userId: string, token: string) {
-    return this.http.get(this.URL_DB + "/" + userId , {
+  GetWishlist(token: string) {
+    return this.http.get(this.URL_DB, {
       headers: {
         'Authorization': `Bearer ${token}`,
-      }});
+      }
+    });
   }
-
+  
   addItemToWishList(userId: string, productId: string[]) {
-    console.log(this.token);
     return this.http.post(this.URL_DB + "/" + productId, userId,{
       headers: {
         'Authorization': `Bearer ${this.token.token}`,
@@ -29,7 +29,13 @@ export class WishlistService {
     });
   }
 
-  removeItemFromWishlist(userId: string, productId: string) {
-    return this.http.put(this.URL_DB + "/" + productId, userId);
+  removeItemFromWishlist(productId: string[]) {
+    return this.http.delete(this.URL_DB + "/" + productId, {
+      headers: {
+        'Authorization': `Bearer ${this.token.token}`,
+      }
+  
+    });
   }
+
 }

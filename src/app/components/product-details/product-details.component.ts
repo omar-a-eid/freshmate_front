@@ -14,9 +14,9 @@ import { filter } from 'rxjs/operators';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 // import { ProductCarouselsComponent } from "../product-carousels/product-carousels.component";
-import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
-import { CommonModule } from '@angular/common';
-import { QuantityIncrementDecrementComponent } from '../quantity-increment-decrement/quantity-increment-decrement.component';
+import { RatingStarsComponent } from "../rating-stars/rating-stars.component";
+import { CommonModule } from '@angular/common'; 
+import { QuantityIncrementDecrementComponent } from "../quantity-increment-decrement/quantity-increment-decrement.component";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ProductService } from '../../services/product/product.service';
 import { GalleryItem } from '@daelmaak/ngx-gallery';
@@ -26,22 +26,7 @@ import { WishlistService } from '../../services/wishlist/wishlist.service';
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [
-    MDBBootstrapModule,
-    NavbarComponent,
-    ProductComponent,
-    FooterComponent,
-    PathbarComponent,
-    RatingStarsComponent,
-    QuantityIncrementDecrementComponent,
-    NgIf,
-    NgFor,
-    HttpClientModule,
-    NgxGalleryModule,
-    CommonModule,
-    RouterModule,
-    GalleryComponent,
-  ],
+  imports: [MDBBootstrapModule,NavbarComponent, ProductComponent, FooterComponent, PathbarComponent,RatingStarsComponent,QuantityIncrementDecrementComponent,NgIf,NgFor,HttpClientModule, NgxGalleryModule,CommonModule, RouterModule,GalleryComponent ],
   templateUrl: './product-details.component.html',
   providers: [ProductService, WishlistService],
   styleUrl: './product-details.component.css',
@@ -56,17 +41,22 @@ export class ProductDetailsComponent implements OnInit {
     this.productId = myRoute.snapshot.params['id'];
   }
 
+  @Input() productid: any;
+
   currentPath: string | undefined;
   productId: any;
   product: any;
   productData: any;
-
+  user:any;
+  userSession: any;
+   
   items: GalleryItem[] = [];
 
   isHeartSolid: boolean = false;
   isHeartActive: boolean = false;
 
   toggleHeartIcon() {
+console.log('we')
     this.isHeartSolid = !this.isHeartSolid;
     if (this.isHeartSolid) {
       this.showToast();
@@ -110,10 +100,10 @@ export class ProductDetailsComponent implements OnInit {
     inputElement.select();
     document.execCommand('copy');
   }
-  user: any;
-  userSession: any;
+
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem('user');
+    this.userSession = sessionStorage.getItem("user");
     this.user = JSON.parse(this.userSession);
 
     this.productService.GetProduct(this.productId).subscribe({
@@ -140,11 +130,31 @@ export class ProductDetailsComponent implements OnInit {
 
   @Input() productid: any; // Assuming you have productId as input
 
+
+
+  }
+
   addToWishlist(productid: string) {
     // Assuming you have userId and token available
     console.log('inside');
     this.userSession = sessionStorage.getItem('user');
+    this.userSession = sessionStorage.getItem("user");
     this.user = JSON.parse(this.userSession);
+    console.log("inside", {productid:productid, user:sessionStorage.getItem("user")});
+    this.toggleHeartIcon();
+    this.wishlistService.addItemToWishList(this.user.userId, [productid]).subscribe(
+      () => {
+        console.log('Product added to wishlist successfully');
+      },
+      (error: any) => {
+        console.error('Error adding product to wishlist:', error);
+      }
+    );
+
+
+  }
+  
+
     console.log('inside', {
       productid: productid,
       user: sessionStorage.getItem('user'),

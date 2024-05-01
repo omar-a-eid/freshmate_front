@@ -1,9 +1,14 @@
 <app-pathbar></app-pathbar>
 <div class="d-flex flex-row products-added-to-cart flex-wrap">
-  @for (item of wishlist; track $index) {
-  <app-product
-    class="col-lg-3 col-md-6 col-sm-12"
-    [product]="item"
-  ></app-product>
-  }
+  <ng-container *ngIf="wishlist && wishlist.length > 0; else noItems">
+    <app-product
+      *ngFor="let item of wishlist; let i = index; trackBy: trackByFn"
+      class="col-lg-3 col-md-6 col-sm-12"
+      [product]="item"
+    ></app-product>
+  </ng-container>
+  <ng-template #noItems>
+    <p>No items in the wishlist</p>
+  </ng-template>
 </div>
+

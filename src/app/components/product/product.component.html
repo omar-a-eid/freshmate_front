@@ -2,49 +2,60 @@
   <div class="card">
     <div class="images-buttons">
       <div class="icons">
-        <p>
-          <i
-            [ngClass]="{
-              'fa-regular': !isHeartSolid,
-              'fa-solid': isHeartSolid
-            }"
-            (click)="toggleHeartIcon()"
-            class="fa-heart"
-          ></i>
-        </p>
+       
+        <ng-container *ngIf="getCurrentUrl() !== '/wishlist'; else wishlistActions">
+          <p (click)="addToWishlist(product._id)">
+            <i
+              [ngClass]="{
+                'fa-regular': !isHeartSolid,
+                'fa-solid': isHeartSolid
+              }"
+              (click)="toggleHeartIcon()"
+              class="fa-heart"
+            ></i>
+          </p>
+        </ng-container>
+        
+        <ng-template #wishlistActions>
+          <p (click)="deleteProductFromWishlist(product._id)">
+            <i class="fa-solid fa-trash fa-sm"></i>
+          </p>
+        </ng-template>
+        
+
         <p>
           <i class="fa-regular fa-images fa-2xs"></i>
         </p>
       </div>
       <img
-        src=`{{product.images}}`
-        alt="Denim Jeans"
-        (mouseover)="changeImage('{{product.images[0]}}' )"
-        (mouseout)="changeImage('{{product.images[1]}}' )"
-        [src]="currentImage"
-        class="image-transition product-img"
-      />
-
+  *ngIf="product && product.images && product.images.length > 0"
+  [src]="currentImage"
+  alt="Product Image"
+  class="image-transition product-img"
+  (mouseover)="changeImage(product.images[1])"
+  (mouseout)="resetImage()"
+/>
+   
       <button class="cart-btn" (click)="addToCart(product._id)">Add to Cart</button>
     </div>
   </div>
-  <h4 class="title">{{ product.title.en }}</h4>
+  <h4 class="title">{{ product.title?.en }}</h4>
   <app-rating-stars></app-rating-stars>
   <p class="price">{{ product.price }}</p>
 </div>
 
-<!-- <div
+<div
   aria-live="polite"
   aria-atomic="true"
   class="toast-container d-flex justify-content-center align-items-center"
-  id="toastContainer"
+  id="toastt"
 >
   <div
     class="toast"
     role="alert"
     aria-live="assertive"
     aria-atomic="true"
-    id="passwordToast"
+    id="toast-product"
   >
     <div class="toast-header bg-danger text-white">
       <i class="fa-solid fa-bell fa-xl" style="color: #ffffff"></i>
@@ -52,16 +63,16 @@
     </div>
 
     <div class="d-flex flex-row toast-body">
-      <img src="{{product.images[0]}}" class="toast-img" />
-      <h6 class="title">{{product.title.en}}</h6>
+      <img [src]="product.images[0]" class="toast-img" />
+      <h3 class="toast-product-name">{{product.title.en}}</h3>
       <a href="/wishlist">
         <button
           class="go-to-wishlist-btn"
-          [ngStyle]="{ display: showAddToCartButton ? 'block' : 'none' }"
         >
           GO TO WISHLIST
         </button>
       </a>
     </div>
   </div>
-</div> -->
+</div>
+
