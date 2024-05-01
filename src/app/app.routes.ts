@@ -8,22 +8,21 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { RegistrationComponent } from './components/registration/registration.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { userGuard } from './guards/user.guard';
 import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
     {path: "", component: HomeComponent},
-    {path: "wishlist", component: WishlistComponent},
-    {path: "aboutus", component: AboutUsComponent},
-    {path: "products", component: ProductsPageComponent},
-    {path: "product/:id", component: ProductDetailsComponent},
     {path: "faq", component: FaqComponent},
-    {path: 'cart', component: CartComponent},
-    {path: 'login', component: RegistrationComponent},
-    {path: 'profile', component: ProfileComponent},
-    {path: 'checkout', component: CheckoutComponent},
+    {path: "aboutus", component: AboutUsComponent},
     {path: 'contactus', component: ContactUSComponent},
+    {path: "wishlist", component: WishlistComponent, canActivate: [userGuard]},
+    {path: "products", component: ProductsPageComponent, canActivate: [userGuard]},
+    {path: "product/:id", component: ProductDetailsComponent, canActivate: [userGuard]},
+    {path: 'cart', component: CartComponent, canActivate: [userGuard]},
+    {path: 'profile', component: ProfileComponent, canActivate: [userGuard]},
+    {path: 'checkout', component: CheckoutComponent, canActivate: [userGuard]},
     {path: '**', component: NotFoundComponent},
 
    ];
