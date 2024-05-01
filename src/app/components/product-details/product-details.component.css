@@ -43,10 +43,24 @@ ol{
     align-items: center;
 }
 
-.icons p:hover {
-    background-color: #52271f;
+.icons .favorite {
+    background-color: #52271f !important;
     i{
         color: white;
+    }
+   
+}
+
+.icons .unfavorite {
+    background-color: white !important;
+    i{
+        color: #52271f;
+    }
+    &:hover{
+        background-color: #52271f !important;
+        i{
+            color: white;
+        }
     }
 }
 
@@ -59,6 +73,9 @@ ol{
     background: center;
 }
 
+.fa-solid i{ 
+    color:aqua;
+}
 .price {
     padding-top: 25px;
     color: #232630;
@@ -354,7 +371,6 @@ textarea{
 
 .toast-product-name{
     margin-top: 29px;
-    margin-left: 40px;
     font-weight: bolder;
 }
 .product-title-main{

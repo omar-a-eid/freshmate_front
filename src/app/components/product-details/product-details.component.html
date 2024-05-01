@@ -32,13 +32,15 @@
         </div>
 
         <div class="icons">
-          <p (click)="addToWishlist(productId)">
+          <p (click)="addToWishlist(productId)"  [ngClass]="{
+            'favorite': !isHeartSolid,
+            'unfavorite': isHeartSolid
+          }" >
             <i
               [ngClass]="{
                 'fa-regular': !isHeartSolid,
                 'fa-solid': isHeartSolid
               }"
-              (click)="toggleHeartIcon()"
               class="fa-heart"
             >
             </i>
@@ -48,7 +50,7 @@
 
       <div class="product-details">
         <p class="price">{{product.price}} $</p>
-        <p class="description">{{product.desc}} </p>
+        <p class="description">{{product.desc.en}} </p>
         <div
           class="deal-flash__sale-progress position-relative"
           style="background-color: #e0e0e0"
