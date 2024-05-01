@@ -3,15 +3,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegistrationService } from '../../services/registration/registration.service';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { PathbarComponent } from '../pathbar/pathbar.component';
-import { FooterComponent } from '../footer/footer.component';
 import { OrderService } from '../../services/order/order.service';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,HttpClientModule,NavbarComponent,PathbarComponent,FooterComponent],
+  imports: [ReactiveFormsModule,CommonModule,HttpClientModule],
   providers: [RegistrationService,OrderService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
@@ -28,6 +25,9 @@ export class ProfileComponent {
   order:any
   userId:any
   editedUser: any;
+  UserEmail:any
+  UserUsername:any
+  UserGender:any
 
   EditProfile = new FormGroup({
     username: new FormControl("", [Validators.minLength(3), Validators.maxLength(50), Validators.required]),
@@ -84,26 +84,50 @@ export class ProfileComponent {
     console.log(this.user.token);
     
 
+    this.registrationService.getUsersById(this.user.userId, this.user.token).subscribe({
+      next: (data: any) => {
+        this.orders = data;
+      
+
+        this.UserEmail = data.email;
+        this.UserUsername = data.username;
+        this.UserGender = data.gender.en;
+
+        //#region handle backend
+
+        // console.log(data.email);
+        // console.log(data.username);
+        // console.log(data.gender.en);
+        //#endregion
+
+      },
+      error: (err) => { "there is an eror fetching data from mongodb" }
+    })
+
+
     this.orderservice.GetAllOrdersForUser(this.user.userId, this.user.token).subscribe({
       next: (data: any) => {
         this.orders = data;
       
-        console.log(data);
         
+        //#region handle backend
+
         // const singledata = data[];
         // console.log(data.length);
         // console.log(data[0].date); //date of the order
         // console.log(data[0].totalPrice);// totalprice of the order
         // console.log(data[0].products.length);//2 products
 
-        //#region handle backend
+        
 
         //#endregion
 
       },
       error: (err) => { "there is an eror fetching data from mongodb" }
-      // complete:()=>{}
     })
+
+
+    
 
   }
 
@@ -130,8 +154,7 @@ export class ProfileComponent {
 
   signout(){
     this.registrationService.signout()
-    // this.redirectTo('/another-page');
-
+    window.location.reload();
   }
 
 
