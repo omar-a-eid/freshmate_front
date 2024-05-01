@@ -3,7 +3,7 @@ import { ProductComponent } from "../product/product.component";
 import { FooterComponent } from "../footer/footer.component";
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterModule, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { HttpClientModule} from '@angular/common/http';
@@ -16,22 +16,32 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ProductService } from "../../services/product/product.service";
 import { GalleryItem } from '@daelmaak/ngx-gallery';
 import { GalleryComponent } from '@daelmaak/ngx-gallery';
+import { WishlistService } from "../../services/wishlist/wishlist.service";
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
   imports: [MDBBootstrapModule,NavbarComponent, ProductComponent, FooterComponent, PathbarComponent,RatingStarsComponent,QuantityIncrementDecrementComponent,ProductCarouselsComponent,NgIf,NgFor,HttpClientModule, NgxGalleryModule,CommonModule, RouterModule,GalleryComponent ],
   templateUrl: './product-details.component.html',
-  providers:[ProductService],
+  providers:[ProductService, WishlistService],
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent implements OnInit{
 
-  currentPath: string | undefined;
+  constructor( myRoute:ActivatedRoute, private productService: ProductService, private wishlistService: WishlistService,private router: Router) {
+    this.productId = myRoute.snapshot.params["id"];
+  }
 
+  currentPath: string | undefined;
+  productId:any;
+  product: any;
+  productData: any;
+   
+  items: GalleryItem[] = [];
 
   isHeartSolid: boolean = false;
   isHeartActive: boolean=false ;
+
 
   toggleHeartIcon() {
     this.isHeartSolid = !this.isHeartSolid;
@@ -60,7 +70,7 @@ export class ProductDetailsComponent implements OnInit{
     setTimeout(() => {
         passwordToast.classList.remove('show');
         passwordToast.style.display = "none";
-    }, 3000);
+    }, 8000);
   
     const closeToast = document.querySelector('[data-dismiss="toast"]');
     if (closeToast) { 
@@ -70,63 +80,81 @@ export class ProductDetailsComponent implements OnInit{
     }
   }
 
-  showAddToCartButton: boolean = true;
-
-
-  
   copyToClipboard(inputElement: HTMLInputElement): void {
     inputElement.select();
     document.execCommand('copy');
     
   }
+  user:any;
+  userSession: any;
+  ngOnInit(): void {
+
+    this.userSession = sessionStorage.getItem("user");
+    this.user = JSON.parse(this.userSession);
+
+    this.productService.GetProduct(this.productId).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.product = data;
+
+        if (this.product.images && this.product.images.length > 0) {
+          this.items = [];
+
+          this.product.images.forEach((imageUrl: string) => {
+            const galleryItem = {
+              src: imageUrl,
+              thumbSrc: imageUrl, 
+            };
+
+            this.items.push(galleryItem);
+          });
+        }
+      },
+      error: (error: any) => console.log(error)
+    });
 
 
-productId:any;
-product: any;
-constructor( myRoute:ActivatedRoute, private productService: ProductService, private router: Router) {
-  this.productId = myRoute.snapshot.params["id"];
-}
-    
-ngOnInit(): void {
+  
+  
 
-this.productService.GetProduct(this.productId).subscribe({
-  next: (data:any)=> {
-      console.log(data);
-      this.product = data;
-  },
-  error: (error: any) => console.log(error)
-})
-}
+  }
 
 
 
-items: GalleryItem[] = [
-  {
-    src: 'https://cdn.pixabay.com/photo/2020/06/23/15/17/avocado-5332878_960_720.jpg',
-    thumbSrc:
-      'https://cdn.pixabay.com/photo/2020/06/23/15/17/avocado-5332878_960_720.jpg',
-  },
-  {
-    src: 'https://cdn.pixabay.com/photo/2017/01/12/02/34/coffee-1973549_960_720.jpg',
-    thumbSrc:
-      'https://cdn.pixabay.com/photo/2017/01/12/02/34/coffee-1973549_960_720.jpg',
-  },
-  {
-    src: 'https://cdn.pixabay.com/photo/2020/06/26/04/40/flower-5341644_960_720.jpg',
-    thumbSrc:
-      'https://cdn.pixabay.com/photo/2020/06/26/04/40/flower-5341644_960_720.jpg',
-  },
-  {
-    src: 'https://cdn.pixabay.com/photo/2020/05/11/18/49/island-5159729_960_720.jpg',
-    thumbSrc:
-      'https://cdn.pixabay.com/photo/2020/05/11/18/49/island-5159729_960_720.jpg',
-  },
-  {
-    src: 'https://cdn.pixabay.com/photo/2013/11/15/23/18/john-work-garrett-library-211375_960_720.jpg',
-    thumbSrc:
-      'https://cdn.pixabay.com/photo/2013/11/15/23/18/john-work-garrett-library-211375_960_720.jpg',
-  },
-];
+
+
+  @Input() productid: any; // Assuming you have productId as input
+
+
+  addToWishlist(productid: string) {
+    // Assuming you have userId and token available
+    console.log("inside");
+    this.userSession = sessionStorage.getItem("user");
+    this.user = JSON.parse(this.userSession);
+    console.log("inside", {productid:productid, user:sessionStorage.getItem("user")});
+
+    // Call addWishlist method to add product to wishlist
+    this.wishlistService.addItemToWishList(this.user.userId, [productid]).subscribe(
+      () => {
+        console.log('Product added to wishlist successfully');
+        // Handle success response
+      },
+      (error: any) => {
+        console.error('Error adding product to wishlist:', error);
+        // Handle error response
+      }
+    );
+
+
+  }
+  
+
+
+
+
+
+
+
 
 
 }
