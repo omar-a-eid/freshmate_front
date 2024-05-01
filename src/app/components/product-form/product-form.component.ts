@@ -35,7 +35,7 @@ export class ProductFormComponent implements OnInit {
   isEditMode = false;
   productId: any;
   message: string = '';
-
+  formData = new FormData();
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.productId = params['id'];
@@ -69,7 +69,7 @@ export class ProductFormComponent implements OnInit {
       });
     } else {
       // Call service method to add a new product
-      this.productService.addProduct(this.product).subscribe({
+      this.productService.addProduct(this.formData).subscribe({
         next: (response) => {
           this.message = 'Product added successfully';
         },
@@ -94,8 +94,11 @@ export class ProductFormComponent implements OnInit {
   }
 
   onFileChange(event: any) {
-    // Handle file upload and set product image
-    const file = event.target.files[0];
-    this.product.images = file;
+    const files = event.target.files;
+    if (files.length > 0) {
+    for (let i = 0; i < Math.min(files.length, 5); i++) {
+      this.formData.append('images', files[i]);
+    }
+  }
   }
 }

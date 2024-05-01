@@ -7,6 +7,7 @@ import { FaqComponent } from './components/faq/faq.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
@@ -26,6 +27,8 @@ export const routes: Routes = [
     {path: 'profile', component: ProfileComponent, canActivate: [userGuard]},
     {path: 'checkout', component: CheckoutComponent, canActivate: [userGuard]},
     {path: 'dashboard', component: OrdersComponent, canActivate: [adminGuard]},
+    {path: 'admin/create', component: ProductFormComponent, canActivate: [adminGuard]},
+
 
     {path: '**', component: NotFoundComponent},
 
