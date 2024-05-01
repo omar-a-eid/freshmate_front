@@ -7,10 +7,10 @@
         <table class="cart-table">
           <thead>
             <tr>
-              <th>PRODUCT</th>
-              <th>PRICE</th>
-              <th>QTY</th>
-              <th>TOTAL</th>
+              <th i18n>PRODUCT</th>
+              <th i18n>PRICE</th>
+              <th i18n>QTY</th>
+              <th i18n>TOTAL</th>
             </tr>
           </thead>
           <tbody>
@@ -53,10 +53,11 @@
                       <img [src]="item.product.images[0]" class="toast-img" />
                     </div>
                     <a
-                      class="col-3 d-flex justify-content-center flex-column w-50 product-title" (click)="navigateToSingleProduct(item.product._id)"
+                      class="col-3 d-flex justify-content-center flex-column w-50 product-title"
+                      (click)="navigateToSingleProduct(item.product._id)"
                     >
                       {{ item.product.title.en }}
-                  </a>
+                    </a>
                   </div>
                 </td>
                 <td>{{ item.product.price | currency }}</td>
@@ -98,17 +99,17 @@
 
         <div class="cart-buttons w-100">
           <!-- Buttons -->
-          <button  (click)="navigateToCheckout()" class="checkout-button">
+          <button i18n (click)="navigateToCheckout()" class="checkout-button">
             PROCEED TO CHECKOUT
           </button>
-          <button class="continue-shopping-button" >
+          <button i18n class="continue-shopping-button">
             CONTINUE SHOPPING
           </button>
         </div>
 
         <div class="col products">
           <!-- Products -->
-          <div>YOU MAY ALSO LIKE THESE PRODUCTS</div>
+          <div i18n>YOU MAY ALSO LIKE THESE PRODUCTS</div>
           <div class="row mt-3 mb-5">
             <div *ngFor="let product of products" class="product-details w-25">
               <div class="product-image">
@@ -128,7 +129,7 @@
       <div class="container">
         <table class="cart cart-background">
           <thead class="header">
-            <th>THERE ARE 10 ITEMS IN YOUR CART</th>
+            <th i18n>THERE ARE 10 ITEMS IN YOUR CART</th>
           </thead>
           <tbody>
             <div class="table-body container mt-3">
@@ -138,12 +139,13 @@
               </div>
               <div class="row d-flex justify-content-between">
                 <div class="col mt-3">SHIPPING:</div>
-                <div class="col mt-3">
+                <div i18n class="col mt-3">
                   Shipping & taxes calculated at checkout
                 </div>
               </div>
               <div class="d-flex justify-content-start mt-5">
                 <div
+                  i18n
                   *ngIf="
                     calculateTotalPrice() >= 200;
                     else noFreeShippingMessage
@@ -177,11 +179,11 @@
               </div>
               <div class="row">
                 <div class="col mt-4">
-                  <span> Free shipping for any orders above </span>
+                  <span i18n> Free shipping for any orders above </span>
                   <span class="shipping">$200.00</span>
                 </div>
               </div>
-              <div class="mt-4">ADD A NOTE TO YOUR ORDER :</div>
+              <div i18n class="mt-4">ADD A NOTE TO YOUR ORDER :</div>
               <textarea
                 class="custom-textarea mt-3 mb-2"
                 placeholder="ENTER YOUR NOTE HERE"

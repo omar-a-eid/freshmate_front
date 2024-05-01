@@ -87,8 +87,8 @@
             </li>
           </ul>
           <div class="contact">
-            <p>How to Order?</p>
-            <p>CALL US :0123-456-7890</p>
+            <p i18n>How to Order?</p>
+            <p i18n>CALL US :0123-456-7890</p>
           </div>
         </div>
       </div>
@@ -150,8 +150,8 @@
           </div>
         </a>
         <div class="contact-info">
-          <span>How to Order?</span>
-          <span>CALL US :0123-456-7890</span>
+          <span i18n>How to Order?</span>
+          <span i18n>CALL US :0123-456-7890</span>
         </div>
       </div>
       <div
@@ -252,7 +252,10 @@
           </a>
 
           <!-- Favorite -->
-          <a class="text-reset me-3 dotted-icon-container favorite" href="/wishlist">
+          <a
+            class="text-reset me-3 dotted-icon-container favorite"
+            href="/wishlist"
+          >
             <div class="dotted-icon">
               <svg
                 class="original-icon"
@@ -464,7 +467,7 @@
                 </div>
                 <hr class="divider" />
                 <div class="d-flex justify-content-start">
-                  <div *ngIf="totalPrice >= 200" style="color: green">
+                  <div i18n *ngIf="totalPrice >= 200" style="color: green">
                     CONGRATULATIONS! YOU'VE GOT FREE SHIPPING!
                   </div>
                   <div *ngIf="totalPrice < 200" style="color: gray">

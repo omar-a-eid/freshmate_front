@@ -59,6 +59,7 @@ export class ProductsPageComponent implements OnInit {
 
   constructor(private ProductService: ProductService, private router: Router) {}
 
+  // Get all products once page is loaded
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem('user');
     this.user = JSON.parse(this.userSession);
@@ -74,7 +75,7 @@ export class ProductsPageComponent implements OnInit {
     });
   }
 
-  // used with clear all button
+  // Used with clear all button
   isHovered: boolean = false;
   @HostListener('mouseenter') onMouseEnter() {
     this.isHovered = true;
