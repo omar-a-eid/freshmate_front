@@ -9,6 +9,8 @@ export class ProductService {
 
   private readonly URL_DB = 'http://localhost:8000/api/products';
 
+  // token:any=JSON.parse(sessionStorage.getItem("user") as string);
+
   GetAllProducts(token?: string) {
     if(token) {
       return this.http.get(this.URL_DB, {
@@ -26,6 +28,33 @@ export class ProductService {
     return this.http.get(this.URL_DB + '/' + productId);
   }
  
+  addProduct(product: any, token:string){
+    return this.http.post<any>(this.URL_DB, product, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  // Update an existing product
+  updateProduct(productId: string, product: any , token:string){
+    const url = `${this.URL_DB}/${productId}`;
+    return this.http.put<any>(url,product,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  // Delete a product by its ID
+  deleteProduct(productId: string , token:string){
+    const url = `${this.URL_DB}/${productId}`;
+    return this.http.delete<any>(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 
 
   // GetRandomProducts(count: number): Observable<any[]> {

@@ -28,8 +28,7 @@ export const routes: Routes = [
     {path: 'checkout', component: CheckoutComponent, canActivate: [userGuard]},
     {path: 'dashboard', component: OrdersComponent, canActivate: [adminGuard]},
     {path: 'admin/create', component: ProductFormComponent, canActivate: [adminGuard]},
-
-
+    {path: 'admin/edit/:id', component: ProductFormComponent, canActivate: [adminGuard]},
     {path: '**', component: NotFoundComponent},
 
    ];

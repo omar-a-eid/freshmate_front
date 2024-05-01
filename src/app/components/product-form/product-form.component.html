@@ -1,6 +1,6 @@
-<div class="container mt-4 ms-0">
-  <div class="row">
-    <div class="col-md-9">
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-9 col-md-offset-3">
       <div class="card border-0 shadow">
         <div class="card-header bg-dark text-white">
           <h2 class="mb-0">
@@ -8,39 +8,43 @@
           </h2>
         </div>
         <div class="card-body">
-          <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+          <form
+            [formGroup]="productForm"
+            (ngSubmit)="onSubmit()"
+            enctype="multipart/form-data"
+          >
             <div class="form-group">
               <label for="productTitle">Product Title (English):</label>
               <input
                 type="text"
                 class="form-control"
                 id="productTitle"
-                required
-                [(ngModel)]="product.title.en"
-                name="productTitle"
+                formControlName="title.en"
               />
+              <div class="text-danger">English title is required.</div>
             </div>
+
             <div class="form-group">
               <label for="productTitleArabic">Product Title (Arabic):</label>
               <input
                 type="text"
                 class="form-control"
                 id="productTitleArabic"
-                required
-                [(ngModel)]="product.title.ar"
-                name="productTitleArabic"
+                formControlName="title.ar"
               />
+              <div class="text-danger">Arabic title is required.</div>
             </div>
+
             <div class="form-group">
               <label for="productDesc">Product Description (English):</label>
               <textarea
                 class="form-control"
                 id="productDesc"
-                required
-                [(ngModel)]="product.desc.en"
-                name="productDesc"
+                formControlName="desc.en"
               ></textarea>
+              <div class="text-danger">English description is required.</div>
             </div>
+
             <div class="form-group">
               <label for="productDescArabic"
                 >Product Description (Arabic):</label
@@ -48,33 +52,37 @@
               <textarea
                 class="form-control"
                 id="productDescArabic"
-                required
-                [(ngModel)]="product.desc.ar"
-                name="productDescArabic"
+                formControlName="desc.ar"
               ></textarea>
+              <div class="text-danger">Arabic description is required.</div>
             </div>
+
             <div class="form-group">
               <label for="productPrice">Product Price:</label>
               <input
                 type="number"
                 class="form-control"
                 id="productPrice"
-                required
-                [(ngModel)]="product.price"
-                name="productPrice"
+                formControlName="price"
               />
+              <div class="text-danger">
+                Price is required and should be a positive number.
+              </div>
             </div>
+
             <div class="form-group">
               <label for="productQuantity">Product Quantity:</label>
               <input
                 type="number"
                 class="form-control"
                 id="productQuantity"
-                required
-                [(ngModel)]="product.quantity"
-                name="productQuantity"
+                formControlName="quantity"
               />
+              <div class="text-danger">
+                Quantity is required and should be a positive number.
+              </div>
             </div>
+
             <div class="form-group">
               <label for="productImage">Product Image:</label>
               <input
@@ -85,6 +93,7 @@
                 name="productImage"
                 multiple
               />
+              <div class="text-danger">Image is required.</div>
             </div>
             <button type="submit" class="btn btn-dark">
               {{ isEditMode ? "Update Product" : "Add Product" }}
