@@ -52,11 +52,11 @@
                     <div class="col-3 product-border">
                       <img [src]="item.product.images[0]" class="toast-img" />
                     </div>
-                    <div
-                      class="col-3 d-flex justify-content-center flex-column w-50"
+                    <a
+                      class="col-3 d-flex justify-content-center flex-column w-50 product-title" (click)="navigateToSingleProduct(item.product._id)"
                     >
                       {{ item.product.title.en }}
-                    </div>
+                  </a>
                   </div>
                 </td>
                 <td>{{ item.product.price | currency }}</td>

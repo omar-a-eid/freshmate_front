@@ -144,4 +144,8 @@ export class CartComponent implements OnInit {
   navigateToHome() {
     this.router.navigate(['/']);
   }
+
+  navigateToSingleProduct(productId:string){
+    this.router.navigate(["/product", productId])
+  }
 }
