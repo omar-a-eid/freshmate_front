@@ -14,8 +14,15 @@
       <ng-container *ngIf="getCurrentUrl()?.endsWith('cart')"
         >YOUR SHOPPING CART</ng-container
       >
-      <ng-container *ngIf="getCurrentUrl()?.endsWith('contactus')">contactus</ng-container>
-      <ng-container *ngIf="getCurrentUrl()?.endsWith('profile')">Account</ng-container>
+      <ng-container *ngIf="getCurrentUrl()?.endsWith('contactus')"
+        >contactus</ng-container
+      >
+      <ng-container *ngIf="getCurrentUrl()?.endsWith('profile')"
+        >Account</ng-container
+      >
+      <ng-container *ngIf="getCurrentUrl()?.endsWith('products')"
+        >products</ng-container
+      >
     </h1>
 
     <div class="list-sub-items position-relative">
@@ -42,6 +49,9 @@
             >
             <ng-container *ngIf="getCurrentUrl()?.endsWith('profile')"
               >Account</ng-container
+            >
+            <ng-container *ngIf="getCurrentUrl()?.endsWith('products')"
+              >products</ng-container
             >
           </span>
         </li>
