@@ -19,13 +19,13 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   productForm:any = new FormGroup({
-    titleEn: new FormControl("", [Validators.required, Validators.min(10)]),
-    titleAr: new FormControl("", [Validators.required, Validators.min(10)]),
-    descEn: new FormControl("", [Validators.required, Validators.min(10)]),
-    descAr: new FormControl("", [Validators.required, Validators.min(10)]),
+    titleEn: new FormControl("", [Validators.required, Validators.minLength(5),Validators.maxLength(20),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]),
+    titleAr: new FormControl("", [Validators.required, Validators.minLength(5),Validators.maxLength(20),Validators.pattern("^[\u0621-\u064A\u0660-\u0669 ]+$")]),
+    descEn: new FormControl("", [Validators.required, Validators.minLength(10),Validators.maxLength(50),Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]),
+    descAr: new FormControl("", [Validators.required, Validators.minLength(10),Validators.maxLength(50),Validators.pattern("^[\u0621-\u064A\u0660-\u0669 ]+$")]),
     price: new FormControl(0, [Validators.required, Validators.min(0)]),
     quantity: new FormControl(0, [Validators.required, Validators.min(0)]),
-    images: new FormControl(null),
+    images: new FormControl(null,[Validators.required, Validators.minLength(2),Validators.maxLength(5)]),
     oldImages: new FormControl(null),
 
   })
@@ -103,6 +103,34 @@ export class ProductFormComponent implements OnInit {
         }
       });
     }
+  }
+
+  get titleEn(): FormControl {
+    return this.productForm.get("titleEn") as FormControl;
+  }
+
+  get titleAr(): FormControl {
+    return this.productForm.get("titleAr") as FormControl;
+  }
+
+  get descEn(): FormControl {
+    return this.productForm.get("descEn") as FormControl;
+  }
+
+  get descAr(): FormControl {
+    return this.productForm.get("descAr") as FormControl;
+  }
+
+  get price(): FormControl {
+    return this.productForm.get("price") as FormControl;
+  }
+
+  get quantity(): FormControl {
+    return this.productForm.get("quantity") as FormControl;
+  }
+
+  get images(): FormControl {
+    return this.productForm.get("images") as FormControl;
   }
 
   onDelete() {

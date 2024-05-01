@@ -25,4 +25,12 @@ export class RegistrationService {
             'Authorization': `Bearer ${token}`,
           }});
   }
+  getUsersById(userId:number,token: string){
+    return this.http.get(this.URL_DB + "/" + userId , {
+  headers: {
+        'Authorization': `Bearer ${token}`,
+      }});
+  }
+
+
 }
