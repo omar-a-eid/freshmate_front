@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product/product.service';
 
@@ -10,7 +10,7 @@ import { ProductService } from '../../services/product/product.service';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css'],
   standalone: true,
-  imports: [HttpClientModule, FormsModule, CommonModule,ReactiveFormsModule],
+  imports: [HttpClientModule, CommonModule,ReactiveFormsModule],
   providers: [ProductService]
 })
 export class ProductFormComponent implements OnInit {
@@ -18,50 +18,39 @@ export class ProductFormComponent implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute
   ) {}
-  productForm = new FormGroup({
-    title: new FormControl({
-      en: ['', Validators.required],
-      ar: ['', Validators.required]
-    }),
-    desc: new FormControl({
-      en: ['', Validators.required],
-      ar: ['', Validators.required]
-    }),
+  productForm:any = new FormGroup({
+    titleEn: new FormControl("", [Validators.required, Validators.min(10)]),
+    titleAr: new FormControl("", [Validators.required, Validators.min(10)]),
+    descEn: new FormControl("", [Validators.required, Validators.min(10)]),
+    descAr: new FormControl("", [Validators.required, Validators.min(10)]),
     price: new FormControl(0, [Validators.required, Validators.min(0)]),
     quantity: new FormControl(0, [Validators.required, Validators.min(0)]),
-    images: new FormControl([[], Validators.required])
+    images: new FormControl(null),
+    oldImages: new FormControl(null),
 
   })
 
-  product : any = {
-    title: {
-      en: '',
-      ar: ''  
-    },
-    desc: {
-      en: '', 
-      ar: ''  
-    },
-    price: 0,
-    images: null,
-    quantity : 0
-  };
 
   isEditMode = false;
   productId: any;
   message: string = '';
-  formData = new FormData();
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.productId = params['id'];
       if (this.productId) {
         this.isEditMode = true;
-        // Fetch product details by ID and populate form fields for editing
         this.productService.GetProduct(this.productId).subscribe({
-          next:(data) => {
-            this.product = data;
-            console.log(data);
-            
+          next:(data:any) => {
+            this.productForm.patchValue({
+              titleEn: data.title.en,
+              titleAr: data.title.ar,
+              descEn: data.desc.en,
+              descAr: data.desc.ar,
+              price: data.price,
+              quantity: data.quantity,
+              oldImages:  data.images
+            });
           },
           error:(error) => {
             console.error('Error fetching product details', error);
@@ -74,11 +63,27 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit() {
     const user = JSON.parse(sessionStorage.getItem("user") as string)
-    console.log(this.product);
+    const productData = this.productForm.value;
+    const formData = new FormData();
+
+    formData.append('title[en]', productData.titleEn);
+    formData.append('title[ar]', productData.titleAr);
+    formData.append('desc[en]', productData.descEn);
+    formData.append('desc[ar]', productData.descAr);
+    formData.append('price', productData.price);
+    formData.append('quantity', productData.quantity);
     
+    const images = this.productForm.get('images').value;
+    if(images){
+      for (let i = 0; i < images.length; i++) {
+        formData.append('images', images[i]);
+      }
+    }
+
     if (this.isEditMode) {
-      // Call service method to update the existing product
-      this.productService.updateProduct(this.productId, this.product,user.token).subscribe({
+      formData.append("oldImages", productData.oldImages);
+      console.log(formData);
+      this.productService.updateProduct(this.productId, formData,user.token).subscribe({
         next: (data) => {
           this.message = 'Product updated successfully';
           console.log(data)
@@ -89,7 +94,7 @@ export class ProductFormComponent implements OnInit {
       });
     } else {
       // Call service method to add a new product
-      this.productService.addProduct(this.formData,user.token).subscribe({
+      this.productService.addProduct(formData, user.token).subscribe({
         next: (response) => {
           this.message = 'Product added successfully';
         },
@@ -117,9 +122,8 @@ export class ProductFormComponent implements OnInit {
   onFileChange(event: any) {
     const files = event.target.files;
     if (files.length > 0) {
-    for (let i = 0; i < Math.min(files.length, 5); i++) {
-      this.formData.append('images', files[i]);
+      this.productForm.get('images').setValue(files);
     }
   }
-  }
+
 }
