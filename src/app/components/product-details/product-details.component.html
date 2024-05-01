@@ -79,12 +79,13 @@
       <div class="buttons-product d-flex flex-column gap-2">
         <div class="d-flex gap-4">
           <app-quantity-increment-decrement></app-quantity-increment-decrement>
-          <button class="add-to-bag-btn" (click)="addToCart(product._id)">
+          <button class="add-to-bag-btn" (click)="addToCart(product._id); ">
             ADD TO BAG
           </button>
+        
         </div>
 
-        <button class="buy-it-now-btn">BUY IT NOW</button>
+        <a href="/checkout">  <button class="buy-it-now-btn">BUY IT NOW</button> </a>
       </div>
 
       <div class="product-share-info-faq d-flex flex-row gap-4">
