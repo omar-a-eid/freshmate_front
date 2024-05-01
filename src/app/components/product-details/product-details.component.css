@@ -315,6 +315,10 @@ h6{
     font-weight: 700;
 }
 
+.related-products{
+    width: 1197px;
+}
+
 .request{
     color: gray;
     padding-left: 20px;

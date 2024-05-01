@@ -49,9 +49,9 @@
         (click)="goToSingleProduct(product._id)"
       />
 
-      <button class="cart-btn" (click)="addToCart(product._id)">
+      <a href="/cart"><button class="cart-btn" (click)="addToCart(product._id)">
         Add to Cart
-      </button>
+      </button> </a>
     </div>
   </div>
   <h4 class="title">{{ product.title?.en }}</h4>
