@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit {
   changeImage(imageUrl: string): void {
     this.currentImage = imageUrl;
   }
-  
+
   resetImage(): void {
     if (this.product && this.product.images && this.product.images.length > 0) {
       this.currentImage = this.product.images[0];
@@ -65,7 +65,7 @@ export class ProductComponent implements OnInit {
   }
 
   showToast() {
-    const passwordToast = document.getElementById('passwordToast');
+    const passwordToast = document.getElementById('toast-product');
     if (!passwordToast) return;
 
     const toastBody = passwordToast.querySelector('.toast-body');
