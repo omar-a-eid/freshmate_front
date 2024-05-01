@@ -1,30 +1,27 @@
-import { NavbarComponent } from '../navbar/navbar.component';
-import { ProductComponent } from '../product/product.component';
-import { FooterComponent } from '../footer/footer.component';
-import { PathbarComponent } from '../pathbar/pathbar.component';
 import { NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { FooterComponent } from '../footer/footer.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { PathbarComponent } from '../pathbar/pathbar.component';
+import { ProductComponent } from '../product/product.component';
 
-import {
-  Router,
-  NavigationEnd,
-  RouterModule,
-  ActivatedRoute,
-} from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { HttpClientModule } from '@angular/common/http';
+import {
+  ActivatedRoute,
+  Router,
+  RouterModule
+} from '@angular/router';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 // import { ProductCarouselsComponent } from "../product-carousels/product-carousels.component";
-import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 import { CommonModule } from '@angular/common';
-import { QuantityIncrementDecrementComponent } from '../quantity-increment-decrement/quantity-increment-decrement.component';
+import { GalleryComponent, GalleryItem } from '@daelmaak/ngx-gallery';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ProductService } from '../../services/product/product.service';
-import { GalleryItem } from '@daelmaak/ngx-gallery';
-import { GalleryComponent } from '@daelmaak/ngx-gallery';
-import { WishlistService } from '../../services/wishlist/wishlist.service';
 import { CartService } from '../../services/cart/cart.service';
+import { ProductService } from '../../services/product/product.service';
+import { WishlistService } from '../../services/wishlist/wishlist.service';
+import { QuantityIncrementDecrementComponent } from '../quantity-increment-decrement/quantity-increment-decrement.component';
+import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 
 @Component({
   selector: 'app-product-details',
@@ -53,7 +50,7 @@ import { CartService } from '../../services/cart/cart.service';
 export class ProductDetailsComponent implements OnInit {
 
   products:any = [];
-  slideConfig = { "infinite": true, "dots": true, 'slidesToShow': 4, "slidesToScroll": 2,'responsive': [
+  slideConfig = { "infinite": true, "dots": true, 'slidesToShow': 5, "slidesToScroll": 2,'responsive': [
     {
       'breakpoint': 767,
       'settings': {
