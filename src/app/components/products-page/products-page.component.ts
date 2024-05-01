@@ -149,8 +149,4 @@ export class ProductsPageComponent implements OnInit {
       this.currentPage--;
     }
   }
-
-  goToSingleProduct(productId: string) {
-    this.router.navigate(['/product', productId]);
-  }
 }

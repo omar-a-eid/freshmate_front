@@ -1,3 +1,4 @@
+<app-pathbar></app-pathbar>
 <div class="row container-fluid my-5">
   <!-- sidebar Displayed in medium and smaller screens -->
   <div class="d-md-block d-lg-none">
@@ -492,7 +493,6 @@
               "
               class="col-12 col-md-6 col-lg-4 products"
               [product]="product"
-              (click)="goToSingleProduct(product._id)"
             ></app-product>
           </ng-container>
 
@@ -506,7 +506,6 @@
               "
               class="col-12 col-md-6 col-lg-4 products"
               [product]="product"
-              (click)="goToSingleProduct(product._id)"
             ></app-product>
           </ng-container>
         </div>
