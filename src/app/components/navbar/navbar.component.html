@@ -311,7 +311,7 @@
                 </g>
               </svg>
             </div>
-            <span class="badge rounded-pill bg-danger">0</span>
+            <span class="badge rounded-pill bg-danger">{{ numberOfProducts }}</span>
           </a>
           <!-- Cart -->
           <a
@@ -379,6 +379,18 @@
               }}</span>
             </div>
           </a>
+
+          <a *ngIf="isAdmin"
+          class="text-reset me-3 dotted-icon-container cart"
+          href="#"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
+          <div class="dotted-icon">
+            <i class="fa-solid fa-plus fa-xl"></i>
+          </div>
+        </a>
           <!-- Cart Sidebar -->
           <div
             class="offcanvas offcanvas-end custom-offcanvas"
