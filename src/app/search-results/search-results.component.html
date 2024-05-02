@@ -1,18 +1,17 @@
-    <div class="all-products d-flex justify-content-around">
+    <div class="all-products d-flex ">
         <div class="d-flex flex-row products-added-to-cart flex-wrap ">
-  <ng-container *ngIf="products && products.length > 0; else noItems">
-    
-            <div class="product" *ngFor="let product of products">
-      <app-product class="col-lg-3 col-md-6 col-sm-12" [product]="product"></app-product>
+            <ng-container *ngIf="products && products.length > 0; else noItems">
+                <div class="product" *ngFor="let product of products">
+                    <app-product class="col-lg-3 col-md-6 col-sm-12" [product]="product"></app-product>
+                </div>
+            </ng-container>
+            <ng-template #noItems>
+                <div class="align-items-center d-flex justify-content-around no-products">
+                    <div class="d-flex flex-column gap-4 no-products align-items-center">
+                        <p>NO PRODUCTS FOUND !!</p>
+                        <a href="/products"><button>GO SHOPPING</button></a>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
     </div>
-
-  </ng-container>
-  <ng-template #noItems>
-    <div class="justify-content-around">
-        <div>
-        <p>NO PRODUCTS FOUND !!</p>
-    </div>
-    </div>
-  </ng-template>
-  </div>
-</div>
