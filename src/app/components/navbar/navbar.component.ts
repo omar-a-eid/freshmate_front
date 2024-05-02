@@ -1,21 +1,20 @@
 // navbar.component.ts
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   HostListener,
   Input,
-  Output,
+  Output
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import { CartService } from '../../services/cart/cart.service';
+import { ProductService } from '../../services/product/product.service';
+import { WishlistService } from '../../services/wishlist/wishlist.service';
 import { CartProductsComponent } from '../cart-products/cart-products.component';
 import { RegistrationComponent } from '../registration/registration.component';
-import { WishlistService } from '../../services/wishlist/wishlist.service';
-import { AuthService } from '../../services/auth/auth.service';
-import { ProductService } from '../../services/product/product.service';
-import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -180,8 +179,10 @@ export class NavbarComponent {
 
   calculateTotalPrice(): number {
     let totalPrice = 0;
-    for (const item of this.allProducts) {
-      totalPrice += item.product.price * item.quantity;
+    if(this.allProducts) {
+      for (const item of this.allProducts) {
+        totalPrice += item.product.price * item.quantity;
+      }
     }
 
     let shipping = 0;
