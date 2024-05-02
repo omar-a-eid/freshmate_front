@@ -6,12 +6,13 @@ import { PathbarComponent } from '../pathbar/pathbar.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { OrderService } from '../../services/order/order.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RegistrationService } from '../../services/registration/registration.service';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule, FooterComponent, PathbarComponent, NavbarComponent],
-  providers: [OrderService],
+  providers: [OrderService,RegistrationService],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
@@ -26,7 +27,9 @@ export class CheckoutComponent implements OnInit {
   collect: any
   totalPrice: any;
   productQuantity: any;
-  constructor(private orderservice: OrderService) { }
+  UserEmail:any
+
+  constructor(private orderservice: OrderService,private registrationService:RegistrationService) { }
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem("user");
     this.user = JSON.parse(this.userSession);
@@ -71,11 +74,32 @@ export class CheckoutComponent implements OnInit {
       // complete:()=>{}
     })
 
+    this.registrationService.getUsersById(this.user.userId, this.user.token).subscribe({
+      next: (data: any) => {
+        this.orders = data;
+      
+
+        this.UserEmail = data.email;
+
+        //#region handle backend
+
+        // console.log(data.email);
+        // console.log(data.username);
+        // console.log(data.gender.en);
+        //#endregion
+
+      },
+      error: (err) => { "there is an eror fetching data from mongodb" }
+    })
+
   }
 
   logout: boolean = false
 
-
+  signout(){
+    this.registrationService.signout()
+    window.location.reload();
+  }
 
   Checkout = new FormGroup({
     country: new FormControl("", [Validators.required]),
@@ -95,21 +119,22 @@ export class CheckoutComponent implements OnInit {
 
   getdata() {
 
-    console.log(this.Checkout.controls.country.valid);
-    console.log(this.Checkout.controls.firstname.valid);
-    console.log(this.Checkout.controls.lastname.valid);
-    console.log(this.Checkout.controls.address.valid);
-    console.log(this.Checkout.controls.appartment.valid);
-    console.log(this.Checkout.controls.city.valid);
-    console.log(this.Checkout.controls.state.valid);
-    console.log(this.Checkout.controls.zipcode.valid);
-    console.log(this.Checkout.controls.cardnumber.valid);
-    console.log(this.Checkout.controls.expiredate.valid);
-    console.log(this.Checkout.controls.securitycode.valid);
-    console.log(this.Checkout.controls.nameoncard.valid);
-    console.log(this.Checkout.controls.billaddress.valid);
+    //#region handling tests
+    // console.log(this.Checkout.controls.country.valid);
+    // console.log(this.Checkout.controls.firstname.valid);
+    // console.log(this.Checkout.controls.lastname.valid);
+    // console.log(this.Checkout.controls.address.valid);
+    // console.log(this.Checkout.controls.appartment.valid);
+    // console.log(this.Checkout.controls.city.valid);
+    // console.log(this.Checkout.controls.state.valid);
+    // console.log(this.Checkout.controls.zipcode.valid);
+    // console.log(this.Checkout.controls.cardnumber.valid);
+    // console.log(this.Checkout.controls.expiredate.valid);
+    // console.log(this.Checkout.controls.securitycode.valid);
+    // console.log(this.Checkout.controls.nameoncard.valid);
+    // console.log(this.Checkout.controls.billaddress.valid);
 
-
+//#endregion
 
     let country = this.Checkout.controls.country.value;
     let firstname = this.Checkout.controls.firstname.value;
@@ -126,10 +151,10 @@ export class CheckoutComponent implements OnInit {
     let billaddress = this.Checkout.controls.billaddress.value;
 
 
-    console.log(`country: ${country} , firstname: ${firstname}, lastname: ${lastname}, address: ${address}, appartment: ${appartment}, city: ${city}, state: ${state}, zipcode: ${zipcode}, cardnumber: ${cardnumber}, expiredate: ${expiredate}, securitycode: ${securitycode}, nameoncard: ${nameoncard}, billaddress: ${billaddress},`);
+    // console.log(`country: ${country} , firstname: ${firstname}, lastname: ${lastname}, address: ${address}, appartment: ${appartment}, city: ${city}, state: ${state}, zipcode: ${zipcode}, cardnumber: ${cardnumber}, expiredate: ${expiredate}, securitycode: ${securitycode}, nameoncard: ${nameoncard}, billaddress: ${billaddress},`);
 
     // data as an object
-    console.log(this.Checkout.value);
+    // console.log(this.Checkout.value);
 
     // alert("Order has been Send we will contact you on your email thank you for ordering.")
     this.showToast();
