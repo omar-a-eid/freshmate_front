@@ -1,3 +1,4 @@
+import { NgFor, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { WishlistService } from '../../services/wishlist/wishlist.service';
@@ -5,7 +6,6 @@ import { FooterComponent } from "../footer/footer.component";
 import { NavbarComponent } from "../navbar/navbar.component";
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { ProductComponent } from "../product/product.component";
-import { NgFor, NgIf } from '@angular/common';
 
 
 
@@ -31,6 +31,7 @@ export class WishlistComponent implements OnInit{
         this.WishlistService.GetWishlist(this.user.token).subscribe({
           next: (data: any) => {
             this.wishlist = data.products;
+            console.log(this.wishlist)
           },
           error: error => console.log(error)
         });

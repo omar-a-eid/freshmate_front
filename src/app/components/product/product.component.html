@@ -48,7 +48,12 @@
         (click)="goToSingleProduct(product._id)"
       />
 
-      <button class="cart-btn" (click)="addToCart(product._id)" i18n>
+      <button
+        *ngIf="!isAdmin"
+        class="cart-btn"
+        (click)="addToCart(product._id)"
+        i18n
+      >
         Add to Cart
       </button>
     </div>

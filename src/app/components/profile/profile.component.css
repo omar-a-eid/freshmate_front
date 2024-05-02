@@ -45,3 +45,7 @@
     height: 81px !important;
     padding: 0 !important;
 }
+
+.pointer {
+    cursor: pointer;
+}

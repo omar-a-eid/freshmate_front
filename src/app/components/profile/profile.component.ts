@@ -2,19 +2,21 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
 import { OrderService } from '../../services/order/order.service';
 import { RegistrationService } from '../../services/registration/registration.service';
+
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule,HttpClientModule],
-  providers: [RegistrationService,OrderService],
+  providers: [RegistrationService,OrderService, AuthService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  constructor(private registrationService: RegistrationService, private orderservice: OrderService) { }
+  constructor(private registrationService: RegistrationService, private orderservice: OrderService, private isAuth: AuthService) { }
 
   loading: boolean = true;
 
@@ -29,6 +31,7 @@ export class ProfileComponent {
   UserUsername:any
   UserGender:any
   avatar: any;
+  isAdmin: boolean = false;
 
   EditProfile:any = new FormGroup({
     username: new FormControl("", [Validators.minLength(3), Validators.maxLength(50)]),
@@ -96,8 +99,9 @@ export class ProfileComponent {
     this.userSession = sessionStorage.getItem("user");
     this.user = JSON.parse(this.userSession);
     // console.log(this.user.token);
-    
+    this.isAdmin =  this.isAuth.isAdmin();
 
+    console.log(this.isAdmin);
     this.registrationService.getUsersById(this.user.userId, this.user.token).subscribe({
       next: (data: any) => {
         this.orders = data;
@@ -213,4 +217,16 @@ export class ProfileComponent {
 }
 }
 
+  deleteOrder(orderId:string) {
+    this.userSession = sessionStorage.getItem("user");
+    this.user = JSON.parse(this.userSession);
+    this.orderservice.DeleteOrder(orderId, this.user.token).subscribe({
+      next: () => {
+        window.location.reload();
+      },
+      error(err) {
+          
+      },
+    })
+  }
 }
