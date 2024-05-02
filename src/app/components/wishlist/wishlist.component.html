@@ -8,10 +8,16 @@
       [product]="item"
     ></app-product>
   </ng-container>
+  <div class="no-products">
   <ng-template #noItems>
-    <p>No items in the wishlist</p>
+    <div class="align-items-center d-flex justify-content-around no-products">
+      <div class="d-flex flex-column gap-4 no-products align-items-center">
+          <p>NO ITEMS IN WISHLIST !!</p>
+          <a href="/products"><button>GO SHOPPING</button></a>
+      </div>
+  </div>
   </ng-template>
-
+</div>
 </div>
 </div>
 
