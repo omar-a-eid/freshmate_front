@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FooterComponent } from '../footer/footer.component';
-import { PathbarComponent } from '../pathbar/pathbar.component';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { CartService } from '../../services/cart/cart.service';
 import { OrderService } from '../../services/order/order.service';
-import { HttpClientModule } from '@angular/common/http';
 import { RegistrationService } from '../../services/registration/registration.service';
+import { FooterComponent } from '../footer/footer.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { PathbarComponent } from '../pathbar/pathbar.component';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule, FooterComponent, PathbarComponent, NavbarComponent],
-  providers: [OrderService,RegistrationService],
+  providers: [CartService,RegistrationService, OrderService],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
@@ -29,18 +30,17 @@ export class CheckoutComponent implements OnInit {
   productQuantity: any;
   UserEmail:any
 
-  constructor(private orderservice: OrderService,private registrationService:RegistrationService) { }
+  constructor(private cartService: CartService,private registrationService:RegistrationService, private orderService: OrderService) { }
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem("user");
     this.user = JSON.parse(this.userSession);
 
-    this.orderservice.GetAllOrdersForUser(this.user.userId, this.user.token).subscribe({
+    this.cartService.GetCartItems(this.user.token).subscribe({
       next: (data: any) => {
-        if (data.length > 0) {
-          this.orders = data[0]; // Assuming the first order in the array
+        if (data.products.length > 0) {
+          this.orders = data; // Assuming the first order in the array
         }
         // const singledata = data[];
-        console.log(data);
         // console.log(data);
 
         //#region handle backend
@@ -68,7 +68,6 @@ export class CheckoutComponent implements OnInit {
 
         }
 
-        console.log(this.totalPrice);
       },
       error: (err) => { "there is an eror fetching data from mongodb" }
       // complete:()=>{}
@@ -91,7 +90,6 @@ export class CheckoutComponent implements OnInit {
       },
       error: (err) => { "there is an eror fetching data from mongodb" }
     })
-
   }
 
   logout: boolean = false
@@ -103,8 +101,8 @@ export class CheckoutComponent implements OnInit {
 
   Checkout = new FormGroup({
     country: new FormControl("", [Validators.required]),
-    firstname: new FormControl("", [Validators.minLength(5), Validators.maxLength(15), Validators.required]),
-    lastname: new FormControl("", [Validators.minLength(5), Validators.maxLength(15), Validators.required]),
+    firstname: new FormControl("", [Validators.minLength(3), Validators.maxLength(15), Validators.required]),
+    lastname: new FormControl("", [Validators.minLength(3), Validators.maxLength(15), Validators.required]),
     address: new FormControl("", [Validators.minLength(10), Validators.maxLength(50), Validators.required]),
     appartment: new FormControl("", [Validators.required]),
     city: new FormControl("", [Validators.required]),
@@ -151,13 +149,34 @@ export class CheckoutComponent implements OnInit {
     let billaddress = this.Checkout.controls.billaddress.value;
 
 
-    // console.log(`country: ${country} , firstname: ${firstname}, lastname: ${lastname}, address: ${address}, appartment: ${appartment}, city: ${city}, state: ${state}, zipcode: ${zipcode}, cardnumber: ${cardnumber}, expiredate: ${expiredate}, securitycode: ${securitycode}, nameoncard: ${nameoncard}, billaddress: ${billaddress},`);
+  
+    
+    this.cartService.GetCartItems(this.user.token).subscribe({
+      next: (data: any) => {
+        const order = data;
+       const products = [];
+        let totalPrice = 0, productPrice, productQuantity;
+        for (let i = 0; i < order.products.length; i++) {
+          productPrice = order.products[i].product.price;
+          productQuantity = order.products[i].quantity;
+          totalPrice += (productPrice * productQuantity);
+        }
+        delete order["_id"];
+        order.totalPrice = totalPrice.toFixed(2);
+        order.status = "pending";
+        console.log(order);
+        this.orderService.CreateOrder(order, this.user.token).subscribe({
+          next: ()=> {
+            this.showToast();
+          },
+          error(err) {
+              
+          },
+        });
+      },
+      error: (err) => { "there is an eror fetching data from mongodb" }
+    })
 
-    // data as an object
-    // console.log(this.Checkout.value);
-
-    // alert("Order has been Send we will contact you on your email thank you for ordering.")
-    this.showToast();
   }
 
   get country(): FormControl {
@@ -241,8 +260,5 @@ export class CheckoutComponent implements OnInit {
       });
     }
   }
-
-
-
 
 }

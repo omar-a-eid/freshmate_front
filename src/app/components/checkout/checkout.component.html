@@ -1,355 +1,580 @@
 <div class="container-fluid">
-    <div class="col-12">
-        <div class="row col-12 ">
-            <div class="col-12 d-flex">
-                <div class="col-1 d-flex"></div>
-                <div class="col-10 d-flex justify-content-between ">
-                    <div class="m-3">
-                        <h5 i18n><strong>FreshMate Password : 1</strong></h5>
-                    </div>
-                    <div class="m-3">
-                        <i class="fa-solid fa-bag-shopping clr"></i>
-                    </div>
-                </div>
-                <div class="col-1"></div>
+  <div class="col-12 mt-5">
+    <div>
+      <div class="col-12 d-flex">
+        <div class="col-1"></div>
+        <div class="col-11 d-flex justify-content-evenly">
+          <div class="col-11 col-sm-11 col-md-5 col-lg-5 col-xl-5 mt-5">
+            <div class="d-flex justify-content-between">
+              <div class="mb-3">
+                <a i18n class="clickable" (click)="logout = !logout">
+                  Account</a
+                >
+              </div>
+              <div class="mb-3">
+                <i
+                  class="clickable fa-solid fa-angle-down text-center"
+                  (click)="logout = !logout"
+                ></i>
+              </div>
             </div>
-            <hr>
-        </div>
-        <div>
-            <div class="col-12 d-flex">
-                <div class="col-1"></div>
-                <div class="col-11 d-flex justify-content-evenly">
-                    <div class=" col-11 col-sm-11 col-md-5 col-lg-5 col-xl-5 mt-5">
-                        <div class="d-flex justify-content-between">
-                            <div class="mb-3">
-                                <a i18n class="clickable" (click)="logout =! logout"> Account</a>
-                            </div>
-                            <div class="mb-3">
-                                <i class="clickable fa-solid fa-angle-down text-center" (click)="logout =! logout"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <p>{{UserEmail}}</p>
-                            <p i18n (click)="signout()" class="link color1" *ngIf="logout"><a href="">Log out</a></p>
-
-                        </div>
-                        <hr>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label i18n class="form-check-label" for="exampleCheck1">Email me with news and
-                                offers</label>
-                        </div>
-                        <h5 i18n>Delivery</h5>
-                        <!-- FORM -->
-                        <!-- FORM -->
-                        <!-- FORM -->
-                        <form [formGroup]="Checkout" class="form mt-3">
-                            <div class="form-floating">
-                                <select class="form-select" formControlName="country" name="country" id="floatingSelect"
-                                    aria-label="Floating label select example">
-                                    <option i18n selected>Egypt</option>
-                                </select>
-                                <label i18n for="floatingSelect">Country/Region</label>
-                            </div>
-                            <!--  country validation -->
-                            <div class="form-text text-danger"
-                                *ngIf="country.errors?.['required'] && (country.touched || country.dirty)">
-                                <p i18n><strong>Country is Required</strong></p>
-                            </div>
-                            <!-- end country valiadtion -->
-                            <div class=" mt-3 d-flex">
-                                <div class="col-6 w-50 px-1">
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input i18n type="text" class="form-control" formControlName="firstname"
-                                                name="firstname" id="floatingInputGrid" placeholder="First Name"
-                                                value="Karim">
-                                            <label i18n for="floatingInputGrid">First Name (Optional)</label>
-                                        </div>
-                                    </div>
-                                    <!--  firstname validation -->
-                                    <div class="form-text text-danger"
-                                        *ngIf="firstname.errors?.['required'] && (firstname.touched || firstname.dirty)">
-                                        <p i18n><strong>firstname is Required</strong></p>
-                                    </div>
-                                    <div class="form-text text-danger"
-                                        *ngIf="firstname.errors?.['minlength'] && (firstname.touched || firstname.dirty)">
-                                        <p i18n><strong>firstname must be at least 5 characters long</strong></p>
-                                    </div>
-                                    <div class="form-text text-danger"
-                                        *ngIf="firstname.errors?.['maxlength'] && (firstname.touched || firstname.dirty)">
-                                        <p i18n><strong>firstname cannot exceed 15 characters</strong></p>
-                                    </div>
-                                    <!-- end firstname valiadtion -->
-                                </div>
-                                <div class="col-6 w-50">
-                                    <div class="form-floating">
-                                        <input i18n type="text" class="form-control" formControlName="lastname"
-                                            name="lastname" id="floatingInputGrid2" placeholder="Last Name"
-                                            value="mohamed">
-                                        <label i18n for="floatingInputGrid2">Last Name</label>
-                                    </div>
-                                    <!--  lastname validation -->
-                                    <div class="form-text text-danger"
-                                        *ngIf="lastname.errors?.['required'] && (lastname.touched || lastname.dirty)">
-                                        <p i18n><strong>lastname is Required</strong></p>
-                                    </div>
-                                    <div class="form-text text-danger"
-                                        *ngIf="lastname.errors?.['minlength'] && (lastname.touched || lastname.dirty)">
-                                        <p i18n><strong>lastname must be at least 5 characters long</strong></p>
-                                    </div>
-                                    <div class="form-text text-danger"
-                                        *ngIf="lastname.errors?.['maxlength'] && (lastname.touched || lastname.dirty)">
-                                        <p i18n><strong>firstname cannot exceed 15 characters</strong></p>
-                                    </div>
-                                    <!-- end lastname valiadtion -->
-                                </div>
-                            </div>
-                            <div class="col-12 mt-3">
-                                <input i18n type="text" class="form-control" formControlName="address" name="address"
-                                    id="inputAddress" placeholder="Address">
-                            </div>
-                            <!--  address validation -->
-                            <div class="form-text text-danger"
-                                *ngIf="address.errors?.['required'] && (address.touched || address.dirty)">
-                                <p i18n><strong>address is Required</strong></p>
-                            </div>
-                            <div class="form-text text-danger"
-                                *ngIf="address.errors?.['minlength'] && (address.touched || address.dirty)">
-                                <p i18n><strong>address must be at least 10 characters long</strong></p>
-                            </div>
-                            <div class="form-text text-danger"
-                                *ngIf="address.errors?.['maxlength'] && (address.touched || address.dirty)">
-                                <p i18n><strong>address cannot exceed 50 characters</strong></p>
-                            </div>
-                            <!-- end address valiadtion -->
-                            <div class="col-12 mt-3">
-                                <input i18n type="text" class="form-control" formControlName="appartment"
-                                    name="appartment" id="inputAddress"
-                                    placeholder="Appartment, suite, etc. (Optional)">
-                            </div>
-                            <!--  appartment validation -->
-                            <div class="form-text text-danger"
-                                *ngIf="appartment.errors?.['required'] && (appartment.touched || appartment.dirty)">
-                                <p i18n><strong>appartment is Required</strong></p>
-                            </div>
-                            <!-- end appartment valiadtion -->
-                            <div class="col-12 d-flex mt-3 mb-3">
-                                <div class="row g-2">
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input i18n type="text" class="form-control" formControlName="city"
-                                                name="city" id="floatingInputGrid3" placeholder="City"
-                                                value="Alexandria">
-                                            <label i18n for="floatingInputGrid3">City</label>
-                                        </div>
-                                        <!--  city validation -->
-                                        <div class="form-text text-danger"
-                                            *ngIf="city.errors?.['required'] && (city.touched || city.dirty)">
-                                            <p i18n><strong>city is Required</strong></p>
-                                        </div>
-                                        <!-- end city valiadtion -->
-                                    </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <select class="form-select" formControlName="state" name="state"
-                                                id="floatingSelectGrid">
-                                                <option i18n selected>Egypt</option>
-                                                <option i18n value="1">Ksa</option>
-                                                <option i18n value="2">Bahrain</option>
-                                                <option i18n value="3">Qatar</option>
-                                            </select>
-                                            <label i18n for="floatingSelectGrid">State</label>
-                                        </div>
-                                        <!--  state validation -->
-                                        <div class="form-text text-danger"
-                                            *ngIf="state.errors?.['required'] && (state.touched || state.dirty)">
-                                            <p i18n><strong>state is Required</strong></p>
-                                        </div>
-                                        <!-- end state valiadtion -->
-                                    </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input i18n type="text" class="form-control" formControlName="zipcode"
-                                                name="zipcode" id="floatingInputGrid4" placeholder="ZIP code"
-                                                value="81611">
-                                            <label i18n for="floatingInputGrid4">ZIP code</label>
-                                        </div>
-                                        <!--  zipcode validation -->
-                                        <div class="form-text text-danger"
-                                            *ngIf="zipcode.errors?.['required'] && (zipcode.touched || zipcode.dirty)">
-                                            <p i18n><strong>zipcode is Required</strong></p>
-                                        </div>
-                                        <!-- end zipcode valiadtion -->
-                                    </div>
-                                </div>
-                            </div>
-                            <p i18n><strong>Shipping method</strong></p>
-                            <div class="col-12 mt-3 mb-3">
-                                <input i18n type="text" class="form-control" id="inputAddress" placeholder="Standard"
-                                    disabled>
-                            </div>
-                            <h5 i18n><strong>Payment</strong></h5>
-                            <p i18n class="text-muted">All transactions are secure and encrypted.</p>
-                            <div class="bg p-2">
-                                <div class="col-12 mt-3 mb-3 d-flex">
-                                    <div class="col-12" style="position: relative;">
-                                        <input i18n type="text" class="form-control" id="inputAddress"
-                                            placeholder="Credit Card" style="height: 60px; padding-right: 120px;"
-                                            disabled>
-                                        <i class="fa-brands fa-cc-visa mx-3" id="visa"
-                                            style="position: absolute; top: 50%; right: 90px; transform: translateY(-50%); font-size: 30px;"></i>
-                                        <i class="fa-brands fa-cc-mastercard mx-2" id="master"
-                                            style="position: absolute; top: 50%; right: 60px; transform: translateY(-50%); font-size: 30px;"></i>
-                                        <i class="fa-brands fa-cc-discover" id="discover"
-                                            style="position: absolute; top: 50%; right: 30px; transform: translateY(-50%); font-size: 30px;"></i>
-                                    </div>
-                                </div>
-                                <div class="m-3">
-                                    <div class="d-flex" style="position: relative;">
-                                        <input i18n type="text" class="form-control" formControlName="cardnumber"
-                                            name="cardnumber" id="inputAddress" placeholder="Card Number"
-                                            style="height: 60px; padding-right: 40px;" required>
-                                        <i class="fa-solid fa-lock mx-3"
-                                            style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></i>
-                                    </div>
-                                    <!--  cardnumber validation -->
-                                    <div class="form-text text-danger"
-                                        *ngIf="cardnumber.errors?.['required'] && (cardnumber.touched || cardnumber.dirty)">
-                                        <p i18n><strong>cardnumber is Required</strong></p>
-                                    </div>
-                                    <div class="form-text text-danger"
-                                        *ngIf="cardnumber.errors?.['pattern'] && (cardnumber.touched || cardnumber.dirty)">
-                                        <p i18n><strong>cardnumber should be 16 digit Number</strong></p>
-                                    </div>
-                                    <!-- end cardnumber valiadtion -->
-                                    <div class="d-flex mt-3">
-                                        <div class="col-12 w-50">
-                                            <div class="mx-1">
-                                                <input i18n type="text" style="height: 60px;"
-                                                    formControlName="expiredate" name="expiredate" class="form-control"
-                                                    id="exampleInputText1" placeholder="Expiration date (MM/YY)">
-                                            </div>
-                                            <!--  expiredate validation -->
-                                            <div class="form-text text-danger"
-                                                *ngIf="expiredate.errors?.['required'] && (expiredate.touched || expiredate.dirty)">
-                                                <p i18n><strong>expiredate is Required</strong></p>
-                                            </div>
-                                            <!-- end expiredate valiadtion -->
-                                        </div>
-                                        <div class="col-6 w-50">
-                                            <div>
-                                                <input i18n type="text" style="height: 60px;"
-                                                    formControlName="securitycode" name="securitycode"
-                                                    class="form-control fs" id="exampleInputtextma1"
-                                                    placeholder="Security Code">
-                                            </div>
-                                            <!--  securitycode validation -->
-                                            <div class="form-text text-danger"
-                                                *ngIf="securitycode.errors?.['required'] && (securitycode.touched || securitycode.dirty)">
-                                                <p i18n><strong>securitycode is Required</strong></p>
-                                            </div>
-                                            <!-- end securitycode valiadtion -->
-                                        </div>
-                                    </div>
-                                    <div class="form-floating mt-3">
-                                        <input i18n type="text" class="form-control" formControlName="nameoncard"
-                                            name="nameoncard" id="floatingInputGridon" placeholder="Name on Card"
-                                            value="Karim Mohamed">
-                                        <label i18n for="floatingInputGrid">Name on Card</label>
-                                    </div>
-                                    <!--  nameoncard validation -->
-                                    <div class="form-text text-danger"
-                                        *ngIf="nameoncard.errors?.['required'] && (nameoncard.touched || nameoncard.dirty)">
-                                        <p i18n><strong>nameoncard is Required</strong></p>
-                                    </div>
-                                    <div class="form-text text-danger"
-                                        *ngIf="nameoncard.errors?.['minlength'] && (nameoncard.touched || nameoncard.dirty)">
-                                        <p i18n><strong>nameoncard must be at least 5 characters long</strong></p>
-                                    </div>
-                                    <div class="form-text text-danger"
-                                        *ngIf="nameoncard.errors?.['maxlength'] && (nameoncard.touched || nameoncard.dirty)">
-                                        <p i18n><strong>nameoncard cannot exceed 15 characters</strong></p>
-                                    </div>
-                                    <div class="form-text text-danger"
-                                        *ngIf="nameoncard.errors?.['pattern'] && (nameoncard.touched || nameoncard.dirty)">
-                                        <p i18n><strong>nameoncard must be in characters</strong></p>
-                                    </div>
-                                    <!-- end nameoncard valiadtion -->
-                                    <div class="form-check mt-3 mb-2">
-                                        <input i18n class="form-check-input" formControlName="billaddress"
-                                            name="billaddress" type="checkbox" value="" id="flexCheckChecked" checked>
-                                        <label i18n class="form-check-label" for="flexCheckChecked">
-                                            Use shipping address as billing address
-                                        </label>
-                                    </div>
-                                    <!--  billaddress validation -->
-                                    <div class="form-text text-danger"
-                                        *ngIf="billaddress.errors?.['required'] && (billaddress.touched || billaddress.dirty)">
-                                        <p i18n><strong>billaddress is Required</strong></p>
-                                    </div>
-                                    <!-- end billaddress valiadtion -->
-                                </div>
-                            </div>
-                            <div class="mt-4 mb-5 text-center">
-                                <button i18n type="submit" (click)="getdata()" [disabled]="Checkout.invalid"
-                                    class="btn btn-primary col-12 bg1">Pay
-                                    now</button>
-                            </div>
-                        </form>
-                        <!-- END FORM -->
-                        <!-- END FORM -->
-                        <!-- END FORM -->
-                        <!-- END FORM -->
-                        <!-- END FORM -->
-                    </div>
-                    <hr class="brd">
-                    <div class="col-11 col-sm-11 col-md-5 col-lg-5 col-xl-5 gray">
-                        <div class="row col-12">
-                            <div *ngIf="orders">
-                                <ng-container *ngFor="let product of orders.products; let i=index">
-                                    <div class="col-12 d-flex m-5 position-relative">
-                                        <img class="img-thumbnail" [src]="product.product.images[0]" width="140px"
-                                            height="70px">
-                                        <div class="number-badge">{{ product.quantity}}</div>
-                                        <div class="d-flex justify-content-between ">
-                                            <p class="mx-4 mt-5 ">{{ product.product.title.en }}</p>
-                                            <p class="px-5 mt-5 ">$ {{ product.product.price }}</p>
-                                        </div>
-                                    </div>
-                                </ng-container>
-                                <div class="m-5">
-                                    <div class="col-12 d-flex justify-content-between">
-                                        <p i18n class="px-3">Shipping</p>
-                                        <p class="px-3">{{ orders.status.en }}</p>
-                                    </div>
-                                    <div class="col-12 d-flex justify-content-between">
-                                        <h5 i18n class="px-3 fs-3"><strong>Total</strong></h5>
-                                        <div class="d-flex justify-content-end">
-                                            <small i18n class="text-end">EGP</small>
-                                            <h5 class="px-3 fs-3"><strong>$ {{ totalPrice }}</strong></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <p>{{ UserEmail }}</p>
+              <p i18n (click)="signout()" class="link color1" *ngIf="logout">
+                <a href="">Log out</a>
+              </p>
             </div>
-        </div>
-        <hr class="m-0">
-        <p i18n class="m-0"><small>All rights reserved FreshMate Password : 1</small></p>
-        <div aria-live="polite" aria-atomic="true"
-            class="toast-container d-flex justify-content-center align-items-center" id="toastContainer">
-            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="passwordToast">
-                <div class="toast-header bg-danger text-white">
-                    <p i18n class="mr-auto text-center">Confirmation Message</p>
-                </div>
-
-                <div class="d-flex flex-row toast-body">
-                    <p i18n>Order has been Send we will contact you on your email thank you for ordering.</p>
-                </div>
+            <hr />
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="exampleCheck1"
+              />
+              <label i18n class="form-check-label" for="exampleCheck1"
+                >Email me with news and offers</label
+              >
             </div>
+            <h5 i18n>Delivery</h5>
+            <!-- FORM -->
+            <!-- FORM -->
+            <!-- FORM -->
+            <form [formGroup]="Checkout" class="form mt-3">
+              <div class="form-floating">
+                <select
+                  class="form-select"
+                  formControlName="country"
+                  name="country"
+                  id="floatingSelect"
+                  aria-label="Floating label select example"
+                >
+                  <option i18n selected>Egypt</option>
+                </select>
+                <label i18n for="floatingSelect">Country/Region</label>
+              </div>
+              <!--  country validation -->
+              <div
+                class="form-text text-danger"
+                *ngIf="country.errors?.['required'] && (country.touched || country.dirty)"
+              >
+                <p i18n><strong>Country is Required</strong></p>
+              </div>
+              <!-- end country valiadtion -->
+              <div class="mt-3 d-flex">
+                <div class="col-6 w-50 px-1">
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <input
+                        i18n
+                        type="text"
+                        class="form-control"
+                        formControlName="firstname"
+                        name="firstname"
+                        id="floatingInputGrid"
+                        placeholder="First Name"
+                        value="Karim"
+                      />
+                      <label i18n for="floatingInputGrid"
+                        >First Name (Optional)</label
+                      >
+                    </div>
+                  </div>
+                  <!--  firstname validation -->
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="firstname.errors?.['required'] && (firstname.touched || firstname.dirty)"
+                  >
+                    <p i18n><strong>firstname is Required</strong></p>
+                  </div>
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="firstname.errors?.['minlength'] && (firstname.touched || firstname.dirty)"
+                  >
+                    <p i18n>
+                      <strong
+                        >firstname must be at least 5 characters long</strong
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="firstname.errors?.['maxlength'] && (firstname.touched || firstname.dirty)"
+                  >
+                    <p i18n>
+                      <strong>firstname cannot exceed 15 characters</strong>
+                    </p>
+                  </div>
+                  <!-- end firstname valiadtion -->
+                </div>
+                <div class="col-6 w-50">
+                  <div class="form-floating">
+                    <input
+                      i18n
+                      type="text"
+                      class="form-control"
+                      formControlName="lastname"
+                      name="lastname"
+                      id="floatingInputGrid2"
+                      placeholder="Last Name"
+                      value="mohamed"
+                    />
+                    <label i18n for="floatingInputGrid2">Last Name</label>
+                  </div>
+                  <!--  lastname validation -->
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="lastname.errors?.['required'] && (lastname.touched || lastname.dirty)"
+                  >
+                    <p i18n><strong>lastname is Required</strong></p>
+                  </div>
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="lastname.errors?.['minlength'] && (lastname.touched || lastname.dirty)"
+                  >
+                    <p i18n>
+                      <strong
+                        >lastname must be at least 5 characters long</strong
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="lastname.errors?.['maxlength'] && (lastname.touched || lastname.dirty)"
+                  >
+                    <p i18n>
+                      <strong>firstname cannot exceed 15 characters</strong>
+                    </p>
+                  </div>
+                  <!-- end lastname valiadtion -->
+                </div>
+              </div>
+              <div class="col-12 mt-3">
+                <input
+                  i18n
+                  type="text"
+                  class="form-control"
+                  formControlName="address"
+                  name="address"
+                  id="inputAddress"
+                  placeholder="Address"
+                />
+              </div>
+              <!--  address validation -->
+              <div
+                class="form-text text-danger"
+                *ngIf="address.errors?.['required'] && (address.touched || address.dirty)"
+              >
+                <p i18n><strong>address is Required</strong></p>
+              </div>
+              <div
+                class="form-text text-danger"
+                *ngIf="address.errors?.['minlength'] && (address.touched || address.dirty)"
+              >
+                <p i18n>
+                  <strong>address must be at least 10 characters long</strong>
+                </p>
+              </div>
+              <div
+                class="form-text text-danger"
+                *ngIf="address.errors?.['maxlength'] && (address.touched || address.dirty)"
+              >
+                <p i18n><strong>address cannot exceed 50 characters</strong></p>
+              </div>
+              <!-- end address valiadtion -->
+              <div class="col-12 mt-3">
+                <input
+                  i18n
+                  type="text"
+                  class="form-control"
+                  formControlName="appartment"
+                  name="appartment"
+                  id="inputAddress"
+                  placeholder="Appartment, suite, etc. (Optional)"
+                />
+              </div>
+              <!--  appartment validation -->
+              <div
+                class="form-text text-danger"
+                *ngIf="appartment.errors?.['required'] && (appartment.touched || appartment.dirty)"
+              >
+                <p i18n><strong>appartment is Required</strong></p>
+              </div>
+              <!-- end appartment valiadtion -->
+              <div class="col-12 d-flex mt-3 mb-3">
+                <div class="row g-2">
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <input
+                        i18n
+                        type="text"
+                        class="form-control"
+                        formControlName="city"
+                        name="city"
+                        id="floatingInputGrid3"
+                        placeholder="City"
+                        value="Alexandria"
+                      />
+                      <label i18n for="floatingInputGrid3">City</label>
+                    </div>
+                    <!--  city validation -->
+                    <div
+                      class="form-text text-danger"
+                      *ngIf="city.errors?.['required'] && (city.touched || city.dirty)"
+                    >
+                      <p i18n><strong>city is Required</strong></p>
+                    </div>
+                    <!-- end city valiadtion -->
+                  </div>
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <select
+                        class="form-select"
+                        formControlName="state"
+                        name="state"
+                        id="floatingSelectGrid"
+                      >
+                        <option i18n selected>Egypt</option>
+                        <option i18n value="1">Ksa</option>
+                        <option i18n value="2">Bahrain</option>
+                        <option i18n value="3">Qatar</option>
+                      </select>
+                      <label i18n for="floatingSelectGrid">State</label>
+                    </div>
+                    <!--  state validation -->
+                    <div
+                      class="form-text text-danger"
+                      *ngIf="state.errors?.['required'] && (state.touched || state.dirty)"
+                    >
+                      <p i18n><strong>state is Required</strong></p>
+                    </div>
+                    <!-- end state valiadtion -->
+                  </div>
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <input
+                        i18n
+                        type="text"
+                        class="form-control"
+                        formControlName="zipcode"
+                        name="zipcode"
+                        id="floatingInputGrid4"
+                        placeholder="ZIP code"
+                        value="81611"
+                      />
+                      <label i18n for="floatingInputGrid4">ZIP code</label>
+                    </div>
+                    <!--  zipcode validation -->
+                    <div
+                      class="form-text text-danger"
+                      *ngIf="zipcode.errors?.['required'] && (zipcode.touched || zipcode.dirty)"
+                    >
+                      <p i18n><strong>zipcode is Required</strong></p>
+                    </div>
+                    <!-- end zipcode valiadtion -->
+                  </div>
+                </div>
+              </div>
+              <p i18n><strong>Shipping method</strong></p>
+              <div class="col-12 mt-3 mb-3">
+                <input
+                  i18n
+                  type="text"
+                  class="form-control"
+                  id="inputAddress"
+                  placeholder="Standard"
+                  disabled
+                />
+              </div>
+              <h5 i18n><strong>Payment</strong></h5>
+              <p i18n class="text-muted">
+                All transactions are secure and encrypted.
+              </p>
+              <div class="bg p-2">
+                <div class="col-12 mt-3 mb-3 d-flex">
+                  <div class="col-12" style="position: relative">
+                    <input
+                      i18n
+                      type="text"
+                      class="form-control"
+                      id="inputAddress"
+                      placeholder="Credit Card"
+                      style="height: 60px; padding-right: 120px"
+                      disabled
+                    />
+                    <i
+                      class="fa-brands fa-cc-visa mx-3"
+                      id="visa"
+                      style="
+                        position: absolute;
+                        top: 50%;
+                        right: 90px;
+                        transform: translateY(-50%);
+                        font-size: 30px;
+                      "
+                    ></i>
+                    <i
+                      class="fa-brands fa-cc-mastercard mx-2"
+                      id="master"
+                      style="
+                        position: absolute;
+                        top: 50%;
+                        right: 60px;
+                        transform: translateY(-50%);
+                        font-size: 30px;
+                      "
+                    ></i>
+                    <i
+                      class="fa-brands fa-cc-discover"
+                      id="discover"
+                      style="
+                        position: absolute;
+                        top: 50%;
+                        right: 30px;
+                        transform: translateY(-50%);
+                        font-size: 30px;
+                      "
+                    ></i>
+                  </div>
+                </div>
+                <div class="m-3">
+                  <div class="d-flex" style="position: relative">
+                    <input
+                      i18n
+                      type="text"
+                      class="form-control"
+                      formControlName="cardnumber"
+                      name="cardnumber"
+                      id="inputAddress"
+                      placeholder="Card Number"
+                      style="height: 60px; padding-right: 40px"
+                      required
+                    />
+                    <i
+                      class="fa-solid fa-lock mx-3"
+                      style="
+                        position: absolute;
+                        top: 50%;
+                        right: 10px;
+                        transform: translateY(-50%);
+                      "
+                    ></i>
+                  </div>
+                  <!--  cardnumber validation -->
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="cardnumber.errors?.['required'] && (cardnumber.touched || cardnumber.dirty)"
+                  >
+                    <p i18n><strong>cardnumber is Required</strong></p>
+                  </div>
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="cardnumber.errors?.['pattern'] && (cardnumber.touched || cardnumber.dirty)"
+                  >
+                    <p i18n>
+                      <strong>cardnumber should be 16 digit Number</strong>
+                    </p>
+                  </div>
+                  <!-- end cardnumber valiadtion -->
+                  <div class="d-flex mt-3">
+                    <div class="col-12 w-50">
+                      <div class="mx-1">
+                        <input
+                          i18n
+                          type="text"
+                          style="height: 60px"
+                          formControlName="expiredate"
+                          name="expiredate"
+                          class="form-control"
+                          id="exampleInputText1"
+                          placeholder="Expiration date (MM/YY)"
+                        />
+                      </div>
+                      <!--  expiredate validation -->
+                      <div
+                        class="form-text text-danger"
+                        *ngIf="expiredate.errors?.['required'] && (expiredate.touched || expiredate.dirty)"
+                      >
+                        <p i18n><strong>expiredate is Required</strong></p>
+                      </div>
+                      <!-- end expiredate valiadtion -->
+                    </div>
+                    <div class="col-6 w-50">
+                      <div>
+                        <input
+                          i18n
+                          type="text"
+                          style="height: 60px"
+                          formControlName="securitycode"
+                          name="securitycode"
+                          class="form-control fs"
+                          id="exampleInputtextma1"
+                          placeholder="Security Code"
+                        />
+                      </div>
+                      <!--  securitycode validation -->
+                      <div
+                        class="form-text text-danger"
+                        *ngIf="securitycode.errors?.['required'] && (securitycode.touched || securitycode.dirty)"
+                      >
+                        <p i18n><strong>securitycode is Required</strong></p>
+                      </div>
+                      <!-- end securitycode valiadtion -->
+                    </div>
+                  </div>
+                  <div class="form-floating mt-3">
+                    <input
+                      i18n
+                      type="text"
+                      class="form-control"
+                      formControlName="nameoncard"
+                      name="nameoncard"
+                      id="floatingInputGridon"
+                      placeholder="Name on Card"
+                      value="Karim Mohamed"
+                    />
+                    <label i18n for="floatingInputGrid">Name on Card</label>
+                  </div>
+                  <!--  nameoncard validation -->
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="nameoncard.errors?.['required'] && (nameoncard.touched || nameoncard.dirty)"
+                  >
+                    <p i18n><strong>nameoncard is Required</strong></p>
+                  </div>
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="nameoncard.errors?.['minlength'] && (nameoncard.touched || nameoncard.dirty)"
+                  >
+                    <p i18n>
+                      <strong
+                        >nameoncard must be at least 5 characters long</strong
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="nameoncard.errors?.['maxlength'] && (nameoncard.touched || nameoncard.dirty)"
+                  >
+                    <p i18n>
+                      <strong>nameoncard cannot exceed 15 characters</strong>
+                    </p>
+                  </div>
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="nameoncard.errors?.['pattern'] && (nameoncard.touched || nameoncard.dirty)"
+                  >
+                    <p i18n>
+                      <strong>nameoncard must be in characters</strong>
+                    </p>
+                  </div>
+                  <!-- end nameoncard valiadtion -->
+                  <div class="form-check mt-3 mb-2">
+                    <input
+                      i18n
+                      class="form-check-input"
+                      formControlName="billaddress"
+                      name="billaddress"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckChecked"
+                      checked
+                    />
+                    <label i18n class="form-check-label" for="flexCheckChecked">
+                      Use shipping address as billing address
+                    </label>
+                  </div>
+                  <!--  billaddress validation -->
+                  <div
+                    class="form-text text-danger"
+                    *ngIf="billaddress.errors?.['required'] && (billaddress.touched || billaddress.dirty)"
+                  >
+                    <p i18n><strong>billaddress is Required</strong></p>
+                  </div>
+                  <!-- end billaddress valiadtion -->
+                </div>
+              </div>
+              <div class="mt-4 mb-5 text-center">
+                <button
+                  i18n
+                  type="submit"
+                  (click)="getdata()"
+                  class="btn btn-primary col-12 bg1"
+                >
+                  <!-- [disabled]="Checkout.invalid" -->
+                  Pay now
+                </button>
+              </div>
+            </form>
+            <!-- END FORM -->
+            <!-- END FORM -->
+            <!-- END FORM -->
+            <!-- END FORM -->
+            <!-- END FORM -->
+          </div>
+          <hr class="brd" />
+          <div class="col-11 col-sm-11 col-md-5 col-lg-5 col-xl-5 gray">
+            <div class="row col-12">
+              <div *ngIf="orders">
+                <ng-container
+                  *ngFor="let product of orders.products; let i = index"
+                >
+                  <div class="col-12 d-flex m-5 position-relative">
+                    <img
+                      class="img-thumbnail"
+                      [src]="product.product.images[0]"
+                      width="140px"
+                      height="70px"
+                    />
+                    <div class="number-badge">{{ product.quantity }}</div>
+                    <div class="d-flex justify-content-between">
+                      <p class="mx-4 mt-5">{{ product.product.title.en }}</p>
+                      <p class="px-5 mt-5">$ {{ product.product.price }}</p>
+                    </div>
+                  </div>
+                </ng-container>
+                <div class="m-5">
+                  <div class="col-12 d-flex justify-content-between">
+                    <h5 i18n class="px-3 fs-3"><strong>Total</strong></h5>
+                    <div class="d-flex justify-content-end">
+                      <small i18n class="text-end">EGP</small>
+                      <h5 class="px-3 fs-3">
+                        @if(totalPrice) {
+                        <strong>$ {{ totalPrice.toFixed(2) }}</strong>
+                        }
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+    <div
+      aria-live="polite"
+      aria-atomic="true"
+      class="toast-container d-flex justify-content-center align-items-center"
+      id="toastContainer"
+    >
+      <div
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        id="passwordToast"
+      >
+        <div class="toast-header bg-danger text-white">
+          <p i18n class="mr-auto text-center">Confirmation Message</p>
+        </div>
+
+        <div class="d-flex flex-row toast-body">
+          <p i18n>
+            Order has been Send we will contact you on your email thank you for
+            ordering.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

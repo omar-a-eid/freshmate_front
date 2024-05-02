@@ -48,11 +48,9 @@
         (click)="goToSingleProduct(product._id)"
       />
 
-      <a routerLink="/cart"
-        ><button class="cart-btn" (click)="addToCart(product._id)">
-          Add to Cart
-        </button>
-      </a>
+      <button class="cart-btn" (click)="addToCart(product._id)">
+        Add to Cart
+      </button>
     </div>
   </div>
   <h4 class="title">{{ product.title?.en }}</h4>
