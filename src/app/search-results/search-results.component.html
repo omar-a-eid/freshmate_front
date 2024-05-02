@@ -1,0 +1,18 @@
+    <div class="all-products d-flex justify-content-around">
+        <div class="d-flex flex-row products-added-to-cart flex-wrap ">
+  <ng-container *ngIf="products && products.length > 0; else noItems">
+    
+            <div class="product" *ngFor="let product of products">
+      <app-product class="col-lg-3 col-md-6 col-sm-12" [product]="product"></app-product>
+    </div>
+
+  </ng-container>
+  <ng-template #noItems>
+    <div class="justify-content-around">
+        <div>
+        <p>NO PRODUCTS FOUND !!</p>
+    </div>
+    </div>
+  </ng-template>
+  </div>
+</div>
