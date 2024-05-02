@@ -111,9 +111,9 @@ export class ProductComponent implements OnInit {
       this.user = JSON.parse(this.userSession);
       this.productService.GetProduct(this.productId).subscribe({
         next: (data: any) => {
-          console.log(data);
+          // console.log(data);
           this.product = data;
-          console.log(this.product);
+          // console.log(this.product);
         },
         error: (error: any) => console.log(error),
       });
@@ -132,7 +132,7 @@ export class ProductComponent implements OnInit {
     this.user = JSON.parse(this.userSession);
     this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
       next:() => {
-        console.log('Product added to cart successfully');
+        // console.log('Product added to cart successfully');
         this.router.navigate(["/cart"]);
         this.updateProductsQuantity();
       },
@@ -163,7 +163,7 @@ export class ProductComponent implements OnInit {
       next: (response: any) => {
         console.log('Product removed from wishlist:', response);
         location.reload();
-        console.log('product is deleted');
+        // console.log('product is deleted');
       },
       error: (error: any) => {
         console.error('Error removing product from wishlist:', error);

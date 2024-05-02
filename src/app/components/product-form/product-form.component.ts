@@ -83,11 +83,11 @@ export class ProductFormComponent implements OnInit {
   
       if (this.isEditMode) {
         formData.append("oldImages", productData.oldImages);
-        console.log(formData);
+        // console.log(formData);
         this.productService.updateProduct(this.productId, formData,user.token).subscribe({
           next: (data) => {
             this.message = 'Product updated successfully';
-            console.log(data)
+            // console.log(data)
           },
           error: (error) => {
             this.message = 'Error updating product';

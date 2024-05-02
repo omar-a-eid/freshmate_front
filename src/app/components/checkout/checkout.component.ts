@@ -170,7 +170,7 @@ export class CheckoutComponent implements OnInit {
         delete order["_id"];
         order.totalPrice = totalPrice.toFixed(2);
         order.status = "pending";
-        console.log(order);
+        // console.log(order);
         this.orderService.CreateOrder(order, this.user.token).subscribe({
           next: ()=> {
             this.showToast();

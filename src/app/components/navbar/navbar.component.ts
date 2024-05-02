@@ -156,7 +156,7 @@ export class NavbarComponent {
       .UpdateCartItemQuantity(item.product._id, item.quantity, this.user.token)
       .subscribe({
         next: () => {
-          console.log('Quantity updated successfully');
+          // console.log('Quantity updated successfully');
           this.calculateTotalPrice();
           this.updateProductsQuantity();
         },
@@ -172,7 +172,7 @@ export class NavbarComponent {
     this.allProducts.splice(index, 1);
     this.cartService.RemoveItemsFromCart(productId, this.user.token).subscribe({
       next: (response: any) => {
-        console.log('Product deleted successfully');
+        // console.log('Product deleted successfully');
         this.calculateTotalPrice();
         this.updateProductsQuantity();
       },
@@ -236,7 +236,7 @@ export class NavbarComponent {
   }
   
   handleSearch() {
-    console.log("Search keyword:", this.searchKeyword); // Log the search keyword
+    // console.log("Search keyword:", this.searchKeyword); // Log the search keyword
     // const id = 
     if (this.searchKeyword.trim() !== '') {
       // this.getAllProducts();

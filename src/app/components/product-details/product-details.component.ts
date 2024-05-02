@@ -192,7 +192,7 @@ export class ProductDetailsComponent implements OnInit {
   addToCart(productId: string) {
     this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
       next: () => {
-        console.log('Product added to cart successfully');
+        // console.log('Product added to cart successfully');
         window.location.href = "/cart";
       },
       error: (error) => {

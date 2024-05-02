@@ -79,7 +79,7 @@ export class ProfileComponent {
           formData.append(key, updateUser[key]);
         });
 
-        console.log(formData);
+        // console.log(formData);
       this.registrationService.update(this.user.userId, this.user.token,formData).subscribe({//here we should add the userid
         error: error => console.log(error),
         next: (data:any) => {

@@ -25,20 +25,20 @@ export class ContactUSComponent {
 
   getdata() {
 
-    console.log(this.ContactUs.controls.name.valid);
-    console.log(this.ContactUs.controls.email.valid);
-    console.log(this.ContactUs.controls.phonenumber.valid);
-    console.log(this.ContactUs.controls.description.valid);
+    // console.log(this.ContactUs.controls.name.valid);
+    // console.log(this.ContactUs.controls.email.valid);
+    // console.log(this.ContactUs.controls.phonenumber.valid);
+    // console.log(this.ContactUs.controls.description.valid);
     let name = this.ContactUs.controls.name.value;
     let email = this.ContactUs.controls.email.value;
     let phonenumber = this.ContactUs.controls.phonenumber.value;
     let description = this.ContactUs.controls.description.value;
 
-    console.log(`name: ${name} , email: ${email} , phonenumber: ${phonenumber}, description: ${description}`);
+    // console.log(`name: ${name} , email: ${email} , phonenumber: ${phonenumber}, description: ${description}`);
 
 
     // data as an object
-    console.log(this.ContactUs.value);
+    // console.log(this.ContactUs.value);
     
     // alert("Thank you for your Coperation Email has been Send to the Support team");
     this.showToast();
