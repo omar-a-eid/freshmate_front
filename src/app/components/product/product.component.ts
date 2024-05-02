@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth/auth.service';
   selector: 'app-product',
   standalone: true,
   imports: [RatingStarsComponent, CommonModule, RouterModule, HttpClientModule],
-  providers: [ProductService, CartService, WishlistService,AuthService],
+  providers: [ProductService, CartService, WishlistService, AuthService],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
@@ -31,17 +31,16 @@ export class ProductComponent implements OnInit {
   showAddToCartButton: boolean = true;
   wishlist: any;
   isAdmin: boolean = false;
-
+  allProducts: any;
+  productsQuantity: any;
 
   constructor(
     private productService: ProductService,
     private router: Router,
     private cartService: CartService,
     private wishlistService: WishlistService,
-    private authService: AuthService
-
-  ) // private location:Location
-  {
+    private authService: AuthService // private location:Location
+  ) {
     if (this.router.url === 'localhost:4200/wishlist') {
       this.showAddToCartButton = false;
     }
@@ -116,21 +115,15 @@ export class ProductComponent implements OnInit {
       this.currentImage = this.product.images[0];
     }
 
-
     // Check if the user has the admin role
     this.isAdmin = this.authService.isAdmin();
-
   }
 
   addToCart(productId: string) {
-    if (!this.user || !this.user.token) {
-      console.error('User token is missing.');
-      return;
-    }
-
     this.cartService.AddItemsToCart(productId, this.user.token).subscribe(
       () => {
         console.log('Product added to cart successfully');
+        this.updateProductsQuantity();
       },
       (error) => {
         console.error('Error adding product to cart:', error);
@@ -139,37 +132,47 @@ export class ProductComponent implements OnInit {
   }
 
   addToWishlist(productid: string) {
-    this.userSession = sessionStorage.getItem("user");
+    this.userSession = sessionStorage.getItem('user');
     this.user = JSON.parse(this.userSession);
-    console.log("inside", {productid:productid, user:sessionStorage.getItem("user")});
+    console.log('inside', {
+      productid: productid,
+      user: sessionStorage.getItem('user'),
+    });
 
-    this.wishlistService.addItemToWishList(this.user.userId, [productid]).subscribe(
-      () => {
-        console.log('Product added to wishlist successfully');
-      },
-      (error: any) => {
-        console.error('Error adding product to wishlist:', error);
-      }
-    );
-
-
+    this.wishlistService
+      .addItemToWishList(this.user.userId, [productid])
+      .subscribe(
+        () => {
+          console.log('Product added to wishlist successfully');
+        },
+        (error: any) => {
+          console.error('Error adding product to wishlist:', error);
+        }
+      );
   }
-  
+
   deleteProductFromWishlist(productId: string): void {
     this.wishlistService.removeItemFromWishlist([productId]).subscribe({
       next: (response: any) => {
         console.log('Product removed from wishlist:', response);
         location.reload();
-        console.log("product is deleted")
+        console.log('product is deleted');
       },
       error: (error: any) => {
         console.error('Error removing product from wishlist:', error);
-      }
+      },
     });
   }
 
   // to navigate to single product
   goToSingleProduct(productId: string) {
     this.router.navigate(['/product', productId]);
+  }
+
+  updateProductsQuantity(): void {
+    this.productsQuantity = this.allProducts.reduce(
+      (total: number, item: any) => total + item.quantity,
+      0
+    );
   }
 }

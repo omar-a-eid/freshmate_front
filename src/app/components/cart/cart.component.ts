@@ -33,8 +33,10 @@ export class CartComponent implements OnInit {
   user: any;
   userSession: any;
   isSmallScreen: boolean = false;
-  constructor(private cartService: CartService, private router: Router) {
-  }
+  shippingThreshold: number = 200;
+  shippingCost: number = 10;
+  productsQuantity: number = 0;
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem('user');
@@ -46,6 +48,7 @@ export class CartComponent implements OnInit {
 
         this.allProducts = data.products;
         console.log(this.allProducts);
+        this.updateProductsQuantity();
       },
       // error: (error) => console.log(error),
     });
@@ -70,6 +73,7 @@ export class CartComponent implements OnInit {
       .subscribe({
         next: () => {
           console.log('Quantity updated successfully');
+          this.updateProductsQuantity();
         },
 
         error: (error) => {
@@ -85,6 +89,7 @@ export class CartComponent implements OnInit {
     this.cartService.RemoveItemsFromCart(productId, this.user.token).subscribe({
       next: (response: any) => {
         console.log('Product deleted successfully');
+        this.updateProductsQuantity();
       },
       error: (error: any) => {
         console.error('Error deleting product:', error);
@@ -121,7 +126,6 @@ export class CartComponent implements OnInit {
 
   @Output() totalChanged: EventEmitter<number> = new EventEmitter<number>();
   @Output() totalShipping: EventEmitter<number> = new EventEmitter<number>();
-  @Output() quantityChanged: EventEmitter<number> = new EventEmitter<number>();
 
   // to calculate total price for a product
   getTotal(product: any): number {
@@ -134,6 +138,17 @@ export class CartComponent implements OnInit {
     for (const item of this.allProducts) {
       totalPrice += item.product.price * item.quantity;
     }
+
+    let shipping = 0;
+    if (totalPrice >= this.shippingThreshold) {
+      shipping = 0;
+    } else {
+      shipping = this.shippingCost;
+    }
+
+    this.totalChanged.emit(totalPrice);
+    this.totalShipping.emit(shipping);
+
     return totalPrice;
   }
 
@@ -145,7 +160,14 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  navigateToSingleProduct(productId:string){
-    this.router.navigate(["/product", productId])
+  navigateToSingleProduct(productId: string) {
+    this.router.navigate(['/product', productId]);
+  }
+
+  updateProductsQuantity(): void {
+    this.productsQuantity = this.allProducts.reduce(
+      (total: number, item: any) => total + item.quantity,
+      0
+    );
   }
 }
