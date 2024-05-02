@@ -7,8 +7,7 @@ import {
   Input,
   Output
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { CartService } from '../../services/cart/cart.service';

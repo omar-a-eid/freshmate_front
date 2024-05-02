@@ -1,6 +1,23 @@
 .products-added-to-cart{
-    /* padding-left: 258px; */
+    padding-left: 258px;
     padding-top: 70px;
-    width: 1200px;
- 
+    width: 100%;
+}
+
+.no-products{
+width:100%;
+padding-right: 119px;
+padding-top: 66px;
+}
+p{
+    font-size: 30px;
+    font-weight: bolder;
+} 
+button{
+    width: 500px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    margin-bottom: 200px;
 }

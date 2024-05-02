@@ -152,8 +152,8 @@ export class ProductDetailsComponent implements OnInit {
 
           this.product.images.forEach((imageUrl: string) => {
             const galleryItem = {
-              src: imageUrl,
-              thumbSrc: imageUrl,
+              src: "http://localhost:8000/" + imageUrl,
+              thumbSrc: "http://localhost:8000/" + imageUrl,
             };
 
             this.items.push(galleryItem);

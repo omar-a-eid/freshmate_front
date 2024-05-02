@@ -154,7 +154,7 @@
           >
             <img
               class="lazyload"
-              src="../../../assets/images/p-8_200x.webp"
+              src="assets/images/p-8_200x.webp"
               alt="icon_policy"
             />
           </div>
@@ -183,7 +183,7 @@
           >
             <img
               class="lazyload"
-              src="../../../assets/images/p-12_200x.webp"
+              src="assets/images/p-12_200x.webp"
               alt="icon_policy"
             />
           </div>
@@ -332,7 +332,10 @@
     </div>
 
     <div class="d-flex flex-row toast-body">
-      <img [src]="product.images[0]" class="toast-img" />
+      <img
+        src="http://localhost:8000/{{ product.images[0] }}"
+        class="toast-img"
+      />
       <h3 class="toast-product-name">{{ product.title[lang] }}</h3>
       <a href="/wishlist">
         <button i18n class="go-to-wishlist-btn">GO TO WISHLIST</button>

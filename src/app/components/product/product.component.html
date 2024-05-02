@@ -40,7 +40,7 @@
       </div>
       <img
         *ngIf="product && product.images && product.images.length > 0"
-        [src]="currentImage"
+        src="http://localhost:8000/{{ currentImage }}"
         alt="Product Image"
         class="image-transition product-img"
         (mouseover)="changeImage(product.images[1])"
@@ -82,7 +82,10 @@
     </div>
 
     <div class="d-flex flex-row toast-body">
-      <img [src]="product.images[0]" class="toast-img" />
+      <img
+        src="http://localhost:8000/{{ product.images[0] }}"
+        class="toast-img"
+      />
       <h3 class="toast-product-name">{{ product.title[lang] }}</h3>
       <a routerLink="/wishlist">
         <button class="go-to-wishlist-btn" i18n>GO TO WISHLIST</button>

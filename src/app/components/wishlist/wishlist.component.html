@@ -1,15 +1,22 @@
 <app-pathbar></app-pathbar>
 <div class="all-products d-flex justify-content-around">
-  <div class="d-flex flex-row products-added-to-cart flex-wrap">
-    <ng-container *ngIf="wishlist && wishlist.length > 0; else noItems">
-      <app-product
-        *ngFor="let item of wishlist; let i = index; trackBy: trackByFn"
-        class="col-lg-3 col-md-6 col-sm-12"
-        [product]="item"
-      ></app-product>
-    </ng-container>
-    <ng-template #noItems>
-      <p i18n>No items in the wishlist</p>
-    </ng-template>
+  <div class="d-flex flex-row products-added-to-cart flex-wrap ">
+  <ng-container *ngIf="wishlist && wishlist.length > 0; else noItems">
+    <app-product
+      *ngFor="let item of wishlist; let i = index; trackBy: trackByFn"
+      class="col-lg-3 col-md-6 col-sm-12"
+      [product]="item"
+    ></app-product>
+  </ng-container>
+  <div class="no-products">
+  <ng-template #noItems>
+    <div class="align-items-center d-flex justify-content-around no-products">
+      <div class="d-flex flex-column gap-4 no-products align-items-center">
+          <p i18n>NO ITEMS IN WISHLIST !!</p>
+          <a href="/products"><button i18n>GO SHOPPING</button></a>
+      </div>
   </div>
+  </ng-template>
+</div>
+</div>
 </div>
