@@ -38,8 +38,8 @@ export class OffersSectionComponent {
       }
     }]};
     constructor(private langService: TranslationService){
-      this.lang = langService.lang();
-      this.ltr = langService.isAr();
+      this.lang = this.langService.lang();
+      this.ltr = this.langService.isAr();
     }
     
 }

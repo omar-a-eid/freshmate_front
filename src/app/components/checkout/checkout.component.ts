@@ -5,6 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CartService } from '../../services/cart/cart.service';
 import { OrderService } from '../../services/order/order.service';
 import { RegistrationService } from '../../services/registration/registration.service';
+import { TranslationService } from '../../services/translation/translation.service';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { PathbarComponent } from '../pathbar/pathbar.component';
@@ -13,7 +14,7 @@ import { PathbarComponent } from '../pathbar/pathbar.component';
   selector: 'app-checkout',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule, FooterComponent, PathbarComponent, NavbarComponent],
-  providers: [CartService,RegistrationService, OrderService],
+  providers: [CartService,RegistrationService, OrderService, TranslationService],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
@@ -29,8 +30,13 @@ export class CheckoutComponent implements OnInit {
   totalPrice: any;
   productQuantity: any;
   UserEmail:any
+  lang:string = "en";
+  ltr:boolean= false;
 
-  constructor(private cartService: CartService,private registrationService:RegistrationService, private orderService: OrderService) { }
+  constructor(private cartService: CartService,private registrationService:RegistrationService, private orderService: OrderService, private langService: TranslationService) { 
+    this.lang = this.langService.lang();
+    this.ltr = this.langService.isAr();
+  }
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem("user");
     this.user = JSON.parse(this.userSession);

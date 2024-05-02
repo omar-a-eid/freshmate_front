@@ -16,7 +16,7 @@
       </li>
     </ol>
   </div>
-  <div class="row">
+  <div class="row res">
     <div class="first-half col-lg-6 col-sm-12">
       <div class="carousel-container">
         <gallery class="gallery" [items]="items"></gallery>
@@ -25,7 +25,7 @@
 
     <div class="second-half col-lg-6 col-sm-12 mb-sm-30">
       <div class="first-row">
-        <h2 class="product-title-main">{{ product.title.en }}</h2>
+        <h2 class="product-title-main">{{ product.title[lang] }}</h2>
         <div class="d-flex gap-4">
           <app-rating-stars></app-rating-stars>
           <a i18n href="">VIEW ALL REVIEWS</a>
@@ -52,8 +52,8 @@
       </div>
 
       <div class="product-details">
-        <p class="price">{{ product.price }} $</p>
-        <p class="description">{{ product.desc.en }}</p>
+        <p class="price">{{ product.price | currency }}</p>
+        <p class="description">{{ product.desc[lang] }}</p>
         <div
           class="deal-flash__sale-progress position-relative"
           style="background-color: #e0e0e0"
@@ -333,7 +333,7 @@
 
     <div class="d-flex flex-row toast-body">
       <img [src]="product.images[0]" class="toast-img" />
-      <h3 class="toast-product-name">{{ product.title.en }}</h3>
+      <h3 class="toast-product-name">{{ product.title[lang] }}</h3>
       <a href="/wishlist">
         <button i18n class="go-to-wishlist-btn">GO TO WISHLIST</button>
       </a>

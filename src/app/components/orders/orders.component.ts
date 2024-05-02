@@ -45,6 +45,7 @@ export class OrdersComponent implements OnInit {
       this.orderService.GetAllOrders(user.token).subscribe({
         next: (data) => {
           this.orders = data;
+          console.log(this.orders);
           this.orders.forEach((order: any) => {
             switch (order.status.en) {
               case 'pending':

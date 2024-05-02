@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth/auth.service';
 import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
+import { TranslationService } from '../../services/translation/translation.service';
 import { WishlistService } from '../../services/wishlist/wishlist.service';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
 
@@ -13,7 +14,7 @@ import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
   selector: 'app-product',
   standalone: true,
   imports: [RatingStarsComponent, CommonModule, RouterModule, HttpClientModule],
-  providers: [ProductService, CartService, WishlistService, AuthService],
+  providers: [ProductService, CartService, WishlistService, AuthService, TranslationService],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
@@ -33,14 +34,19 @@ export class ProductComponent implements OnInit {
   isAdmin: boolean = false;
   allProducts: any = [];
   productsQuantity: any;
+  lang:string = "en";
+  ltr:boolean= false;
 
   constructor(
     private productService: ProductService,
     private router: Router,
     private cartService: CartService,
     private wishlistService: WishlistService,
-    private authService: AuthService // private location:Location,
+    private authService: AuthService, // private location:Location,
+    private langService: TranslationService
   ) {
+    this.lang = this.langService.lang();
+    this.ltr = this.langService.isAr();
     if (this.router.url === 'localhost:4200/wishlist') {
       this.showAddToCartButton = false;
     }

@@ -157,7 +157,7 @@
       <div
         class="col-sm-4 col-md-3 d-flex justify-content-center justify-content-md-center align-items-center mb-3 mb-md-0"
       >
-        <a href="#!">
+        <a href="/">
           <img
             class="freshmate-logo"
             src="https://nov-freshmate.myshopify.com/cdn/shop/files/logo-3.png?v=1689906109&width=171"
@@ -175,7 +175,7 @@
           <!-- User Profile -->
           <a
             class="text-reset me-3 dotted-icon-container user"
-            [routerLink]="isLoggedIn ? '/profile' : null"
+            [href]="isLoggedIn ? '/profile' : null"
             [attr.data-bs-toggle]="isLoggedIn ? '' : 'modal'"
             [attr.data-bs-target]="isLoggedIn ? '' : '#registrationModal'"
           >
@@ -255,6 +255,7 @@
           <a
             class="text-reset me-3 dotted-icon-container favorite"
             href="/wishlist"
+            *ngIf="!isAdmin"
           >
             <div class="dotted-icon">
               <svg
@@ -322,6 +323,7 @@
           <a
             class="text-reset me-3 dotted-icon-container cart"
             href="#"
+            *ngIf="!isAdmin"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasRight"
             aria-controls="offcanvasRight"
@@ -388,7 +390,7 @@
           <a
             *ngIf="isAdmin"
             class="text-reset me-3 dotted-icon-container cart"
-            routerLink="/admin/create"
+            href="/admin/create"
           >
             <div class="dotted-icon">
               <i class="fa-solid fa-plus fa-xl"></i>
@@ -670,12 +672,10 @@
         style="margin: auto"
       >
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-          <a
-            class="nav-link text-white active"
-            href="#"
-            style="margin-right: 20px"
+          <a class="nav-link text-white" href="/" style="margin-right: 20px"
             >Home</a
           >
+          <!-- active -->
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
           <a class="nav-link text-white" href="#" style="margin-right: 20px"

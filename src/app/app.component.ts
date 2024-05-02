@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
@@ -8,6 +8,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, CommonModule, FooterComponent, NavbarComponent],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

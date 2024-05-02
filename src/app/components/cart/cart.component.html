@@ -57,7 +57,7 @@
                       class="col-3 d-flex justify-content-center flex-column w-50 product-title"
                       routerLink="/product/{{ item.product._id }}"
                     >
-                      {{ item.product.title.en }}
+                      {{ item.product.title[lang] }}
                     </a>
                   </div>
                 </td>
@@ -135,7 +135,7 @@
           <tbody>
             <div class="table-body container mt-3">
               <div class="row d-flex justify-content-between">
-                <div class="col">TOTAL:</div>
+                <div i18n class="col">TOTAL:</div>
                 @if (allProducts) {
                 <div class="col">{{ calculateTotalPrice() | currency }}</div>
                 } @else {
@@ -143,7 +143,7 @@
                 }
               </div>
               <div class="row d-flex justify-content-between">
-                <div class="col mt-3">SHIPPING:</div>
+                <div i18n class="col mt-3">SHIPPING:</div>
                 <div i18n class="col mt-3">
                   Shipping & taxes calculated at checkout
                 </div>
@@ -160,7 +160,7 @@
                   CONGRATULATIONS! YOU'VE GOT FREE SHIPPING!
                 </div>
                 <ng-template #noFreeShippingMessage>
-                  <div style="color: gray">
+                  <div i18n style="color: gray">
                     SPEND
                     {{ shippingThreshold - calculateTotalPrice() | currency }}
                     FOR FREE SHIPPING
@@ -189,7 +189,9 @@
               <div class="row">
                 <div class="col mt-4">
                   <span i18n> Free shipping for any orders above </span>
-                  <span class="shipping">$200.00</span>
+                  <span class="shipping">{{
+                    shippingThreshold | currency
+                  }}</span>
                 </div>
               </div>
               <div i18n class="mt-4">ADD A NOTE TO YOUR ORDER :</div>
