@@ -1,10 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="mt-4 mb-5"><Strong>Account</Strong></h2>
+            <div class="d-flex justify-content-center">
+                <div *ngIf="loading" class="spinner-border text-dark" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            <div class="mt-5 text-center">
+                <img src="../../../assets/images/members/kareem.jpg" alt="profile pic" style="width: 150px; height: 150px; border-radius: 50%;">
+            </div>
+            <h2 class="mt-4 mb-5" i18n><strong>Account</strong></h2>
             <div class="d-flex">
                 <div class="col-2">
-                    <p><Strong>Username:</Strong></p>
+                    <p i18n><Strong>Username:</Strong></p>
                 </div>
                 <div class="col-10">
                     <p>{{UserUsername}}</p>
@@ -13,7 +21,7 @@
             <hr class="mt-0">
             <div class="d-flex">
                 <div class="col-2">
-                    <p><Strong>Email:</Strong></p>
+                    <p i18n><Strong>Email:</Strong></p>
                 </div>
                 <div class="col-10">
                     <p>{{UserEmail}}</p>
@@ -22,7 +30,7 @@
             <hr class="mt-0">
             <div class="d-flex">
                 <div class="col-2">
-                    <p><Strong>Gender:</Strong></p>
+                    <p i18n><Strong>Gender:</Strong></p>
                 </div>
                 <div class="col-10">
                     <p>{{UserGender}}</p>
@@ -30,89 +38,97 @@
             </div>
             <hr class="mt-0">
             <div class="d-flex mt-4 ">
-                <button class="btn btn1" (click)="editform =! editform" style="background-color: #E7E8EB;"><strong>Edit
+                <button i18n class="btn btn1" (click)="editform =! editform" style="background-color: #E7E8EB;"><strong>Edit
                         Profile</strong></button>
-                <button (click)="signout()" class="btn btn1 mx-2" style="background-color: #E7E8EB;"><strong>LOG OUT</strong></button>
+                <button i18n (click)="signout()" class="btn btn1 mx-2" style="background-color: #E7E8EB;"><strong>LOG OUT</strong></button>
             </div>
-
+            
+            
+            
             <!-- FORM -->
             <!-- FORM -->
             <!-- FORM -->
             <!-- FORM -->
-            <h5 *ngIf="editform" class="mt-3 fs-3"><strong>Edit Profile</strong></h5>
+            <h5 *ngIf="editform" class="mt-3 fs-3" i18n><strong>Edit Profile</strong></h5>
             <form [formGroup]="EditProfile" class="form w-50" *ngIf="editform">
                 <div class="mb-3 mt-3">
-                    <label for="exampleFormControlInput1" class="form-label">Username</label>
+                    <label for="exampleFormControlInput1" class="form-label" i18n>Username</label>
                     <input formControlName="username" name="username" type="text" class="form-control"
                         id="exampleFormControltext1" required>
                 </div>
                 <!--  username validation -->
                 <div class="form-text text-danger"
                     *ngIf="Username.errors?.['required'] && (Username.touched || Username.dirty)">
-                    <p><strong>Username is Required</strong></p>
+                    <p i18n><strong>Username is Required</strong></p>
                 </div>
                 <div class="form-text text-danger"
                     *ngIf="Username.errors?.['minlength'] && (Username.touched || Username.dirty)">
-                    <p><strong>Username must be at least 3 characters long</strong></p>
+                    <p i18n><strong>Username must be at least 3 characters long</strong></p>
                 </div>
                 <div class="form-text text-danger"
                     *ngIf="Username.errors?.['maxlength'] && (Username.touched || Username.dirty)">
-                    <p><strong>Username cannot exceed 50 characters</strong></p>
+                    <p i18n><strong>Username cannot exceed 50 characters</strong></p>
                 </div>
                 <!-- end username valiadtion -->
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <label for="exampleFormControlInput1" class="form-label" i18n>Email address</label>
                     <input formControlName="email" name="email" type="email" class="form-control"
                         id="exampleFormControlInput1" required>
                 </div>
                 <!-- email valiadtion -->
                 <div class="form-text text-danger" *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
-                    <p><strong>Email is Required</strong></p>
+                    <p i18n><strong>Email is Required</strong></p>
                 </div>
                 <div class="form-text text-danger" *ngIf="Email.errors?.['pattern'] && (Email.touched || Email.dirty)">
-                    <p><strong>the pattern should be email</strong></p>
+                    <p i18n><strong>the pattern should be email</strong></p>
                 </div>
                 <!-- end email valiadtion -->
 
                 <div class="mb-3">
-                    <label for="inputPassword5" class="form-label">Password</label>
+                    <label for="inputPassword5" class="form-label" i18n>Password</label>
                     <input formControlName="password" name="password" type="password" id="inputPassword5"
                         class="form-control" aria-describedby="passwordHelpBlock" required>
                 </div>
                 <!--  password valiadtion -->
                 <div class="form-text text-danger"
                     *ngIf="Password.errors?.['required'] && (Password.touched || Password.dirty)">
-                    <p><strong>Password is Required</strong></p>
+                    <p i18n><strong>Password is Required</strong></p>
                 </div>
                 <div class="form-text text-danger"
                     *ngIf="Password.errors?.['minlength'] && (Password.touched || Password.dirty)">
-                    <p><strong>Username must be at least 6 characters long</strong></p>
+                    <p i18n><strong>Username must be at least 6 characters long</strong></p>
                 </div>
                 <!--  end password valiadtion -->
                 <div class="mt-3 w-25">
-                    <label for="inputgender5" class="form-label">Gender</label>
+                    <label for="inputgender5" class="form-label" i18n>Gender</label>
                     <select formControlName="gender" name="gender" class="form-select"
                         aria-label="Default select example" required>
-                        <option selected value="male">male</option>
-                        <option value="female">female</option>
+                        <option i18n selected value="male">male</option>
+                        <option i18n value="female">female</option>
                     </select>
                 </div>
                 <!--  gender valiadtion -->
                 <div class="form-text text-danger"
                     *ngIf="gender.errors?.['required'] && (gender.touched || gender.dirty)">
-                    <p><strong>gender is Required</strong></p>
+                    <p i18n><strong>gender is Required</strong></p>
                 </div>
                 <!--  end gender valiadtion -->
+
+                <div class="mt-3 w-25">
+                    <label i18n for="profilePhoto" class="form-label">Profile Photo</label>
+                    <input type="file" class="form-control-file" id="profilePhoto" (change)="onPhotoChange($event)"
+                        name="profilePhoto">
+                </div>
                 <div class="mt-5 mb-5 text-center">
-                    <button (click)="getdata(); update()" type="submit" class="btn btn1 w-25 btn2"
+                    <button i18n (click)="getdata(); update()" type="submit" class="btn btn1 w-25 btn2"
                         style="background-color: #E7E8EB;" [disabled]="EditProfile.invalid">Update Profile</button>
                     <hr class="border-4">
                 </div>
             </form>
             <div class="mt-5">
-                <h5 class="mt-4 mb-4 fs-3"><Strong>Order History</Strong></h5>
+                <h5 class="mt-4 mb-4 fs-3" i18n><Strong>Order History</Strong></h5>
                 <ng-container *ngIf="!orders || orders.length === 0">
-                    <p>No history of orders found.</p>
+                    <p i18n>No history of orders found.</p>
                 </ng-container>
                 <!-- problem maybe -->
                 <ng-container *ngFor="let order of orders; let i = index">
@@ -120,10 +136,10 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">Number of orders</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Number of Products bought</th>
-                                    <th scope="col">Total Price</th>
+                                    <th scope="col" i18n>Number of orders</th>
+                                    <th scope="col" i18n>Date</th>
+                                    <th scope="col" i18n>Number of Products bought</th>
+                                    <th scope="col" i18n>Total Price</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -141,3 +157,14 @@
         </div>
     </div>
 </div>
+<div aria-live="polite" aria-atomic="true"
+                class="toast-container d-flex justify-content-center align-items-center" id="toastContainer">
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="passwordToast">
+                        <div class="toast-header bg-danger text-white">
+                            <p class="mr-auto text-center">ProfileEdit</p>
+                        </div>
+                    <div class="d-flex flex-row toast-body">
+                        <p>your profile has been updated successfully</p>
+                    </div>
+                </div>
+            </div>

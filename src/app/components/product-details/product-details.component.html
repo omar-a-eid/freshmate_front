@@ -2,7 +2,7 @@
   <div class="list-sub-items position-relative">
     <ol class="breadcrumb">
       <li class="list-inline-item">
-        <a
+        <a i18n
           href="../wishlist/wishlist.component.html"
           class="item-breacrumb item-home"
           >Home .</a
@@ -10,7 +10,7 @@
       </li>
       <li id="path-title" class="list-inline-item">
         <span class="item-breacrumb">
-          <ng-container>products</ng-container>
+          <ng-container i18n>products</ng-container>
         </span>
       </li>
     </ol>
@@ -27,7 +27,7 @@
         <h2 class="product-title-main">{{ product.title.en }}</h2>
         <div class="d-flex gap-4">
           <app-rating-stars></app-rating-stars>
-          <a href="">VIEW ALL REVIEWS</a>
+          <a i18n href="">VIEW ALL REVIEWS</a>
         </div>
 
         <div class="icons">
@@ -72,20 +72,20 @@
             src="//nov-freshmate.myshopify.com/cdn/shop/files/icon_fire_66x.png?v=1691744504"
             class="position-absolute i_flash"
           />
-          <p class="offer">88% Sold - Only 50 item(s) left in stock!</p>
+          <p i18n class="offer">88% Sold - Only 50 item(s) left in stock!</p>
         </div>
       </div>
 
       <div class="buttons-product d-flex flex-column gap-2">
         <div class="d-flex gap-4">
           <app-quantity-increment-decrement></app-quantity-increment-decrement>
-          <button class="add-to-bag-btn" (click)="addToCart(product._id); ">
+          <button i18n class="add-to-bag-btn" (click)="addToCart(product._id); ">
             ADD TO BAG
           </button>
         
         </div>
 
-        <a href="/checkout">  <button class="buy-it-now-btn">BUY IT NOW</button> </a>
+        <a  i18n href="/checkout">  <button class="buy-it-now-btn">BUY IT NOW</button> </a>
       </div>
 
       <div class="product-share-info-faq d-flex flex-row gap-4">
@@ -95,7 +95,7 @@
           data-bs-target="#ModalShare"
         >
           <i class="fa-solid fa-share-nodes fa-sm"></i>
-          <p class="share-option-text">share</p>
+          <p i18n class="share-option-text">share</p>
         </div>
 
         <div
@@ -104,7 +104,7 @@
           data-bs-target="#ModalQuestion"
         >
           <i class="fa-regular fa-circle-question fa-sm"></i>
-          <p class="share-option-text">ASK A QUESTION</p>
+          <p i18n class="share-option-text">ASK A QUESTION</p>
         </div>
 
         <div
@@ -113,14 +113,14 @@
           data-bs-target="#ModalFAQ"
         >
           <i class="fa-solid fa-message fa-sm"></i>
-          <a href="/faq"> <p class="share-option-text">FAQ</p> </a>
+          <a i18n href="/faq"> <p class="share-option-text">FAQ</p> </a>
         </div>
       </div>
 
       <div style="border-top: 3px solid #d9d9d9; opacity: 100%"></div>
 
       <div class="payment-options">
-        <p class="safe-checkout">GUARANTEED SAFE CHECKOUT:</p>
+        <p i18n class="safe-checkout">GUARANTEED SAFE CHECKOUT:</p>
         <img
           class="lazyloaded"
           data-src="//nov-freshmate.myshopify.com/cdn/shop/files/payment_700x.png?v=1689231322"
@@ -155,13 +155,13 @@
           </div>
 
           <div class="heading--policy">
-            <div class="title-policy f_pr font-800" style="color: #000000">
+            <div i18n class="title-policy f_pr font-800" style="color: #000000">
               FREE SHIPPING
             </div>
             <div class="desc-policy mt-10" style="color: #505157">
-              <p>Free shipping order above $200</p>
+              <p i18n>Free shipping order above $200</p>
             </div>
-            <a href="#" class="font-600 hover:c_pr">
+            <a i18n href="#" class="font-600 hover:c_pr">
               Learn More
               <i class="zmdi zmdi-chevron-right"></i>
             </a>
@@ -183,15 +183,15 @@
             />
           </div>
 
-          <div class="heading--policy">
-            <div class="title-policy f_pr font-800" style="color: #000000">
+          <div  class="heading--policy">
+            <div i18n class="title-policy f_pr font-800" style="color: #000000">
               SUPPORT 24/7
             </div>
-            <div class="desc-policy mt-10" style="color: #505157">
+            <div i18n class="desc-policy mt-10" style="color: #505157">
               <p>Contact us 24 hours a day, 7 days a week</p>
             </div>
 
-            <a href="#" class="font-600 hover:c_pr">
+            <a i18n href="#" class="font-600 hover:c_pr">
               Learn More
               <i class="zmdi zmdi-chevron-right"></i>
             </a>
@@ -214,14 +214,14 @@
           </div>
 
           <div class="heading--policy">
-            <div class="title-policy f_pr font-800" style="color: #000000">
+            <div i18n class="title-policy f_pr font-800" style="color: #000000">
               7 DAYS RETURN
             </div>
-            <div class="desc-policy mt-10" style="color: #505157">
+            <div i18n class="desc-policy mt-10" style="color: #505157">
               <p>Return it within 30 days for an exchange.</p>
             </div>
 
-            <a href="/aboutus" class="font-600 hover:c_pr">
+            <a i18n href="/aboutus" class="font-600 hover:c_pr">
               Learn More
               <i class="zmdi zmdi-chevron-right"></i>
             </a>
@@ -240,7 +240,7 @@
 ></div>
 <div class="d-flex justify-content-around">
 <div class="related-products d-flex flex-column gap-2">
-  <p class="related-products-text">Related products</p>
+  <p i18n class="related-products-text">Related products</p>
   <div class="related-products-list row">
     
     <div>
@@ -267,16 +267,16 @@
   <div class="info-partition">
     <ul class="nav nav-tabs d-flex flex-row gap-4" id="myTabs">
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#policy">DELIVERY POLICY</a>
+        <a i18n class="nav-link active" data-toggle="tab" href="#policy">DELIVERY POLICY</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#shipping">SHIPPING AND RETURN</a>
+        <a i18n class="nav-link" data-toggle="tab" href="#shipping">SHIPPING AND RETURN</a>
       </li>
     </ul>
 
     <div class="tab-content">
       <div id="policy" class="tab-pane fade in show active">
-        <li class="">
+        <li i18n>
           Our delivery team handles your orders with care to maintain the
           freshness and quality of your items. You will receive notifications
           regarding the status of your delivery, including tracking information,
@@ -285,12 +285,12 @@
       </div>
 
       <div id="shipping" class="tab-pane fade">
-        <li>
+        <li i18n>
           Shipping fees, if applicable, will be clearly indicated during the
           checkout process. We may offer free shipping promotions from time to
           time, so be sure to check our website for any ongoing offers
         </li>
-        <li>
+        <li i18n>
           To initiate a return or exchange, please contact our customer support
           team with your order details and a brief explanation of the issue. We
           may require photographic evidence in some cases to facilitate the
@@ -320,14 +320,14 @@
   >
     <div class="toast-header bg-danger text-white">
       <i class="fa-solid fa-bell fa-xl" style="color: #ffffff"></i>
-      <p class="mr-auto">THIS ITEM HAS BEEN ADDED TO YOUR WISHLIST</p>
+      <p i18n class="mr-auto">THIS ITEM HAS BEEN ADDED TO YOUR WISHLIST</p>
     </div>
 
     <div class="d-flex flex-row toast-body">
       <img [src]="product.images[0]" class="toast-img" />
       <h3 class="toast-product-name">{{ product.title.en }}</h3>
       <a href="/wishlist">
-        <button class="go-to-wishlist-btn">GO TO WISHLIST</button>
+        <button i18n class="go-to-wishlist-btn">GO TO WISHLIST</button>
       </a>
     </div>
   </div>
@@ -351,7 +351,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <p class="cpy-text">Copy Link</p>
+        <p i18n class="cpy-text">Copy Link</p>
         <div class="nov-copy d-flex gap-3">
           <input
             #inputElement
@@ -363,7 +363,7 @@
             Copy
           </div>
         </div>
-        <p class="share-text">share</p>
+        <p i18n class="share-text">share</p>
         <div class="share-icons d-flex flex-row gap-4">
           <p><i class="fa-brands fa-facebook-f"></i></p>
           <p><i class="fa-brands fa-twitter"></i></p>
@@ -393,34 +393,34 @@
         ></button>
       </div>
       <div class="modal-body">
-        <p class="question-text">ASK A QUESTION</p>
-        <p class="request">
+        <p i18n class="question-text">ASK A QUESTION</p>
+        <p i18n class="request">
           Please enter the details of your request. A member of our support
           staff will respond as soon as possible.
         </p>
         <div class="modal-body d-flex flex-column gap-4">
-          <input
+          <input i18n-placeholder
             class="form-control data"
             type="text"
             placeholder="YOUR NAME"
           />
-          <input
+          <input i18n-placeholder
             class="form-control data"
             type="text"
             placeholder="YOUR EMAIL"
           />
-          <input
+          <input i18n-placeholder
             class="form-control data"
             type="text"
             placeholder="PHONE NUMBER"
           />
-          <textarea
+          <textarea i18n-placeholder
             class="form-control"
             id="exampleFormControlTextarea1"
             rows="3"
             placeholder="YOUR MESSAGE"
           ></textarea>
-          <button class="submit-btn" data-bs-dismiss="modal">SUBMIT</button>
+          <button i18n class="submit-btn" data-bs-dismiss="modal">SUBMIT</button>
         </div>
       </div>
     </div>

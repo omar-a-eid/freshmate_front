@@ -10,3 +10,38 @@
 .btn2 {
     border-radius: 2px !important;
 }
+.toast-container {
+    position: fixed !important;
+    bottom: 20px !important; 
+    left: 85% !important;
+    transform: translateX(-50%) !important;
+    z-index: 1000000000 !important; 
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important; 
+}
+
+.toast {
+    width: 466px !important;
+    overflow: hidden !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    border-radius: 0.25rem !important;
+}
+
+.toast-header {
+    background-color: #52271f !important;
+    color: white !important;
+    gap: 10px !important;
+}
+
+.toast-header p{
+    width: 100% !important;
+    margin: 0 !important;
+    font-size: 12px !important;
+}
+
+.toast-body{
+    background-color: white !important;
+    height: 81px !important;
+    padding: 0 !important;
+}
