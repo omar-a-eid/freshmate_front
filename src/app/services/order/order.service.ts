@@ -31,6 +31,13 @@ export class OrderService {
           }});
   }
   
+  CreateOrder(status:string, token:any) {
+    return this.http.post(this.URL_DB, status, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+  }
 
 
 }

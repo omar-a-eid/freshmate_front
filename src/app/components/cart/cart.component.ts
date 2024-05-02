@@ -1,18 +1,14 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import {
   Component,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnInit,
-  Output,
+  OnInit
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart/cart.service';
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { ProductComponent } from '../product/product.component';
-import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -23,41 +19,50 @@ import { Router } from '@angular/router';
     PathbarComponent,
     ProductComponent,
     HttpClientModule,
+    RouterModule
   ],
   templateUrl: './cart.component.html',
   providers: [CartService, Router],
   styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
-  @Input() allProducts: any;
-  user: any;
+
+  // @Output() totalChanged: EventEmitter<number> = new EventEmitter<number>();
+  // @Output() totalShipping: EventEmitter<number> = new EventEmitter<number>();
+
   userSession: any;
-  isSmallScreen: boolean = false;
+  user: any;
+  allProducts:any = [];
   shippingThreshold: number = 200;
   shippingCost: number = 10;
-  productsQuantity: number = 0;
+
   constructor(private cartService: CartService, private router: Router) {}
+
 
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem('user');
     this.user = JSON.parse(this.userSession);
-
+  
     this.cartService.GetCartItems(this.user.token).subscribe({
       next: (data: any) => {
-        // console.log(data);
-
         this.allProducts = data.products;
-        console.log(this.allProducts);
-        this.updateProductsQuantity();
+        // this.updateProductsQuantity();
       },
       // error: (error) => console.log(error),
     });
   }
 
+  // @Input() allProducts: any;
+  // isSmallScreen: boolean = false;
+  // productsQuantity: number = 0;
+
+
   // Inside your CartComponent class
   incrementQuantity(item: any) {
-    item.quantity++;
-    this.updateQuantity(item);
+    if(item.quantity != item.product.quantity) {
+      item.quantity++;
+      this.updateQuantity(item);
+    }
   }
 
   decrementQuantity(item: any) {
@@ -72,8 +77,7 @@ export class CartComponent implements OnInit {
       .UpdateCartItemQuantity(item.product._id, item.quantity, this.user.token)
       .subscribe({
         next: () => {
-          console.log('Quantity updated successfully');
-          this.updateProductsQuantity();
+          // this.updateProductsQuantity();
         },
 
         error: (error) => {
@@ -89,7 +93,7 @@ export class CartComponent implements OnInit {
     this.cartService.RemoveItemsFromCart(productId, this.user.token).subscribe({
       next: (response: any) => {
         console.log('Product deleted successfully');
-        this.updateProductsQuantity();
+        // this.updateProductsQuantity();
       },
       error: (error: any) => {
         console.error('Error deleting product:', error);
@@ -97,7 +101,7 @@ export class CartComponent implements OnInit {
     });
   }
 
-  @Input() products: any[] = [
+  products: any[] = [
     {
       name: 'Sweet Kiwi',
       image:
@@ -124,13 +128,12 @@ export class CartComponent implements OnInit {
     },
   ];
 
-  @Output() totalChanged: EventEmitter<number> = new EventEmitter<number>();
-  @Output() totalShipping: EventEmitter<number> = new EventEmitter<number>();
 
-  // to calculate total price for a product
-  getTotal(product: any): number {
-    return product.price * product.quantity;
-  }
+
+  // // to calculate total price for a product
+  // getTotal(product: any): number {
+  //   return product.price * product.quantity;
+  // }
 
   // to calculate the total price of all products
   calculateTotalPrice(): number {
@@ -146,28 +149,16 @@ export class CartComponent implements OnInit {
       shipping = this.shippingCost;
     }
 
-    this.totalChanged.emit(totalPrice);
-    this.totalShipping.emit(shipping);
+    // this.totalChanged.emit(totalPrice);
+    // this.totalShipping.emit(shipping);
 
     return totalPrice;
   }
 
-  navigateToCheckout() {
-    this.router.navigate(['/checkout']);
-  }
-
-  navigateToHome() {
-    this.router.navigate(['/']);
-  }
-
-  navigateToSingleProduct(productId: string) {
-    this.router.navigate(['/product', productId]);
-  }
-
-  updateProductsQuantity(): void {
-    this.productsQuantity = this.allProducts.reduce(
-      (total: number, item: any) => total + item.quantity,
-      0
-    );
-  }
+  // updateProductsQuantity(): void {
+  //   this.productsQuantity = this.allProducts.reduce(
+  //     (total: number, item: any) => total + item.quantity,
+  //     0
+  //   );
+  // }
 }

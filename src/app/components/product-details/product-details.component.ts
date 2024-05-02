@@ -194,12 +194,12 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
       next: () => {
         console.log('Product added to cart successfully');
+        this.router.navigate(['/cart']);
       },
       error: (error) => {
         console.error('Error adding product to cart:', error);
       },
       complete: () => {
-        this.router.navigate(['/cart']);
       },
     });
   }

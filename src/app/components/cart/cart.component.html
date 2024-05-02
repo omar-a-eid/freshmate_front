@@ -1,6 +1,7 @@
 <app-pathbar></app-pathbar>
 <div class="container">
   <div class="row">
+    @if(allProducts) {
     <div class="col-lg-8">
       <!-- Main content -->
       <div class="container">
@@ -54,7 +55,7 @@
                     </div>
                     <a
                       class="col-3 d-flex justify-content-center flex-column w-50 product-title"
-                      (click)="navigateToSingleProduct(item.product._id)"
+                      routerLink="/product/{{ item.product._id }}"
                     >
                       {{ item.product.title.en }}
                     </a>
@@ -99,12 +100,12 @@
 
         <div class="cart-buttons w-100">
           <!-- Buttons -->
-          <button i18n (click)="navigateToCheckout()" class="checkout-button">
+          <a routerLink="/checkout" i18n class="checkout-button">
             PROCEED TO CHECKOUT
-          </button>
-          <button i18n class="continue-shopping-button">
+          </a>
+          <a routerLink="/products" i18n class="continue-shopping-button">
             CONTINUE SHOPPING
-          </button>
+          </a>
         </div>
 
         <div class="col products">
@@ -124,7 +125,7 @@
         </div>
       </div>
     </div>
-
+    }
     <div class="col-lg-4 mt-3">
       <div class="container">
         <table class="cart cart-background">
@@ -135,7 +136,11 @@
             <div class="table-body container mt-3">
               <div class="row d-flex justify-content-between">
                 <div class="col">TOTAL:</div>
+                @if (allProducts) {
                 <div class="col">{{ calculateTotalPrice() | currency }}</div>
+                } @else {
+                <div class="col">0</div>
+                }
               </div>
               <div class="row d-flex justify-content-between">
                 <div class="col mt-3">SHIPPING:</div>
