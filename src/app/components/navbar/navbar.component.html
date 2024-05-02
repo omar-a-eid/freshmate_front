@@ -175,7 +175,7 @@
           <!-- User Profile -->
           <a
             class="text-reset me-3 dotted-icon-container user"
-            [href]="isLoggedIn ? '/profile' : null"
+            [routerLink]="isLoggedIn ? '/profile' : null"
             [attr.data-bs-toggle]="isLoggedIn ? '' : 'modal'"
             [attr.data-bs-target]="isLoggedIn ? '' : '#registrationModal'"
           >
@@ -678,11 +678,6 @@
           <!-- active -->
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link text-white" href="#" style="margin-right: 20px"
-            >Collections</a
-          >
-        </li>
-        <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
           <a
             class="nav-link text-white"
             href="/products"
@@ -691,12 +686,26 @@
           >
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link text-white" href="#" style="margin-right: 20px"
-            >Other Pages</a
+          <a
+            class="nav-link text-white"
+            href="/aboutus"
+            style="margin-right: 20px"
+            >AboutUs</a
           >
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link text-white" href="#">Blog Pages</a>
+          <a
+            class="nav-link text-white"
+            href="contactus"
+            style="margin-right: 20px"
+            >ContactUs</a
+          >
+        </li>
+        <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+          <a class="nav-link text-white" href="/faq">FAQs Page</a>
+        </li>
+        <li class="nav-item me-3 me-lg-0 d-none d-md-inline-block">
+          <a class="nav-link text-white" href="/error">404 Error</a>
         </li>
       </ul>
 
