@@ -40,10 +40,11 @@
               />
               <span class="position-absolute end-0 top-50 translate-middle-y">
                 <div class="icon-container">
-                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <i class="fa-solid fa-magnifying-glass" ></i>
                 </div>
               </span>
             </form>
+            
           </div>
           <ul class="list-unstyled custom-list mt-5">
             <li>
@@ -705,17 +706,21 @@
       <!-- Center elements -->
       <div class="col-md-4 search original-search">
         <form class="position-relative d-flex input-group mb-3 mb-md-0">
+         
           <input
-            autocomplete="off"
-            type="search"
-            class="form-control rounded-pill placeholder-small"
-            placeholder="ENTER YOUR KEYWORDS"
-          />
-          <span class="position-absolute end-0 top-50 translate-middle-y">
-            <div class="icon-container bg-brown">
-              <i class="fa-solid fa-magnifying-glass text-white"></i>
-            </div>
-          </span>
+  autocomplete="off"
+  type="search"
+  class="form-control rounded-pill placeholder-small"
+  placeholder="ENTER YOUR KEYWORDS"
+  (input)="onInputChange($event)"
+/>
+
+        <span class="position-absolute end-0 top-50 translate-middle-y">
+          <div class="icon-container bg-brown" (click)="handleSearch()">
+            <i class="fa-solid fa-magnifying-glass text-white"></i>
+          </div>
+        </span>
+        
         </form>
       </div>
       <!-- Center elements -->

@@ -8,6 +8,7 @@ import {
   Output
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { CartService } from '../../services/cart/cart.service';
@@ -15,6 +16,7 @@ import { ProductService } from '../../services/product/product.service';
 import { WishlistService } from '../../services/wishlist/wishlist.service';
 import { CartProductsComponent } from '../cart-products/cart-products.component';
 import { RegistrationComponent } from '../registration/registration.component';
+
 
 @Component({
   selector: 'app-navbar',
@@ -26,6 +28,7 @@ import { RegistrationComponent } from '../registration/registration.component';
     RouterModule,
     RegistrationComponent,
     CurrencyPipe,
+    ReactiveFormsModule
   ],
   providers: [WishlistService, ProductService, AuthService, CartService],
   templateUrl: './navbar.component.html',
@@ -36,7 +39,7 @@ export class NavbarComponent {
   viewCartBtnIsHovered: boolean = false;
   checkOutBtnIsHovered: boolean = false;
   isLoggedIn: any;
-  searchKeyword: string;
+  searchKeyword: string = '';
   @Input() allProducts: any;
   shippingThreshold: number = 200;
   shippingCost: number = 10;
@@ -44,6 +47,9 @@ export class NavbarComponent {
   @Output() totalChanged: EventEmitter<number> = new EventEmitter<number>();
   @Output() totalShipping: EventEmitter<number> = new EventEmitter<number>();
   @Output() quantityChanged: EventEmitter<number> = new EventEmitter<number>();
+
+  products: any[] = [];
+  displayedProducts: any[] = []; // Initialize with an empty array
 
   constructor(
     private cartService: CartService,
@@ -53,7 +59,6 @@ export class NavbarComponent {
     private router: Router
   ) {
     this.isLoggedIn = sessionStorage.getItem('user');
-    this.searchKeyword = '';
   }
 
   @HostListener('mouseenter')
@@ -112,7 +117,13 @@ export class NavbarComponent {
         error: (error) => console.log(error),
       });
     }
+
   }
+
+ 
+  
+  
+
 
   loadWishlistData(): void {
     this.userSession = sessionStorage.getItem('user');
@@ -218,4 +229,35 @@ export class NavbarComponent {
       );
     }
   }
+  onInputChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+   this.searchKeyword = inputElement.value;
+  
+  }
+  
+  handleSearch() {
+    console.log("Search keyword:", this.searchKeyword); // Log the search keyword
+    // const id = 
+    if (this.searchKeyword.trim() !== '') {
+      // this.getAllProducts();
+      this.router.navigate([`/search-results`], { queryParams: { search: this.searchKeyword } });
+    }
+  }
+
+  getAllProducts(){
+  this.userSession = sessionStorage.getItem('user');
+  this.user = JSON.parse(this.userSession);
+  this.productService.GetAllProducts(this.user.token).subscribe({
+    next: (data: any) => {
+      this.products = data;
+      const product = data.find((product:any)=>{
+      console.log(product," inside loop product")
+
+        return product.title.en === this.searchKeyword
+      })
+      console.log(product,"product")
+    },
+    error: (error) => console.log(error),
+  });
+}
 }
