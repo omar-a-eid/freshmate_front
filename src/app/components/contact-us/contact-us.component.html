@@ -8,8 +8,8 @@
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="row col-12 mt-4">
-                <h5><strong>GET IN Touch</strong></h5>
-                <p>Please enter the details of your requesst. A member of our support staff will respond as soon as
+                <h5 i18n><strong>GET IN Touch</strong></h5>
+                <p i18n>Please enter the details of your requesst. A member of our support staff will respond as soon as
                     possible.</p>
             </div>
             <div class="row col-12 d-flex justify-content-between">
@@ -22,76 +22,76 @@
                             <div class="col-12 d-flex flex-column mt-3 mb-3 flex-md-row">
                                 <div class="col-6 mt-3 mb-3 px-1">
                                     <div class="col-6 w-100">
-                                        <input type="text" formControlName="name" name="name" class="form-control "
+                                        <input i18n type="text" formControlName="name" name="name" class="form-control "
                                             id="exampleInputText1" placeholder="YOUR NAME" style="font-weight: bold;">
                                     </div>
                                     <!--  username validation -->
                                     <div class="form-text text-danger"
                                         *ngIf="name.errors?.['required'] && (name.touched || name.dirty)">
-                                        <p><strong>Username is Required</strong></p>
+                                        <p i18n><strong>Username is Required</strong></p>
                                     </div>
                                     <div class="form-text text-danger"
                                         *ngIf="name.errors?.['minlength'] && (name.touched || name.dirty)">
-                                        <p><strong>Username must be at least 3 characters long</strong></p>
+                                        <p i18n><strong>Username must be at least 3 characters long</strong></p>
                                     </div>
                                     <div class="form-text text-danger"
                                         *ngIf="name.errors?.['maxlength'] && (name.touched || name.dirty)">
-                                        <p><strong>Username cannot exceed 50 characters</strong></p>
+                                        <p i18n><strong>Username cannot exceed 50 characters</strong></p>
                                     </div>
                                     <!-- end username valiadtion -->
                                 </div>
                                 <div class="col-6 w-100">
                                     <div class="col-6 mt-3 flex-md-row">
-                                        <input type="email" formControlName="email" name="email" class="form-control fs"
+                                        <input i18n type="email" formControlName="email" name="email" class="form-control fs"
                                             id="exampleInputEmail1" aria-describedby="emailHelp"
                                             placeholder="YOUR EMAIL" style="font-weight: bold;">
                                     </div>
                                     <!-- email valiadtion -->
                                     <div class="form-text text-danger"
                                         *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
-                                        <p><strong>Email is Required</strong></p>
+                                        <p i18n><strong>Email is Required</strong></p>
                                     </div>
                                     <div class="form-text text-danger"
                                         *ngIf="Email.errors?.['pattern'] && (Email.touched || Email.dirty)">
-                                        <p><strong>the pattern should be email</strong></p>
+                                        <p i18n><strong>the pattern should be email</strong></p>
                                     </div>
                                     <!-- end email valiadtion -->
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="text" formControlName="phonenumber" name="phonenumber" class="form-control"
+                                <input i18n type="text" formControlName="phonenumber" name="phonenumber" class="form-control"
                                     id="exampleInputPhonenumber1" placeholder="PHONE NUMBER" style="font-weight: bold;">
                             </div>
                             <!-- phonenumber valiadtion -->
                             <div class="form-text text-danger"
                                 *ngIf="phonenumber.errors?.['required'] && (phonenumber.touched || phonenumber.dirty)">
-                                <p><strong>phonenumber is Required</strong></p>
+                                <p i18n><strong>phonenumber is Required</strong></p>
                             </div>
                             <div class="form-text text-danger"
                                 *ngIf="phonenumber.errors?.['pattern'] && (phonenumber.touched || phonenumber.dirty)">
-                                <p><strong>the phonenumber should be 11 digits Numbers </strong></p>
+                                <p i18n><strong>the phonenumber should be 11 digits Numbers </strong></p>
                             </div>
                             <!-- end phonenumber valiadtion -->
                             <div class="col-12 mb-3">
-                                <textarea class="form-control" formControlName="description" name="description"
+                                <textarea i18n class="form-control" formControlName="description" name="description"
                                     id="exampleFormControlTextarea1" rows="6" placeholder="YOUR MESSAGE"
                                     style="font-weight: bold;"></textarea>
                             </div>
                             <!--  description validation -->
                             <div class="form-text text-danger"
                                 *ngIf="description.errors?.['required'] && (description.touched || description.dirty)">
-                                <p><strong>description is Required</strong></p>
+                                <p i18n><strong>description is Required</strong></p>
                             </div>
                             <div class="form-text text-danger"
                                 *ngIf="description.errors?.['minlength'] && (description.touched || description.dirty)">
-                                <p><strong>description must be at least 10 characters long</strong></p>
+                                <p i18n><strong>description must be at least 10 characters long</strong></p>
                             </div>
                             <div class="form-text text-danger"
                                 *ngIf="description.errors?.['maxlength'] && (description.touched || description.dirty)">
-                                <p><strong>description cannot exceed 100 characters</strong></p>
+                                <p i18n><strong>description cannot exceed 100 characters</strong></p>
                             </div>
                             <!-- end description valiadtion -->
-                            <button type="submit" (click)="getdata()" class="btn btn1 w-25 btn2"
+                            <button i18n type="submit" (click)="getdata()" class="btn btn1 w-25 btn2"
                                 style="background-color: #E7E8EB;" [disabled]="ContactUs.invalid">SUBMIT
                                 NOW</button>
                         </form>
@@ -102,14 +102,11 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 ">
                     <div>
-                        <p><strong>Address:</strong> 123 Suspendis matti, Visaosang Building VST District, NY Accums,
+                        <p i18n><strong>Address:</strong> 123 Suspendis matti, Visaosang Building VST District, NY Accums,
                             North American</p>
-                        <!-- there is @ in email but it gives error dono why -->
-                        <!-- there is @ in email but it gives error dono why -->
-                        <!-- there is @ in email but it gives error dono why -->
-                        <p class="mt-4 mb-1"><strong>Email:</strong> supportdomain.com</p>
-                        <p class="mb-4"><strong>Call Us:</strong> (012)-345-67890</p>
-                        <p><strong>Opening time:</strong> Our store has re-opened for shopping, exchanges every day
+                        <p i18n class="mt-4 mb-1"><strong>Email:</strong> supportdomain.com</p>
+                        <p i18n class="mb-4"><strong>Call Us:</strong> (012)-345-67890</p>
+                        <p i18n><strong>Opening time:</strong> Our store has re-opened for shopping, exchanges every day
                             <strong>11am to 7pm</strong>
                         </p>
                         <div class="d-flex mt-5">
@@ -126,10 +123,10 @@
                 class="toast-container d-flex justify-content-center align-items-center" id="toastContainer">
                 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="passwordToast">
                     <div class="toast-header bg-danger text-white">
-                        <p class="mr-auto text-center">Contactus</p>
+                        <p i18n class="mr-auto text-center">Contactus</p>
                     </div>
                     <div class="d-flex flex-row toast-body">
-                        <p>Thank you for your Coperation Email has been Send to the Support team</p>
+                        <p i18n>Thank you for your Coperation Email has been Send to the Support team</p>
                     </div>
                 </div>
             </div>

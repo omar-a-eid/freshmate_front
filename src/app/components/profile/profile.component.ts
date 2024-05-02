@@ -16,7 +16,7 @@ import { OrderService } from '../../services/order/order.service';
 export class ProfileComponent {
   constructor(private registrationService: RegistrationService, private orderservice: OrderService) { }
 
-
+  loading: boolean = true;
 
   editform: boolean = false;
   userSession: any
@@ -34,6 +34,7 @@ export class ProfileComponent {
     email: new FormControl("", [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.required]),//check on it Validators.email
     password: new FormControl("", [Validators.minLength(6), Validators.required]),
     gender: new FormControl("", [Validators.required]),
+    profilePhoto: new FormControl(null,Validators.required)
 
   })
 
@@ -43,10 +44,12 @@ export class ProfileComponent {
     // console.log(this.EditProfile.controls.email.valid);
     // console.log(this.EditProfile.controls.password.valid);
     // console.log(this.EditProfile.controls.gender.valid);
+    console.log(this.EditProfile.controls.profilePhoto.value);
     let username = this.EditProfile.controls.username.value;
     let email = this.EditProfile.controls.email.value;
     let password = this.EditProfile.controls.password.value;
     let gender = this.EditProfile.controls.gender.value;
+    let profilePhoto = this.EditProfile.controls.profilePhoto.value;
 
     // console.log(`username: ${username} , email: ${email} , password: ${password}, gender: ${gender}`);
 
@@ -56,7 +59,8 @@ export class ProfileComponent {
       username: username,
       email: email,
       password: password,
-      gender: gender
+      gender: gender,
+      profilePhoto:profilePhoto
   };
 
     // console.log(this.editedUser);
@@ -70,7 +74,9 @@ export class ProfileComponent {
         next: (data:any) => {
           // console.log(this.editedUser);
           // console.log(data);
-          alert("profile updated Successfully")
+          // alert("profile updated Successfully")
+          this.showToast();
+
         }
       });
   }
@@ -81,7 +87,7 @@ export class ProfileComponent {
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem("user");
     this.user = JSON.parse(this.userSession);
-    console.log(this.user.token);
+    // console.log(this.user.token);
     
 
     this.registrationService.getUsersById(this.user.userId, this.user.token).subscribe({
@@ -92,6 +98,7 @@ export class ProfileComponent {
         this.UserEmail = data.email;
         this.UserUsername = data.username;
         this.UserGender = data.gender.en;
+        this.loading = false;
 
         //#region handle backend
 
@@ -101,7 +108,10 @@ export class ProfileComponent {
         //#endregion
 
       },
-      error: (err) => { "there is an eror fetching data from mongodb" }
+      error: (err) => {
+        console.error("there is an error fetching data from mongodb", err);
+        this.loading = false;
+      }
     })
 
 
@@ -157,5 +167,43 @@ export class ProfileComponent {
     window.location.reload();
   }
 
+
+  onPhotoChange(event: any) {
+    const file = event.target.files[0];
+    this.EditProfile.patchValue({
+        profilePhoto: file
+    });
+}
+
+
+  showToast() {
+    const passwordToast = document.getElementById('passwordToast');
+    if (!passwordToast) return; 
+  
+    const toastBody = passwordToast.querySelector('.toast-body');
+    if (!toastBody) return; 
+  
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+    passwordToast.style.display = "block";
+    passwordToast.classList.add('show');
+  
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const topPosition = Math.max(20, scrollY + 20);
+  
+    passwordToast.style.top = topPosition + 'px';
+  
+    setTimeout(() => {
+        passwordToast.classList.remove('show');
+        passwordToast.style.display = "none";
+    }, 3000);
+  
+    const closeToast = document.querySelector('[data-dismiss="toast"]');
+    if (closeToast) { 
+      closeToast.addEventListener("click", () => {
+        passwordToast.style.display = "none";
+   });
+}
+}
 
 }
