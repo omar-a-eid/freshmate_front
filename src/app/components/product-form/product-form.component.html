@@ -14,7 +14,7 @@
             enctype="multipart/form-data"
           >
             <div class="form-group mb-4">
-              <label class="mb-3" for="productTitle"
+              <label i18n class="mb-3" for="productTitle" i18n
                 >Product Title (English):</label
               >
               <input
@@ -29,13 +29,13 @@
               class="form-text text-danger mt-2"
               *ngIf="titleEn.errors?.['required'] && (titleEn.touched || titleEn.dirty)"
             >
-              <p><strong>EnglishTitle is Required</strong></p>
+              <p i18n><strong>EnglishTitle is Required</strong></p>
             </div>
             <div
               class="form-text text-danger mt-2"
               *ngIf="titleEn.errors?.['minlength'] && (titleEn.touched || titleEn.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong>EnglishTitle must be at least 5 characters long</strong>
               </p>
             </div>
@@ -43,7 +43,7 @@
               class="form-text text-danger mt-2"
               *ngIf="titleEn.errors?.['maxlength'] && (titleEn.touched || titleEn.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong>EnglishTitle must be at most 20 characters long</strong>
               </p>
             </div>
@@ -51,7 +51,7 @@
               class="form-text text-danger mt-2"
               *ngIf="titleEn.errors?.['pattern'] && (titleEn.touched || titleEn.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong
                   >EnglishTitle must be written in english characters
                   only</strong
@@ -60,7 +60,7 @@
             </div>
             <!-- end titleEn valiadtion -->
             <div class="form-group mb-4">
-              <label class="mb-3" for="productTitleArabic"
+              <label i18n class="mb-3" for="productTitleArabic"
                 >Product Title (Arabic):</label
               >
               <input
@@ -75,13 +75,13 @@
               class="form-text text-danger"
               *ngIf="titleAr.errors?.['required'] && (titleAr.touched || titleAr.dirty)"
             >
-              <p><strong>ArabicTitle is Required</strong></p>
+              <p i18n><strong>ArabicTitle is Required</strong></p>
             </div>
             <div
               class="form-text text-danger"
               *ngIf="titleAr.errors?.['minlength'] && (titleAr.touched || titleAr.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong>ArabicTitle must be at least 5 characters long</strong>
               </p>
             </div>
@@ -89,7 +89,7 @@
               class="form-text text-danger"
               *ngIf="titleAr.errors?.['maxlength'] && (titleAr.touched || titleAr.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong>ArabicTitle must be at most 20 characters long</strong>
               </p>
             </div>
@@ -97,7 +97,7 @@
               class="form-text text-danger"
               *ngIf="titleAr.errors?.['pattern'] && (titleAr.touched || titleAr.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong
                   >ArabicTitle must be written in Arabic characters only</strong
                 >
@@ -105,7 +105,7 @@
             </div>
             <!-- end ArabicTitle valiadtion -->
             <div class="form-group mb-4">
-              <label class="mb-3" for="productDesc"
+              <label i18n class="mb-3" for="productDesc"
                 >Product Description (English):</label
               >
               <textarea
@@ -119,13 +119,13 @@
               class="form-text text-danger"
               *ngIf="descEn.errors?.['required'] && (descEn.touched || descEn.dirty)"
             >
-              <p><strong>EnglishDescription is Required</strong></p>
+              <p i18n><strong>EnglishDescription is Required</strong></p>
             </div>
             <div
               class="form-text text-danger"
               *ngIf="descEn.errors?.['minlength'] && (descEn.touched || descEn.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong
                   >EnglishDescription must be at least 10 characters
                   long</strong
@@ -136,7 +136,7 @@
               class="form-text text-danger"
               *ngIf="descEn.errors?.['maxlength'] && (descEn.touched || descEn.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong
                   >EnglishDescription must be at most 50 characters long</strong
                 >
@@ -146,7 +146,7 @@
               class="form-text text-danger"
               *ngIf="descEn.errors?.['pattern'] && (descEn.touched || descEn.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong
                   >EnglishDescription must be written in English characters
                   only</strong
@@ -155,7 +155,7 @@
             </div>
             <!-- end EnglishDescription valiadtion -->
             <div class="form-group mb-4">
-              <label class="mb-3" for="productDescArabic"
+              <label i18n class="mb-3" for="productDescArabic"
                 >Product Description (Arabic):</label
               >
               <textarea
@@ -169,13 +169,13 @@
               class="form-text text-danger"
               *ngIf="descAr.errors?.['required'] && (descAr.touched || descAr.dirty)"
             >
-              <p><strong>ArabicDescription is Required</strong></p>
+              <p i18n><strong>ArabicDescription is Required</strong></p>
             </div>
             <div
               class="form-text text-danger"
               *ngIf="descAr.errors?.['minlength'] && (descAr.touched || descAr.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong
                   >ArabicDescription must be at least 10 characters long</strong
                 >
@@ -185,7 +185,7 @@
               class="form-text text-danger"
               *ngIf="descAr.errors?.['maxlength'] && (descAr.touched || descAr.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong
                   >ArabicDescription must be at most 50 characters long</strong
                 >
@@ -195,7 +195,7 @@
               class="form-text text-danger"
               *ngIf="descAr.errors?.['pattern'] && (descAr.touched || descAr.dirty)"
             >
-              <p>
+              <p i18n>
                 <strong
                   >ArabicDescription must be written in Arabic characters
                   only</strong
@@ -204,7 +204,7 @@
             </div>
             <!-- end ArabicDescription valiadtion -->
             <div class="form-group mb-4">
-              <label class="mb-3" for="productPrice">Product Price:</label>
+              <label i18n class="mb-3" for="productPrice">Product Price:</label>
               <input
                 type="number"
                 class="form-control"
@@ -217,17 +217,17 @@
               class="form-text text-danger"
               *ngIf="price.errors?.['required'] && (price.touched || price.dirty)"
             >
-              <p><strong>price is Required</strong></p>
+              <p i18n><strong>price is Required</strong></p>
             </div>
             <div
               class="form-text text-danger"
               *ngIf="price.errors?.['min'] && (price.touched || price.dirty)"
             >
-              <p><strong>price cant be less than zero</strong></p>
+              <p i18n><strong>price cant be less than zero</strong></p>
             </div>
             <!-- end price valiadtion -->
             <div class="form-group mb-4">
-              <label class="mb-3" for="productQuantity"
+              <label i18n class="mb-3" for="productQuantity"
                 >Product Quantity:</label
               >
               <input
@@ -242,16 +242,16 @@
               class="form-text text-danger"
               *ngIf="quantity.errors?.['required'] && (quantity.touched || quantity.dirty)"
             >
-              <p><strong>quantity is Required</strong></p>
+              <p i18n><strong>quantity is Required</strong></p>
             </div>
             <div
               class="form-text text-danger"
               *ngIf="quantity.errors?.['min'] && (quantity.touched || quantity.dirty)"
             >
-              <p><strong>quantity cant be less than zero</strong></p>
+              <p i18n><strong>quantity cant be less than zero</strong></p>
             </div>
             <div class="form-group mb-4">
-              <label class="mb-3" for="productImage">Product Image:</label>
+              <label i18n class="mb-3" for="productImage">Product Image:</label>
               <input
                 type="file"
                 class="form-control-file"
@@ -264,6 +264,7 @@
               <div
                 *ngIf="images.errors?.['required'] && (images.touched || images.dirty)"
                 class="text-danger"
+                i18n
               >
                 Image is required.
               </div>
@@ -271,6 +272,7 @@
               <div
                 *ngIf="images.errors?.['minlength'] &&(images.touched || images.dirty)"
                 class="text-danger"
+                i18n
               >
                 Minimum 2 images should be uploaded
               </div>
@@ -304,6 +306,7 @@
               class="btn btn-danger ml-2"
               *ngIf="isEditMode"
               (click)="onDelete()"
+              i18n
             >
               Delete Product
             </button>
