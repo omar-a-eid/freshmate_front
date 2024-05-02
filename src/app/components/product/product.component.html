@@ -48,14 +48,19 @@
         (click)="goToSingleProduct(product._id)"
       />
 
-      <button class="cart-btn" (click)="addToCart(product._id)">
+      <button
+        *ngIf="!isAdmin"
+        class="cart-btn"
+        (click)="addToCart(product._id)"
+        i18n
+      >
         Add to Cart
       </button>
     </div>
   </div>
-  <h4 class="title">{{ product.title?.en }}</h4>
+  <h4 class="title">{{ product.title[lang] }}</h4>
   <app-rating-stars></app-rating-stars>
-  <p class="price">{{ product.price }}</p>
+  <p class="price">{{ product.price | currency }}</p>
 </div>
 
 <div
@@ -73,14 +78,14 @@
   >
     <div class="toast-header bg-danger text-white">
       <i class="fa-solid fa-bell fa-xl" style="color: #ffffff"></i>
-      <p class="mr-auto">THIS ITEM HAS BEEN ADDED TO YOUR WISHLIST</p>
+      <p class="mr-auto" i18n>THIS ITEM HAS BEEN ADDED TO YOUR WISHLIST</p>
     </div>
 
     <div class="d-flex flex-row toast-body">
       <img [src]="product.images[0]" class="toast-img" />
-      <h3 class="toast-product-name">{{ product.title.en }}</h3>
+      <h3 class="toast-product-name">{{ product.title[lang] }}</h3>
       <a routerLink="/wishlist">
-        <button class="go-to-wishlist-btn">GO TO WISHLIST</button>
+        <button class="go-to-wishlist-btn" i18n>GO TO WISHLIST</button>
       </a>
     </div>
   </div>

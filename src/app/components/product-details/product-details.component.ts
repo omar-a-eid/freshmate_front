@@ -19,6 +19,7 @@ import { GalleryComponent, GalleryItem } from '@daelmaak/ngx-gallery';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
+import { TranslationService } from '../../services/translation/translation.service';
 import { WishlistService } from '../../services/wishlist/wishlist.service';
 import { QuantityIncrementDecrementComponent } from '../quantity-increment-decrement/quantity-increment-decrement.component';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
@@ -44,11 +45,12 @@ import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
     SlickCarouselModule
   ],
   templateUrl: './product-details.component.html',
-  providers: [ProductService, WishlistService, CartService],
+  providers: [ProductService, WishlistService, CartService, TranslationService],
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent implements OnInit {
-
+  lang:string = "en";
+  ltr:boolean= false;
   products:any = [];
   slideConfig = { "infinite": true, "dots": true, 'slidesToShow': 5, "slidesToScroll": 2,'responsive': [
     {
@@ -70,8 +72,11 @@ export class ProductDetailsComponent implements OnInit {
     private productService: ProductService,
     private wishlistService: WishlistService,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private langService: TranslationService
   ) {
+    this.lang = this.langService.lang();
+    this.ltr = this.langService.isAr();
     this.productId = myRoute.snapshot.params['id'];
   }
 
@@ -79,7 +84,7 @@ export class ProductDetailsComponent implements OnInit {
 
   currentPath: string | undefined;
   productId: any;
-  product: any;
+  product: any = {};
   productData: any;
   user: any;
   userSession: any;
@@ -188,7 +193,7 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
       next: () => {
         console.log('Product added to cart successfully');
-        this.router.navigate(['/cart']);
+        window.location.href = "/cart";
       },
       error: (error) => {
         console.error('Error adding product to cart:', error);

@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="row">
+<div class="container mt-5 mb-5">
+  <div class="row mt-5 mb-5">
     <div class="col-12">
       <div class="d-flex justify-content-center">
         <div *ngIf="loading" class="spinner-border text-dark" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      <div class="mt-5 text-center">
+      <div class="mt-5 text-center" *ngIf="!isAdmin">
         <img
           src="http://localhost:8000/{{ avatar }}"
           alt="profile pic"
@@ -189,18 +189,34 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th scope="col" i18n>Number of orders</th>
-                  <th scope="col" i18n>Date</th>
-                  <th scope="col" i18n>Number of Products bought</th>
-                  <th scope="col" i18n>Total Price</th>
+                  <th class="text-center" scope="col" i18n>Number of orders</th>
+                  <th class="text-center" scope="col" i18n>Date</th>
+                  <th class="text-center" scope="col" i18n>
+                    Number of Products bought
+                  </th>
+                  <th class="text-center" scope="col" i18n>Total Price</th>
+                  <th
+                    *ngIf="order.status.en == 'pending'"
+                    scope="col"
+                    i18n
+                    class="text-center"
+                  >
+                    Cancel
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>{{ i + 1 }}</td>
-                  <td>{{ order.date }}</td>
-                  <td>{{ order.products.length }}</td>
-                  <td>{{ order.totalPrice }}</td>
+                  <td class="text-center">{{ i + 1 }}</td>
+                  <td class="text-center">{{ order.date }}</td>
+                  <td class="text-center">{{ order.products.length }}</td>
+                  <td class="text-center">{{ order.totalPrice }}</td>
+                  <td *ngIf="order.status.en == 'pending'" class="text-center">
+                    <i
+                      (click)="deleteOrder(order._id)"
+                      class="fa-solid fa-trash pointer"
+                    ></i>
+                  </td>
                 </tr>
               </tbody>
             </table>

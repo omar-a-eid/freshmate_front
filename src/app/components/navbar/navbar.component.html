@@ -40,11 +40,10 @@
               />
               <span class="position-absolute end-0 top-50 translate-middle-y">
                 <div class="icon-container">
-                  <i class="fa-solid fa-magnifying-glass" ></i>
+                  <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
               </span>
             </form>
-            
           </div>
           <ul class="list-unstyled custom-list mt-5">
             <li>
@@ -158,7 +157,7 @@
       <div
         class="col-sm-4 col-md-3 d-flex justify-content-center justify-content-md-center align-items-center mb-3 mb-md-0"
       >
-        <a href="#!">
+        <a href="/">
           <img
             class="freshmate-logo"
             src="https://nov-freshmate.myshopify.com/cdn/shop/files/logo-3.png?v=1689906109&width=171"
@@ -256,6 +255,7 @@
           <a
             class="text-reset me-3 dotted-icon-container favorite"
             href="/wishlist"
+            *ngIf="!isAdmin"
           >
             <div class="dotted-icon">
               <svg
@@ -323,6 +323,7 @@
           <a
             class="text-reset me-3 dotted-icon-container cart"
             href="#"
+            *ngIf="!isAdmin"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasRight"
             aria-controls="offcanvasRight"
@@ -389,7 +390,7 @@
           <a
             *ngIf="isAdmin"
             class="text-reset me-3 dotted-icon-container cart"
-            routerLink="/admin/create"
+            href="/admin/create"
           >
             <div class="dotted-icon">
               <i class="fa-solid fa-plus fa-xl"></i>
@@ -671,17 +672,10 @@
         style="margin: auto"
       >
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-          <a
-            class="nav-link text-white active"
-            href="#"
-            style="margin-right: 20px"
+          <a class="nav-link text-white" href="/" style="margin-right: 20px"
             >Home</a
           >
-        </li>
-        <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link text-white" href="#" style="margin-right: 20px"
-            >Collections</a
-          >
+          <!-- active -->
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
           <a
@@ -692,12 +686,26 @@
           >
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link text-white" href="#" style="margin-right: 20px"
-            >Other Pages</a
+          <a
+            class="nav-link text-white"
+            href="/aboutus"
+            style="margin-right: 20px"
+            >AboutUs</a
           >
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link text-white" href="#">Blog Pages</a>
+          <a
+            class="nav-link text-white"
+            href="contactus"
+            style="margin-right: 20px"
+            >ContactUs</a
+          >
+        </li>
+        <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+          <a class="nav-link text-white" href="/faq">FAQs Page</a>
+        </li>
+        <li class="nav-item me-3 me-lg-0 d-none d-md-inline-block">
+          <a class="nav-link text-white" href="/error">404 Error</a>
         </li>
       </ul>
 
@@ -706,21 +714,17 @@
       <!-- Center elements -->
       <div class="col-md-4 search original-search">
         <form class="position-relative d-flex input-group mb-3 mb-md-0">
-         
           <input
-  autocomplete="off"
-  type="search"
-  class="form-control rounded-pill placeholder-small"
-  placeholder="ENTER YOUR KEYWORDS"
-  (input)="onInputChange($event)"
-/>
-
-        <span class="position-absolute end-0 top-50 translate-middle-y">
-          <div class="icon-container bg-brown" (click)="handleSearch()">
-            <i class="fa-solid fa-magnifying-glass text-white"></i>
-          </div>
-        </span>
-        
+            autocomplete="off"
+            type="search"
+            class="form-control rounded-pill placeholder-small"
+            placeholder="ENTER YOUR KEYWORDS"
+          />
+          <span class="position-absolute end-0 top-50 translate-middle-y">
+            <div class="icon-container bg-brown">
+              <i class="fa-solid fa-magnifying-glass text-white"></i>
+            </div>
+          </span>
         </form>
       </div>
       <!-- Center elements -->

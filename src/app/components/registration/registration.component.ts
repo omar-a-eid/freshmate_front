@@ -47,9 +47,9 @@ export class RegistrationComponent {
         complete: () => {
           this.closeButton.nativeElement.click();
           if(this.loginData.value.email == "admin@gmail.com") {
-            this.router.navigate(['/dashboard']);
+            window.location.href = '/dashboard';
           } else {
-            this.router.navigate(['/products']);
+            window.location.href = '/products';
           }
         }
       })
@@ -71,7 +71,7 @@ export class RegistrationComponent {
         },
         complete: () => {
           this.closeButton.nativeElement.click();
-          this.router.navigate(['/products']);
+          window.location.href = '/products';
         }
       });
     }

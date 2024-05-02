@@ -40,6 +40,13 @@ export class OrderService {
   }
 
 
+  DeleteOrder(orderId:string, token:string) {
+    return this.http.delete(this.URL_DB + orderId, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+  }
 }
 
 

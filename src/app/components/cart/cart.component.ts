@@ -7,6 +7,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart/cart.service';
+import { TranslationService } from '../../services/translation/translation.service';
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { ProductComponent } from '../product/product.component';
 
@@ -22,11 +23,13 @@ import { ProductComponent } from '../product/product.component';
     RouterModule
   ],
   templateUrl: './cart.component.html',
-  providers: [CartService, Router],
+  providers: [CartService, Router, TranslationService],
   styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
 
+  lang:string = "en";
+  ltr:boolean= false;
   // @Output() totalChanged: EventEmitter<number> = new EventEmitter<number>();
   // @Output() totalShipping: EventEmitter<number> = new EventEmitter<number>();
 
@@ -36,7 +39,10 @@ export class CartComponent implements OnInit {
   shippingThreshold: number = 200;
   shippingCost: number = 10;
 
-  constructor(private cartService: CartService, private router: Router) {}
+  constructor(private cartService: CartService, private router: Router, private langService: TranslationService) {
+    this.lang = this.langService.lang();
+    this.ltr = this.langService.isAr();
+  }
 
 
   ngOnInit(): void {
