@@ -107,7 +107,6 @@ export class NavbarComponent {
         // console.log(data);
 
         this.allProducts = data.products;
-        console.log(this.allProducts);
         this.updateProductsQuantity();
       },
       error: (error) => console.log(error),
