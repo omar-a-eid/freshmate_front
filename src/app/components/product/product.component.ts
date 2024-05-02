@@ -3,11 +3,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth/auth.service';
 import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
 import { WishlistService } from '../../services/wishlist/wishlist.service';
 import { RatingStarsComponent } from '../rating-stars/rating-stars.component';
-import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-product',
@@ -101,16 +101,18 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userSession = sessionStorage.getItem('user');
-    this.user = JSON.parse(this.userSession);
-    this.productService.GetProduct(this.productId).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.product = data;
-        console.log(this.product);
-      },
-      error: (error: any) => console.log(error),
-    });
+    if(this.productId) {
+      this.userSession = sessionStorage.getItem('user');
+      this.user = JSON.parse(this.userSession);
+      this.productService.GetProduct(this.productId).subscribe({
+        next: (data: any) => {
+          console.log(data);
+          this.product = data;
+          console.log(this.product);
+        },
+        error: (error: any) => console.log(error),
+      });
+    }
 
     if (this.product && this.product.images && this.product.images.length > 0) {
       this.currentImage = this.product.images[0];

@@ -193,6 +193,29 @@
                 required
               />
             </div>
+
+            <div class="d-flex flex-column mb-3">
+              <div
+                *ngIf="Avatar.invalid && (Avatar.dirty || Avatar.touched)"
+                class="form-text text-danger"
+              >
+                <div *ngIf="Avatar.errors?.['required']">
+                  Image is required.
+                </div>
+              </div>
+              <label class="form-label" for="avatar">Avatar</label>
+              <input
+                class="form-control"
+                formControlName="avatar"
+                type="file"
+                name="avatar"
+                id="avatar"
+                accept=".jpg,.jpeg,.webp,.png"
+                required
+                (change)="onFileChange($event)"
+              />
+            </div>
+
             <div class="d-flex flex-column mb-3">
               <div
                 *ngIf="Gender.invalid && (Gender.dirty || Gender.touched)"

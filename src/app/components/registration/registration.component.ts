@@ -21,17 +21,19 @@ export class RegistrationComponent {
   position:string = "loginBtn";
   errMessageLogin:any;
   errMessageSignup:any;
+  avatar:any;
 
   loginData = new FormGroup({
     email: new FormControl("", [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.required]),
     password: new FormControl("", [Validators.minLength(6), Validators.required]),
   })
 
-  signupData = new FormGroup({
+  signupData:any = new FormGroup({
     username: new FormControl("", [Validators.minLength(3), Validators.required]),
     gender: new FormControl("male", [Validators.required]),
     email: new FormControl("", [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.required]),
     password: new FormControl("", [Validators.minLength(6), Validators.required]),
+    avatar: new FormControl(null, [Validators.required])
   })
 
   login() {
@@ -57,7 +59,14 @@ export class RegistrationComponent {
   signup() {
     if(this.signupData.value) {
       const newUser = this.signupData.value;
-      this.registrationService.signup(newUser).subscribe({
+      const formData = new FormData();
+
+    Object.keys(newUser).forEach(key => {
+      formData.append(key, newUser[key]);
+    });
+      formData.append("avatar", this.avatar);
+      console.log(formData);
+      this.registrationService.signup(formData).subscribe({
         error: error => this.errMessageSignup = error.error,
         next: (data:any) => {
           sessionStorage.setItem("user",JSON.stringify(data));
@@ -96,5 +105,13 @@ export class RegistrationComponent {
 
   get Gender(): FormControl {
     return this.signupData.get("gender") as FormControl;
+  }
+  
+  get Avatar(): FormControl {
+    return this.signupData.get("avatar") as FormControl;
+  }
+
+  onFileChange(event: any) {
+    this.avatar = event.target.files[0];
   }
 }

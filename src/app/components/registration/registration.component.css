@@ -43,7 +43,7 @@
   margin: 3em 0;
   font-weight: 600;
 }
-input:not([type="submit"]) {
+input:not([type="submit"]):not([type="file"]) {
   border: 1px solid #e7e7e7;
   border-radius: 5px;
   font-size: 12px;
@@ -53,9 +53,11 @@ input:not([type="submit"]) {
   padding: 0 20px;
   width: 100%;
 }
-input:not([type="submit"]):hover {
+
+input:not([type="submit"]):not([type="file"]):hover {
   border: 1px solid #52271f;
 }
+
 
 .reg_btns {
   cursor: pointer;

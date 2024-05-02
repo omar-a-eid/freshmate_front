@@ -25,7 +25,7 @@ export class ProductFormComponent implements OnInit {
     descAr: new FormControl("", [Validators.required, Validators.minLength(10),Validators.maxLength(50),Validators.pattern("^[\u0621-\u064A\u0660-\u0669 ]+$")]),
     price: new FormControl(0, [Validators.required, Validators.min(0)]),
     quantity: new FormControl(0, [Validators.required, Validators.min(0)]),
-    images: new FormControl(null,[Validators.required, Validators.minLength(2),Validators.maxLength(5)]),
+    images: new FormControl([],[Validators.required, Validators.minLength(2)]),
     oldImages: new FormControl(null),
 
   })
@@ -62,46 +62,50 @@ export class ProductFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const user = JSON.parse(sessionStorage.getItem("user") as string)
-    const productData = this.productForm.value;
-    const formData = new FormData();
-
-    formData.append('title[en]', productData.titleEn);
-    formData.append('title[ar]', productData.titleAr);
-    formData.append('desc[en]', productData.descEn);
-    formData.append('desc[ar]', productData.descAr);
-    formData.append('price', productData.price);
-    formData.append('quantity', productData.quantity);
-    
-    const images = this.productForm.get('images').value;
-    if(images){
-      for (let i = 0; i < images.length; i++) {
-        formData.append('images', images[i]);
+    if(this.productForm.valid) {
+      const user = JSON.parse(sessionStorage.getItem("user") as string)
+      const productData = this.productForm.value;
+      const formData = new FormData();
+  
+      formData.append('title[en]', productData.titleEn);
+      formData.append('title[ar]', productData.titleAr);
+      formData.append('desc[en]', productData.descEn);
+      formData.append('desc[ar]', productData.descAr);
+      formData.append('price', productData.price);
+      formData.append('quantity', productData.quantity);
+      
+      const images = this.productForm.get('images').value;
+      if(images){
+        for (let i = 0; i < images.length; i++) {
+          formData.append('images', images[i]);
+        }
       }
-    }
-
-    if (this.isEditMode) {
-      formData.append("oldImages", productData.oldImages);
-      console.log(formData);
-      this.productService.updateProduct(this.productId, formData,user.token).subscribe({
-        next: (data) => {
-          this.message = 'Product updated successfully';
-          console.log(data)
-        },
-        error: (error) => {
-          this.message = 'Error updating product';
-        }
-      });
+  
+      if (this.isEditMode) {
+        formData.append("oldImages", productData.oldImages);
+        console.log(formData);
+        this.productService.updateProduct(this.productId, formData,user.token).subscribe({
+          next: (data) => {
+            this.message = 'Product updated successfully';
+            console.log(data)
+          },
+          error: (error) => {
+            this.message = 'Error updating product';
+          }
+        });
+      } else {
+        // Call service method to add a new product
+        this.productService.addProduct(formData, user.token).subscribe({
+          next: (response) => {
+            this.message = 'Product added successfully';
+          },
+          error: (error) => {
+            this.message = 'Error adding product';
+          }
+        });
+      }
     } else {
-      // Call service method to add a new product
-      this.productService.addProduct(formData, user.token).subscribe({
-        next: (response) => {
-          this.message = 'Product added successfully';
-        },
-        error: (error) => {
-          this.message = 'Error adding product';
-        }
-      });
+      this.markFormGroupTouched(this.productForm);
     }
   }
 
@@ -155,8 +159,18 @@ export class ProductFormComponent implements OnInit {
   }
 
   deleteImage(img: any) {
-    this.productForm.patchValue({
-        oldImages: this.productForm.value.oldImages.filter((oldImg: any) => oldImg !== img)
+    const oldImages = this.productForm.get('oldImages').value;
+    const updatedOldImages = oldImages.filter((oldImg: any) => oldImg !== img);
+    this.productForm.get('oldImages').setValue(updatedOldImages);
+  }
+  
+  markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+        control.markAsTouched();
+
+        if (control instanceof FormGroup) {
+            this.markFormGroupTouched(control);
+        }
     });
-}
+  }
 }
