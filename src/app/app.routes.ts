@@ -14,6 +14,7 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { adminGuard } from './guards/admin.guard';
 import { userGuard } from './guards/user.guard';
 import { HomeComponent } from './pages/home/home.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 export const routes: Routes = [
     {path: "", component: HomeComponent},
@@ -27,6 +28,7 @@ export const routes: Routes = [
     {path: 'profile', component: ProfileComponent, canActivate: [userGuard]},
     {path: 'checkout', component: CheckoutComponent, canActivate: [userGuard]},
     {path: 'dashboard', component: OrdersComponent, canActivate: [adminGuard]},
+    {path: 'search-results', component: SearchResultsComponent },
     {path: 'admin/create', component: ProductFormComponent, canActivate: [adminGuard]},
     {path: 'admin/edit/:id', component: ProductFormComponent, canActivate: [adminGuard]},
     {path: '**', component: NotFoundComponent},
