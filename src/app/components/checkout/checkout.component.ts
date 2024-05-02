@@ -154,18 +154,21 @@ export class CheckoutComponent implements OnInit {
     this.cartService.GetCartItems(this.user.token).subscribe({
       next: (data: any) => {
         const order = data;
-       
+       const products = [];
         let totalPrice = 0, productPrice, productQuantity;
         for (let i = 0; i < order.products.length; i++) {
           productPrice = order.products[i].product.price;
           productQuantity = order.products[i].quantity;
           totalPrice += (productPrice * productQuantity);
         }
-        order.totalPrice = totalPrice;
+        delete order["_id"];
+        order.totalPrice = totalPrice.toFixed(2);
         order.status = "pending";
-       
+        console.log(order);
         this.orderService.CreateOrder(order, this.user.token).subscribe({
-          next: ()=> {},
+          next: ()=> {
+            this.showToast();
+          },
           error(err) {
               
           },
@@ -174,7 +177,6 @@ export class CheckoutComponent implements OnInit {
       error: (err) => { "there is an eror fetching data from mongodb" }
     })
 
-    this.showToast();
   }
 
   get country(): FormControl {

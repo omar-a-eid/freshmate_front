@@ -31,7 +31,7 @@ export class ProductComponent implements OnInit {
   showAddToCartButton: boolean = true;
   wishlist: any;
   isAdmin: boolean = false;
-  allProducts: any;
+  allProducts: any = [];
   productsQuantity: any;
 
   constructor(
@@ -39,7 +39,7 @@ export class ProductComponent implements OnInit {
     private router: Router,
     private cartService: CartService,
     private wishlistService: WishlistService,
-    private authService: AuthService // private location:Location
+    private authService: AuthService // private location:Location,
   ) {
     if (this.router.url === 'localhost:4200/wishlist') {
       this.showAddToCartButton = false;
@@ -122,14 +122,17 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(productId: string) {
-    this.cartService.AddItemsToCart(productId, this.user.token).subscribe(
-      () => {
+    this.userSession = sessionStorage.getItem('user');
+    this.user = JSON.parse(this.userSession);
+    this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
+      next:() => {
         console.log('Product added to cart successfully');
+        this.router.navigate(["/cart"]);
         this.updateProductsQuantity();
       },
-      (error) => {
+      error: (error) => {
         console.error('Error adding product to cart:', error);
-      }
+      }}
     );
   }
 

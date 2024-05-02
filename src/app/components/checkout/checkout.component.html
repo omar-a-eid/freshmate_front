@@ -1,20 +1,5 @@
 <div class="container-fluid">
-  <div class="col-12">
-    <div class="row col-12">
-      <div class="col-12 d-flex">
-        <div class="col-1 d-flex"></div>
-        <div class="col-10 d-flex justify-content-between">
-          <div class="m-3">
-            <h5 i18n><strong>FreshMate Password : 1</strong></h5>
-          </div>
-          <div class="m-3">
-            <i class="fa-solid fa-bag-shopping clr"></i>
-          </div>
-        </div>
-        <div class="col-1"></div>
-      </div>
-      <hr />
-    </div>
+  <div class="col-12 mt-5">
     <div>
       <div class="col-12 d-flex">
         <div class="col-1"></div>
@@ -553,7 +538,9 @@
                     <div class="d-flex justify-content-end">
                       <small i18n class="text-end">EGP</small>
                       <h5 class="px-3 fs-3">
-                        <strong>$ {{ totalPrice }}</strong>
+                        @if(totalPrice) {
+                        <strong>$ {{ totalPrice.toFixed(2) }}</strong>
+                        }
                       </h5>
                     </div>
                   </div>
@@ -564,10 +551,6 @@
         </div>
       </div>
     </div>
-    <hr class="m-0" />
-    <p i18n class="m-0">
-      <small>All rights reserved FreshMate Password : 1</small>
-    </p>
     <div
       aria-live="polite"
       aria-atomic="true"

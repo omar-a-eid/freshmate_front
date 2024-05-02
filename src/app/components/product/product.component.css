@@ -43,16 +43,18 @@
     cursor: pointer;
     font-size: 18px;
     width: 85%;
-    z-index: 999;    
+    z-index: 999;
+    border:none;
+
 } 
 
 .card:hover .cart-btn {
-    background-color: #52271f;
-    color: white;
     opacity: 1; 
+    transform: translateY(-41px);
+}
+.card .cart-btn:hover {
     background-color: #52271f;
     color: white;
-    transform: translateY(-41px);
 }
 
 .card .cart-btn,

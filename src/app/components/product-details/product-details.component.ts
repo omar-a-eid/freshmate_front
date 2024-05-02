@@ -90,7 +90,6 @@ export class ProductDetailsComponent implements OnInit {
   isHeartActive: boolean = false;
 
   toggleHeartIcon() {
-    console.log('we');
     this.isHeartSolid = !this.isHeartSolid;
     if (this.isHeartSolid) {
       this.showToast();
@@ -141,7 +140,6 @@ export class ProductDetailsComponent implements OnInit {
 
     this.productService.GetProduct(this.productId).subscribe({
       next: (data: any) => {
-        console.log(data);
         this.product = data;
 
         if (this.product.images && this.product.images.length > 0) {
@@ -173,10 +171,6 @@ export class ProductDetailsComponent implements OnInit {
   addToWishlist(productid: string) {
     this.userSession = sessionStorage.getItem('user');
     this.user = JSON.parse(this.userSession);
-    console.log('inside', {
-      productid: productid,
-      user: sessionStorage.getItem('user'),
-    });
     this.toggleHeartIcon();
     this.wishlistService
       .addItemToWishList(this.user.userId, [productid])
