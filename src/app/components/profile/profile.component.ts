@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RegistrationService } from '../../services/registration/registration.service';
 import { OrderService } from '../../services/order/order.service';
+import { RegistrationService } from '../../services/registration/registration.service';
 
 @Component({
   selector: 'app-profile',
@@ -28,13 +28,14 @@ export class ProfileComponent {
   UserEmail:any
   UserUsername:any
   UserGender:any
+  avatar: any;
 
-  EditProfile = new FormGroup({
-    username: new FormControl("", [Validators.minLength(3), Validators.maxLength(50), Validators.required]),
-    email: new FormControl("", [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.required]),//check on it Validators.email
-    password: new FormControl("", [Validators.minLength(6), Validators.required]),
-    gender: new FormControl("", [Validators.required]),
-    profilePhoto: new FormControl(null,Validators.required)
+  EditProfile:any = new FormGroup({
+    username: new FormControl("", [Validators.minLength(3), Validators.maxLength(50)]),
+    email: new FormControl("", [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    password: new FormControl("", [Validators.minLength(6)]),
+    gender: new FormControl("" ),
+    avatar: new FormControl(null)
 
   })
 
@@ -44,12 +45,12 @@ export class ProfileComponent {
     // console.log(this.EditProfile.controls.email.valid);
     // console.log(this.EditProfile.controls.password.valid);
     // console.log(this.EditProfile.controls.gender.valid);
-    console.log(this.EditProfile.controls.profilePhoto.value);
     let username = this.EditProfile.controls.username.value;
     let email = this.EditProfile.controls.email.value;
     let password = this.EditProfile.controls.password.value;
     let gender = this.EditProfile.controls.gender.value;
-    let profilePhoto = this.EditProfile.controls.profilePhoto.value;
+    let avatar = this.EditProfile.controls.avatar.value;
+
 
     // console.log(`username: ${username} , email: ${email} , password: ${password}, gender: ${gender}`);
 
@@ -60,16 +61,23 @@ export class ProfileComponent {
       email: email,
       password: password,
       gender: gender,
-      profilePhoto:profilePhoto
+      avatar: avatar
   };
 
     // console.log(this.editedUser);
   }
   
-  update() {    
+  update() { 
       
-      if(this.editedUser) {
-      this.registrationService.update(this.user.userId, this.user.token,this.editedUser).subscribe({//here we should add the userid
+      if(this.EditProfile.valid) {
+        const updateUser:any = this.EditProfile.value;
+        const formData = new FormData();
+        Object.keys(updateUser).forEach(key => {
+          formData.append(key, updateUser[key]);
+        });
+
+        console.log(formData);
+      this.registrationService.update(this.user.userId, this.user.token,formData).subscribe({//here we should add the userid
         error: error => console.log(error),
         next: (data:any) => {
           // console.log(this.editedUser);
@@ -98,6 +106,7 @@ export class ProfileComponent {
         this.UserEmail = data.email;
         this.UserUsername = data.username;
         this.UserGender = data.gender.en;
+        this.avatar = data.avatar;
         this.loading = false;
 
         //#region handle backend
@@ -169,10 +178,8 @@ export class ProfileComponent {
 
 
   onPhotoChange(event: any) {
-    const file = event.target.files[0];
-    this.EditProfile.patchValue({
-        profilePhoto: file
-    });
+    this.EditProfile.get('avatar').setValue(event.target.files[0]);
+
 }
 
 

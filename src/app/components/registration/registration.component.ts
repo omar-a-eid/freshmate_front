@@ -64,8 +64,6 @@ export class RegistrationComponent {
     Object.keys(newUser).forEach(key => {
       formData.append(key, newUser[key]);
     });
-      formData.append("avatar", this.avatar);
-      console.log(formData);
       this.registrationService.signup(formData).subscribe({
         error: error => this.errMessageSignup = error.error,
         next: (data:any) => {
@@ -112,6 +110,6 @@ export class RegistrationComponent {
   }
 
   onFileChange(event: any) {
-    this.avatar = event.target.files[0];
+    this.signupData.get('avatar').setValue(event.target.files[0]);
   }
 }
