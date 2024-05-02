@@ -472,7 +472,7 @@
                   <div class="col-5">
                     <div class="product-border">
                       <img
-                        [src]="item.product.images[0]"
+                        src="http://localhost:8000/{{ item.product.images[0] }}"
                         (click)="navigateToSingleProduct(item.product._id)"
                       />
                     </div>
@@ -719,9 +719,11 @@
             type="search"
             class="form-control rounded-pill placeholder-small"
             placeholder="ENTER YOUR KEYWORDS"
+            (input)="onInputChange($event)"
           />
+
           <span class="position-absolute end-0 top-50 translate-middle-y">
-            <div class="icon-container bg-brown">
+            <div class="icon-container bg-brown" (click)="handleSearch()">
               <i class="fa-solid fa-magnifying-glass text-white"></i>
             </div>
           </span>
