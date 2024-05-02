@@ -2,7 +2,8 @@
   <div class="list-sub-items position-relative">
     <ol class="breadcrumb">
       <li class="list-inline-item">
-        <a i18n
+        <a
+          i18n
           href="../wishlist/wishlist.component.html"
           class="item-breacrumb item-home"
           >Home .</a
@@ -72,20 +73,25 @@
             src="//nov-freshmate.myshopify.com/cdn/shop/files/icon_fire_66x.png?v=1691744504"
             class="position-absolute i_flash"
           />
-          <p i18n class="offer">88% Sold - Only 50 item(s) left in stock!</p>
+          <p i18n class="offer">
+            88% Sold - Only {{ product.quantity }} item(s) left in stock!
+          </p>
         </div>
       </div>
 
       <div class="buttons-product d-flex flex-column gap-2">
         <div class="d-flex gap-4">
-          <app-quantity-increment-decrement></app-quantity-increment-decrement>
-          <button i18n class="add-to-bag-btn" (click)="addToCart(product._id); ">
+          <app-quantity-increment-decrement
+            [max]="product.quantity"
+          ></app-quantity-increment-decrement>
+          <button i18n class="add-to-bag-btn" (click)="addToCart(product._id)">
             ADD TO BAG
           </button>
-        
         </div>
 
-        <a  i18n href="/checkout">  <button class="buy-it-now-btn">BUY IT NOW</button> </a>
+        <a i18n href="/checkout">
+          <button class="buy-it-now-btn">BUY IT NOW</button>
+        </a>
       </div>
 
       <div class="product-share-info-faq d-flex flex-row gap-4">
@@ -136,7 +142,6 @@
   style="border-top: 3px solid #d9d9d9; opacity: 100%; margin-top: 30px"
 ></div>
 
-
 <div class="ProductSignlePolicy section-policy pt-55 pb-55 overflow_hidden">
   <div class="container">
     <div class="row">
@@ -183,7 +188,7 @@
             />
           </div>
 
-          <div  class="heading--policy">
+          <div class="heading--policy">
             <div i18n class="title-policy f_pr font-800" style="color: #000000">
               SUPPORT 24/7
             </div>
@@ -232,44 +237,48 @@
   </div>
 </div>
 
-
-
-
 <div
   style="border-top: 3px solid #d9d9d9; opacity: 100%; margin-top: 30px"
 ></div>
 <div class="d-flex justify-content-around">
-<div class="related-products d-flex flex-column gap-2">
-  <p i18n class="related-products-text">Related products</p>
-  <div class="related-products-list row">
-    <div>
-      <ngx-slick-carousel
-        class="carousel"
-        #slickModal="slick-carousel"
-        [config]="slideConfig"
-      >
-        @for (item of products; track $index) {
-        <app-product class="slide" ngxSlickItem [product]="item"></app-product>
-        }
-      </ngx-slick-carousel>
+  <div class="related-products d-flex flex-column gap-2">
+    <p i18n class="related-products-text">Related products</p>
+    <div class="related-products-list row">
+      <div>
+        <ngx-slick-carousel
+          class="carousel"
+          #slickModal="slick-carousel"
+          [config]="slideConfig"
+        >
+          @for (item of products; track $index) {
+          <app-product
+            class="slide"
+            ngxSlickItem
+            [product]="item"
+          ></app-product>
+          }
+        </ngx-slick-carousel>
+      </div>
     </div>
   </div>
 </div>
-</div>
 
-<br>
-<br>
-<br>
-
+<br />
+<br />
+<br />
 
 <div class="d-flex justify-content-around">
   <div class="info-partition">
     <ul class="nav nav-tabs d-flex flex-row gap-4" id="myTabs">
       <li class="nav-item">
-        <a i18n class="nav-link active" data-toggle="tab" href="#policy">DELIVERY POLICY</a>
+        <a i18n class="nav-link active" data-toggle="tab" href="#policy"
+          >DELIVERY POLICY</a
+        >
       </li>
       <li class="nav-item">
-        <a i18n class="nav-link" data-toggle="tab" href="#shipping">SHIPPING AND RETURN</a>
+        <a i18n class="nav-link" data-toggle="tab" href="#shipping"
+          >SHIPPING AND RETURN</a
+        >
       </li>
     </ul>
 
@@ -300,9 +309,9 @@
   </div>
 </div>
 
-<br>
-<br>
-<br>
+<br />
+<br />
+<br />
 
 <div
   aria-live="polite"
@@ -398,28 +407,34 @@
           staff will respond as soon as possible.
         </p>
         <div class="modal-body d-flex flex-column gap-4">
-          <input i18n-placeholder
+          <input
+            i18n-placeholder
             class="form-control data"
             type="text"
             placeholder="YOUR NAME"
           />
-          <input i18n-placeholder
+          <input
+            i18n-placeholder
             class="form-control data"
             type="text"
             placeholder="YOUR EMAIL"
           />
-          <input i18n-placeholder
+          <input
+            i18n-placeholder
             class="form-control data"
             type="text"
             placeholder="PHONE NUMBER"
           />
-          <textarea i18n-placeholder
+          <textarea
+            i18n-placeholder
             class="form-control"
             id="exampleFormControlTextarea1"
             rows="3"
             placeholder="YOUR MESSAGE"
           ></textarea>
-          <button i18n class="submit-btn" data-bs-dismiss="modal">SUBMIT</button>
+          <button i18n class="submit-btn" data-bs-dismiss="modal">
+            SUBMIT
+          </button>
         </div>
       </div>
     </div>

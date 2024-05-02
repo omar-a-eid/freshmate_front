@@ -1,15 +1,14 @@
 import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, HostListener, NgModule, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ProductService } from '../../services/product/product.service';
 import { CustomButtonComponent } from '../custom-button/custom-button.component';
 import { PathbarComponent } from '../pathbar/pathbar.component';
 import { ProductComponent } from '../product/product.component';
-import { routes } from '../../app.routes';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-products-page',
   standalone: true,
@@ -52,8 +51,6 @@ export class ProductsPageComponent implements OnInit {
   filterProductsByPrice() {
     this.filteredProducts = this.products.filter((product) => {
       const productPrice = product.price;
-      console.log(this.filteredProducts);
-
       return productPrice >= this.value && productPrice <= this.highValue;
     });
   }
@@ -64,12 +61,9 @@ export class ProductsPageComponent implements OnInit {
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem('user');
     this.user = JSON.parse(this.userSession);
-    console.log(this.user);
     this.ProductService.GetAllProducts(this.user.token).subscribe({
       next: (data: any) => {
         this.products = data;
-        console.log(data);
-        console.log(this.user.token);
         this.filterProductsByPrice();
       },
       error: (error) => console.log(error),

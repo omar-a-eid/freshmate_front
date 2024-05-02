@@ -91,26 +91,27 @@ export class NavbarComponent {
   ngOnInit(): void {
     this.userSession = sessionStorage.getItem('user');
     this.user = JSON.parse(this.userSession);
-
-    this.wishlistService.GetWishlist(this.user.token).subscribe({
-      next: (data: any) => {
-        this.wishlist = data.products;
-      },
-      error: (error) => console.log(error),
-    });
-    this.loadWishlistData();
-    this.isAdmin = this.authService.isAdmin();
-
-    // get all cart products
-    this.cartService.GetCartItems(this.user.token).subscribe({
-      next: (data: any) => {
-        // console.log(data);
-
-        this.allProducts = data.products;
-        this.updateProductsQuantity();
-      },
-      error: (error) => console.log(error),
-    });
+    if(this.user) {
+      this.wishlistService.GetWishlist(this.user.token).subscribe({
+        next: (data: any) => {
+          this.wishlist = data.products;
+        },
+        error: (error) => console.log(error),
+      });
+      this.loadWishlistData();
+      this.isAdmin = this.authService.isAdmin();
+  
+      // get all cart products
+      this.cartService.GetCartItems(this.user.token).subscribe({
+        next: (data: any) => {
+          // console.log(data);
+  
+          this.allProducts = data.products;
+          this.updateProductsQuantity();
+        },
+        error: (error) => console.log(error),
+      });
+    }
   }
 
   loadWishlistData(): void {
@@ -156,7 +157,7 @@ export class NavbarComponent {
 
   deleteProduct(productId: string, index: number, event: Event) {
     event.preventDefault();
-    // Remove the product from the local array immediately
+    // Remove the product from the local array immediately  
     this.allProducts.splice(index, 1);
     this.cartService.RemoveItemsFromCart(productId, this.user.token).subscribe({
       next: (response: any) => {
@@ -183,7 +184,6 @@ export class NavbarComponent {
         totalPrice += item.product.price * item.quantity;
       }
     }
-
     let shipping = 0;
     if (totalPrice >= this.shippingThreshold) {
       shipping = 0;
@@ -195,6 +195,7 @@ export class NavbarComponent {
     this.totalShipping.emit(shipping);
 
     return totalPrice;
+
   }
 
   navigateToCheckout() {
@@ -210,9 +211,11 @@ export class NavbarComponent {
   }
 
   updateProductsQuantity(): void {
-    this.productsQuantity = this.allProducts.reduce(
-      (total: number, item: any) => total + item.quantity,
-      0
-    );
+    if(this.allProducts) {
+      this.productsQuantity = this.allProducts.reduce(
+        (total: number, item: any) => total + item.quantity,
+        0
+      );
+    }
   }
 }

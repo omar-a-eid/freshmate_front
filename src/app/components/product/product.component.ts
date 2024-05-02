@@ -136,10 +136,6 @@ export class ProductComponent implements OnInit {
   addToWishlist(productid: string) {
     this.userSession = sessionStorage.getItem('user');
     this.user = JSON.parse(this.userSession);
-    console.log('inside', {
-      productid: productid,
-      user: sessionStorage.getItem('user'),
-    });
 
     this.wishlistService
       .addItemToWishList(this.user.userId, [productid])
@@ -176,5 +172,19 @@ export class ProductComponent implements OnInit {
       (total: number, item: any) => total + item.quantity,
       0
     );
+  }
+
+  deleteProduct(productId:any) {
+    this.userSession = sessionStorage.getItem('user');
+    this.user = JSON.parse(this.userSession);
+    this.productService.deleteProduct(productId, this.user.token).subscribe({
+      next:()=> {},
+      error(err) {
+          
+      },
+      complete: () => {
+        window.location.reload();
+      }
+    })
   }
 }

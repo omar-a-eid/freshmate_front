@@ -2,8 +2,9 @@
   <div class="card">
     <div class="images-buttons">
       <div class="icons" *ngIf="!isAdmin">
-       
-        <ng-container *ngIf="getCurrentUrl() !== '/wishlist'; else wishlistActions">
+        <ng-container
+          *ngIf="getCurrentUrl() !== '/wishlist'; else wishlistActions"
+        >
           <p (click)="addToWishlist(product._id)">
             <i
               [ngClass]="{
@@ -15,13 +16,12 @@
             ></i>
           </p>
         </ng-container>
-        
+
         <ng-template #wishlistActions>
           <p (click)="deleteProductFromWishlist(product._id)">
             <i class="fa-solid fa-trash fa-sm"></i>
           </p>
         </ng-template>
-        
 
         <p>
           <i class="fa-regular fa-images fa-2xs"></i>
@@ -29,15 +29,14 @@
       </div>
       <div class="icons" *ngIf="isAdmin">
         <p>
-          <i class="fa-solid fa-pen-to-square"></i>
+          <a routerLink="/admin/edit/{{ product._id }}">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>
         </p>
-  
-      <p>
-        <i class="fa-solid fa-trash"></i>
 
-       
-      </p>
-
+        <p (click)="deleteProduct(product._id)">
+          <i class="fa-solid fa-trash"></i>
+        </p>
       </div>
       <img
         *ngIf="product && product.images && product.images.length > 0"
@@ -49,9 +48,11 @@
         (click)="goToSingleProduct(product._id)"
       />
 
-      <a href="/cart"><button class="cart-btn" (click)="addToCart(product._id)">
-        Add to Cart
-      </button> </a>
+      <a routerLink="/cart"
+        ><button class="cart-btn" (click)="addToCart(product._id)">
+          Add to Cart
+        </button>
+      </a>
     </div>
   </div>
   <h4 class="title">{{ product.title?.en }}</h4>
@@ -80,7 +81,7 @@
     <div class="d-flex flex-row toast-body">
       <img [src]="product.images[0]" class="toast-img" />
       <h3 class="toast-product-name">{{ product.title.en }}</h3>
-      <a href="/wishlist">
+      <a routerLink="/wishlist">
         <button class="go-to-wishlist-btn">GO TO WISHLIST</button>
       </a>
     </div>
