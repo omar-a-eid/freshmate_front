@@ -147,7 +147,7 @@
                 <div
                   i18n
                   *ngIf="
-                    calculateTotalPrice() >= 200;
+                    calculateTotalPrice() >= shippingThreshold;
                     else noFreeShippingMessage
                   "
                   style="color: green"
@@ -155,7 +155,11 @@
                   CONGRATULATIONS! YOU'VE GOT FREE SHIPPING!
                 </div>
                 <ng-template #noFreeShippingMessage>
-                  <div style="color: gray">SPEND 200$ FOR FREE SHIPPING</div>
+                  <div style="color: gray">
+                    SPEND
+                    {{ shippingThreshold - calculateTotalPrice() | currency }}
+                    FOR FREE SHIPPING
+                  </div>
                 </ng-template>
               </div>
 
