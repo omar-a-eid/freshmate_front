@@ -55,7 +55,18 @@ The backend for Freshmate is hosted in a separate repository. You can find it [h
 
 ## Contributing
 
-Contributions to Freshmate are welcome! If you have any suggestions, feature requests, or bug reports, please open an issue or submit a pull request.
+<table>
+  <tbody>
+    <tr>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/omar-a-eid"><img src="https://avatars.githubusercontent.com/u/103126348?v=4" alt="Omar Ahmed"/><br /><sub><b>Omar Ahmed</b></sub></a></td>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/esraaeliba"><img src="https://avatars.githubusercontent.com/u/130110027?v=4" alt="Esraa Ahmed"/><br /><sub><b>Esraa Ahmed</b></sub></a></td>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/SalmaYousry01"><img src="https://avatars.githubusercontent.com/u/112441530?v=4" alt="Salma Yousry"/><br /><sub><b>Salma Yousry</b></sub></a></td>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/mostafa-fakhr"><img src="https://avatars.githubusercontent.com/u/153079695?v=4" alt="Mostafa Fakhr"/><br /><sub><b>Mostafa Fakhr</b></sub></a></td>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/KarimMohamedDesouki"><img src="https://avatars.githubusercontent.com/u/153070580?v=4" alt="Karim Mohamed"/><br /><sub><b>Karim Mohamed</b></sub></a></td>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/vodz1"><img src="https://avatars.githubusercontent.com/u/147009800?v=4" alt="Ahmed Adel"/><br /><sub><b>Ahmed Adel</b></sub></a></td>
+    </tr>
+  </tbody>
+</table>
 
 ## License
 
