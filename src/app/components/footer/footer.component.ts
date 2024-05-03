@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule,RouterLink, RouterModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })
@@ -24,11 +24,13 @@ export class FooterComponent implements OnInit {
   
   }
   
+  constructor(private router: Router) {}
   selectCurrency(currency: string) {
     this.selectedCurrency = currency;
   }
   selectLanguage(language: string) {
     this.selectedLanguage = language;
-    localStorage.setItem('lang', this.selectedLanguage);
+    // this.router.navigate(['/' + language]);
+    window.location.href = language;
   }
 }
