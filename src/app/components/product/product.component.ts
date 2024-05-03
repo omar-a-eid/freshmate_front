@@ -161,9 +161,7 @@ export class ProductComponent implements OnInit {
   deleteProductFromWishlist(productId: string): void {
     this.wishlistService.removeItemFromWishlist([productId]).subscribe({
       next: (response: any) => {
-        console.log('Product removed from wishlist:', response);
-        location.reload();
-        console.log('product is deleted');
+        this.router.navigate([this.router.url]);
       },
       error: (error: any) => {
         console.error('Error removing product from wishlist:', error);
