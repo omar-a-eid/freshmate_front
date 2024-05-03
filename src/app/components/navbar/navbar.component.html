@@ -36,6 +36,7 @@
                 autocomplete="off"
                 type="search"
                 class="form-control rounded-pill placeholder-small"
+                i18n-placeholder
                 placeholder="ENTER YOUR KEYWORDS"
               />
               <span class="position-absolute end-0 top-50 translate-middle-y">
@@ -49,40 +50,60 @@
             <li>
               <a
                 class="text-decoration-none d-flex justify-content-start"
-                href="#"
-                >Home</a
+                [routerLink]="['/']"
+                i18n
+              >
+                Home</a
               >
             </li>
             <hr class="divider" />
             <li>
               <a
-                class="text-decoration-none d-flex justify-content-start"
-                href="#"
-                >Collections</a
+                i18n
+                routerLink="/products"
+                class="text-decoration-none d-flex justify-content-start cursor"
+              >
+                Products</a
               >
             </li>
             <hr class="divider" />
             <li>
               <a
+                i18n
                 class="text-decoration-none d-flex justify-content-start"
-                href="#"
-                >Products</a
+                [routerLink]="['/aboutus']"
+              >
+                AboutUs</a
               >
             </li>
             <hr class="divider" />
             <li>
               <a
-                class="text-decoration-none d-flex justify-content-start"
-                href="#"
-                >Other Pages</a
+                i18n
+                routerLink="contactus"
+                class="text-decoration-none d-flex justify-content-start cursor"
+              >
+                ContactUs</a
               >
             </li>
             <hr class="divider" />
             <li>
               <a
-                class="text-decoration-none d-flex justify-content-start"
-                href="#"
-                >Blog Pages</a
+                i18n
+                routerLink="/faq"
+                class="text-decoration-none d-flex justify-content-start cursor"
+              >
+                FAQs Page</a
+              >
+            </li>
+            <hr class="divider" />
+            <li>
+              <a
+                i18n
+                routerLink="/error"
+                class="text-decoration-none d-flex justify-content-start cursor"
+              >
+                404 Error</a
               >
             </li>
           </ul>
@@ -97,7 +118,7 @@
       <div
         class="col-md-4 d-flex justify-content-md-start mb-3 mb-md-0 contact-header"
       >
-        <a class="text-reset me-3 dotted-icon-container phone" href="#">
+        <a class="text-reset me-3 dotted-icon-container phone cursor">
           <div class="dotted-icon">
             <svg
               width="20px"
@@ -115,7 +136,7 @@
                 stroke-linejoin="round"
               />
               <g id="SVGRepo_iconCarrier">
-                <title>phone_call_fill</title>
+                <title i18n>phone_call_fill</title>
                 <g
                   id="页面-1"
                   stroke="none"
@@ -157,7 +178,7 @@
       <div
         class="col-sm-4 col-md-3 d-flex justify-content-center justify-content-md-center align-items-center mb-3 mb-md-0"
       >
-        <a href="/">
+        <a routerLink="/">
           <img
             class="freshmate-logo"
             src="https://nov-freshmate.myshopify.com/cdn/shop/files/logo-3.png?v=1689906109&width=171"
@@ -172,10 +193,25 @@
         class="col-sm-4 col-md-4 d-flex justify-content-center justify-content-md-end"
       >
         <div class="d-flex">
+          <!-- log out -->
+          <a
+            class="text-reset me-3 dotted-icon-container cursor"
+            *ngIf="isLoggedIn"
+            [attr.data-bs-toggle]="isLoggedIn ? '' : 'modal'"
+            [attr.data-bs-target]="isLoggedIn ? '' : '#registrationModal'"
+            (click)="signout()"
+          >
+            <div class="dotted-icon">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+            </div>
+            <span class="badge rounded-pill bg-danger"></span>
+          </a>
           <!-- User Profile -->
           <a
             class="text-reset me-3 dotted-icon-container user"
-            [routerLink]="isLoggedIn ? '/profile' : null"
+            [routerLink]="
+              isAdmin ? '/dashboard' : isLoggedIn ? '/profile' : null
+            "
             [attr.data-bs-toggle]="isLoggedIn ? '' : 'modal'"
             [attr.data-bs-target]="isLoggedIn ? '' : '#registrationModal'"
           >
@@ -254,7 +290,7 @@
           <!-- Favorite -->
           <a
             class="text-reset me-3 dotted-icon-container favorite"
-            href="/wishlist"
+            routerLink="/wishlist"
             *ngIf="!isAdmin"
           >
             <div class="dotted-icon">
@@ -321,8 +357,7 @@
           </a>
           <!-- Cart -->
           <a
-            class="text-reset me-3 dotted-icon-container cart"
-            href="#"
+            class="text-reset me-3 dotted-icon-container cart cursor"
             *ngIf="!isAdmin"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasRight"
@@ -390,7 +425,7 @@
           <a
             *ngIf="isAdmin"
             class="text-reset me-3 dotted-icon-container cart"
-            href="/admin/create"
+            routerLink="/admin/create"
           >
             <div class="dotted-icon">
               <i class="fa-solid fa-plus fa-xl"></i>
@@ -403,10 +438,9 @@
             id="offcanvasRight"
             aria-labelledby="offcanvasRightLabel"
           >
-            <div class="offcanvas-header cart-header">
+            <div class="offcanvas-header cart-header" [class.ltr]="ltr">
               <a
-                class="text-reset me-3"
-                href="#"
+                class="text-reset me-3 cursor"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRight"
                 aria-controls="offcanvasRight"
@@ -451,7 +485,6 @@
                   </svg>
                 </div>
               </a>
-              <div>cart</div>
               <button
                 type="button"
                 class="btn-close btn-close-cart"
@@ -484,7 +517,10 @@
                       >{{ item.product.title.en }}</a
                     >
                     <div class="row mt-3">
-                      {{ item.product.price | currency }}
+                      {{
+                        item.product.price
+                          | currency : (lang == "en" ? "USD" : "ج.م")
+                      }}
                     </div>
                     <div class="row mt-3">
                       <div class="col-3">
@@ -517,7 +553,7 @@
                       </div>
                       <a
                         class="col-3 text-reset solid-icon-container cart-sidebar"
-                        href="#"
+                        routerLink
                         (click)="deleteProduct(item.product._id, i, $event)"
                       >
                         <div class="border-icon">
@@ -584,12 +620,16 @@
                 <div class="row container">
                   <div class="col-6 d-flex justify-content-start">Total:</div>
                   <div class="col-6 d-flex justify-content-end">
-                    {{ calculateTotalPrice() | currency }}
+                    {{
+                      calculateTotalPrice()
+                        | currency : (lang == "en" ? "USD" : "ج.م")
+                    }}
                   </div>
                 </div>
                 <hr class="divider" />
                 <div class="d-flex justify-content-start mt-5">
                   <div
+                    i18n
                     *ngIf="
                       calculateTotalPrice() >= shippingThreshold;
                       else noFreeShippingMessage
@@ -599,9 +639,12 @@
                     CONGRATULATIONS! YOU'VE GOT FREE SHIPPING!
                   </div>
                   <ng-template #noFreeShippingMessage>
-                    <div style="color: gray">
+                    <div style="color: gray" i18n>
                       SPEND
-                      {{ shippingThreshold - calculateTotalPrice() | currency }}
+                      {{
+                        shippingThreshold - calculateTotalPrice()
+                          | currency : (lang == "en" ? "USD" : "ج.م")
+                      }}
                       FOR FREE SHIPPING
                     </div>
                   </ng-template>
@@ -626,7 +669,7 @@
                 </div>
                 <div class="mt-4">
                   <button
-                    class="view-cart-btn col-12"
+                    class="view-cart-btn col-12 cursor"
                     (mouseenter)="onMouseEnterViewCart()"
                     (mouseleave)="onMouseLeaveViewCart()"
                     (click)="navigateToCart()"
@@ -634,6 +677,7 @@
                       'background-color': viewCartBtnIsHovered ? 'black' : '',
                       color: viewCartBtnIsHovered ? 'white' : ''
                     }"
+                    i18n
                   >
                     View Cart
                   </button>
@@ -648,6 +692,7 @@
                         : '',
                       color: checkOutBtnIsHovered ? 'black' : ''
                     }"
+                    i18n
                   >
                     Check out
                   </button>
@@ -672,40 +717,47 @@
         style="margin: auto"
       >
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link text-white" href="/" style="margin-right: 20px"
+          <a
+            i18n
+            class="nav-link text-white"
+            routerLink="/"
+            style="margin-right: 20px"
             >Home</a
           >
           <!-- active -->
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
           <a
+            i18n
             class="nav-link text-white"
-            href="/products"
+            routerLink="/products"
             style="margin-right: 20px"
             >Products</a
           >
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
           <a
+            i18n
             class="nav-link text-white"
-            href="/aboutus"
+            routerLink="/aboutus"
             style="margin-right: 20px"
             >AboutUs</a
           >
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
           <a
+            i18n
             class="nav-link text-white"
-            href="contactus"
+            routerLink="contactus"
             style="margin-right: 20px"
             >ContactUs</a
           >
         </li>
         <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link text-white" href="/faq">FAQs Page</a>
+          <a class="nav-link text-white" routerLink="/faq" i18n>FAQs Page</a>
         </li>
         <li class="nav-item me-3 me-lg-0 d-none d-md-inline-block">
-          <a class="nav-link text-white" href="/error">404 Error</a>
+          <a class="nav-link text-white" routerLink="/error" i18n>404 Error</a>
         </li>
       </ul>
 
@@ -718,6 +770,7 @@
             autocomplete="off"
             type="search"
             class="form-control rounded-pill placeholder-small"
+            i18n-placeholder
             placeholder="ENTER YOUR KEYWORDS"
             (input)="onInputChange($event)"
           />
@@ -737,4 +790,4 @@
 </header>
 <!--Main Navigation-->
 
-<app-registration></app-registration>
+<app-registration (isLoggedin)="onLoggin($event)"></app-registration>

@@ -10,12 +10,12 @@
     <div class="d-flex flex-wrap column_container col-lg-3 col-md-4">
       @for (item of leftItems; track $index) {
       <div class="item_contaienr left_items">
-        <div class="icon">
+        <div class="icon" [class.ar_icon_right]="lang == 'ar'">
           <img src="{{ item.img }}" alt="" srcset="" />
         </div>
         <div>
-          <p>
-            {{ item.title }}
+          <p [class.ar_txt]="lang == 'ar'">
+            {{ item.title[lang] }}
           </p>
         </div>
       </div>
@@ -27,12 +27,12 @@
     <div class="d-flex flex-wrap column_container col-lg-3 col-md-4">
       @for (item of rightItems; track $index) {
       <div class="item_contaienr">
-        <div>
+        <div [class.ar_icon_left]="lang == 'ar'">
           <img src="{{ item.img }}" alt="" srcset="" />
         </div>
         <div>
-          <p>
-            {{ item.title }}
+          <p [class.ar_txt]="lang == 'ar'">
+            {{ item.title[lang] }}
           </p>
         </div>
       </div>

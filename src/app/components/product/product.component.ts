@@ -111,9 +111,7 @@ export class ProductComponent implements OnInit {
       this.user = JSON.parse(this.userSession);
       this.productService.GetProduct(this.productId).subscribe({
         next: (data: any) => {
-          // console.log(data);
           this.product = data;
-          // console.log(this.product);
         },
         error: (error: any) => console.log(error),
       });
@@ -132,12 +130,14 @@ export class ProductComponent implements OnInit {
     this.user = JSON.parse(this.userSession);
     this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
       next:() => {
-        // console.log('Product added to cart successfully');
-        this.router.navigate(["/cart"]);
+        console.log('Product added to cart successfully');
         this.updateProductsQuantity();
       },
       error: (error) => {
         console.error('Error adding product to cart:', error);
+      },
+      complete: () => {
+        this.router.navigate(["/cart"]);
       }}
     );
   }
@@ -161,9 +161,7 @@ export class ProductComponent implements OnInit {
   deleteProductFromWishlist(productId: string): void {
     this.wishlistService.removeItemFromWishlist([productId]).subscribe({
       next: (response: any) => {
-        console.log('Product removed from wishlist:', response);
-        location.reload();
-        // console.log('product is deleted');
+        this.router.navigate([this.router.url]);
       },
       error: (error: any) => {
         console.error('Error removing product from wishlist:', error);
@@ -192,7 +190,7 @@ export class ProductComponent implements OnInit {
           
       },
       complete: () => {
-        window.location.reload();
+        this.router.navigate([this.router.url]);
       }
     })
   }

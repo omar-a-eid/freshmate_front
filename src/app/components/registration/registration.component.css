@@ -36,6 +36,9 @@
 .toggle {
   transform: translate(100%);
 }
+.toggle_ar {
+  transform: translate(-100%);
+}
 #registration {
   margin: 40px;
 }

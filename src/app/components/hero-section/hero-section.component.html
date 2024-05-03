@@ -1,7 +1,12 @@
 <div>
   <div class="hero_container">
     <div class="image_container">
-      <img src="assets/hero.jpg" alt="" srcset="" />
+      <img
+        src="assets/hero.jpg"
+        alt=""
+        srcset=""
+        [class.ar_img]="lang == 'ar'"
+      />
     </div>
     <div class="content_container">
       <div class="hero_content">
@@ -9,8 +14,9 @@
         <p i18n>Coffe Beans</p>
 
         <p i18n>
-          Good slogens for food delivery business are the key<br />to attractive
-          the more customers and earn money<br />and especially food.
+          Good slogens for food delivery business are the key
+          <br />to attractive the more customers and earn money<br />and
+          especially food.
         </p>
 
         <div>

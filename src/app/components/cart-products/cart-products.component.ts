@@ -1,11 +1,12 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cart-products',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './cart-products.component.html',
   providers: [CurrencyPipe],
   styleUrl: './cart-products.component.css',

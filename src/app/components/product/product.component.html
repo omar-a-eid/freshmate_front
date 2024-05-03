@@ -1,4 +1,4 @@
-<div class="container">
+<div class="product_container">
   <div class="card">
     <div class="images-buttons">
       <div class="icons" *ngIf="!isAdmin">
@@ -58,9 +58,13 @@
       </button>
     </div>
   </div>
-  <h4 class="title">{{ product.title[lang] }}</h4>
-  <app-rating-stars></app-rating-stars>
-  <p class="price">{{ product.price | currency }}</p>
+  <div [class.rtl]="ltr">
+    <h4 class="title">{{ product.title[lang] }}</h4>
+    <app-rating-stars></app-rating-stars>
+    <p class="price">
+      {{ product.price | currency : (lang == "ar" ? "ج.م" : "$") }}
+    </p>
+  </div>
 </div>
 
 <div

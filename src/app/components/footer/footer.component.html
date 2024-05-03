@@ -19,6 +19,7 @@
             <input
               type="text"
               class="form-control rounded-pill"
+              i18n-placeholder
               placeholder="Your Email Address"
               aria-label="Example input"
               aria-describedby="button-addon1"
@@ -198,20 +199,20 @@
         <h5 class="mb-4" i18n>COMPANY</h5>
         <ul class="list-unstyled">
           <li class="mt-2">
-            <a class="text-decoration-none text-white" href="#!" i18n
+            <a class="text-decoration-none text-white cursor" i18n
               >Help Center</a
             >
           </li>
           <li class="mt-2">
-            <a class="text-decoration-none text-white" href="#!" i18n
+            <a class="text-decoration-none text-white cursor" i18n
               >Shipping Info</a
             >
           </li>
           <li class="mt-2">
-            <a class="text-decoration-none text-white" href="#!" i18n>Return</a>
+            <a class="text-decoration-none text-white cursor" i18n>Return</a>
           </li>
           <li class="mt-2">
-            <a class="text-decoration-none text-white" href="#!" i18n
+            <a class="text-decoration-none text-white cursor" i18n
               >How To Order</a
             >
           </li>
@@ -260,17 +261,17 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <span
               class="dropdown-item cursor-pointer"
-              (click)="selectLanguage('English')"
+              (click)="selectLanguage('en')"
               i18n
             >
-              English
+              en
             </span>
             <span
               class="dropdown-item cursor-pointer"
-              (click)="selectLanguage('Arabic')"
+              (click)="selectLanguage('ar')"
               i18n
             >
-              Arabic
+              ar
             </span>
           </div>
         </div>
@@ -289,7 +290,7 @@
     <div class="d-flex mb-4">
       <div class="icon">
         <a
-          href="#"
+          class="cursor"
           (mouseenter)="facebook_hovered = true"
           (mouseleave)="facebook_hovered = false"
         >
@@ -345,7 +346,7 @@
 
       <div class="icon">
         <a
-          href="#"
+          class="cursor"
           (mouseenter)="pinterest_hovered = true"
           (mouseleave)="pinterest_hovered = false"
         >
@@ -404,7 +405,7 @@
 
       <div class="icon">
         <a
-          href="#"
+          class="cursor"
           (mouseenter)="instagram_hovered = true"
           (mouseleave)="instagram_hovered = false"
         >
@@ -531,7 +532,7 @@
 
       <div class="icon">
         <a
-          href="#"
+          class="cursor"
           (mouseenter)="twitter_hovered = true"
           (mouseleave)="twitter_hovered = false"
         >
@@ -631,7 +632,7 @@
 
       <div class="icon">
         <a
-          href="#"
+          class="cursor"
           (mouseenter)="tiktok_hovered = true"
           (mouseleave)="tiktok_hovered = false"
         >

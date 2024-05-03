@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { OrderService } from '../../services/order/order.service';
 import { TranslationService } from '../../services/translation/translation.service';
@@ -19,6 +20,7 @@ import { TranslationService } from '../../services/translation/translation.servi
     CanvasJSAngularChartsModule,
     CommonModule,
     HttpClientModule,
+    RouterModule
   ],
   providers: [OrderService, TranslationService],
   templateUrl: './orders.component.html',
@@ -35,7 +37,8 @@ export class OrdersComponent implements OnInit {
   });
   constructor(
     private orderService: OrderService,
-    private langService: TranslationService
+    private langService: TranslationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +48,6 @@ export class OrdersComponent implements OnInit {
       this.orderService.GetAllOrders(user.token).subscribe({
         next: (data) => {
           this.orders = data;
-          // console.log(this.orders);
           this.orders.forEach((order: any) => {
             switch (order.status.en) {
               case 'pending':
@@ -110,18 +112,18 @@ export class OrdersComponent implements OnInit {
   }
 
   update(orderId: any) {
-    // console.log(this.status.value);
     if (this.status.valid) {
       const user = JSON.parse(sessionStorage.getItem('user') as string);
       this.orderService
         .UpdateOrder(orderId, this.status.value, user.token)
         .subscribe({
-          next: () => {},
+          next: () => {
+            this.router.navigate([this.router.url]);
+          },
           error(err) {
             console.log(err);
           },
           complete() {
-            window.location.reload();
           },
         });
     }

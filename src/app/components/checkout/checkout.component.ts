@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart/cart.service';
 import { OrderService } from '../../services/order/order.service';
 import { RegistrationService } from '../../services/registration/registration.service';
@@ -13,7 +14,7 @@ import { PathbarComponent } from '../pathbar/pathbar.component';
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, FooterComponent, PathbarComponent, NavbarComponent],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, FooterComponent, PathbarComponent, NavbarComponent, RouterModule],
   providers: [CartService,RegistrationService, OrderService, TranslationService],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
@@ -33,7 +34,7 @@ export class CheckoutComponent implements OnInit {
   lang:string = "en";
   ltr:boolean= false;
 
-  constructor(private cartService: CartService,private registrationService:RegistrationService, private orderService: OrderService, private langService: TranslationService) { 
+  constructor(private cartService: CartService,private registrationService:RegistrationService, private orderService: OrderService, private langService: TranslationService, private router: Router) { 
     this.lang = this.langService.lang();
     this.ltr = this.langService.isAr();
   }
@@ -102,7 +103,7 @@ export class CheckoutComponent implements OnInit {
 
   signout(){
     this.registrationService.signout()
-    window.location.reload();
+    this.router.navigate([this.router.url]);
   }
 
   Checkout = new FormGroup({

@@ -20,7 +20,10 @@
                 Username: {{ order.userId.username }}
               </div>
               <div class="card-subtitle mb-2 text-body-secondary" i18n>
-                Total Price: {{ order.totalPrice | currency }}
+                Total Price:
+                {{
+                  order.totalPrice | currency : (lang == "en" ? "USD" : "ج.م")
+                }}
               </div>
               <div class="mb-3">
                 {{ order.date | date }}

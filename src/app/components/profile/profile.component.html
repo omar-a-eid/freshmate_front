@@ -3,15 +3,17 @@
     <div class="col-12">
       <div class="d-flex justify-content-center">
         <div *ngIf="loading" class="spinner-border text-dark" role="status">
-          <span class="visually-hidden">Loading...</span>
+          <span i18n class="visually-hidden">Loading...</span>
         </div>
       </div>
       <div class="mt-5 text-center" *ngIf="!isAdmin">
+        @if(avatar) {
         <img
           src="http://localhost:8000/{{ avatar }}"
           alt="profile pic"
           style="width: 150px; height: 150px; border-radius: 50%"
         />
+        }
       </div>
       <h2 class="mt-4 mb-5" i18n><strong>Account</strong></h2>
       <div class="d-flex">
@@ -49,14 +51,6 @@
           style="background-color: #e7e8eb"
         >
           <strong>Edit Profile</strong>
-        </button>
-        <button
-          i18n
-          (click)="signout()"
-          class="btn btn1 mx-2"
-          style="background-color: #e7e8eb"
-        >
-          <strong>LOG OUT</strong>
         </button>
       </div>
 
@@ -208,9 +202,14 @@
               <tbody>
                 <tr>
                   <td class="text-center">{{ i + 1 }}</td>
-                  <td class="text-center">{{ order.date }}</td>
+                  <td class="text-center">{{ order.date | date }}</td>
                   <td class="text-center">{{ order.products.length }}</td>
-                  <td class="text-center">{{ order.totalPrice }}</td>
+                  <td class="text-center">
+                    {{
+                      order.totalPrice
+                        | currency : (lang == "en" ? "USD" : "ج.م")
+                    }}
+                  </td>
                   <td *ngIf="order.status.en == 'pending'" class="text-center">
                     <i
                       (click)="deleteOrder(order._id)"
@@ -240,10 +239,10 @@
     id="passwordToast"
   >
     <div class="toast-header bg-danger text-white">
-      <p class="mr-auto text-center">ProfileEdit</p>
+      <p class="mr-auto text-center" i18n>ProfileEdit</p>
     </div>
     <div class="d-flex flex-row toast-body">
-      <p>your profile has been updated successfully</p>
+      <p i18n>your profile has been updated successfully</p>
     </div>
   </div>
 </div>

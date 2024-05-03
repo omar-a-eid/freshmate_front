@@ -1,27 +1,34 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { RegistrationService } from '../../services/registration/registration.service';
+import { TranslationService } from '../../services/translation/translation.service';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
   imports: [ReactiveFormsModule, HttpClientModule, CommonModule, RouterModule],
-  providers: [RegistrationService],
+  providers: [RegistrationService, TranslationService],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
   @ViewChild('closeButton') closeButton!: ElementRef;
+  @Output() isLoggedin = new EventEmitter<boolean>();
 
-  constructor(private registrationService: RegistrationService, private router: Router) {}
+  constructor(private registrationService: RegistrationService, private router: Router, private langService: TranslationService) {
+    this.lang = this.langService.lang();
+    this.ltr = this.langService.isAr();
+  }
   toggle:boolean= false;
   position:string = "loginBtn";
   errMessageLogin:any;
   errMessageSignup:any;
   avatar:any;
+  lang:string = "en";
+  ltr:boolean= false;
 
   loginData = new FormGroup({
     email: new FormControl("", [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.required]),
@@ -43,13 +50,14 @@ export class RegistrationComponent {
         error: error => this.errMessageLogin = error.error,
         next: (data:any) => {
           sessionStorage.setItem("user",JSON.stringify(data));
+          this.isLoggedin.emit(true);
         },
         complete: () => {
           this.closeButton.nativeElement.click();
           if(this.loginData.value.email == "admin@gmail.com") {
-            window.location.href = '/dashboard';
+           this.router.navigate(['/dashboard']);
           } else {
-            window.location.href = '/products';
+           this.router.navigate(['/products']);
           }
         }
       })
@@ -71,7 +79,7 @@ export class RegistrationComponent {
         },
         complete: () => {
           this.closeButton.nativeElement.click();
-          window.location.href = '/products';
+          this.router.navigate(['/products']);
         }
       });
     }

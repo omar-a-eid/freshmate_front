@@ -2,21 +2,26 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { OrderService } from '../../services/order/order.service';
 import { RegistrationService } from '../../services/registration/registration.service';
+import { TranslationService } from '../../services/translation/translation.service';
 
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule,HttpClientModule],
-  providers: [RegistrationService,OrderService, AuthService],
+  providers: [RegistrationService,OrderService, AuthService, TranslationService, RouterModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  constructor(private registrationService: RegistrationService, private orderservice: OrderService, private isAuth: AuthService) { }
+  constructor(private registrationService: RegistrationService, private orderservice: OrderService, private isAuth: AuthService, private langService: TranslationService, private router: Router ) {
+      this.lang = this.langService.lang();
+      this.ltr = this.langService.isAr();
+   }
 
   loading: boolean = true;
 
@@ -32,6 +37,8 @@ export class ProfileComponent {
   UserGender:any
   avatar: any;
   isAdmin: boolean = false;
+  lang:string = "en";
+  ltr:boolean= false;
 
   EditProfile:any = new FormGroup({
     username: new FormControl("", [Validators.minLength(3), Validators.maxLength(50)]),
@@ -79,7 +86,6 @@ export class ProfileComponent {
           formData.append(key, updateUser[key]);
         });
 
-        // console.log(formData);
       this.registrationService.update(this.user.userId, this.user.token,formData).subscribe({//here we should add the userid
         error: error => console.log(error),
         next: (data:any) => {
@@ -100,25 +106,13 @@ export class ProfileComponent {
     this.user = JSON.parse(this.userSession);
     // console.log(this.user.token);
     this.isAdmin =  this.isAuth.isAdmin();
-
-    console.log(this.isAdmin);
     this.registrationService.getUsersById(this.user.userId, this.user.token).subscribe({
       next: (data: any) => {
-        this.orders = data;
-      
-
         this.UserEmail = data.email;
         this.UserUsername = data.username;
-        this.UserGender = data.gender.en;
+        this.UserGender = data.gender[this.lang];
         this.avatar = data.avatar;
         this.loading = false;
-
-        //#region handle backend
-
-        // console.log(data.email);
-        // console.log(data.username);
-        // console.log(data.gender.en);
-        //#endregion
 
       },
       error: (err) => {
@@ -177,7 +171,7 @@ export class ProfileComponent {
 
   signout(){
     this.registrationService.signout()
-    window.location.reload();
+    this.router.navigate(['/']);
   }
 
 
@@ -222,7 +216,7 @@ export class ProfileComponent {
     this.user = JSON.parse(this.userSession);
     this.orderservice.DeleteOrder(orderId, this.user.token).subscribe({
       next: () => {
-        window.location.reload();
+        this.router.navigate([this.router.url])
       },
       error(err) {
           

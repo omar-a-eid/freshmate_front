@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ProductService } from '../../services/product/product.service';
 import { CustomButtonComponent } from '../custom-button/custom-button.component';
@@ -21,8 +21,9 @@ import { ProductComponent } from '../product/product.component';
     PathbarComponent,
     NgxPaginationModule,
     HttpClientModule,
+    RouterModule
   ],
-  providers: [ProductService, Router],
+  providers: [ProductService],
   templateUrl: './products-page.component.html',
   styleUrl: './products-page.component.css',
 })
