@@ -1,27 +1,69 @@
 # FreshmateFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
+This project is an online store web application that allows users to browse products, add them to their cart, make orders, and manage their profiles. The application supports two user roles: Admin and User, each with specific functionalities.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Product browsing:** Users can view products categorized by type, brand, etc.
+- **Product details:** Each product page displays detailed information, including images, descriptions, prices, and reviews.
+- **Cart management:** Users can add/remove products to/from their cart and update quantities.
+- **Checkout:** Secure checkout process with payment integration.
+- **User authentication:** Users can register, login, and manage their profiles.
 
-## Code scaffolding
+### Admin Dashboard:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Product management:** Add, edit, and delete products.
+- **Order management:** View and manage orders, update order status.
+- **User management:** View and manage user accounts.
+- **Statistics:** View charts and graphs with insights on product sales, order volume, user activity, etc.
 
-## Build
+## Technologies Used
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Frontend:
 
-## Running unit tests
+- Angular (Version 17)
+- HTML/CSS/JavaScript/TypeScript
+- BootStrap
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Getting Started
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Prerequisites
 
-## Further help
+- Node.js and npm should be installed on your machine.
+- MongoDB should be installed and running locally or on a remote server.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Installation
+
+1. Clone the repository: `git clone https://github.com/MohamedAliEsmaill/ecommerce.git`
+2. Install dependencies:
+   - Frontend: Navigate to the client directory and run `npm install`
+3. Set up environment variables:
+   - Create a `.env` file in both client and server directories.
+   - Add necessary environment variables (e.g., database connection string, API keys).
+4. Start the application:
+   - Frontend: Run `ng serve`
+
+### Usage
+
+- Access the application in your browser (usually at http://localhost:4200).
+- Browse products, add items to your cart, and proceed through checkout.
+
+## Contributors ✨
+
+<table>
+  <tbody>
+    <tr>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/omar-a-eid"><img src="https://avatars.githubusercontent.com/u/103126348?v=4" alt="Omar Ahmed"/><br /><sub><b>Omar Ahmed</b></sub></a></td>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/esraaeliba"><img src="https://avatars.githubusercontent.com/u/130110027?v=4" alt="Esraa Ahmed"/><br /><sub><b>Esraa Ahmed</b></sub></a></td>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/SalmaYousry01"><img src="https://avatars.githubusercontent.com/u/112441530?v=4" alt="Salma Yousry"/><br /><sub><b>Salma Yousry</b></sub></a></td>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/mostafa-fakhr"><img src="https://avatars.githubusercontent.com/u/153079695?v=4" alt="Mostafa Fakhr"/><br /><sub><b>Mostafa Fakhr</b></sub></a></td>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/KarimMohamedDesouki"><img src="https://avatars.githubusercontent.com/u/153070580?v=4" alt="Karim Mohamed"/><br /><sub><b>Karim Mohamed</b></sub></a></td>
+<td align="center" valign="top" width="14.28%"><a href="https://github.com/vodz1"><img src="https://avatars.githubusercontent.com/u/147009800?v=4" alt="Ahmed Adel"/><br /><sub><b>Ahmed Adel</b></sub></a></td>
+    </tr>
+  </tbody>
+</table>
+
+## License
+
+This project is licensed under the MIT License.
