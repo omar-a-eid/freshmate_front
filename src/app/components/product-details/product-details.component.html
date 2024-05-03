@@ -2,12 +2,7 @@
   <div class="list-sub-items position-relative">
     <ol class="breadcrumb">
       <li class="list-inline-item">
-        <a
-          i18n
-          href="../wishlist/wishlist.component.html"
-          class="item-breacrumb item-home"
-          >Home .</a
-        >
+        <a i18n href="/" class="item-breacrumb item-home">Home .</a>
       </li>
       <li id="path-title" class="list-inline-item">
         <span class="item-breacrumb">
@@ -17,7 +12,7 @@
     </ol>
   </div>
   <div class="row res">
-    <div class="first-half col-lg-6 col-sm-12">
+    <div class="first-half col-lg-6 col-sm-12" [class.ltr]="ltr">
       <div class="carousel-container">
         <gallery class="gallery" [items]="items"></gallery>
       </div>
@@ -28,11 +23,12 @@
         <h2 class="product-title-main">{{ product.title[lang] }}</h2>
         <div class="d-flex gap-4">
           <app-rating-stars></app-rating-stars>
-          <a i18n href="">VIEW ALL REVIEWS</a>
+          <a i18n class="cursor">VIEW ALL REVIEWS</a>
         </div>
 
-        <div class="icons">
+        <div class="icons" [class.icons_ltr_position]="ltr">
           <p
+            [class.icons_ltr_position]="ltr"
             (click)="addToWishlist(productId)"
             [ngClass]="{
               favorite: !isHeartSolid,
@@ -52,7 +48,9 @@
       </div>
 
       <div class="product-details">
-        <p class="price">{{ product.price | currency }}</p>
+        <p class="price">
+          {{ product.price | currency : (lang == "en" ? "USD" : "ج.م") }}
+        </p>
         <p class="description">{{ product.desc[lang] }}</p>
         <div
           class="deal-flash__sale-progress position-relative"
@@ -80,6 +78,7 @@
       </div>
 
       <div class="buttons-product d-flex flex-column gap-2">
+        @if(product.quantity != 0) {
         <div class="d-flex gap-4">
           <app-quantity-increment-decrement
             [max]="product.quantity"
@@ -88,10 +87,11 @@
             ADD TO BAG
           </button>
         </div>
+        }
 
-        <a i18n href="/checkout">
+        <!-- <a i18n routerLink="/checkout">
           <button class="buy-it-now-btn">BUY IT NOW</button>
-        </a>
+        </a> -->
       </div>
 
       <div class="product-share-info-faq d-flex flex-row gap-4">
@@ -119,7 +119,7 @@
           data-bs-target="#ModalFAQ"
         >
           <i class="fa-solid fa-message fa-sm"></i>
-          <a i18n href="/faq"> <p class="share-option-text">FAQ</p> </a>
+          <a i18n routerLink="/faq"> <p class="share-option-text">FAQ</p> </a>
         </div>
       </div>
 
@@ -166,7 +166,7 @@
             <div class="desc-policy mt-10" style="color: #505157">
               <p i18n>Free shipping order above $200</p>
             </div>
-            <a i18n href="#" class="font-600 hover:c_pr">
+            <a i18n class="font-600 hover:c_pr cursor">
               Learn More
               <i class="zmdi zmdi-chevron-right"></i>
             </a>
@@ -196,7 +196,7 @@
               <p>Contact us 24 hours a day, 7 days a week</p>
             </div>
 
-            <a i18n href="#" class="font-600 hover:c_pr">
+            <a i18n class="font-600 hover:c_pr cursor">
               Learn More
               <i class="zmdi zmdi-chevron-right"></i>
             </a>
@@ -226,7 +226,7 @@
               <p>Return it within 30 days for an exchange.</p>
             </div>
 
-            <a i18n href="/aboutus" class="font-600 hover:c_pr">
+            <a i18n routerLink="/aboutus" class="font-600 hover:c_pr">
               Learn More
               <i class="zmdi zmdi-chevron-right"></i>
             </a>
@@ -243,8 +243,8 @@
 <div class="d-flex justify-content-around">
   <div class="related-products d-flex flex-column gap-2">
     <p i18n class="related-products-text">Related products</p>
-    <div class="related-products-list row">
-      <div>
+    <div class="related-products-list row container">
+      <div [class.ltr]="ltr">
         <ngx-slick-carousel
           class="carousel"
           #slickModal="slick-carousel"
@@ -332,12 +332,14 @@
     </div>
 
     <div class="d-flex flex-row toast-body">
+      @if(product.images[0]) {
       <img
         src="http://localhost:8000/{{ product.images[0] }}"
         class="toast-img"
       />
+      }
       <h3 class="toast-product-name">{{ product.title[lang] }}</h3>
-      <a href="/wishlist">
+      <a routerLink="/wishlist">
         <button i18n class="go-to-wishlist-btn">GO TO WISHLIST</button>
       </a>
     </div>
@@ -370,7 +372,11 @@
             type="text"
             value="https://freshmate.com/products/american-beef"
           />
-          <div class="copy-btn btn" (click)="copyToClipboard(inputElement)">
+          <div
+            i18n
+            class="copy-btn btn"
+            (click)="copyToClipboard(inputElement)"
+          >
             Copy
           </div>
         </div>

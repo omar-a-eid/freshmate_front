@@ -52,7 +52,7 @@ export class ProductDetailsComponent implements OnInit {
   lang:string = "en";
   ltr:boolean= false;
   products:any = [];
-  slideConfig = { "infinite": true, "dots": true, 'slidesToShow': 5, "slidesToScroll": 2,'responsive': [
+  slideConfig = { "infinite": true, "dots": true, 'slidesToShow': 4, "slidesToScroll": 2,'responsive': [
     {
       'breakpoint': 767,
       'settings': {
@@ -84,7 +84,11 @@ export class ProductDetailsComponent implements OnInit {
 
   currentPath: string | undefined;
   productId: any;
-  product: any = {};
+  product: any = {
+    title:{},
+    desc: {},
+    images: {}
+  };
   productData: any;
   user: any;
   userSession: any;
@@ -193,7 +197,7 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.AddItemsToCart(productId, this.user.token).subscribe({
       next: () => {
         console.log('Product added to cart successfully');
-        window.location.href = "/cart";
+        this.router.navigate(["/cart"]);
       },
       error: (error) => {
         console.error('Error adding product to cart:', error);

@@ -33,9 +33,10 @@
   }
   .item_contaienr p {
     width: 150px;
-    text-align: left!important;
+    text-align: left;
   }
   .left_items {
     justify-content: flex-end;
   }
 }
+

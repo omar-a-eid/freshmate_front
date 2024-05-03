@@ -17,13 +17,13 @@
         <div class="grid_container">
           @for (item of items; track $index) {
           <div class="item_container">
-            <div>
+            <div [class.ar_icon_right]="lang == 'ar'">
               <img src="{{ item.image }}" />
             </div>
 
             <div>
-              <p i18n class="text1">{{ item.text1 }}</p>
-              <p i18n>{{ item.text2 }}</p>
+              <p i18n class="text1">{{ item.title[lang] }}</p>
+              <p i18n>{{ item.subtitle[lang] }}</p>
             </div>
           </div>
 

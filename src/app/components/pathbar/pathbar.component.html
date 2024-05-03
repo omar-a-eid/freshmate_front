@@ -10,7 +10,9 @@
       <ng-container *ngIf="getCurrentUrl()?.endsWith('aboutus')" i18n
         >About Us</ng-container
       >
-      <ng-container *ngIf="getCurrentUrl()?.endsWith('faq')">FAQ</ng-container>
+      <ng-container *ngIf="getCurrentUrl()?.endsWith('faq')" i18n
+        >FAQ</ng-container
+      >
       <ng-container *ngIf="getCurrentUrl()?.endsWith('cart')" i18n
         >YOUR SHOPPING CART</ng-container
       >
@@ -28,7 +30,7 @@
     <div class="list-sub-items position-relative">
       <ol class="breadcrumb">
         <li class="list-inline-item">
-          <a href="/" class="item-breacrumb item-home">Home .</a>
+          <a routerLink="/" class="item-breacrumb item-home" i18n>Home .</a>
         </li>
         <li id="path-title" class="list-inline-item">
           <span class="item-breacrumb">

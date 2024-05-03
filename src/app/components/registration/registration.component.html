@@ -19,7 +19,12 @@
       <div class="modal-body m-4">
         <div>
           <div class="registration_container">
+            @if(lang =="en") {
             <div class="login_switcher {{ toggle ? 'toggle' : '' }}"></div>
+            } @else {
+            <div class="login_switcher {{ toggle ? 'toggle_ar' : '' }}"></div>
+
+            }
             <div
               data-bs-toggle="collapse"
               data-bs-target="#login"
@@ -76,6 +81,7 @@
                 name="email"
                 id="email"
                 required="true"
+                i18n-placeholder
                 placeholder="ENTER YOUR EMAIL"
               />
             </div>
@@ -145,6 +151,7 @@
                 name="email"
                 id="email"
                 required="true"
+                i18n-placeholder
                 placeholder="ENTER YOUR EMAIL"
               />
             </div>
@@ -168,6 +175,7 @@
                 name="username"
                 id="username"
                 required="true"
+                i18n-placeholder
                 placeholder="USERNAME"
               />
             </div>

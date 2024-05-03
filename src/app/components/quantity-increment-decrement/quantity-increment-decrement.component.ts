@@ -11,7 +11,7 @@ import { Component, Input } from '@angular/core';
 export class QuantityIncrementDecrementComponent {
 @Input() max:any;
 
-  data: number = 0;
+  data: number = 1;
 
   increment() {
     if(this.data != this.max) {
@@ -20,8 +20,8 @@ export class QuantityIncrementDecrementComponent {
   }
   
   decrement() {
-    if(this.data==0) {
-      this.data =0;
+    if(this.data==1) {
+      this.data =1;
     }else{
       this.data = this.data - 1;
     }

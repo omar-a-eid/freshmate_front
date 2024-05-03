@@ -20,8 +20,13 @@
             </div>
             <div>
               <p>{{ UserEmail }}</p>
-              <p (click)="signout()" class="link color1" *ngIf="logout">
-                <a i18n href="">Log out</a>
+              <p
+                (click)="signout()"
+                class="link color1 cursor"
+                *ngIf="logout"
+                i18n
+              >
+                Log out
               </p>
             </div>
             <hr />
@@ -72,7 +77,7 @@
                         name="firstname"
                         id="floatingInputGrid"
                         placeholder="First Name"
-                        value="Karim"
+                        i18n-placeholder
                       />
                       <label i18n for="floatingInputGrid"
                         >First Name (Optional)</label
@@ -116,7 +121,7 @@
                       name="lastname"
                       id="floatingInputGrid2"
                       placeholder="Last Name"
-                      value="mohamed"
+                      i18n-placeholder
                     />
                     <label i18n for="floatingInputGrid2">Last Name</label>
                   </div>
@@ -157,6 +162,7 @@
                   name="address"
                   id="inputAddress"
                   placeholder="Address"
+                  i18n-placeholder
                 />
               </div>
               <!--  address validation -->
@@ -190,6 +196,7 @@
                   name="appartment"
                   id="inputAddress"
                   placeholder="Appartment, suite, etc. (Optional)"
+                  i18n-placeholder
                 />
               </div>
               <!--  appartment validation -->
@@ -212,6 +219,7 @@
                         name="city"
                         id="floatingInputGrid3"
                         placeholder="City"
+                        i18n-placeholder
                         value="Alexandria"
                       />
                       <label i18n for="floatingInputGrid3">City</label>
@@ -259,6 +267,7 @@
                         name="zipcode"
                         id="floatingInputGrid4"
                         placeholder="ZIP code"
+                        i18n-placeholder
                         value="81611"
                       />
                       <label i18n for="floatingInputGrid4">ZIP code</label>
@@ -282,6 +291,7 @@
                   class="form-control"
                   id="inputAddress"
                   placeholder="Standard"
+                  i18n-placeholder
                   disabled
                 />
               </div>
@@ -298,6 +308,7 @@
                       class="form-control"
                       id="inputAddress"
                       placeholder="Credit Card"
+                      i18n-placeholder
                       style="height: 60px; padding-right: 120px"
                       disabled
                     />
@@ -346,6 +357,7 @@
                       name="cardnumber"
                       id="inputAddress"
                       placeholder="Card Number"
+                      i18n-placeholder
                       style="height: 60px; padding-right: 40px"
                       required
                     />
@@ -364,14 +376,14 @@
                     class="form-text text-danger"
                     *ngIf="cardnumber.errors?.['required'] && (cardnumber.touched || cardnumber.dirty)"
                   >
-                    <p i18n><strong>cardnumber is Required</strong></p>
+                    <p i18n><strong>card number is Required</strong></p>
                   </div>
                   <div
                     class="form-text text-danger"
                     *ngIf="cardnumber.errors?.['pattern'] && (cardnumber.touched || cardnumber.dirty)"
                   >
                     <p i18n>
-                      <strong>cardnumber should be 16 digit Number</strong>
+                      <strong>card number should be 16 digit Number</strong>
                     </p>
                   </div>
                   <!-- end cardnumber valiadtion -->
@@ -387,6 +399,7 @@
                           class="form-control"
                           id="exampleInputText1"
                           placeholder="Expiration date (MM/YY)"
+                          i18n-placeholder
                         />
                       </div>
                       <!--  expiredate validation -->
@@ -402,13 +415,16 @@
                       <div>
                         <input
                           i18n
-                          type="text"
+                          type="password"
+                          min="1"
+                          max="999"
                           style="height: 60px"
                           formControlName="securitycode"
                           name="securitycode"
                           class="form-control fs"
                           id="exampleInputtextma1"
                           placeholder="Security Code"
+                          i18n-placeholder
                         />
                       </div>
                       <!--  securitycode validation -->
@@ -416,7 +432,7 @@
                         class="form-text text-danger"
                         *ngIf="securitycode.errors?.['required'] && (securitycode.touched || securitycode.dirty)"
                       >
-                        <p i18n><strong>securitycode is Required</strong></p>
+                        <p i18n><strong>security code is Required</strong></p>
                       </div>
                       <!-- end securitycode valiadtion -->
                     </div>
@@ -430,6 +446,7 @@
                       name="nameoncard"
                       id="floatingInputGridon"
                       placeholder="Name on Card"
+                      i18n-placeholder
                       value="Karim Mohamed"
                     />
                     <label i18n for="floatingInputGrid">Name on Card</label>
@@ -439,7 +456,7 @@
                     class="form-text text-danger"
                     *ngIf="nameoncard.errors?.['required'] && (nameoncard.touched || nameoncard.dirty)"
                   >
-                    <p i18n><strong>nameoncard is Required</strong></p>
+                    <p i18n><strong>name on card is Required</strong></p>
                   </div>
                   <div
                     class="form-text text-danger"
@@ -447,7 +464,7 @@
                   >
                     <p i18n>
                       <strong
-                        >nameoncard must be at least 5 characters long</strong
+                        >name on card must be at least 5 characters long</strong
                       >
                     </p>
                   </div>
@@ -456,7 +473,7 @@
                     *ngIf="nameoncard.errors?.['maxlength'] && (nameoncard.touched || nameoncard.dirty)"
                   >
                     <p i18n>
-                      <strong>nameoncard cannot exceed 15 characters</strong>
+                      <strong>name on card cannot exceed 15 characters</strong>
                     </p>
                   </div>
                   <div
@@ -531,7 +548,10 @@
                     <div class="d-flex justify-content-between">
                       <p class="mx-4 mt-5">{{ product.product.title[lang] }}</p>
                       <p class="px-5 mt-5">
-                        {{ product.product.price | currency }}
+                        {{
+                          product.product.price
+                            | currency : (lang == "en" ? "USD" : "ج.م")
+                        }}
                       </p>
                     </div>
                   </div>
@@ -540,10 +560,14 @@
                   <div class="col-12 d-flex justify-content-between">
                     <h5 i18n class="px-3 fs-3"><strong>Total</strong></h5>
                     <div class="d-flex justify-content-end">
-                      <small i18n class="text-end">EGP</small>
                       <h5 class="px-3 fs-3">
                         @if(totalPrice) {
-                        <strong>$ {{ totalPrice.toFixed(2) }}</strong>
+                        <strong>
+                          {{
+                            totalPrice.toFixed(2)
+                              | currency : (lang == "en" ? "USD" : "ج.م")
+                          }}</strong
+                        >
                         }
                       </h5>
                     </div>

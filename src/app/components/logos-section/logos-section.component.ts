@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { TranslationService } from '../../services/translation/translation.service';
 
 @Component({
   selector: 'app-logos-section',
   standalone: true,
   imports: [SlickCarouselModule],
+  providers:[TranslationService],
   templateUrl: './logos-section.component.html',
   styleUrl: './logos-section.component.css'
 })
@@ -25,5 +27,13 @@ export class LogosSectionComponent {
         "slidesToScroll": 2,
       }
     }]};
+
+    lang:string = "en";
+    ltr:boolean= false;
+  
+    constructor(private langService: TranslationService){
+      this.lang = this.langService.lang();
+      this.ltr = this.langService.isAr();
+    }
   
 }

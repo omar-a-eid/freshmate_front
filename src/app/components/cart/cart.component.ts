@@ -23,7 +23,7 @@ import { ProductComponent } from '../product/product.component';
     RouterModule
   ],
   templateUrl: './cart.component.html',
-  providers: [CartService, Router, TranslationService],
+  providers: [CartService, TranslationService],
   styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
@@ -112,25 +112,25 @@ export class CartComponent implements OnInit {
       name: 'Sweet Kiwi',
       image:
         'https://nov-freshmate.myshopify.com/cdn/shop/products/1_f4498462-b4ec-4018-9b37-04619c42eab6_270x.jpg?v=1687762285',
-      price: '$16.00',
+      price: 16.00,
     },
     {
       name: 'Sweet Corn',
       image:
         'https://nov-freshmate.myshopify.com/cdn/shop/products/1_d697e61b-8f39-41e5-8b52-a7fb0e7becf5_270x.jpg?v=1687762079',
-      price: '$14.00',
+      price: 14.00,
     },
     {
       name: 'Snapple Apple',
       image:
         'https://nov-freshmate.myshopify.com/cdn/shop/products/1_0dafc4d3-f74e-4f7b-b78b-5092ecf4a173_270x.jpg?v=1687762292',
-      price: '$17.00',
+      price: 17.00,
     },
     {
       name: 'Smoked Pork',
       image:
         'https://nov-freshmate.myshopify.com/cdn/shop/products/1_b099aebb-2a68-467d-a7fa-54b384e8edf4_270x.jpg?v=1687762185',
-      price: '$38.00',
+      price: 38.00,
     },
   ];
 

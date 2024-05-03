@@ -9,6 +9,7 @@
         data-bs-toggle="offcanvas"
         data-bs-target="#sidebarOffcanvas"
         aria-controls="sidebarOffcanvas"
+        i18n
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +40,7 @@
       <div class="offcanvas-body">
         <div class="text center mb-4">
           <button
+            i18n
             (mouseenter)="onMouseEnter()"
             (mouseleave)="onMouseLeave()"
             type="button"
@@ -54,8 +56,8 @@
         <hr />
         <div class="mb-4">
           <div class="d-flex align-items-center justify-content-between">
-            <h4>Availability</h4>
-            <span class="text-secondary text-right">Reset</span>
+            <h4 i18n>Availability</h4>
+            <span i18n class="text-secondary text-right">Reset</span>
           </div>
           <div
             class="form-check d-flex align-items-center justify-content-between"
@@ -67,7 +69,11 @@
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label fw-normal" for="flexCheckDefault">
+              <label
+                class="form-check-label fw-normal"
+                for="flexCheckDefault"
+                i18n
+              >
                 In stock
               </label>
             </div>
@@ -85,7 +91,7 @@
                 id="flexCheckDisabled"
                 disabled
               />
-              <label class="form-check-label" for="flexCheckDisabled">
+              <label class="form-check-label" for="flexCheckDisabled" i18n>
                 Out of stock
               </label>
             </div>
@@ -96,7 +102,7 @@
         <hr />
         <div class="mb-4">
           <div class="d-flex align-items-center justify-content-between">
-            <h4>Price</h4>
+            <h4 i18n>Price</h4>
             <input
               type="button"
               class="text-secondary border-0 bg-body text-right"
@@ -142,7 +148,7 @@
         <hr />
         <div class="mb-4">
           <div class="d-flex align-items-center justify-content-between">
-            <h4>More Filters</h4>
+            <h4 i18n>More Filters</h4>
             <span class="text-secondary text-right">Reset</span>
           </div>
           <div
@@ -155,7 +161,11 @@
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label fw-normal" for="flexCheckDefault">
+              <label
+                class="form-check-label fw-normal"
+                for="flexCheckDefault"
+                i18n
+              >
                 Espresso
               </label>
             </div>
@@ -172,7 +182,11 @@
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label fw-normal" for="flexCheckDefault">
+              <label
+                class="form-check-label fw-normal"
+                for="flexCheckDefault"
+                i18n
+              >
                 French press
               </label>
             </div>
@@ -188,7 +202,11 @@
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label fw-normal" for="flexCheckDefault">
+              <label
+                class="form-check-label fw-normal"
+                for="flexCheckDefault"
+                i18n
+              >
                 Cold brew
               </label>
             </div>
@@ -205,7 +223,11 @@
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label fw-normal" for="flexCheckDefault">
+              <label
+                class="form-check-label fw-normal"
+                for="flexCheckDefault"
+                i18n
+              >
                 Coffee beans
               </label>
             </div>
@@ -216,8 +238,8 @@
 
         <div class="mb-4">
           <div class="d-flex align-items-center justify-content-between">
-            <h4>Brands</h4>
-            <span class="text-secondary text-right">Reset</span>
+            <h4 i18n>Brands</h4>
+            <span class="text-secondary text-right" i18n>Reset</span>
           </div>
           <div
             class="form-check d-flex align-items-center justify-content-between"
@@ -229,7 +251,11 @@
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label fw-normal" for="flexCheckDefault">
+              <label
+                class="form-check-label fw-normal"
+                for="flexCheckDefault"
+                i18n
+              >
                 Lavazza
               </label>
             </div>
@@ -260,12 +286,13 @@
           d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
         />
       </svg>
-      <h4 class="fw-bold mt-3">Filter by</h4>
+      <h4 class="fw-bold mt-3" i18n>Filter by</h4>
     </div>
     <hr />
 
     <div class="text center w-100 mb-4">
       <button
+        i18n
         (mouseenter)="onMouseEnter()"
         (mouseleave)="onMouseLeave()"
         type="button"
@@ -282,7 +309,7 @@
     <hr />
     <div class="mb-4">
       <div class="d-flex align-items-center justify-content-between">
-        <h4>Availability</h4>
+        <h4 i18n>Availability</h4>
         <span class="text-secondary text-right">Reset</span>
       </div>
       <div class="form-check d-flex align-items-center justify-content-between">
@@ -293,7 +320,7 @@
             value=""
             id="flexCheckDefault"
           />
-          <label class="form-check-label fw-normal" for="flexCheckDefault">
+          <label class="form-check-label fw-normal" for="flexCheckDefault" i18n>
             In stock
           </label>
         </div>
@@ -309,7 +336,7 @@
             id="flexCheckDisabled"
             disabled
           />
-          <label class="form-check-label" for="flexCheckDisabled">
+          <label class="form-check-label" for="flexCheckDisabled" i18n>
             Out of stock
           </label>
         </div>
@@ -320,7 +347,7 @@
     <hr />
     <div class="mb-4">
       <div class="d-flex align-items-center justify-content-between">
-        <h4>Price</h4>
+        <h4 i18n>Price</h4>
         <input
           type="button"
           class="text-secondary border-0 bg-body text-right mb-3"
@@ -366,12 +393,12 @@
     <hr />
     <div class="mb-4">
       <div class="d-flex align-items-center justify-content-between">
-        <h4>More Filters</h4>
+        <h4 i18n>More Filters</h4>
         <span class="text-secondary text-right">Reset</span>
       </div>
       <div class="form-check d-flex align-items-center justify-content-between">
         <div>
-          <label class="form-check-label fw-normal" for="flexCheckDefault">
+          <label class="form-check-label fw-normal" for="flexCheckDefault" i18n>
             Espresso
           </label>
         </div>
@@ -386,7 +413,7 @@
             value=""
             id="flexCheckDefault"
           />
-          <label class="form-check-label fw-normal" for="flexCheckDefault">
+          <label class="form-check-label fw-normal" for="flexCheckDefault" i18n>
             French press
           </label>
         </div>
@@ -400,7 +427,7 @@
             value=""
             id="flexCheckDefault"
           />
-          <label class="form-check-label fw-normal" for="flexCheckDefault">
+          <label class="form-check-label fw-normal" for="flexCheckDefault" i18n>
             Cold brew
           </label>
         </div>
@@ -415,7 +442,7 @@
             value=""
             id="flexCheckDefault"
           />
-          <label class="form-check-label fw-normal" for="flexCheckDefault">
+          <label class="form-check-label fw-normal" for="flexCheckDefault" i18n>
             Coffee beans
           </label>
         </div>
@@ -426,8 +453,8 @@
 
     <div class="mb-4">
       <div class="d-flex align-items-center justify-content-between">
-        <h4>Brands</h4>
-        <span class="text-secondary text-right">Reset</span>
+        <h4 i18n>Brands</h4>
+        <span class="text-secondary text-right" i18n>Reset</span>
       </div>
       <div class="form-check d-flex align-items-center justify-content-between">
         <div>
@@ -437,7 +464,7 @@
             value=""
             id="flexCheckDefault"
           />
-          <label class="form-check-label fw-normal" for="flexCheckDefault">
+          <label class="form-check-label fw-normal" for="flexCheckDefault" i18n>
             Lavazza
           </label>
         </div>
@@ -458,6 +485,7 @@
           id="dropdownMenuButton"
           data-bs-toggle="dropdown"
           aria-expanded="false"
+          i18n
         >
           Sort by {{ selectedSortOption ? "- " + selectedSortOption : "" }}
         </button>
@@ -523,6 +551,7 @@
       class="nextBtn"
       (click)="previousPage()"
       [disabled]="currentPage === 1"
+      i18n
     >
       Previous
     </button>
@@ -533,6 +562,7 @@
       class="previousBtn"
       (click)="nextPage()"
       [disabled]="currentPage === totalPages"
+      i18n
     >
       Next
     </button>
@@ -540,7 +570,7 @@
 </div>
 
 <!-- Tags Region -->
-<div class="tags-container">
+<!-- <div class="tags-container">
   <div class="d-flex gap-2 mx-3 tag">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -617,7 +647,7 @@
       </button>
     </div>
   </div>
-</div>
+</div> -->
 <!-- End of tag -->
 
 <!-- Services Region -->

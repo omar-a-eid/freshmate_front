@@ -56,3 +56,25 @@ li.slick-active button {
 .ltr {
   direction: ltr;
 }
+.rtl {
+  direction: rtl;
+}
+.cursor {
+  cursor: pointer;
+}
+.ar_img {
+  transform: scaleX(-1);
+}
+.ar_icon_right {
+  margin: 0;
+}
+.ar_icon_left, .ar_icon_right {
+  margin-left: 1.2em;
+}
+.ar_txt {
+  text-align: right!important;
+}
+.icons_ltr_position {
+  left: 10px;
+  right: auto!important;
+}

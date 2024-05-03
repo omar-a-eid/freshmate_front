@@ -3,6 +3,7 @@ button{
 }
 li{
     list-style-type:  upper-roman;
+    margin: auto 1em;
 }
 p{
     font-size: 13px;

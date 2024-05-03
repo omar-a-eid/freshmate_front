@@ -182,7 +182,6 @@ header {
 
 @media (max-width: 768px) {
   .favorite,
-  .user,
   .navbar,
   .original-search {
     display: none;

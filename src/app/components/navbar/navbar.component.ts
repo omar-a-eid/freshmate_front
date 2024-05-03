@@ -12,6 +12,8 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
+import { RegistrationService } from '../../services/registration/registration.service';
+import { TranslationService } from '../../services/translation/translation.service';
 import { WishlistService } from '../../services/wishlist/wishlist.service';
 import { CartProductsComponent } from '../cart-products/cart-products.component';
 import { RegistrationComponent } from '../registration/registration.component';
@@ -29,7 +31,7 @@ import { RegistrationComponent } from '../registration/registration.component';
     CurrencyPipe,
     ReactiveFormsModule
   ],
-  providers: [WishlistService, ProductService, AuthService, CartService],
+  providers: [WishlistService, ProductService, AuthService, CartService, TranslationService, RegistrationService],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
@@ -49,14 +51,20 @@ export class NavbarComponent {
 
   products: any[] = [];
   displayedProducts: any[] = []; // Initialize with an empty array
+  lang:string = "en";
+  ltr:boolean= false;
 
   constructor(
     private cartService: CartService,
     private wishlistService: WishlistService,
     private productService: ProductService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private langService: TranslationService,
+    private registrationService : RegistrationService
   ) {
+    this.lang = this.langService.lang();
+    this.ltr = this.langService.isAr();
     this.isLoggedIn = sessionStorage.getItem('user');
   }
 
@@ -244,19 +252,59 @@ export class NavbarComponent {
   }
 
   getAllProducts(){
-  this.userSession = sessionStorage.getItem('user');
-  this.user = JSON.parse(this.userSession);
-  this.productService.GetAllProducts(this.user.token).subscribe({
-    next: (data: any) => {
-      this.products = data;
-      const product = data.find((product:any)=>{
-      console.log(product," inside loop product")
+    this.userSession = sessionStorage.getItem('user');
+    this.user = JSON.parse(this.userSession);
+    this.productService.GetAllProducts(this.user.token).subscribe({
+      next: (data: any) => {
+        this.products = data;
+        const product = data.find((product:any)=>{
+        console.log(product," inside loop product")
 
-        return product.title.en === this.searchKeyword
-      })
-      console.log(product,"product")
-    },
-    error: (error) => console.log(error),
-  });
-}
+          return product.title.en === this.searchKeyword
+        })
+        console.log(product,"product")
+      },
+      error: (error) => console.log(error),
+    });
+  }
+
+  onLoggin(isLoggedIn: boolean) {
+    this.isLoggedIn = isLoggedIn;
+
+    this.userSession = sessionStorage.getItem('user');
+    this.user = JSON.parse(this.userSession);
+    this.isAdmin = this.user.userId == "661f932c4c1b91f4ec7cce36";
+    if(this.user) {
+      this.wishlistService.GetWishlist(this.user.token).subscribe({
+        next: (data: any) => {
+          this.wishlist = data.products;
+        },
+        error: (error) => console.log(error),
+      });
+      this.loadWishlistData();
+  
+      // get all cart products
+      this.cartService.GetCartItems(this.user.token).subscribe({
+        next: (data: any) => {
+          // console.log(data);
+  
+          this.allProducts = data.products;
+          this.updateProductsQuantity();
+        },
+        error: (error) => console.log(error),
+      });
+    }
+  }
+
+  signout(){
+    this.registrationService.signout()
+    this.router.navigate(['/']);
+    this.isLoggedIn = false;
+    this.wishlist= [];
+    this.allProducts = [];
+    this.isAdmin = false;
+    this.updateProductsQuantity();
+    this.numberOfProducts = 0;
+  }
+
 }
