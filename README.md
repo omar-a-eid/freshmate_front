@@ -47,7 +47,7 @@ Once the application is running, you can:
 
 ## Localization
 
-Freshmate supports multiple languages. To switch languages, run `npm run locale` in the terminal. Then open `http://localhost:3000` and choose the preffered language.
+Freshmate supports multiple languages. To switch languages, run `ng build --localize` then `npm run locale` in the terminal. Then open `http://localhost:3000` and choose the preffered language.
 
 ## Backend Repository
 
