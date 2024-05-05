@@ -66,3 +66,16 @@
     height: 81px !important;
     padding: 0 !important;
 }
+
+.message{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    padding-left: 13px;
+    padding-top: 18px;
+}
+
+.confirmation-message{
+    font-weight: bolder;
+    font-size: 16px;
+}
