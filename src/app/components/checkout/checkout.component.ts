@@ -258,7 +258,7 @@ export class CheckoutComponent implements OnInit {
     setTimeout(() => {
       passwordToast.classList.remove('show');
       passwordToast.style.display = "none";
-    }, 3000);
+    }, 8000);
 
     const closeToast = document.querySelector('[data-dismiss="toast"]');
     if (closeToast) {
